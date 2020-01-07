@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ezen.jobsearch.common.PaginationInfo;
 import com.ezen.jobsearch.common.ProjectUtil;
-import com.ezen.jobsearch.common.SearchVO;
 import com.ezen.jobsearch.member.model.MemberService;
 import com.ezen.jobsearch.member.model.MemberVO;
 
@@ -21,8 +20,9 @@ public class AdminMemberController {
 	private MemberService memberService;
 	
 	@RequestMapping(value="/admin/memberList.do")	
-	public String memberList(@ModelAttribute SearchVO searchVo, Model model) {
+	public String memberList(@ModelAttribute MemberVO searchVo, Model model) {
 		
+		System.out.println(searchVo);
 		
 		//[1] 먼저 PaginationInfo객체를 생성하여 firstRecordIndex 값을 구한다
 		PaginationInfo pagingInfo=new PaginationInfo();
@@ -36,7 +36,7 @@ public class AdminMemberController {
 		
 		List<MemberVO> memberList = memberService.selectMemberList(searchVo);
 		
-		System.out.println(memberList);
+		//System.out.println(memberList);
 		
 		int totalRecord = memberService.selectTotalRecord(searchVo);
 		

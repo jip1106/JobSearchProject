@@ -13,7 +13,13 @@
 			
 			document.frmPage.submit();
 		}
+		
+		function searchMember(selected){
+			var obj = document.frmSearch;
+			obj.submit();
+		}
 	</script>
+	
   
   	<c:import url="../admin-include/admin-navi.jsp"/>
 
@@ -22,6 +28,7 @@
 		name="frmPage" method="post">
 		<input type="hidden" name="searchCondition" value="${param.searchCondition}">
 		<input type="hidden" name="searchKeyword" value="${param.searchKeyword}">
+		<input type="hidden" name="regType" value="${param.regType}">
 		<input type="hidden" name="currentPage">
 	</form>
 	<!-- 페이징 처리 관련 form -->
@@ -35,31 +42,40 @@
   				<div class="panel-heading">
 					<div class="panel-title">회원 리스트</div>
 				</div>
-				
-				<div class="row form-group" style="margin-top:3%;">
-					<form name="frmSearch" method="post" action='<c:url value="/admin/memberList.do"/>'>
-						<div class="col-md-2 lg-2">
-							<select class="form-control" name="searchCondition">
-								<option value="">선택</option>
-								<option value="member_name" <c:if test="${param.searchCondition=='member_name' }">selected="selected"</c:if>>이름</option>
-								<option value="member_id" <c:if test="${param.searchCondition=='member_id' }">selected="selected"</c:if>>아이디</option>
-								<option value="phone" <c:if test="${param.searchCondition=='phone' }">selected="selected"</c:if>>전화번호</option>
-							</select>
-						</div>
+				<form name="frmSearch" method="post" action='<c:url value="/admin/memberList.do"/>'>
+					<div class="row form-group" style="margin-top:3%;">
+							<div class="col-md-2">검색조건</div>
+							<div class="col-md-2 lg-2">
+								<select class="form-control" name="searchCondition">
+									<option value="">선택</option>
+									<option value="member_name" <c:if test="${param.searchCondition=='member_name' }">selected="selected"</c:if>>이름</option>
+									<option value="member_id" <c:if test="${param.searchCondition=='member_id' }">selected="selected"</c:if>>아이디</option>
+									<option value="phone" <c:if test="${param.searchCondition=='phone' }">selected="selected"</c:if>>전화번호</option>
+								</select>
+							</div>
+							<div class="col-md-4">
+								<input class="form-control" type="text" name="searchKeyword" title="검색어 입력" value="${param.searchKeyword}">
+							</div>
+							
+							<div class="col-md-2">
+								<input class="btn btn-primary btn-sm" type="submit" value="검색">
+							</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-md-2">회원분류</div>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="searchKeyword" title="검색어 입력" value="${param.searchKeyword}">
+							<select class="form-control" name="regType" onchange="searchMember(this)">
+								<option value="">전체회원</option>
+								<option value="1" <c:if test="${param.regType=='1' }">selected="selected"</c:if>>일반회원</option>
+								<option value="2" <c:if test="${param.regType=='2' }">selected="selected"</c:if>>기업회원</option>
+							</select>						
 						</div>
-						
-						<div class="col-md-2">
-							<input class="btn btn-primary btn-sm" type="submit" value="검색">
-						</div>
-						
-					</form>
-				</div>
+					</div>
+				</form>
 				
+		
 				
-				
-
 
   				<div class="panel-body">
   					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered">
@@ -79,24 +95,31 @@
 						</thead>
 						 
 						<tbody>
-							<c:forEach var="memberVo" items="${memberList }">
+							<c:if test="${!empty memberList }">
+								<c:forEach var="memberVo" items="${memberList }">
+									<tr class="odd gradeX">
+										<td>${memberVo.memberSeq} <input type="checkbox" name="chk" value="${memberVo.memberSeq }"></td>
+										<td>${memberVo.memberId }</td>
+										<td>${memberVo.memberName }</td>
+										<td>${memberVo.phone }</td>
+										<td>
+											<c:if test="${memberVo.regType == 1 }">일반회원 </c:if>
+											<c:if test="${memberVo.regType == 2 }">기업회원 </c:if>
+										</td>
+										<td>${memberVo.delDate }</td>
+										<td>${memberVo.delFlag }</td>
+										<td class="center"> 남자</td>
+										<td class="center">
+											${memberVo.regDate }
+										</td>
+									</tr>
+								</c:forEach>
+							</c:if>
+							<c:if test="${empty memberList }">
 								<tr class="odd gradeX">
-									<td>${memberVo.memberSeq} <input type="checkbox" name="chk" value="${memberVo.memberSeq }"></td>
-									<td>${memberVo.memberId }</td>
-									<td>${memberVo.memberName }</td>
-									<td>${memberVo.phone }</td>
-									<td>
-										<c:if test="${memberVo.regType == 1 }">일반회원 </c:if>
-										<c:if test="${memberVo.regType == 2 }">기업회원 </c:if>
-									</td>
-									<td>${memberVo.delDate }</td>
-									<td>${memberVo.delFlag }</td>
-									<td class="center"> 남자</td>
-									<td class="center">
-										${memberVo.regDate }
-									</td>
+									<td colspan="9">조회된 데이터가 없습니다.</td>
 								</tr>
-							</c:forEach>
+							</c:if>
 						</tbody>
 					</table>
 					
@@ -108,7 +131,7 @@
 								<ul class="pagination">
 									<!-- 이전블록으로 이동 -->
 									<c:if test="${pagingInfo.firstPage>1 }">
-										<li class="prev disabled"><a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">← Previous</a></li>
+										<li class="prev"><a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">← Previous</a></li>
 									</c:if>
 								
 									<c:forEach var="i" begin="${pagingInfo.firstPage }"  end="${pagingInfo.lastPage }">
@@ -124,7 +147,7 @@
 									
 									<!-- 다음블록으로 이동 -->
 									<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
-										<li class="next disabled"><a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">Next → </a></li>
+										<li class="next"><a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">Next → </a></li>
 									</c:if>
 								</ul>
 							</div>

@@ -85,7 +85,7 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public List<MemberVO> selectMemberList(SearchVO searchVo) {
+	public List<MemberVO> selectMemberList(MemberVO searchVo) {
 		// TODO Auto-generated method stub
 		
 		//System.out.println("DAOImpl : searchVO " + searchVo);
@@ -96,7 +96,7 @@ public class MemberDAOImpl implements MemberDAO{
 	}
 
 	@Override
-	public int selectTotalRecord(SearchVO searchVo) {
+	public int selectTotalRecord(MemberVO searchVo) {
 		int totalCount = sqlSession.selectOne(nameSpace + "selectTotalRecord",searchVo);
 		return totalCount;
 	}

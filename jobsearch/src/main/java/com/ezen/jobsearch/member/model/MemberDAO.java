@@ -24,6 +24,6 @@ public interface MemberDAO {
 	
 	
 	//관리자 회원 리스트
-	List<MemberVO> selectMemberList(SearchVO searchVo);
-	int selectTotalRecord(SearchVO searchVo);
+	List<MemberVO> selectMemberList(MemberVO searchVo);
+	int selectTotalRecord(MemberVO searchVo);
 }

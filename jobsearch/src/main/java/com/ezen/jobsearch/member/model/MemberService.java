@@ -32,7 +32,7 @@ public interface MemberService {
 	
 	
 	//관리자 회원 리스트 조회
-	List<MemberVO> selectMemberList(SearchVO searchVo);
+	List<MemberVO> selectMemberList(MemberVO searchVo);
 
-	int selectTotalRecord(SearchVO searchVo);
+	int selectTotalRecord(MemberVO searchVo);
 }

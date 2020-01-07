@@ -21,6 +21,8 @@ public class MemberVO extends SearchVO{
 	 private String delFlag; 
 	 private String delDate;
 	 
+	
+	 
 	public int getMemberSeq() {
 		return memberSeq;
 	}
@@ -131,7 +133,7 @@ public class MemberVO extends SearchVO{
 				+ address + ", detailAddress=" + detailAddress + ", extraAddress=" + extraAddress + ", phone=" + phone
 				+ ", genderType=" + genderType + ", birthday=" + birthday + ", profileImg=" + profileImg
 				+ ", profileRenameimg=" + profileRenameimg + ", regDate=" + regDate + ", delFlag=" + delFlag
-				+ ", delDate=" + delDate + "]";
+				+ ", delDate=" + delDate + "]" + super.toString();
 	}
 	 
 	 

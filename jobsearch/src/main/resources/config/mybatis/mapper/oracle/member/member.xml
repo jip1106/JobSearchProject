@@ -62,9 +62,13 @@
 		<if test="searchKeyword!=null and searchKeyword != ''">
 			and ${searchCondition} like '%' || #{searchKeyword} || '%'
 		</if>
+		
+		<if test="regType!=null and regType!=''">
+			and REG_TYPE = #{regType}
+		</if>
 	</sql>
 	
-	<select id="selectMemberList" parameterType="searchVo" resultType="memberVo">
+	<select id="selectMemberList" parameterType="memberVo" resultType="memberVo">
 		SELECT  *
 		FROM
 		(
@@ -87,7 +91,7 @@
 		]]>
 	</select>
 	
-	<select id="selectTotalRecord" parameterType="searchVo" resultType="int">
+	<select id="selectTotalRecord" parameterType="memberVo" resultType="int">
 		Select count(*) From TBL_MEMBER Where 1=1 
 		<include refid="searchWhere"></include>
 	</select>

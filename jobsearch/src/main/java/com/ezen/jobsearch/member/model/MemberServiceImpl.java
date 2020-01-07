@@ -120,7 +120,7 @@ public class MemberServiceImpl implements MemberService{
 
 	//회원리스트
 	@Override
-	public List<MemberVO> selectMemberList(SearchVO searchVo) {
+	public List<MemberVO> selectMemberList(MemberVO searchVo) {
 		
 		List<MemberVO> memberList = memberDao.selectMemberList(searchVo);
 				
@@ -128,7 +128,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 	@Override
-	public int selectTotalRecord(SearchVO searchVo) {
+	public int selectTotalRecord(MemberVO searchVo) {
 		int totalCount = memberDao.selectTotalRecord(searchVo);
 		return totalCount;
 	}
