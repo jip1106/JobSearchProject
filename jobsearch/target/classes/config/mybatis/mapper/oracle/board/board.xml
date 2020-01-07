@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="config.mybatis.mapper.oracle.board">
+	<insert id="insertBoard" parameterType="boardVo">
+		<selectKey keyProperty="boardSeq" resultType="int" order="BEFORE">
+			select board_seq.nextval from dual
+		</selectKey>
+			insert into tbl_board(board_seq, board_type, board_title, board_contents, ref_memberseq)
+			values(#{boardSeq}, #{boardType}, #{boardTitle}, #{boardContents}, #{refMemberseq} )
+	</insert>
+</mapper>

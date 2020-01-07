@@ -20,28 +20,25 @@
 			           <div class="panel-title"><i class="glyphicon glyphicon-question-sign"></i> FAQ 등록</div>
 			       </div>
 						<div class="panel-body">
-							<form action="">
+							<form method="post" action="<c:url value='/admin/board/write.do'/>">
 								<fieldset>
 									<div class="form-group">
-										<input class="form-control" type="hidden" value="게시판 타입">
+										<input class="form-control" type="hidden" name="boardType" value="2">
 									</div>	
 									<div class="form-group">
-										<input class="form-control" type="hidden" value="회원 시퀀스">
+										<input class="form-control" type="hidden" name="refMemberseq" value="${loginMember.memberSeq }">
 									</div>						
 									<div class="form-group">
 										<label>질문</label>
-										<input class="form-control" placeholder="자주 묻는 질문을 입력하세요" type="text">
+										<input class="form-control" placeholder="자주 묻는 질문을 입력하세요" name="boardTitle" type="text">
 									</div>						
 									<div class="form-group">
 										<label>답변</label>
-										<textarea class="form-control" placeholder="답변을 입력하세요" rows="20"></textarea>
+										<textarea class="form-control" placeholder="답변을 입력하세요" name="boardContents" rows="20"></textarea>
 									</div>			
 								</fieldset>
 								<div>
-									<div class="btn btn-info">
-										<i class="glyphicon glyphicon-bullhorn"></i>
-										등록
-									</div>
+									<button type="submit" class="btn btn-lg btn-block btn-success">등록</button>
 								</div>
 							</form>
 						</div>
