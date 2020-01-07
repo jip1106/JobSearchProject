@@ -8,8 +8,8 @@
                     <li><a href="stats.html"><i class="glyphicon glyphicon-stats"></i> Statistics (Charts)</a></li>
                     <li><a href="tables.html"><i class="glyphicon glyphicon-list"></i> Tables</a></li>
                     <li><a href="buttons.html"><i class="glyphicon glyphicon-record"></i> Buttons</a></li>
-                    <li><a href="editors.html"><i class="glyphicon glyphicon-pencil"></i> Editors</a></li>
-                    <li><a href="forms.html"><i class="glyphicon glyphicon-tasks"></i> Forms</a></li>
+                    <li><a href="${pageContext.request.contextPath }/admin/notice/write.do"><i class="glyphicon glyphicon-info-sign"></i>공지사항</a></li>
+                    <li><a href="${pageContext.request.contextPath }/admin/faq/write.do"><i class="glyphicon glyphicon-question-sign"></i>FAQ</a></li>
                     <li class="submenu">
                          <a href="#">
                             <i class="glyphicon glyphicon-list"></i> Pages
