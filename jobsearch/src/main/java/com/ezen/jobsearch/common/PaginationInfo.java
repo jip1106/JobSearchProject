@@ -1,6 +1,8 @@
 package com.ezen.jobsearch.common;
 
 public class PaginationInfo {
+	
+
 
 	private int currentPage; //현재 페이지
 	private int recordCountPerPage;  //pageSize 페이지당 보여질 레코드수

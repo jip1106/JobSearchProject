@@ -8,6 +8,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ezen.jobsearch.common.SearchVO;
+
 
 @Repository
 public class MemberDAOImpl implements MemberDAO{
@@ -80,6 +82,23 @@ public class MemberDAOImpl implements MemberDAO{
 		int result = sqlSession.update("updatePwd",hMap);
 		
 		return result;
+	}
+
+	@Override
+	public List<MemberVO> selectMemberList(SearchVO searchVo) {
+		// TODO Auto-generated method stub
+		
+		//System.out.println("DAOImpl : searchVO " + searchVo);
+		List<MemberVO> memberList = sqlSession.selectList(nameSpace + "selectMemberList",searchVo);
+		//System.out.println("DAOImpl : searchVO " + memberList);
+		
+		return memberList;
+	}
+
+	@Override
+	public int selectTotalRecord(SearchVO searchVo) {
+		int totalCount = sqlSession.selectOne(nameSpace + "selectTotalRecord",searchVo);
+		return totalCount;
 	}
 
 	

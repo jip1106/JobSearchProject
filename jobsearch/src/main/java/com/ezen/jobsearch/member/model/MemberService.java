@@ -3,6 +3,8 @@ package com.ezen.jobsearch.member.model;
 import java.util.HashMap;
 import java.util.List;
 
+import com.ezen.jobsearch.common.SearchVO;
+
 public interface MemberService {
 	//회원가입
 	int insertMember(MemberVO memberVo);
@@ -27,4 +29,10 @@ public interface MemberService {
 	
 	//비밀번호 업데이트
 	int updatePassword(HashMap<String,String> hMap);
+	
+	
+	//관리자 회원 리스트 조회
+	List<MemberVO> selectMemberList(SearchVO searchVo);
+
+	int selectTotalRecord(SearchVO searchVo);
 }

@@ -9,6 +9,7 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import com.ezen.jobsearch.common.ProjectUtil;
+import com.ezen.jobsearch.common.SearchVO;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -115,6 +116,21 @@ public class MemberServiceImpl implements MemberService{
 		int result = memberDao.updatePassword(hMap);
 		
 		return result;
+	}
+
+	//회원리스트
+	@Override
+	public List<MemberVO> selectMemberList(SearchVO searchVo) {
+		
+		List<MemberVO> memberList = memberDao.selectMemberList(searchVo);
+				
+		return memberList;
+	}
+
+	@Override
+	public int selectTotalRecord(SearchVO searchVo) {
+		int totalCount = memberDao.selectTotalRecord(searchVo);
+		return totalCount;
 	}
 
 

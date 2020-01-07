@@ -1,7 +1,8 @@
 package com.ezen.jobsearch.member.model;
 
+import com.ezen.jobsearch.common.SearchVO;
 
-public class MemberVO {
+public class MemberVO extends SearchVO{
 	 private int memberSeq;                             
 	 private String memberId;               
 	 private String memberPwd;              
