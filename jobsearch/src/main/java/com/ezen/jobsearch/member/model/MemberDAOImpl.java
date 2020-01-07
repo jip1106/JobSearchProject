@@ -101,6 +101,17 @@ public class MemberDAOImpl implements MemberDAO{
 		return totalCount;
 	}
 
+	@Override
+	public int deleteMember(String memberSeq, String type) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("memberSeq", memberSeq);
+		map.put("type", type);
+		
+		int delCount = sqlSession.update(nameSpace + "deleteMember", map);
+		
+		return delCount;
+	}
+
 	
 	
 }

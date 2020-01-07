@@ -96,6 +96,13 @@
 		<include refid="searchWhere"></include>
 	</select>
 	
+	<update id="deleteMember" parameterType="hashmap" >
+		UPDATE TBL_MEMBER 
+		SET del_flag = #{type} 
+		WHERE member_seq in (#{memberSeq})
+		
+	</update>
+	
 	
 
 </mapper>

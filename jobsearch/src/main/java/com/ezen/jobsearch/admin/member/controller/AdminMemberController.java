@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ezen.jobsearch.common.PaginationInfo;
 import com.ezen.jobsearch.common.ProjectUtil;
@@ -48,4 +49,20 @@ public class AdminMemberController {
 		
 		return "/admin/admin-member/memberList";
 	}
+	@RequestMapping(value="/admin/memberDel.do")
+	public String memberList(@RequestParam(value="memberSeq") String memberSeq, @RequestParam(value="type") String type) {
+		
+		System.out.println("memberSeq :: " + memberSeq);
+		System.out.println("type :: " + type);
+		
+		type=type.toUpperCase();
+				
+		int delCnt = memberService.deleteMember(memberSeq, type);
+		
+		
+		
+		
+		return "/admin/admin-member/memberList";
+	}
+	
 }

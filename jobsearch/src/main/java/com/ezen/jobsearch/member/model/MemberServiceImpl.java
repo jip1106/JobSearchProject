@@ -133,6 +133,13 @@ public class MemberServiceImpl implements MemberService{
 		return totalCount;
 	}
 
+	@Override
+	public int deleteMember(String memberSeq, String type) {
+		int delCount = memberDao.deleteMember(memberSeq, type);
+						
+		return delCount;
+	}
+
 
 	
 	

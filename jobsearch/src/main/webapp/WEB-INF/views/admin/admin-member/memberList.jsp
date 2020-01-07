@@ -6,21 +6,6 @@
 <c:import url="../admin-include/admin-header.jsp"/>
 
   <body>
-  
-	<script>
-		function pageFunc(curPage){
-			document.frmPage.currentPage.value=curPage;
-			
-			document.frmPage.submit();
-		}
-		
-		function searchMember(selected){
-			var obj = document.frmSearch;
-			obj.submit();
-		}
-	</script>
-	
-  
   	<c:import url="../admin-include/admin-navi.jsp"/>
 
 	<!-- 페이징 처리 관련 form -->
@@ -64,24 +49,32 @@
 					
 					<div class="row">
 						<div class="col-md-2">회원분류</div>
-						<div class="col-md-4">
+						<div class="col-md-2">
 							<select class="form-control" name="regType" onchange="searchMember(this)">
 								<option value="">전체회원</option>
 								<option value="1" <c:if test="${param.regType=='1' }">selected="selected"</c:if>>일반회원</option>
 								<option value="2" <c:if test="${param.regType=='2' }">selected="selected"</c:if>>기업회원</option>
 							</select>						
 						</div>
+						
+						<div class="col-md-2">
+							회원삭제: 
+							<button class="btn btn-danger btn-sm" type="button" onclick="memberDel('Y')">삭제</button>			
+							<button class="btn btn-success btn-sm" type="button" onclick="memberDel('N')">삭제취소</button>			
+						</div>
+						
 					</div>
 				</form>
 				
-		
 				
+				
+			
 
   				<div class="panel-body">
   					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th>번호<input type="checkbox" name="chkAll"></th>
+								<th>번호<input type="checkbox" name="chkAll" id="chkAll"></th>
 								<th>아이디</th>
 								<th>회원이름</th>
 								<th>전화번호</th>
@@ -98,7 +91,7 @@
 							<c:if test="${!empty memberList }">
 								<c:forEach var="memberVo" items="${memberList }">
 									<tr class="odd gradeX">
-										<td>${memberVo.memberSeq} <input type="checkbox" name="chk" value="${memberVo.memberSeq }"></td>
+										<td>${memberVo.memberSeq} <input type="checkbox" name="chkbox" value="${memberVo.memberSeq }"></td>
 										<td>${memberVo.memberId }</td>
 										<td>${memberVo.memberName }</td>
 										<td>${memberVo.phone }</td>
@@ -163,6 +156,11 @@
 		  
 		</div>
     </div>
+    
+    <form name="delUserForm" method="post" action="/jobsearch/admin/memberDel.do">
+    	<input type="hidden" name="memberSeq" id="memberSeq">
+    	<input type="hidden" name="type" id="type">
+    </form>
 
     <footer>
          <div class="container">
@@ -172,7 +170,7 @@
             </div>
             
          </div>
-      </footer>
+     </footer>
 
       
 
@@ -189,5 +187,74 @@
 
     <script src="${pageContext.request.contextPath}/resources/admin/js/custom.js"></script>
     <script src="${pageContext.request.contextPath}/resources/admin/js/tables.js"></script>
+    
+
+	<script>
+								
+		$(function(){
+			$("#chkAll").click(function(){
+				
+				if($(this).is(":checked")){
+					$("input[name=chkbox]").prop("checked",true);
+				}else{
+					$("input[name=chkbox]").prop("checked",false);
+				}
+			})
+		})
+				
+		function memberDel(type){
+			
+			var obj = document.delUserForm;
+			
+			var cnt = 0;
+			var length = $("input[name=chkbox]").is(":checked").length;
+			var memberSeq = "";
+			
+			$("input[name=chkbox]").each(function(){
+				if($(this).is(":checked")){
+					cnt++;
+					memberSeq += $(this).val() + ",";
+				}
+			})
+			
+			//마지막 콤마 제거
+			memberSeq = memberSeq.substr(0,memberSeq.length-1);
+			
+			obj.memberSeq.value = memberSeq;
+			obj.type.value = type;
+			
+			
+			//alert(obj.memberSeq.value);
+			//alert(obj.type.value);
+			
+			if(cnt == 0){
+				alert("삭제 여부를 변경할 회원을 선택 해 주세요.");
+				return false;
+			}else{
+				if( confirm("삭제 여부를 변경 하시겠습니까?") ){
+					obj.action.value = "/jobsearch/admin/memberDel.do";
+					obj.submit();
+				}else{
+					return false;
+				}
+			}
+		}
+		
+
+		function pageFunc(curPage){
+			document.frmPage.currentPage.value=curPage;
+			
+			document.frmPage.submit();
+		}
+		
+		function searchMember(selected){
+			var obj = document.frmSearch;
+			
+			obj.submit();
+		}
+		
+	</script>
+
+
   </body>
 </html>
