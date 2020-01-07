@@ -45,6 +45,7 @@ public class AdminMemberController {
 		
 		model.addAttribute("memberList",memberList);
 		model.addAttribute("pagingInfo",pagingInfo);
+		model.addAttribute("totalRecord", totalRecord);
 		
 		
 		return "/admin/admin-member/memberList";
@@ -60,9 +61,7 @@ public class AdminMemberController {
 		int delCnt = memberService.deleteMember(memberSeq, type);
 		
 		
-		
-		
-		return "/admin/admin-member/memberList";
+		return "redirect:/admin/memberList.do";
 	}
 	
 }

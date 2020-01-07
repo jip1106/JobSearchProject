@@ -9,16 +9,7 @@
 	              </div>
 	           </div>
 	           <div class="col-md-5">
-	              <div class="row">
-	                <div class="col-lg-12">
-	                  <div class="input-group form">
-	                       <input type="text" class="form-control" placeholder="Search...">
-	                       <span class="input-group-btn">
-	                         <button class="btn btn-primary" type="button">Search</button>
-	                       </span>
-	                  </div>
-	                </div>
-	              </div>
+
 	           </div>
 	           <div class="col-md-2">
 	              <div class="navbar navbar-inverse" role="banner">
@@ -27,8 +18,8 @@
 	                      <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
 	                        <ul class="dropdown-menu animated fadeInUp">
-	                          <li><a href="profile.html">Profile</a></li>
-	                          <li><a href="login.html">Logout</a></li>
+	                           <li><a href="/jobsearch/home.do" target="parent">사용자페이지</a></li>
+	                           <li><a href="">로그아웃</a></li>
 	                        </ul>
 	                      </li>
 	                    </ul>

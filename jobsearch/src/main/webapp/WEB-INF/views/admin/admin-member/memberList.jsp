@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 
 <c:import url="../admin-include/admin-header.jsp"/>
@@ -14,6 +16,7 @@
 		<input type="hidden" name="searchCondition" value="${param.searchCondition}">
 		<input type="hidden" name="searchKeyword" value="${param.searchKeyword}">
 		<input type="hidden" name="regType" value="${param.regType}">
+		<input type="hidden" name="delFlag" value="${param.delFlag }">
 		<input type="hidden" name="currentPage">
 	</form>
 	<!-- 페이징 처리 관련 form -->
@@ -27,7 +30,12 @@
   				<div class="panel-heading">
 					<div class="panel-title">회원 리스트</div>
 				</div>
-				<form name="frmSearch" method="post" action='<c:url value="/admin/memberList.do"/>'>
+		
+				<form name="frmSearch" method="post" >
+					<div class="row" style="margin-top:3%;">
+						<div class="col-md-2">검색 결과</div>
+						<div class="col-md-2">${totalRecord }개</div>		
+					</div>
 					<div class="row form-group" style="margin-top:3%;">
 							<div class="col-md-2">검색조건</div>
 							<div class="col-md-2 lg-2">
@@ -43,19 +51,27 @@
 							</div>
 							
 							<div class="col-md-2">
-								<input class="btn btn-primary btn-sm" type="submit" value="검색">
+								<input class="btn btn-primary btn-sm" type="button" value="검색" onclick="searchMember()">
 							</div>
 					</div>
 					
 					<div class="row">
 						<div class="col-md-2">회원분류</div>
 						<div class="col-md-2">
-							<select class="form-control" name="regType" onchange="searchMember(this)">
+							<select class="form-control" name="regType" onchange="searchMember()">
 								<option value="">전체회원</option>
 								<option value="1" <c:if test="${param.regType=='1' }">selected="selected"</c:if>>일반회원</option>
 								<option value="2" <c:if test="${param.regType=='2' }">selected="selected"</c:if>>기업회원</option>
 							</select>						
 						</div>
+						
+						<div class="col-md-2">
+							<select class="form-control" name="delFlag" onchange="searchMember()">
+								<option value="">전체회원</option>
+								<option value="N" <c:if test="${param.delFlag=='N' }">selected="selected"</c:if>>이용회원</option>
+								<option value="Y" <c:if test="${param.delFlag=='Y' }">selected="selected"</c:if>>삭제회원</option>
+							</select>						
+						</div>						
 						
 						<div class="col-md-2">
 							회원삭제: 
@@ -217,15 +233,10 @@
 				}
 			})
 			
-			//마지막 콤마 제거
-			memberSeq = memberSeq.substr(0,memberSeq.length-1);
 			
 			obj.memberSeq.value = memberSeq;
 			obj.type.value = type;
 			
-			
-			//alert(obj.memberSeq.value);
-			//alert(obj.type.value);
 			
 			if(cnt == 0){
 				alert("삭제 여부를 변경할 회원을 선택 해 주세요.");

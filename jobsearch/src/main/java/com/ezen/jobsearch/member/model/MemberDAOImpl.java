@@ -104,7 +104,16 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public int deleteMember(String memberSeq, String type) {
 		HashMap<String,Object> map = new HashMap<String,Object>();
-		map.put("memberSeq", memberSeq);
+		
+		List<String> memberSeqList = new ArrayList<String>();
+		
+		String arr[] = memberSeq.split(",");
+		for(int i=0; i<arr.length;i++) {
+			memberSeqList.add(arr[i]);
+		}
+		
+		
+		map.put("memberSeqList", memberSeqList);
 		map.put("type", type);
 		
 		int delCount = sqlSession.update(nameSpace + "deleteMember", map);
