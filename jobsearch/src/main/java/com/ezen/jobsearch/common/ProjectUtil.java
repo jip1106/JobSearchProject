@@ -5,7 +5,7 @@ import java.util.Random;
 public class ProjectUtil {
 	//페이징 처리 관련 상수
 	public static final int BLOCK_SIZE=5;
-	public static final int RECORD_COUNT=5;
+	public static final int RECORD_COUNT=10;
 	
 	//랜덤 비밀번호
 	public static String getRandomPwd(int length) {

@@ -73,18 +73,19 @@
 							</select>						
 						</div>						
 						
-						<div class="col-md-2">
+						<div class="col-md-4">
 							회원삭제: 
 							<button class="btn btn-danger btn-sm" type="button" onclick="memberDel('Y')">삭제</button>			
 							<button class="btn btn-success btn-sm" type="button" onclick="memberDel('N')">삭제취소</button>			
 						</div>
 						
+						<div class="col-md-2">
+							<a href="/jobsearch/admin/memberListExcel.do">전체회원 엑셀 다운로드</a>			
+						</div>						
+						
 					</div>
 				</form>
 				
-				
-				
-			
 
   				<div class="panel-body">
   					<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered">

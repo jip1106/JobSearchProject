@@ -109,9 +109,11 @@
 		<foreach collection="memberSeqList" item="memberSeq" separator=","	open="(" close=")">
 			#{memberSeq}
 		</foreach>
-		
-		
 	</update>
+	
+	<select id="selectAll" resultType="memberVo">
+		Select * From TBL_MEMBER Order BY reg_date desc
+	</select> 
 	
 	
 

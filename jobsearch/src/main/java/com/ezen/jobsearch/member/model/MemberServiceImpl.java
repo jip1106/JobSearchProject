@@ -140,6 +140,14 @@ public class MemberServiceImpl implements MemberService{
 		return delCount;
 	}
 
+	@Override
+	public List<MemberVO> selectAll() {
+		
+		List<MemberVO> memberAllList = memberDao.selectAll();
+		
+		return memberAllList;
+	}
+
 
 	
 	

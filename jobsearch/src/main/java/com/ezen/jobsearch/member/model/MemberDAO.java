@@ -26,6 +26,7 @@ public interface MemberDAO {
 	//관리자 회원 리스트
 	List<MemberVO> selectMemberList(MemberVO searchVo);
 	int selectTotalRecord(MemberVO searchVo);
+	List<MemberVO> selectAll();
 
 	//관리자 회원 삭제, 삭제 취소
 	int deleteMember(String memberSeq, String type);

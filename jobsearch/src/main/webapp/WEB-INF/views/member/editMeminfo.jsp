@@ -26,14 +26,7 @@ $(function() {
 
     });
     
-    //아이디 이메일 체크
-    $("#memberId").keyup(function(){
 
-    	var inputVal = $(this).val();
-    	
-    	idEmailChk(inputVal);
-    	
-    })
     
     $("#comRegnumber").keyup(function(){
     	var inputVal = $(this).val();
@@ -382,16 +375,13 @@ function inputChk(){
 					<li class="mytab-li" <c:if test="${regType==1}"> style="background-color:gray;" </c:if>>
 						<a href="${pageContext.request.contextPath }/member/register.do">일반회원</a>
 					</li>
-					<li class="mytab-li" <c:if test="${regType==2}"> style="background-color:gray;" </c:if>>
-						<a href="${pageContext.request.contextPath }/member/register.do?regType=2">기업회원</a>
-					</li>
+
 				</ul>
               </div>
               
               <!-- 일반회원 -->
-             	<c:if test="${regType ==1}">
-             	
-             	  <form name="memberFrm" action="/jobsearch/member/insertMember.do" method="post" onsubmit="return inputChk();">
+             	             	
+              <form name="memberFrm" action="/jobsearch/member/insertMember.do" method="post" onsubmit="return inputChk();">
              	  <input type="hidden" value="${regType }" name="regType">
              	  
              	  <input type="hidden" value="N" name="id_ok" id="id_ok">
@@ -495,133 +485,7 @@ function inputChk(){
 	            </div>
 	              
 	              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">회원가입</button>
-           	 	</form>   
-          	 
-          	 </c:if>
-	     	  <!-- 일반회원 끝 -->     
-	     	 
-	     	 
-	     	 
-	     	 <!-- 기업회원 --> 
-	     	 <c:if test="${regType ==2}">
-	     	 	<form name="companyMember" method="post" action="/jobsearch/member/insertMember.do" onsubmit="return inputChk();">
-	     	 	 <input type="hidden" value="${regType }" name="regType">
-	     	 	 <input type="hidden" value="N" name="id_ok" id="id_ok">
-             	 <input type="hidden" value="N" name="certi_ok" id="certi_ok">
-             	 <input type="hidden" value="N" name="regnumber_ok" id="regnumber_ok">
-             	  
-	     	 		<!-- 회사정보 -->
-	              <div class="row mb-4 mt-4">
-	              	<!-- 회원 가입시 tbl_company insert -->
-	              	<div class="col-lg-4">사업자등록번호  </div>
-		            <div class="col-lg-8 form-label-group mb-2">
-		              <input type="text" id="comRegnumber" name="comRegnumber" class="form-control" maxlength="12" placeholder="000-00-00000" required autofocus>
-		              <div id="regNumberDiv"></div>
-		            </div>
-		         
-	              </div>
-	              
-	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">기업명</div>
-		            <div class="col-lg-8 form-label-group mb-2">
-		              <input type="text" id="comName" name="comName" class="form-control" placeholder="" required autofocus>
-		            </div>
-	              </div>
-	              
-	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">대표자명</div>
-		            <div class="col-lg-8 form-label-group mb-2">
-		              <input type="text" id="ceoName" name="ceoName" class="form-control" placeholder="" required autofocus>
-		            </div>
-	              </div>
-	              <!-- 회원 가입시 tbl_company insert -->
-	              
-	              <!-- 회원 가입시 tbl_member insert -->
-	              <div class="row mb-4 mt-4">
-		              	<div class="col-lg-4">기업주소지 </div>
-			            <div class="col-lg-4 form-label-group mb-2">
-			              <input type="text" id="zipCode" name="zipCode" class="form-control" placeholder="우편번호" required readonly>
-			            </div>
-			            <div class="col-lg-4"><a href="#" class="btn btn-primary" onclick="sample3_execDaumPostcode()">검색</a></div>
-			        
-		              	<div class="col-lg-4"> </div>
-			            <div class="col-lg-8 form-label-group mb-2">
-			              <input type="text" id="address" name="address" class="form-control" placeholder="주소" required>
-			            </div>
-			            <div class="col-lg-4"> </div>
-			            <div class="col-lg-8 form-label-group mb-2">
-			              <input type="text" id="detailAddress" name="detailAddress" class="form-control" placeholder="상세주소" required>
-			            </div>
-			            <div class="col-lg-4"> </div>
-			            <div class="col-lg-8 form-label-group mb-2">
-			              <input type="text" id="extraAddress" name="extraAddress" class="form-control" placeholder="참고항목" required>
-			            </div>
-	              </div>
-	
-				  <div id="wrap" style="display:none;border:1px solid;width:100%;height:150px;margin:5px 0;position:relative">
-						<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" 
-						style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
-				  </div>
-
-	            		  
-				  <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">담당자명</div>
-		            <div class="col-lg-8 form-label-group mb-2">
-		              <input type="text" id="memberName" name="memberName" class="form-control" placeholder="" required autofocus>
-		            </div>
-	              </div>	              
-	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">담당자 전화번호</div>
-		            <div class="col-lg-8 form-label-group mb-2">
-		              <input type="text" id="phone" name="phone" class="form-control" placeholder="010-1234-5678" maxlength="13">
-		            </div>
-	              </div>
-				  
-	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">아이디  </div>
-		            <div class="col-lg-8 form-label-group mb-2">
-		              <input type="email" id="memberId" name="memberId" class="form-control" placeholder="test@abc.com" style="width:200px;" required autofocus>
-		              <span id="idchkdiv" class="chkmessage"></span>
-		            </div>
-	              </div>
-	              
-	              <div class="row mb-4 mt-4" id="certiDiv" style="display:none;">
-	              	<div class="col-lg-4">인증번호  </div>
-		            <div class="col-lg-4 form-label-group mb-2">
-		              <input type="hidden" id="certiNumChk" name="certiNumChk">
-		              <input type="text" id="certiNum" name="certiNum" class="form-control" placeholder="" required autofocus>
-		            </div>
-		            <div class="col-lg-4 certi-btn">
-		            	<a href="#" class="btn btn-primary" onclick="certificationEmail()">인증번호받기</a>
-		            	<a href="#" class="btn btn-success" onclick="chkCertiNum()">인증</a>
-		            </div>
-	              </div>	              
-	              
-	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">비밀번호 </div>
-		            <div class="col-lg-8 form-label-group mb-2">
-		              <input type="password" id="memberPwd" name="memberPwd" class="form-control" placeholder="6자 이상 15자 미만" required>
-		            </div>
-	              </div>     
-	              
-				  <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">비밀번호 확인</div>
-		            <div class="col-lg-8 form-label-group mb-2">
-		              <input type="password" id="memberPwd2" name="memberPwd2" class="form-control" placeholder="6자 이상 15자 미만" required>
-		            </div>
-	              </div>   
-	              
-	              <!-- 회원 가입시 tbl_member insert -->  	              
-	
-	              
-	              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">회원가입</button>
-	              
-           	 	</form>   
-	     	 
-	     	  
-	     	 </c:if>   
-	     	 <!-- 기업회원 끝 -->   
-          </div>
+           	 </form>   
         </div>
       </div>
     

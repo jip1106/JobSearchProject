@@ -290,6 +290,14 @@
             <version>4.2.3.RELEASE</version>
         </dependency>
         <!-- 박준일 스프링 시큐리티 모듈 추가 bcrypt 암호화 끝-->
+        
+        <!-- 박준일 엑셀다운로드 poi 라이브러리 추가 -->
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+		    <groupId>org.apache.poi</groupId>
+		    <artifactId>poi</artifactId>
+		    <version>4.1.1</version>
+		</dependency>    
 		
 	</dependencies>
 
