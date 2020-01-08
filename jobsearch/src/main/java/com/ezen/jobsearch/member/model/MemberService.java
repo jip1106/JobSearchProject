@@ -33,6 +33,8 @@ public interface MemberService {
 	
 	//관리자 회원 리스트 조회
 	List<MemberVO> selectMemberList(MemberVO searchVo);
+	
+	List<MemberVO> selectAll();
 
 	int selectTotalRecord(MemberVO searchVo);
 

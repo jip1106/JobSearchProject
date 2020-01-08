@@ -121,6 +121,15 @@ public class MemberDAOImpl implements MemberDAO{
 		return delCount;
 	}
 
+	@Override
+	public List<MemberVO> selectAll() {
+		List<MemberVO> memberList = null;
+		
+		memberList = sqlSession.selectList(nameSpace+"selectAll");
+		
+		return memberList;
+	}
+
 	
 	
 }

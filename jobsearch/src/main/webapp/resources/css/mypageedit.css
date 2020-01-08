@@ -1,0 +1,439 @@
+
+span.hyphen {
+    float: left;
+    margin: 0 28px;
+    font-size: 28px;
+}
+span.hyphen_career {
+    float: left;
+    margin: 0 28px;
+    font-size: 28px;
+    position: relative;
+    top: -26px;
+    left: 216px;
+}
+textarea#textarea_it {
+    width: 42.7em;
+    height: 16em;
+    margin-top: -2px;
+}
+span.txsub {
+    position: relative;
+    top: 18px;
+    left: 32.5em;
+    height: calc(1.5em + .75rem + -2px);
+}
+input#counter {
+    background: white;
+    width: 14%;
+    position: relative;
+    top: -11px;
+    left: 38.8em;
+}
+input#Insert_title {
+    width: 153%;
+    height: calc(1.5em + .75rem + 25px);
+}
+input#Insert_title_it {
+    width: 152%;
+    height: calc(1.5em + .75rem + 16px);
+}
+input#education_term1 {
+    width: 26%;
+    height: calc(1.5em + .75rem + 15px);
+    text-align: center;
+    float: left;
+}
+input#education_term2 {
+    width: 26%;
+    height: calc(1.5em + .75rem + 15px);
+   	text-align: center;
+}
+input#education_term3 {
+    width: 26%;
+    height: calc(1.5em + .75rem + 15px);
+    text-align: center;
+    float: left;
+}
+input#education_term4 {
+    width: 26%;
+    height: calc(1.5em + .75rem + 15px);
+   	text-align: center;
+}
+input#education_term5 {
+    width: 26%;
+    height: calc(1.5em + .75rem + 15px);
+    text-align: center;
+    float: left;
+}
+input#education_term6 {
+    width: 26%;
+    height: calc(1.5em + .75rem + 15px);
+   	text-align: center;
+}
+input#education_term7 {
+    width: 26%;
+    height: calc(1.5em + .75rem + 15px);
+    text-align: center;
+    float: left;
+    position: relative;
+    top: -26px;
+    left: 216px;
+}
+input#education_term8 {
+    width: 26%;
+    height: calc(1.5em + .75rem + 15px);
+   	text-align: center;
+   	position: relative;
+    top: -26px;
+    left: 216px;
+}
+.col-lg-8.form-label-group.mb-2-career {
+    margin-bottom: -8px;
+}
+input#Insert_text {
+    width: 68%;
+    height: calc(1.5em + .75rem + 15px);
+} 
+input#birthday_term {
+    width: 68%;
+    height: calc(1.5em + .75rem + 15px);
+}
+
+select#Insert_text_jc {
+    width: 33.7%;
+    height: calc(1.5em + .75rem + 15px);
+    position: absolute;
+    /* top: 12.5em; */
+    top: 13em;
+    right: -12.9em;
+}
+input#Insert_text_da {
+    width: 107%;
+    height: calc(1.5em + .75rem + 15px);
+    margin-left: 166px;
+}
+input#Insert_text_c {
+    width: 69.5%;
+    height: calc(1.5em + .75rem + 15px);
+    position: relative;
+    left: 216px;
+    top: -24px;
+}
+select#Insert_text {
+    width: 68%;
+    height: calc(1.5em + .75rem + 15px);
+    margin-left: -17px;
+}
+select#Insert_text_condition {
+    width: 68%;
+    height: calc(1.5em + .75rem + 15px);
+    position: relative;
+    left: 9.7em;
+    top: -2em;
+}
+.col-lg-4-2t {
+    font-size: 18px;
+    position: relative;
+    top: 13px;
+    left: 34px;
+}
+
+span.point-2t {
+    color: red;
+    font-size: 12px;
+    position: relative;
+    top: 18px;
+    left: 40px;
+    margin-right: 106px;
+}
+.col-lg-4-3t {
+    font-size: 18px;
+    position: relative;
+    top: 13px;
+    left: 34px;
+}
+span.point-3t {
+    color: red;
+    font-size: 12px;
+    position: relative;
+    top: 18px;
+    left: 40px;
+    margin-right: 88px;
+}
+
+.col-lg-4-4t {
+    font-size: 18px;
+    position: relative;
+    top: 13px;
+    left: 34px;
+}
+span.point-4t {
+    color: red;
+    font-size: 12px;
+    position: relative;
+    top: 18px;
+    left: 40px;
+    margin-right: 95px;
+}
+span.point-4t-condition {
+   color: red;
+    font-size: 12px;
+    position: relative;
+    top: 5px;
+    left: 99px;
+    margin-right: 70px;
+}
+span.point-7t-c {
+    color: red;
+    font-size: 12px;
+    position: relative;
+    top: 11px;
+    left: -199px;
+    margin-right: 98px;
+    z-index: 1;
+}
+span.point-4t-c {
+    color: red;
+    font-size: 12px;
+    position: relative;
+    top: 11px;
+    left: -230px;
+    margin-right: 98px;
+    z-index: 1;
+}
+span.point-4t-c_2 {
+    color: red;
+    font-size: 12px;
+    position: relative;
+    top: 11px;
+    left: -296px;
+    margin-right: 98px;
+    z-index: 1;
+}
+.row.mb-4.mt-4_text {
+    margin-bottom: 0.7rem!important;
+}
+.card.mb-4-bt {
+    padding: 28px 0px 16px 9px;
+    margin-bottom: 57px;
+}
+.span_notice_title{
+	color: #222;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: -2px;
+    line-height: 34px;
+}
+.school_notice{
+    /* position: relative; */
+    top: -33px;
+    left: 110px;
+    font-size: 14px;
+    letter-spacing: -1px;
+    line-height: 28px;
+    margin-left: 14px;
+}
+.hsc{
+    color: #222;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 28px;
+    margin-left: 19px;
+    margin-bottom: 30px;
+}
+.career_h4 {
+    color: #222;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 28px;
+    position: relative;
+    left: -12.7em;
+    top: 16px;
+    margin-bottom: 34px;
+}
+.condition_h4 {
+    color: #222;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 28px;
+    position: relative;
+    left: -12.7em;
+    top: 16px;
+    margin-bottom: 34px;
+}
+a.btn.btn-primary {
+    position: relative;
+    bottom: 10px;
+    left: 105px;
+    margin-right: 10px;
+}
+/*라디오버튼 */
+.inpRdoSw .inOption>input:checked+.lbl {
+    position: relative;
+    z-index: 2;
+    border-color: #4876ef;
+    background-color: #4876ef;
+    color: #fff;
+}
+.inpRdoSw.sizeXL .inOption>.lbl {
+    padding-top: 11px;
+    padding-bottom: 11px;
+    height: 50px;
+    font-size: 16px;
+    line-height: 26px;
+}
+.inpRdoSw .inOption>.lbl {
+    display: inline-block;
+    padding: 5px 14px 6px;
+    height: 32px;
+    border: 1px solid #dbdbdb;
+    box-sizing: border-box;
+    color: #666;
+    font-size: 13px;
+    letter-spacing: -1px;
+    line-height: 19px;
+    text-align: center;
+    vertical-align: top;
+    background-color: #fff;
+    cursor: pointer;
+    user-select: none;
+}
+.resume_write .inpRdoSw.resume_right .inOption .lbl {
+    width: 104px;
+}
+.inpRdoSw.sizeXL.resume_right.focus {
+    position: absolute;
+    /* top: 18.8em; */
+    top: 19.6em;
+    right: 1.8em;
+}
+.inpRdoSw .inOption {
+    float: left;
+    position: relative;
+}
+label.lbl {
+    width: 89px;
+    margin-left: -27px;
+}
+/* 사진 */
+.resume_photo {
+    position: absolute;
+    top: 46px;
+    right: 51px;
+    padding: 9px;
+    width: 120px;
+    height: 160px;
+    border: 1px solid #e9e9e9;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #fff;
+}
+.resume_photo .box_photo {
+    display: block;
+    position: relative;
+    padding-top: 50px;
+    width: 100px;
+    height: 140px;
+    box-sizing: border-box;
+    background-color: #fafafa;
+}
+/* 신입,경력 */
+.row.mt-4_career {
+    margin-top: -54px;
+}
+.mytab-ul {
+    padding: 0 0 0 0;
+    list-style: none;
+    float: left;
+    width: 33%;
+    height: 50px;
+    margin-bottom: 4px;
+    position: relative;
+    left: 494px;
+}
+.mytab-li {
+    float: left;
+    border: 1px solid #6c757d;
+    width: 47%;
+    height: 46px;
+    text-align: center;
+    line-height: 43px;
+    background-color: #007bff;
+}
+
+.activeTab{
+	background-color:gray;
+}
+
+.mytab-li a{
+	text-decoration:none !important;
+	color:white !important;
+}	
+span.newperson {
+    position: relative;
+    top: 222px;
+}
+.col-lg-4-newcompany_7t {
+    position: relative;
+    left: -200px;
+    font-size: 18px;
+    top: 12px;
+}
+.col-lg-4-newcompany_4t {
+    position: relative;
+    left: -232px;
+    font-size: 18px;
+    top: 12px;
+}
+.col-lg-4-newcompany_4t_2 {
+    position: relative;
+    left: -297px;
+    font-size: 18px;
+    top: 12px;
+}
+.col-lg-4-newcompany_4t_3 {
+    position: relative;
+    left: -297px;
+    font-size: 18px;
+    top: 81px;
+}
+.card.mb-4-bt-career {
+    padding: 28px 0px 16px 9px;
+    margin-bottom: 57px;
+    height: 38em;
+}
+textarea#textarea_career {
+ 	width: 27.7em;
+    height: 12em;
+    position: relative;
+    top: -19px;
+    right: -216px;
+}
+.col-lg-4-4t-condition {
+    font-size: 18px;
+    position: relative;
+    top: 27px;
+    left: 22px;
+}
+span.point-4t-condition-mon {
+    color: red;
+    font-size: 12px;
+    position: relative;
+    top: 5px;
+    left: 63px;
+    margin-right: 70px;
+}
+input#Insert_text_money {
+    width: 68%;
+    height: calc(1.5em + .75rem + 15px);
+    position: relative;
+    top: -31px;
+    left: 156px;
+}
+.col-lg-8.form-label-group.mb-2-condition {
+    margin-bottom: -25px;
+}

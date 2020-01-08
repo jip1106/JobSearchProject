@@ -5,7 +5,7 @@
 	           <div class="col-md-5">
 	              <!-- Logo -->
 	              <div class="logo">
-	                 <h1><a href="index.html">JobSearch_Admin(관리자)</a></h1>
+	                 <h1><a href="/jobsearch/admin/home.do">JobSearch_Admin(관리자)</a></h1>
 	              </div>
 	           </div>
 	           <div class="col-md-5">
@@ -19,7 +19,7 @@
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account <b class="caret"></b></a>
 	                        <ul class="dropdown-menu animated fadeInUp">
 	                           <li><a href="/jobsearch/home.do" target="parent">사용자페이지</a></li>
-	                           <li><a href="">로그아웃</a></li>
+	                           <li><a href="/jobsearch/member/logout.do">로그아웃</a></li>
 	                        </ul>
 	                      </li>
 	                    </ul>

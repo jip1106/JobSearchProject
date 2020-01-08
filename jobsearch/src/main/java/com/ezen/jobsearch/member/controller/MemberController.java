@@ -121,16 +121,16 @@ public class MemberController {
 		//암호화 된 비밀번호 비교를 위해 db에서 비밀번호 select
 		String dbPwd = memberService.selectPwd(memberId);
 		
-		System.out.println("memberId : " + memberId);
-		System.out.println("memberPwd : " + memberPwd);
-		System.out.println("regType : " + regType);
+//		System.out.println("memberId : " + memberId);
+//		System.out.println("memberPwd : " + memberPwd);
+//		System.out.println("regType : " + regType);
 
 		boolean pwdChk = false;
 
 		//비밀번호 비교
 		pwdChk = passwordEncoder.matches(memberPwd, dbPwd);
 		
-		System.out.println("pwdChk ::: " + pwdChk);
+//		System.out.println("pwdChk ::: " + pwdChk);
 		
 		MemberVO memberVo = null;
 		
@@ -242,6 +242,63 @@ public class MemberController {
 		
 		
 	}
+	
+	@RequestMapping("/member/cMinfo.do")
+	public String confirmMemInfo(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		
+//		String url="/home.do";
+//		String message = "잘못된 접근입니다.";
+//		if(session.getAttribute("loginMember") == null) {
+//			
+//			request.setAttribute("msg", message);
+//			request.setAttribute("url", url);
+//			
+//			return "common/message";
+//		}
+		
+		return "member/confirmMemInfo";
+	}
+	
+	@RequestMapping("/member/chkMem.do")
+	public String chkPwd(@RequestParam String memberPwd, @RequestParam String memberId,HttpServletRequest request) {
+		//암호화 된 비밀번호 비교를 위해 db에서 비밀번호 select
+		
+		String dbPwd = memberService.selectPwd(memberId);
+		
+		System.out.println("memberId : " + memberId);
+		System.out.println("memberPwd : " + memberPwd);
+
+		boolean pwdChk = false;
+
+		//비밀번호 비교
+		pwdChk = passwordEncoder.matches(memberPwd, dbPwd);
+		
+		if(pwdChk) {
+			System.out.println("비밀번호 일치");
+			return "member/editMeminfo";
+		}else {
+			String url = "/member/cMinfo.do";
+			String message = "비밀번호가 일치하지 않습니다.";
+			
+			System.out.println("비밀번호 불일치");
+			
+			request.setAttribute("msg", message);
+			request.setAttribute("url", url);
+			
+			return "common/message";
+		}
+		
+		
+	}
+	
+		//마이페이지 - 회원정보수정
+		@RequestMapping("/member/mypageedit.do")
+		public String mypageedit_get() {
+			return "member/mypageedit";
+		}
+		
+		
 	
 	
 }
