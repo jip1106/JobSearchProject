@@ -18,11 +18,12 @@ public class CompanyController {
 	@Autowired
 	private CompanyService companyService;
 	
-	@RequestMapping(value = "/information.do",method = RequestMethod.GET)
+	//기업마이페이지 - 회원정보수정
+	@RequestMapping(value = "/companymypageedit.do",method = RequestMethod.GET)
 	public String insertInfo_get() {
 		logger.info("기업회원 정보수정창");	
 		
-		return "company/information";
+		return "company/companymypageedit";
 	}
 	@RequestMapping(value="/contents.do",method = RequestMethod.GET)
 	public String writeContent_get() {
@@ -30,4 +31,15 @@ public class CompanyController {
 		
 		return "company/contents";
 	}
+	
+	
+	
+	//기업마이페이지 - 회원정보수정
+		@RequestMapping(value = "/companymypagepayment.do",method = RequestMethod.GET)
+		public String payment() {
+			logger.info("기업회원 정보수정창");	
+			
+			return "company/companymypagepayment";
+		}
+
 }
