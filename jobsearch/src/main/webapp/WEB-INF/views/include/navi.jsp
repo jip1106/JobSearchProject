@@ -23,9 +23,9 @@
               	게시판
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="${pageContext.request.contextPath }/notice/list.do">공지사항</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath }/board/list.do?boardType=1">공지사항</a>
               <a class="dropdown-item" href="#">자유게시판</a>
-              <a class="dropdown-item" href="${pageContext.request.contextPath }/faq/list.do">FAQ</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath }/board/list.do?boardType=2">FAQ</a>
             </div>
           </li>
 

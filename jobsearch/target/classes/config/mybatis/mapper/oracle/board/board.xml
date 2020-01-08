@@ -11,4 +11,27 @@
 			insert into tbl_board(board_seq, board_type, board_title, board_contents, ref_memberseq)
 			values(#{boardSeq}, #{boardType}, #{boardTitle}, #{boardContents}, #{refMemberseq} )
 	</insert>
+
+   	<select id="selectBoard" parameterType="string" resultType="boardVo">
+	      select a.board_seq as boardSeq, 
+	            a.board_type as boardType, 
+	            a.board_title as boardTitle, 
+	            a.board_contents as boardContents,
+	            a.hits as hits, 
+	            a.reg_date as regDate, 
+	            a.ref_memberseq as refMemberseq,
+	            b.member_id as memberId
+	      from 
+	         tbl_board a join tbl_member b 
+	      on 
+	         a.ref_memberseq=b.member_seq
+	      where 
+	         a.board_type=#{boardType}
+	      order by 
+	         board_seq desc
+  	 </select>
+  	 
+  	 <delete parameterType="int" id="deleteBoard"> 
+  	 		delete from tbl_board where boardSeq=#{boardSeq} 
+  	 </delete>
 </mapper>

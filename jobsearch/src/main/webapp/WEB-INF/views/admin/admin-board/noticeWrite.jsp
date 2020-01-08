@@ -18,6 +18,9 @@
 				<div class="content-box-large">
 					<div class="panel-heading">
 		           <div class="panel-title"><i class="glyphicon glyphicon-info-sign"></i> 공지사항 등록</div>
+		      			<div class="panel-options">
+							<a href="<c:url value='/admin/board/list.do?boardType=1'/>"><i class="glyphicon glyphicon-align-justify"></i>목록으로</a>
+						</div>  		
 		       </div>
 					<div class="panel-body">
 						<form method="post" action="<c:url value='/admin/board/write.do'/>">

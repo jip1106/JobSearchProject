@@ -11,10 +11,6 @@
 		.card-body {
    			padding: 0.5rem;
 		}
-		.card-footer:last-child {
-			padding: 2px;
-			text-align: right;
-		}
 	</style>
 	<div class="container">
 
@@ -35,12 +31,14 @@
 
         <!-- 공지사항 목록 반복 -->
         <div class="card mb-4">
-          <div class="card-body">
-            <p class="card-text">공지사항 제목</p>
-          </div>
-          <div class="card-footer text-muted">
-            <small>공지사항 regdate 2020-02-02</small>
-          </div>
+        	<c:forEach var="boardVo" items="${list }">
+	          <div class="card-body">
+	            <p class="card-text">${boardVo.boardTitle }</p>
+	          </div>
+	          <div class="card-footer text-muted">
+	            <small>${boardVo.regDate }</small>
+	          </div>
+	        </c:forEach>
         </div>        
 
         <!-- 페이징 처리 -->
