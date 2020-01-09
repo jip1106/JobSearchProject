@@ -2,8 +2,11 @@ package com.ezen.jobsearch.board.model;
 
 import java.util.List;
 
+import com.ezen.jobsearch.common.SearchVO;
+
 public interface BoardService {
 	int insertBoard(BoardVO boardVo);
-	List<BoardVO> selectBoard(String boardType);
+	List<BoardVO> selectBoard(SearchVO searchVo);
 	int deleteBoard(List<BoardVO> list);
+	int selectTotalRecord(SearchVO searchVo);
 }

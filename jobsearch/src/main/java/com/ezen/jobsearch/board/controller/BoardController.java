@@ -14,24 +14,47 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ezen.jobsearch.board.model.BoardService;
 import com.ezen.jobsearch.board.model.BoardVO;
+import com.ezen.jobsearch.common.PaginationInfo;
+import com.ezen.jobsearch.common.ProjectUtil;
+import com.ezen.jobsearch.common.SearchVO;
 
 @Controller
 public class BoardController {
 	private Logger logger
 		=LoggerFactory.getLogger(BoardController.class);
 	
+	public static final int BOARD_RECORD=5; 
+	
 	@Autowired
 	private BoardService boardService;
 	
 	//사용자(공지사항, FAQ 목록)
 	@RequestMapping(value = "/board/list.do")
-	public String noticeList(@RequestParam String boardType, Model model) {
+	public String noticeList(@RequestParam String boardType, @ModelAttribute SearchVO searchVo, Model model) {
 		logger.info("게시판({}) 목록 [1:공지사항 2:FAQ 3:자유게시판]", boardType);
+		logger.info("searchVo={}",searchVo);
+		PaginationInfo pagingInfo=new PaginationInfo();
+		pagingInfo.setBlockSize(ProjectUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(BOARD_RECORD);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
-		List<BoardVO> list=boardService.selectBoard(boardType);
+		searchVo.setRecordCountPerPage(BOARD_RECORD);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		if(searchVo.getSearchCondition()==null || searchVo.getSearchCondition().isEmpty()) {
+			searchVo.setSearchCondition(boardType);
+		}
+		
+		List<BoardVO> list=boardService.selectBoard(searchVo);
 		logger.info("list.size={}", list.size());
 		
+		int totalRecord=boardService.selectTotalRecord(searchVo);
+		logger.info("totalRecord={}", totalRecord);
+		
+		pagingInfo.setTotalRecord(totalRecord);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("pagingInfo", pagingInfo);
 		
 		if(boardType.equals("1")) {
 			return "board/noticeList";
@@ -90,10 +113,10 @@ public class BoardController {
 
 	//admin(공지사항, FAQ 목록)
 	@RequestMapping(value = "/admin/board/list.do")
-	public String list(@RequestParam String boardType, Model model) {
+	public String list(@RequestParam String boardType, @ModelAttribute SearchVO searchVo, Model model) {
 		logger.info("admin-게시판 목록[게시판 타입 boardType={}]-  1:공지사항 2:FAQ 3:자유게시판   -", boardType);
 		
-		List<BoardVO>list=boardService.selectBoard(boardType);
+		List<BoardVO>list=boardService.selectBoard(searchVo);
 		logger.info("list.size={},",list.size());
 				
 		model.addAttribute("list", list);

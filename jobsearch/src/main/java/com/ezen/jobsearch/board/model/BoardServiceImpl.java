@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ezen.jobsearch.common.SearchVO;
+
 @Service
 public class BoardServiceImpl implements BoardService {
 
@@ -18,8 +20,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> selectBoard(String boardType) {
-		return boardDao.selectBoard(boardType);
+	public List<BoardVO> selectBoard(SearchVO searchVo) {
+		return boardDao.selectBoard(searchVo);
 	}
 
 	@Override
@@ -38,6 +40,11 @@ public class BoardServiceImpl implements BoardService {
 			cnt=-1;
 		}
 		return cnt;
+	}
+
+	@Override
+	public int selectTotalRecord(SearchVO searchVo) {
+		return boardDao.selectTotalRecord(searchVo);
 	}
 	
 }

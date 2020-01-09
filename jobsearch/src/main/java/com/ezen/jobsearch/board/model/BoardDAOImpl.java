@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ezen.jobsearch.common.SearchVO;
+
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 	@Autowired
@@ -19,13 +21,18 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public List<BoardVO> selectBoard(String boardType) {
-		return sqlSession.selectList(namespace+"selectBoard", boardType);
+	public List<BoardVO> selectBoard(SearchVO searchVo) {
+		return sqlSession.selectList(namespace+"selectBoard", searchVo);
 	}
 
 	@Override
 	public int deleteBoard(int boardSeq) {
 		return sqlSession.delete(namespace+"deleteBoard", boardSeq);
+	}
+
+	@Override
+	public int selectTotalRecord(SearchVO searchVo) {
+		return sqlSession.selectOne(namespace+"selectTotalRecord", searchVo);
 	}
 
 }
