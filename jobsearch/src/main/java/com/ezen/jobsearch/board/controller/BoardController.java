@@ -23,7 +23,8 @@ public class BoardController {
 	private Logger logger
 		=LoggerFactory.getLogger(BoardController.class);
 	
-	public static final int BOARD_RECORD=5; 
+	public static final int BOARD_RECORD=5;
+	public static final int ADMIN_BOARD_RECORD=10;
 	
 	@Autowired
 	private BoardService boardService;
@@ -114,12 +115,30 @@ public class BoardController {
 	//admin(공지사항, FAQ 목록)
 	@RequestMapping(value = "/admin/board/list.do")
 	public String list(@RequestParam String boardType, @ModelAttribute SearchVO searchVo, Model model) {
-		logger.info("admin-게시판 목록[게시판 타입 boardType={}]-  1:공지사항 2:FAQ 3:자유게시판   -", boardType);
+		logger.info("admin-게시판({}) 목록 [1:공지사항 2:FAQ 3:자유게시판]", boardType);
+		logger.info("searchVo={}",searchVo);
+		PaginationInfo pagingInfo=new PaginationInfo();
+		pagingInfo.setBlockSize(ProjectUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(ADMIN_BOARD_RECORD);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
-		List<BoardVO>list=boardService.selectBoard(searchVo);
-		logger.info("list.size={},",list.size());
-				
+		searchVo.setRecordCountPerPage(ADMIN_BOARD_RECORD);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		if(searchVo.getSearchCondition()==null || searchVo.getSearchCondition().isEmpty()) {
+			searchVo.setSearchCondition(boardType);
+		}
+		
+		List<BoardVO> list=boardService.selectBoard(searchVo);
+		logger.info("list.size={}", list.size());
+		
+		int totalRecord=boardService.selectTotalRecord(searchVo);
+		logger.info("totalRecord={}", totalRecord);
+		
+		pagingInfo.setTotalRecord(totalRecord);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("pagingInfo", pagingInfo);
 		
 		if(boardType.equals("1")) {
 			return "admin/admin-board/noticeList";

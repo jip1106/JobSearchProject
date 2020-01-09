@@ -5,6 +5,7 @@
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 	
 	<c:import url="/WEB-INF/views/include/headend.jsp" />
+	
 	<style type="text/css">
 		.card-body {
    			padding: 0.5rem;
@@ -58,7 +59,7 @@
 	          </div>
 	        </c:forEach>
         </div>        
-
+		<hr>
         <!-- 페이징 처리 -->
         <!-- 이전블럭으로 이동 -->
 		<c:if test="${pagingInfo.firstPage>1 }">	
@@ -108,6 +109,7 @@
         </div>
       </div>
     </div>
+    
  
 
   </div>
