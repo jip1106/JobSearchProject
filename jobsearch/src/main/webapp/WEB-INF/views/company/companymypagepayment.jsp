@@ -48,14 +48,17 @@ input.delete {
     color: white;
 }
 button.btn.com_pay{
-	margin-left: 31em;
-    background-color:#2c3663;
-    padding: .5rem 1rem;
-    font-size: 1.25rem;
+	margin-left: 31em;    
+    padding: .5rem 1rem;    
     line-height: 1.5;
     border-radius: .3rem;
     width: 150px;
     color:white;
+    background: #5e87f1;   
+    height: 53px;
+    border: none;
+    font-size: 17px;    
+    margin-right: 74px;
 }
 .btn-primary {
     color: #fff;

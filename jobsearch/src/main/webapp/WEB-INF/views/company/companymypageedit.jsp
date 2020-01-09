@@ -173,7 +173,7 @@ a.btn.btn-primary {
 }
 div#edit_bt {
     position: relative;
-    left: 13.6em;
+    left: 20.6em;
     margin-top: 51px;
     margin-bottom: 49px;
 }
@@ -420,7 +420,6 @@ textarea#textarea_companycont {
 			
 			<div id="edit_bt">
   				<button class="btn btn-lg btn-primary btn-block text-edit" type="submit">수정</button>
-  				<button class="btn btn-lg btn-primary btn-block text-withdrawal" type="submit">기업탈퇴</button>
  			</div>
 	        
   
