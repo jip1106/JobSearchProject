@@ -34,10 +34,10 @@ public class CompanyController {
 	
 	
 	
-	//기업마이페이지 - 회원정보수정
+	//기업결제 관련 페이지
 		@RequestMapping(value = "/companymypagepayment.do",method = RequestMethod.GET)
 		public String payment() {
-			logger.info("기업회원 정보수정창");	
+			logger.info("기업회원 공고글결제관련 리스트");	
 			
 			return "company/companymypagepayment";
 		}

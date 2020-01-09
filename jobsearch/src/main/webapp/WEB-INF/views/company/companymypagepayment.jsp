@@ -36,6 +36,32 @@ input[type=checkbox], input[type=radio] {
     padding-bottom: 0;
     margin-bottom: 17px;
 }
+td#com_cont_del {
+    width: 10px;
+}
+input.delete {
+    margin-bottom: 16px;
+    font-size: 18;
+    border: none;
+    background-color: #fb612c;
+    border-radius: .25em;
+    color: white;
+}
+button.btn.com_pay{
+	margin-left: 31em;
+    background-color:#2c3663;
+    padding: .5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: .3rem;
+    width: 150px;
+    color:white;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff
+
 </style>
 
 
@@ -46,7 +72,10 @@ input[type=checkbox], input[type=radio] {
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 <c:import url="/WEB-INF/views/include/companymypagenavitop.jsp" />
 <!-- section start -->
-<table >
+<h2>공고글 결제하기</h2>
+<hr>
+<table>
+<!-- 반복 시작 -->
 <tr><td>
  <div class="row mb-4 mt-4_text">
 				<!--<div class="col-lg-4-2t">공고글  </div>  -->
@@ -72,38 +101,21 @@ input[type=checkbox], input[type=radio] {
  </td> 
  <td>
  <input type="checkbox" class="payment">
- <td> 
- </tr>
- <tr><td>
- <div class="row mb-4 mt-4_text">
-				<!--<div class="col-lg-4-2t">공고글  </div>  -->
-				<div class="col-lg-8 form-label-group mb-2">
-					<button class="collapsible">내용입니다 내용내용 맨</button>
-					<div class="content">
-					<table>
-						<tr>
-							<th>제목</td>
-							<th>내용</td>
-							<th>작성일</td>							
-						</tr>
-						<tr>
-							<td>제목</td>
-							<td>내용</td>
-							<td>작성일</td>							
-						</tr>
-					</table>
-					</div> 
-				<div id="idchkdiv" class="chkmessage"> </div>
-				</div>
-			</div>
- </td> 
  <td>
- <input type="checkbox" class="payment">
- <td> 
- </tr>
+ 
+ <td id="com_cont_del">
+ <input type="button" class="delete" value="삭제">
+ </td>
+ 
+ <!-- 반복 끝 -->
  
  </table> 
-  
+ <hr>
+ <br>총액<br><br><!-- 계산 들어갈 여유 공간 -->
+ <hr>
+ <div id="edit_bt">
+  				<button class="btn com_pay" type="submit">결제하기</button>  				
+ </div>
 <!-- section end -->
 <c:import url="/WEB-INF/views/include/companymypagenavibottom.jsp" />
   <!-- Bootstrap core JavaScript -->
