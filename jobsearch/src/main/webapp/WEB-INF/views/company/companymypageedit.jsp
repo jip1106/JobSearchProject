@@ -204,7 +204,7 @@ div#edit_bt {
     position: relative;
     top: 13px;
     left: 34px;
-    margin-right: 113px;
+    margin-right: 109px;
 }
 
 input#Insert_text_ca {
@@ -265,7 +265,7 @@ textarea#textarea_companycont {
 				<div class="col-lg-4-7t">사업자등록번호  </div>
 				<span class="point-7t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="MEMBER_ID" class="form-control" placeholder="사업자등록번호" required autofocus>
+					<input type="text" id="Insert_text" name="comRegNum" class="form-control" placeholder="사업자등록번호" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -274,7 +274,7 @@ textarea#textarea_companycont {
 				<div class="col-lg-4-4t">대표자명  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="MEMBER_ID" class="form-control" placeholder="대표자명" required autofocus>
+					<input type="text" id="Insert_text" name="ceoName" class="form-control" placeholder="대표자명" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -284,7 +284,7 @@ textarea#textarea_companycont {
 				<div class="col-lg-4-3t">기업명  </div>
 				<span class="point-3t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="MEMBER_NAME" class="form-control" placeholder="기업명" required autofocus>
+					<input type="text" id="Insert_text" name="comName" class="form-control" placeholder="기업명" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -293,7 +293,7 @@ textarea#textarea_companycont {
 				<div class="col-lg-4-4t">우편번호  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="zipCode" name="ZIP_CODE" class="form-control" placeholder="우편번호" required autofocus>
+					<input type="text" id="zipCode" name="zipCode" class="form-control" placeholder="우편번호" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 				<!-- 검색 -->
@@ -304,7 +304,7 @@ textarea#textarea_companycont {
 				<div class="col-lg-4-2t">주소  </div>
 				<span class="point-2t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="address" name="ADDRESS" class="form-control" placeholder="주소" required autofocus>
+					<input type="text" id="address" name="address" class="form-control" placeholder="주소" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -330,7 +330,7 @@ textarea#textarea_companycont {
 				<div class="col-lg-4-4t">담당자명  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="MEMBER_ID" class="form-control" placeholder="담당자명" required autofocus>
+					<input type="text" id="Insert_text" name="memberName" class="form-control" placeholder="담당자명" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -339,7 +339,7 @@ textarea#textarea_companycont {
 				<div class="col-lg-4-7t">담당자전화번호  </div>
 				<span class="point-7t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="MEMBER_ID" class="form-control" placeholder="담당자전화번호" required autofocus>
+					<input type="text" id="Insert_text" name="phone" class="form-control" placeholder="담당자전화번호" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -349,7 +349,7 @@ textarea#textarea_companycont {
 				<div class="col-lg-4-4t">비밀번호  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="MEMBER_ID" class="form-control" placeholder="비밀번호" required autofocus>
+					<input type="text" id="Insert_text" name="memberPwd" class="form-control" placeholder="비밀번호" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -357,7 +357,7 @@ textarea#textarea_companycont {
 				<div class="col-lg-4-6t">비밀번호확인  </div>
 				<span class="point-6t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="MEMBER_ID" class="form-control" placeholder="비밀번호확인" required autofocus>
+					<input type="text" id="Insert_text" name="memberPwd" class="form-control" placeholder="비밀번호확인" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -368,14 +368,14 @@ textarea#textarea_companycont {
 	        <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-3t-ca">설립일  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="foundation" name=" PERIOD_STDT" class="form-control" placeholder="설립일" required autofocus readonly>
+					<input type="text"  id="foundation" name="setupDate" class="form-control" placeholder="설립일" required autofocus readonly>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 	        <div class="row mb-4 mt-4_text_tel">
 				<div class="col-lg-4-6t-ca">회사전화번호  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text_ca" name="MEMBER_ID" class="form-control" placeholder="회사전화번호  " required autofocus>
+					<input type="text" id="Insert_text_ca" name="comTel" class="form-control" placeholder="회사전화번호  " required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -383,14 +383,14 @@ textarea#textarea_companycont {
 			 <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-3t-ca">사원수  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="foundation" name="perNo" class="form-control" placeholder="사원수  " required autofocus >
+					<input type="text"  id="foundation" name="employeeNum" class="form-control" placeholder="사원수  " required autofocus >
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			 <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-3t-ca">매출액  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="foundation" name="money " class="form-control" placeholder="매출액" required autofocus>
+					<input type="text"  id="foundation" name="comSales" class="form-control" placeholder="매출액" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -399,21 +399,21 @@ textarea#textarea_companycont {
 			 <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-4t-ca">기업형태  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="foundation" name="perNo" class="form-control" placeholder="기업형태  " required autofocus >
+					<input type="text"  id="foundation" name="comType" class="form-control" placeholder="기업형태  " required autofocus >
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			 <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-2t-ca">업 종  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="foundation" name="money " class="form-control" placeholder="업종" required autofocus>
+					<input type="text"  id="foundation" name="comFiled" class="form-control" placeholder="업종" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			</div>
 			
 				<div class="col-lg-8 form-label-group mb-2-companycont">
-					<textarea id="textarea_companycont" class="form-control" name="content" placeholder="회사설명을 간략히 써주세요." required autofocus></textarea>
+					<textarea style="resize:none" id="textarea_companycont" class="form-control" name="comDesc" placeholder="회사설명을 간략히 써주세요." required autofocus></textarea>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			
