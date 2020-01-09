@@ -73,22 +73,10 @@ h2.mt-4.mb-3 {
       <!-- Sidebar Column -->
       <div class="col-lg-3 mb-4">
         <div class="list-group">
-          <a href="#" class="list-group-item">회원정보수정</a>
-          <a href="#" class="list-group-item">이력서관리</a>
-          <a href="#" class="list-group-item">최근 본 공고</a>
-         <!--  <a href="portfolio-1-col.html" class="list-group-item">1 Column Portfolio</a>
-          <a href="portfolio-2-col.html" class="list-group-item">2 Column Portfolio</a>
-          <a href="portfolio-3-col.html" class="list-group-item">3 Column Portfolio</a>
-          <a href="portfolio-4-col.html" class="list-group-item">4 Column Portfolio</a>
-          <a href="portfolio-item.html" class="list-group-item">Single Portfolio Item</a>
-          <a href="blog-home-1.html" class="list-group-item">Blog Home 1</a>
-          <a href="blog-home-2.html" class="list-group-item">Blog Home 2</a>
-          <a href="blog-post.html" class="list-group-item">Blog Post</a>
-          <a href="full-width.html" class="list-group-item">Full Width Page</a>
-          <a href="sidebar.html" class="list-group-item active">Sidebar Page</a>
-          <a href="faq.html" class="list-group-item">FAQ</a>
-          <a href="404.html" class="list-group-item">404</a>-->
-          <a href="#" class="list-group-item">즐겨찾기</a> 
+          <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypagerecentnotice.do">최근 본 공고</a>
+          <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypageedit.do">회원정보수정</a>
+          <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypageresume.do">이력서관리</a>
+          <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypagebookmark.do">즐겨찾기</a> 
       	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">
       	 	<img src="<c:url value='/resources/images/mypage_banner.jpg'/>">
       	 </a>

@@ -53,7 +53,7 @@
 		        </a>
 		        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
 		        	<a class="dropdown-item" href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a>
-		            <a class="dropdown-item" href="${pageContext.request.contextPath }/member/mypage.do">마이페이지</a>
+		            <a class="dropdown-item" href="${pageContext.request.contextPath }/member/mypagerecentnotice.do">마이페이지</a>
 				</div>
 		            
 			</c:if>

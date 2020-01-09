@@ -5,8 +5,12 @@
  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
  
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+<!-- 외부css -->
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume_tab.css'/>">
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
+
+<script type="text/javascript" src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
@@ -65,6 +69,31 @@ $(function() {
 </script>
 
 <script type="text/javascript">
+$(document).ready(function() {
+
+	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+	var floatPosition = parseInt($("#floatMenu").css('top'));
+	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+
+	$(window).scroll(function() {
+		// 현재 스크롤 위치를 가져온다.
+		var scrollTop = $(window).scrollTop();
+		var newPosition = scrollTop + floatPosition + "px";
+
+		// 애니메이션 없이 바로 따라감
+		 $("#floatMenu").css('top', newPosition);
+		 
+
+		$("#floatMenu").stop().animate({
+			"top" : newPosition
+		}, 500);
+
+	}).scroll();
+
+});
+</script>
+
+<script type="text/javascript">
 /* 자기소개서: 남은 글자 수 
  https://gahyun-web-diary.tistory.com/26*/
 $( document ).ready(function() {
@@ -86,6 +115,53 @@ $(document).ready(function(){
 
  
 </script>
+<style type="text/css">
+div#floatMenu_parent {
+    padding-top: 127px;
+}        
+h5.card-header{
+    color: #222;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 28px;
+    
+}
+div#floatMenu {
+    width: 16em;
+}
+ul.list-unstyled.mb-0 {
+    width: 122px;
+}
+li.side_li {
+    margin-bottom: 22px;
+    font-size: 18px;
+    font-weight: 550;
+}
+div#edit_bt {
+    position: relative;
+    left: 13.6em;
+}
+
+button.btn.btn-lg.btn-primary.btn-block.text-save {
+    background: #5e87f1;
+    width: 100%;
+    height: 53px;
+    border: none;
+    font-size: 17px;
+}
+button.btn.btn-lg.btn-primary.btn-block.text-set {
+    background: #5e87f1;
+    width: 20%;
+    height: 60px;
+    border: none;
+    font-size: 17px;
+    margin: 0 auto;
+    flaot: left;
+    margin-bottom: 34px;
+    margin-top: -22px;
+}
+</style>
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 
 <body>
@@ -430,54 +506,51 @@ $(document).ready(function(){
 		  </div>
           
         </div>
+        
+       <!--   <div id="edit_bt"> -->
+  				<button class="btn btn-lg btn-primary btn-block text-set" type="submit">이력서 등록</button>
+     	<!-- </div> -->
 
         <!-- Pagination -->
-        <ul class="pagination justify-content-center mb-4">
+       <!--  <ul class="pagination justify-content-center mb-4">
           <li class="page-item">
             <a class="page-link" href="#">&larr; Older</a>
           </li>
           <li class="page-item disabled">
             <a class="page-link" href="#">Newer &rarr;</a>
           </li>
-        </ul>
+        </ul> -->
 
       </div>
 
-      <!-- Sidebar Widgets Column -->
-      <div class="col-md-4">
+      <!-- 우측네비게이션 -->
+      <div class="col-md-4" id="floatMenu_parent">
 
-        <!-- Search Widget -->
-        <div class="card mb-4">
-          <h5 class="card-header">Search</h5>
-          <div class="card-body">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
-              <span class="input-group-btn">
-                <button class="btn btn-secondary" type="button">Go!</button>
-              </span>
-            </div>
-          </div>
-        </div>
 
-        <!-- Categories Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Categories</h5>
+        <div class="card my-4" id="floatMenu">
+          <h5 class="card-header">이력서 항목</h5>
           <div class="card-body">
             <div class="row">
               <div class="col-lg-6">
                 <ul class="list-unstyled mb-0">
-                  <li>
-                    <a href="#">Web Design</a>
+                  <li class="side_li">
+                    <a href="#span_notice_title">기본정보</a>
                   </li>
-                  <li>
-                    <a href="#">HTML</a>
+                  <li class="side_li">
+                    <a href="#">학력사항</a>
                   </li>
-                  <li>
-                    <a href="#">Freebies</a>
+                  <li class="side_li">
+                    <a href="#">희망근무조건</a>
+                  </li>
+                  <li class="side_li">
+                    <a href="#">경력사항</a>
+                  </li>
+                  <li class="side_li">
+                    <a href="#">자기소개서</a>
                   </li>
                 </ul>
               </div>
-              <div class="col-lg-6">
+             <!--  <div class="col-lg-6">
                 <ul class="list-unstyled mb-0">
                   <li>
                     <a href="#">JavaScript</a>
@@ -489,18 +562,15 @@ $(document).ready(function(){
                     <a href="#">Tutorials</a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
+        <!--    <div id="edit_bt"> -->
+  				<button class="btn btn-lg btn-primary btn-block text-save" type="submit">이력서저장</button>
+ 		<!-- 	</div> -->
             </div>
           </div>
         </div>
 
-        <!-- Side Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
-        </div>
+      
 
       </div>
 
@@ -509,6 +579,7 @@ $(document).ready(function(){
 
   </div>
   <!-- /.container -->
+ 
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

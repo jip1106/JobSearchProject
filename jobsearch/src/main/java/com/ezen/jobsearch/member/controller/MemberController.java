@@ -292,13 +292,30 @@ public class MemberController {
 		
 	}
 	
-		//마이페이지 - 회원정보수정
+	//마이페이지 - 회원정보수정
 		@RequestMapping("/member/mypageedit.do")
 		public String mypageedit_get() {
 			return "member/mypageedit";
 		}
 		
+		//마이페이지 - 이력서
+		@RequestMapping("/member/mypageresume.do")
+		public String mypageresume_get() {
+			return "member/mypageresume";
+		}
+
+		//마이페이지 - 최근본 공고
+		@RequestMapping("/member/mypagerecentnotice.do")
+		public String mypagenotice_get() {
+			return "member/mypagerecentnotice";
+		}
 		
+		//마이페이지 - 즐겨찾기
+		@RequestMapping("/member/mypagebookmark.do")
+		public String mypagebookmark_get() {
+			return "member/mypagebookmark";
+		}
+
 	
 	
 }
