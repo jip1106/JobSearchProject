@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.category">
+	<select id="selectCategory1" resultType="categoryVo1">
+		Select * From TBL_CATEGORY1
+	</select>	
+	
+	<select id="selectCategory2" resultType="categoryVo2" parameterType="string">
+		Select * From TBL_CATEGORY2 Where REF_CATESEQ = #{cateSeq1}
+	</select>
+	
+	<!-- dao에서 담는 map 의 키 값 -->
+	<select id="selectCategory3" resultType="categoryVo3" parameterType="map">
+		Select * From TBL_CATEGORY3 
+		Where 
+		REF_CATESEQ1 = #{cateSeq1} 
+		and
+		REF_CATESEQ2 = #{cateSeq2}
+		
+	</select>
+
+</mapper>

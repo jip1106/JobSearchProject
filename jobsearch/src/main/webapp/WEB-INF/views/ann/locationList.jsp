@@ -37,7 +37,7 @@
 	}
 	
 	function addSelectedArea(){
-		alert('a');
+		
 	}
 </script>
 <body>
@@ -56,8 +56,8 @@
       </li>
     </ol>
     
-    <div class="row mb-4" style="border: 1px solid rgba(0,0,0,.125);text-align:center; max-height:170px; overflow-y:scroll;">
-  		<div class="col-md-4">
+    <div class="row mb-4" style="border: 1px solid rgba(0,0,0,.125);text-align:center;">
+  		<div class="col-md-4" style="max-height:170px; overflow-y:scroll;">
   			<div class="row">
 	  			<c:forEach var="locationVo" items="${locationList1 }">
 	  				<div class="col-md-6 lg-6 sm-4 xs-4">
@@ -66,7 +66,7 @@
 	  			</c:forEach>
   			</div>
   		</div>  
-  		<div class="col-md-8" style="border-left: 1px solid rgba(0,0,0,.125)"> 
+  		<div class="col-md-8" style="border-left: 1px solid rgba(0,0,0,.125); max-height:170px; overflow-y:scroll;"> 
   			<div class="row" id="subLocationName">
   				← 지역을 먼저 선택 해 주세요.
   			</div>
@@ -76,7 +76,7 @@
 
     
     <%//공고영역 %>
-    <div class="row mt-4">
+    <div class="row mt-8">
       <div class="col-lg-4 mb-4">
         <div class="card h-100">
           <h4 class="card-header">Card Title</h4>
@@ -88,29 +88,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
-      </div>
-    </div>    
+     </div>    
     
 
   </div>

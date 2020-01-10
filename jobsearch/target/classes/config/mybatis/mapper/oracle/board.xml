@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="config.mybatis.mapper.oracle.board">
+	<insert id="insertBoard" parameterType="boardVo">
+		<selectKey keyProperty="boardSeq" resultType="int" order="BEFORE">
+			select board_seq.nextval from dual
+		</selectKey>
+			insert into tbl_board(board_seq, board_type, board_title, board_contents, ref_memberseq)
+			values(#{boardSeq}, #{boardType}, #{boardTitle}, #{boardContents}, #{refMemberseq} )
+	</insert>
+
+	<sql id="searchWhere">
+		<if test="searchKeyword!=null and searchKeyword != ''">
+			and
+			board_contents like '%' || #{searchKeyword} || '%'
+		</if>
+	</sql>
+	
+   	<select id="selectBoard" parameterType="searchVo" resultType="boardVo">
+		    select *
+			from
+			(
+			    select rownum as RNUM, A.*
+			    from
+			    (
+			      select a.board_seq as boardSeq, 
+			            a.board_type as boardType, 
+			            a.board_title as boardTitle, 
+			            a.board_contents as boardContents,
+			            a.hits as hits, 
+			            a.reg_date as regDate, 
+			            a.ref_memberseq as refMemberseq,
+			            b.member_id as memberId
+			      from 
+			         tbl_board a join tbl_member b 
+			      on 
+			         a.ref_memberseq=b.member_seq
+			      where board_type=#{searchCondition}
+			     <include refid="searchWhere"></include>
+				 order by 
+			         board_seq desc
+			    )A
+			)
+			where RNUM > #{firstRecordIndex} 
+			<![CDATA[
+			and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}
+			]]>			    
+  	 </select>  	 
+  	 
+  	 <select id="selectTotalRecord" parameterType="searchVo" 
+		resultType="int">
+		select count(*) from tbl_board
+		where board_type=#{searchCondition}
+		<include refid="searchWhere"></include>
+	 </select>
+		
+  	 
+  	 <delete parameterType="int" id="deleteBoard"> 
+  	 		delete from tbl_board where boardSeq=#{boardSeq} 
+  	 </delete>
+</mapper>
