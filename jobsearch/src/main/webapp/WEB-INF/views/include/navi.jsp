@@ -12,10 +12,10 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="about.html">지역별</a>
+            <a class="nav-link" href="<c:url value='/loc/locationList.do'/>">지역별</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="services.html">직업별</a>
+            <a class="nav-link" href="<c:url value='/cate/categoryList.do'/>">직업별</a>
           </li>
           
           <li class="nav-item dropdown">
