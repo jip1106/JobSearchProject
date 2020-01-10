@@ -25,21 +25,21 @@ public class CompanyController {
 		
 		return "company/companymypageedit";
 	}
-	@RequestMapping(value="/contents.do",method = RequestMethod.GET)
+	@RequestMapping(value="/companymypagenotice.do",method = RequestMethod.GET)
 	public String writeContent_get() {
 		logger.info("공고작성 페이지 보여주기");
 		
-		return "company/contents";
+		return "company/companymypagenotice";
 	}
 	
 	
 	
 	//기업결제 관련 페이지
-		@RequestMapping(value = "/companymypagepayment.do",method = RequestMethod.GET)
+		@RequestMapping(value = "/companymypageannouncement.do",method = RequestMethod.GET)
 		public String payment() {
 			logger.info("기업회원 공고글결제관련 리스트");	
 			
-			return "company/companymypagepayment";
+			return "company/companymypageannouncement";
 		}
 
 }
