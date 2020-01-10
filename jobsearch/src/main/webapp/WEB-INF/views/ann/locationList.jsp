@@ -68,7 +68,7 @@
   		</div>  
   		<div class="col-md-8" style="border-left: 1px solid rgba(0,0,0,.125); max-height:170px; overflow-y:scroll;"> 
   			<div class="row" id="subLocationName">
-  				← 지역을 먼저 선택 해 주세요.
+  				← 지역을 먼저 선택 해 주세요..
   			</div>
   		</div>
     </div>
