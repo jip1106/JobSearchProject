@@ -35,4 +35,9 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne(namespace+"selectTotalRecord", searchVo);
 	}
 
+	@Override
+	public BoardVO selectByBoardSeq(int boardSeq) {
+		return sqlSession.selectOne(namespace+"selectByBoardSeq", boardSeq);
+	}
+
 }

@@ -46,5 +46,10 @@ public class BoardServiceImpl implements BoardService {
 	public int selectTotalRecord(SearchVO searchVo) {
 		return boardDao.selectTotalRecord(searchVo);
 	}
+
+	@Override
+	public BoardVO selectByBoardSeq(int boardSeq) {
+		return boardDao.selectByBoardSeq(boardSeq);
+	}
 	
 }

@@ -16,6 +16,8 @@
 		<if test="searchKeyword!=null and searchKeyword != ''">
 			and
 			board_contents like '%' || #{searchKeyword} || '%'
+			or
+			board_title like '%' || #{searchKeyword} || '%'
 		</if>
 	</sql>
 	
@@ -56,8 +58,12 @@
 		where board_type=#{searchCondition}
 		<include refid="searchWhere"></include>
 	 </select>
-		
-  	 
+	 
+	 <select id="selectByBoardSeq" parameterType="int" resultType="boardVo">
+	 	select * from tbl_board
+		where board_seq=#{boardSeq}
+	 </select>
+		  	 
   	 <delete parameterType="int" id="deleteBoard"> 
   	 		delete from tbl_board where boardSeq=#{boardSeq} 
   	 </delete>
