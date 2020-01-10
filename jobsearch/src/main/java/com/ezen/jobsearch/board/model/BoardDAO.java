@@ -9,4 +9,5 @@ public interface BoardDAO {
 	List<BoardVO> selectBoard(SearchVO searchVo);
 	int deleteBoard(int boardSeq);
 	int selectTotalRecord(SearchVO searchVo);
+	BoardVO selectByBoardSeq(int boardSeq);
 }

@@ -4,8 +4,6 @@
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 	
-	<c:import url="/WEB-INF/views/include/headend.jsp" />
-	
 	<style type="text/css">
 		.card-body {
    			padding: 0.5rem;
@@ -20,6 +18,9 @@
 		    padding: 0.5em;
 		}
 	</style>
+	
+	<c:import url="/WEB-INF/views/include/headend.jsp" />
+	
 	<!-- Page Content -->
   	<div class="container">
 
@@ -51,7 +52,7 @@
         <div class="card mb-4">
         	<c:forEach var="boardVo" items="${list }">
 	          <div class="card-body">
-	            <p class="card-text"><b>${boardVo.boardTitle }</b></p>
+	            <p class="card-text"><a href="<c:url value='/board/detail.do?boardType=1&boardSeq=${boardVo.boardSeq }'/>"><b>${boardVo.boardTitle }</b></a></p>
 	          </div>
 	          <div class="card-footer text-muted">
 	            <small><fmt:formatDate value="${boardVo.regDate }" 
@@ -60,35 +61,33 @@
 	        </c:forEach>
         </div>        
 		<hr>
-        <!-- 페이징 처리 -->
-        <!-- 이전블럭으로 이동 -->
-		<c:if test="${pagingInfo.firstPage>1 }">	
-			<a href="#" onclick="pageFunc(${pagingInfo.firstPage-1})">
-				<img src="<c:url value='/resources/images/first.JPG'/>" alt="이전 블럭으로">
-			</a>
-		</c:if>
-		<!-- 페이지 번호 추가 -->
-		<div class="pagenum">						
-			<c:forEach var="i" begin="${pagingInfo.firstPage }" 
-				end="${pagingInfo.lastPage }">		
-				<c:if test="${i==pagingInfo.currentPage }">
-					<span>${i}</span>
-				</c:if>
-				<c:if test="${i!=pagingInfo.currentPage }">
-					<a href="#" onclick="pageFunc(${i})">
-						${i}</a>
-				</c:if>
-			</c:forEach>
-		</div>
-		<!--  페이지 번호 끝 -->
-		
-		<!-- 다음블럭으로 이동 -->
-		<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
-			<a href="#" onclick="pageFunc(${pagingInfo.lastPage+1})">	
-				<img src="<c:url value='/resources/images/last.JPG'/>" alt="다음 블럭으로">
-			</a>
-		</c:if>	
-
+        
+ 		<!-- Pagination -->
+		    <ul class="pagination justify-content-center">
+			 <c:if test="${pagingInfo.firstPage>1 }">	
+			      <li class="page-item">
+			        <a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
+			          <span aria-hidden="true">&laquo;</span>
+			          <span class="sr-only">Previous</span>
+			        </a>
+			      </li>
+		      </c:if>
+		      <c:forEach var="i" begin="${pagingInfo.firstPage }" 
+				end="${pagingInfo.lastPage }">
+				 <li class="page-item">
+			        <a class="page-link" href="#" onclick="pageFunc(${i})">${i}</a>
+			      </li>
+			   </c:forEach>
+		     <c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
+				 <li class="page-item">
+			        <a class="page-link" href="#" aria-label="Next" onclick="pageFunc(${pagingInfo.lastPage+1})">
+			          <span aria-hidden="true">&raquo;</span>
+			          <span class="sr-only">Next</span>
+			        </a>
+			      </li>
+			 </c:if>
+		    </ul>
+      <!-- Pagination -->
       </div>
 
    	 <!-- Sidebar Widgets Column -->	
@@ -118,11 +117,11 @@
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	
 	<script type="text/javascript">
-	function pageFunc(curPage){
-		document.frmPage.currentPage.value=curPage;
-		
-		document.frmPage.submit();
-	}
+		function pageFunc(curPage){
+			document.frmPage.currentPage.value=curPage;
+			
+			document.frmPage.submit();
+		}
 	</script>
 </body>
 
