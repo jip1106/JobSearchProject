@@ -23,14 +23,15 @@ public class BoardController {
 	private Logger logger
 		=LoggerFactory.getLogger(BoardController.class);
 	
-	public static final int BOARD_RECORD=5; 
+	public static final int BOARD_RECORD=5; //사용자 게시판 레코드
+	public static final int ADMIN_BOARD_RECORD=10; //관리자 게시판 레코드
 	
 	@Autowired
 	private BoardService boardService;
 	
 	//사용자(공지사항, FAQ 목록)
 	@RequestMapping(value = "/board/list.do")
-	public String noticeList(@RequestParam String boardType, @ModelAttribute SearchVO searchVo, Model model) {
+	public String list(@RequestParam String boardType, @ModelAttribute SearchVO searchVo, Model model) {
 		logger.info("게시판({}) 목록 [1:공지사항 2:FAQ 3:자유게시판]", boardType);
 		logger.info("searchVo={}",searchVo);
 		PaginationInfo pagingInfo=new PaginationInfo();
@@ -66,7 +67,24 @@ public class BoardController {
 			
 			return "common/message";
 		}
-	}	
+	}
+	
+	//사용자 공지사항 상세
+	@RequestMapping(value = "/board/detail.do")
+	public String detail(@RequestParam String boardType, 
+					@RequestParam(defaultValue = "0") int boardSeq,
+					Model model) {
+		logger.info("게시판({}) 상세조회 [1:공지사항 2:FAQ 3:자유게시판] boardSeq={}", boardType, boardSeq);
+		
+		String msg="잘못된 url입니다.", url="/home.do";
+		
+		BoardVO boardVo=boardService.selectByBoardSeq(boardSeq);
+		if(boardVo!=null) {
+			model.addAttribute("boardVo", boardVo);
+			return "board/noticeDetail";
+		}		
+		return "common/message";
+	}
 	
 	//admin(등록 화면)
 	@RequestMapping(value = "/admin/board/write.do", method = RequestMethod.GET)
@@ -113,13 +131,31 @@ public class BoardController {
 
 	//admin(공지사항, FAQ 목록)
 	@RequestMapping(value = "/admin/board/list.do")
-	public String list(@RequestParam String boardType, @ModelAttribute SearchVO searchVo, Model model) {
-		logger.info("admin-게시판 목록[게시판 타입 boardType={}]-  1:공지사항 2:FAQ 3:자유게시판   -", boardType);
+	public String adminList(@RequestParam String boardType, @ModelAttribute SearchVO searchVo, Model model) {
+		logger.info("admin-게시판({}) 목록 [1:공지사항 2:FAQ 3:자유게시판]", boardType);
+		logger.info("searchVo={}",searchVo);
+		PaginationInfo pagingInfo=new PaginationInfo();
+		pagingInfo.setBlockSize(ProjectUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(ADMIN_BOARD_RECORD);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
 		
-		List<BoardVO>list=boardService.selectBoard(searchVo);
-		logger.info("list.size={},",list.size());
-				
+		searchVo.setRecordCountPerPage(ADMIN_BOARD_RECORD);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		if(searchVo.getSearchCondition()==null || searchVo.getSearchCondition().isEmpty()) {
+			searchVo.setSearchCondition(boardType);
+		}
+		
+		List<BoardVO> list=boardService.selectBoard(searchVo);
+		logger.info("list.size={}", list.size());
+		
+		int totalRecord=boardService.selectTotalRecord(searchVo);
+		logger.info("totalRecord={}", totalRecord);
+		
+		pagingInfo.setTotalRecord(totalRecord);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("pagingInfo", pagingInfo);
 		
 		if(boardType.equals("1")) {
 			return "admin/admin-board/noticeList";

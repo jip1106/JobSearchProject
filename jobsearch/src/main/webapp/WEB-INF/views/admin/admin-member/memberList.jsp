@@ -133,6 +133,15 @@
 						</tbody>
 					</table>
 					
+					<form action="<c:url value='/board/list.do?boardType=1'/>" 
+						name="frmPage" method="post">
+						<input type="hidden" name="searchCondition" 
+							value="${param.searchCondition}">
+						<input type="hidden" name="searchKeyword" 
+							value="${param.searchKeyword}">
+						<input type="hidden" name="currentPage" >
+					</form>
+					
 					<!-- 페이징 처리 -->
 					<div class="row">
 						<div class="col-xs-12">

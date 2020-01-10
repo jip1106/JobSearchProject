@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="config.mybatis.mapper.oracle.location">
+	<select id="selectLocation1" resultType="locationVo1">
+		Select * From TBL_LOCATION1
+	</select>	
+	
+	<select id="selectSubLocation" resultType="locationVo2" parameterType="string">
+		Select * From TBL_LOCATION2 Where REF_LOCATIONSEQ = #{refLocationseq}
+	</select>
+	
+
+</mapper>
