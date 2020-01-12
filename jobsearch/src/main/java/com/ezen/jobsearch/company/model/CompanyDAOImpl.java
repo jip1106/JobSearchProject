@@ -4,6 +4,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ezen.jobsearch.ann.model.AnnounceMentVO;
+
 @Repository
 public class CompanyDAOImpl implements CompanyDAO{
 
@@ -17,6 +19,10 @@ public class CompanyDAOImpl implements CompanyDAO{
 	public int insertCompany(CompanyVO companyVo) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert(namespace + "insertCompany", companyVo);
+	}
+	
+	public int insertAnn(AnnounceMentVO annVo) {
+		return sqlSession.insert(namespace+"insertAnn",annVo);
 	}
 
 
