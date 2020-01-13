@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:import url="../admin-include/admin-header.jsp"/>
-
+  	
   <body>
-
+  	
 
 	<c:import url="../admin-include/admin-navi.jsp"/>
 
@@ -37,7 +37,7 @@
 								</div>						
 								<div class="form-group">
 									<label>내용</label>
-									<textarea class="form-control" placeholder="내용을 입력하세요" name="boardContents" rows="20"></textarea>
+									<textarea class="form-control" placeholder="내용을 입력하세요" id="boardContents" name="boardContents" rows="20"></textarea>
 								</div>			
 							</fieldset>
 							<div>
@@ -53,7 +53,11 @@
 
 
 	<c:import url="../admin-include/admin-footer.jsp"/>
-
+	
+	<script src="<c:url value='/resources/ckeditor/ckeditor.js'/>"></script>
+	<script>			 
+			 CKEDITOR.replace("boardContents");
+	</script>
 
   </body>
 </html>

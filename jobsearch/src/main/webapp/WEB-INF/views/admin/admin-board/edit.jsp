@@ -59,6 +59,10 @@
 
 	<c:import url="../admin-include/admin-footer.jsp"/>
 
-
+	
+	<script src="<c:url value='/resources/ckeditor/ckeditor.js'/>"></script>
+	<script>			 
+			 CKEDITOR.replace("boardContents");
+	</script>
   </body>
 </html>
