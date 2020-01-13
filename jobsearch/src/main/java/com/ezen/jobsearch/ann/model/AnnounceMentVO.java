@@ -6,8 +6,8 @@ public class AnnounceMentVO {
 	 private int annSeq;	//시퀀스
 	 private String annTitle;  //공고제목
 	 private String annDesc;   //공고내용
-	 private Timestamp annStdt; //공고게시시작일
-	 private Timestamp annEddt; //공고게시마감일
+	 private String annStdt; //공고게시시작일
+	 private String annEddt; //공고게시마감일
 	 private String careerType; //경력
 	 private String careerDesc; //경력추가
 	 private String employType; //근로형태
@@ -41,16 +41,16 @@ public class AnnounceMentVO {
 	public void setAnnDesc(String annDesc) {
 		this.annDesc = annDesc;
 	}
-	public Timestamp getAnnStdt() {
+	public String getAnnStdt() {
 		return annStdt;
 	}
-	public void setAnnStdt(Timestamp annStdt) {
+	public void setAnnStdt(String annStdt) {
 		this.annStdt = annStdt;
 	}
-	public Timestamp getAnnEddt() {
+	public String getAnnEddt() {
 		return annEddt;
 	}
-	public void setAnnEddt(Timestamp annEddt) {
+	public void setAnnEddt(String annEddt) {
 		this.annEddt = annEddt;
 	}
 	public String getCareerType() {
