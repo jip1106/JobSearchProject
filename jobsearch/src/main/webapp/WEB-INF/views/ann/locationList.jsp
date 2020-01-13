@@ -101,7 +101,7 @@
 			alert("지역별 검색 조건을 선택 해 주세요.");
 			return false;
 		}else{
-			
+			document.annSearchByLoc.submit();	
 		}
 		
 	}
@@ -154,26 +154,36 @@
     	<input type="button" value="검색" onclick = "searchAnn();"> 
     </div>
 
-	<form name="annSearchByLoc" action='<c:url value=""/>'>
-		<input type="text" name="locationSeq1" id="locationSeq1">
-		<input type="text" name="locationSeq2" id="locationSeq2">
+	<form name="annSearchByLoc" action='<c:url value="/ann/getAnnListByLoc.do"/>' method="post">
+		<input type="hidden" name="locationSeq1" id="locationSeq1">
+		<input type="hidden" name="locationSeq2" id="locationSeq2">
 	</form>
 
     
     <%//공고영역 %>
-    <div class="row mt-8">
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
-      </div>
-     </div>    
+   
+  
+	    <div class="row mt-8">
+			<c:if test="${!empty annList }">
+	   	 		<c:forEach var="mapData" items="${annList }">
+			      <div class="col-lg-4 mb-4">
+			        <div class="card h-100">
+			          <h4 class="card-header">${mapData['ANN_TITLE'] } </h4>
+			          <div class="card-body">
+			            <p class="card-text">${mapData['ANN_DESC'] }</p>
+			          </div>
+			          <div class="card-footer">
+			            <a href="#" class="btn btn-primary">Learn More</a>
+			          </div>
+			        </div>
+			      </div>
+			   </c:forEach>
+			</c:if>	      
+
+	     </div>    
+
+	
+	
     
 
   </div>
