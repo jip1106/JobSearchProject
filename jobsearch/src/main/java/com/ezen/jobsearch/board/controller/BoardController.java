@@ -83,6 +83,10 @@ public class BoardController {
 			model.addAttribute("boardVo", boardVo);
 			return "board/noticeDetail";
 		}		
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
 		return "common/message";
 	}
 	
@@ -166,6 +170,44 @@ public class BoardController {
 			model.addAttribute("url", "/admin/home.do");
 			
 			return "common/message";
+		}		
+	}
+	
+	@RequestMapping(value = "/admin/board/edit.do", method = RequestMethod.GET)
+	public String adminEdit_get(@RequestParam(defaultValue = "0") int boardSeq, Model model) {
+		logger.info("게시글 수정 화면, 파라미터 boardSeq={}", boardSeq);
+		
+		if(boardSeq==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/admin/home.do");	
+			
+			return "common/message";
 		}
+		
+		BoardVO boardVo=boardService.selectByBoardSeq(boardSeq);
+		logger.info("게시글 boardVo={}", boardVo);
+		
+		model.addAttribute("boardVo", boardVo);
+		
+		return "admin/admin-board/edit";		
+	}
+	
+	@RequestMapping(value = "/admin/board/edit.do", method = RequestMethod.POST)
+	public String adminEdit_post(@ModelAttribute BoardVO boardVo, Model model) {
+		logger.info("게시글 수정 처리, 파라미터 boardVo={}", boardVo);
+		
+		int cnt=boardService.updateBoard(boardVo);
+		
+		String msg="수정 실패", url="/admin/board/edit.do?boardSeq="+boardVo.getBoardSeq();
+		
+		if(cnt>0) {
+			msg="수정되었습니다.";
+			url="/admin/board/list.do?boardType="+boardVo.getBoardType();
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
 	}
 }

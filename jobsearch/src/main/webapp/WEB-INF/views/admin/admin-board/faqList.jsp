@@ -54,7 +54,7 @@
 					                <tr>
 					                  <td><input type="checkbox" name="chkdel" value="${boardVo.boardSeq }"></td>
 					                  <td>${boardVo.boardSeq }</td>
-					                  <td>${boardVo.boardTitle }</td>
+					                  <td><a href="<c:url value='/admin/board/edit.do?boardSeq=${boardVo.boardSeq }'/>">${boardVo.boardTitle }</a></td>
 					                  <td>${boardVo.memberId }</td>
 					                  <td><fmt:formatDate value="${boardVo.regDate }" 
 										pattern="yyyy-MM-dd"/></td>
