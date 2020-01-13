@@ -5,4 +5,5 @@ import com.ezen.jobsearch.ann.model.AnnounceMentVO;
 public interface CompanyService {
 	int insertCompany(CompanyVO companyVo);
 	int insertAnn(AnnounceMentVO annVo);
+	CompanyVO selectCompany(int memberSeq);
 }

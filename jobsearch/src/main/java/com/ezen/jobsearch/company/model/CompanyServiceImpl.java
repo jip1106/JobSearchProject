@@ -19,5 +19,7 @@ public class CompanyServiceImpl implements CompanyService{
 	public int insertAnn(AnnounceMentVO annVo) {
 		return companyDao.insertAnn(annVo);
 	}
-	
+	public CompanyVO selectCompany(int memberSeq) {
+		return companyDao.selectCompany(memberSeq);
+	}
 }
