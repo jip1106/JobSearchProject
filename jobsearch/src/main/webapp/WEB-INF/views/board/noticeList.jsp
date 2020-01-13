@@ -1,6 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 	
@@ -49,17 +50,33 @@
       <div class="col-lg-8">
 
         <!-- 공지사항 목록 반복 -->
-        <div class="card mb-4">
-        	<c:forEach var="boardVo" items="${list }">
-	          <div class="card-body">
-	            <p class="card-text"><a href="<c:url value='/board/detail.do?boardType=1&boardSeq=${boardVo.boardSeq }'/>"><b>${boardVo.boardTitle }</b></a></p>
-	          </div>
-	          <div class="card-footer text-muted">
-	            <small><fmt:formatDate value="${boardVo.regDate }" 
-						pattern="yyyy-MM-dd"/></small>
-	          </div>
-	        </c:forEach>
-        </div>        
+        <c:if test="${empty list }">
+        	<div class="card mb-4">
+        		<div class="card-body">
+	           		<p class="card-text">목록이 존재하지 않습니다.</p>
+	         	 </div>
+        	</div>     
+        </c:if>
+        <c:if test="${!empty list }">
+	        <div class="card mb-4">
+	        	<c:forEach var="boardVo" items="${list }">
+		          <div class="card-body">
+		            <p class="card-text"><a href="<c:url value='/board/detail.do?boardType=1&boardSeq=${boardVo.boardSeq }'/>"><b>
+						<c:if test="${fn:length(boardVo.boardTitle)>30}">
+							${fn:substring(boardVo.boardTitle, 0, 30)}...
+						</c:if>
+						<c:if test="${fn:length(boardVo.boardTitle)<=30}">
+							${boardVo.boardTitle}
+						</c:if>
+					</b></a></p>
+		          </div>
+		          <div class="card-footer text-muted">
+		            <small><fmt:formatDate value="${boardVo.regDate }" 
+							pattern="yyyy-MM-dd"/></small>
+		          </div>
+		        </c:forEach>
+	        </div> 
+	    </c:if>       
 		<hr>
         
  		<!-- Pagination -->

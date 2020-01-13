@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <c:import url="../admin-include/admin-header.jsp"/>
 
@@ -34,33 +35,51 @@
 							<div class="panel-title">FAQ 목록</div>
 							
 							<div class="panel-options">
+								 <form name="frmBoardDel" method="post" action="<c:url value='/admin/board/delete.do?boardType=2'/>">
+							    	<input type="hidden" name="boardDelList" id="boardDelList" value="">					
+							   	 </form>
 								<a href="<c:url value='/admin/board/write.do?boardType=2'/>"><i class="glyphicon glyphicon-upload"></i>등록</a>
-								<a href="#"><i class="glyphicon glyphicon-trash"></i>삭제</a>
+								<a onclick="boardDel()" style="cursor: pointer;"><i class="glyphicon glyphicon-trash"></i>삭제</a>
 							</div>
 						</div>
 		  				<div class="panel-body">
 		  					<table class="table table-bordered">
 				              <thead>
 				                <tr>
-				               	  <th>선택</th>
-				                  <th>번호</th>
-				                  <th>질문</th>				                
+				               	  <th width="10%"><input type="checkbox" id="chkAll"> 선택</th>
+				                  <th width="8%">번호</th>
+				                  <th width="40%">질문</th>				                
 				                  <th>작성자</th>
 				                  <th>등록일</th>
 				                  <th>조회수</th>
 				                </tr>
 				              </thead>
-				              	<c:forEach var="boardVo" items="${list }">
-					                <tr>
-					                  <td><input type="checkbox" name="chkdel" value="${boardVo.boardSeq }"></td>
-					                  <td>${boardVo.boardSeq }</td>
-					                  <td><a href="<c:url value='/admin/board/edit.do?boardSeq=${boardVo.boardSeq }'/>">${boardVo.boardTitle }</a></td>
-					                  <td>${boardVo.memberId }</td>
-					                  <td><fmt:formatDate value="${boardVo.regDate }" 
-										pattern="yyyy-MM-dd"/></td>
-					                  <td>${boardVo.hits }</td>
-					                </tr>
-				              	</c:forEach>			             
+				              <tbody>
+				              	<c:if test="${empty list }">				       
+									<tr style="text-align: center">
+										<td colspan="6">FAQ가 존재하지 않습니다.</td>
+									</tr>
+								</c:if>  
+								<c:if test="${!empty list }">
+					              	<c:forEach var="boardVo" items="${list }">
+						                <tr>
+						                  <td><input type="checkbox" name="chkdel" value="${boardVo.boardSeq }"></td>
+						                  <td>${boardVo.boardSeq }</td>
+						                  <td><a href="<c:url value='/admin/board/edit.do?boardSeq=${boardVo.boardSeq }'/>">
+												<c:if test="${fn:length(boardVo.boardTitle)>30}">
+													${fn:substring(boardVo.boardTitle, 0, 30)}...
+												</c:if>
+												<c:if test="${fn:length(boardVo.boardTitle)<=30}">
+													${boardVo.boardTitle}
+												</c:if>										
+											</a></td>
+						                  <td>${boardVo.memberId }</td>
+						                  <td><fmt:formatDate value="${boardVo.regDate }" 
+											pattern="yyyy-MM-dd"/></td>
+						                  <td>${boardVo.hits }</td>
+						                </tr>
+					              	</c:forEach>
+					             </c:if>			             
 				              </tbody>
 				            </table>
 		  				</div>
@@ -104,11 +123,45 @@
 
 	 <c:import url="../admin-include/admin-footer.jsp"/>
 	 
+	 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>  
+	 
 	 <script type="text/javascript">
 		function pageFunc(curPage){
 			document.frmPage.currentPage.value=curPage;
 			
 			document.frmPage.submit();
+		}
+		
+		$(function(){
+			$("#chkAll").click(function(){
+				
+				if($(this).is(":checked")){
+					$("input[name=chkdel]").prop("checked", true);
+				}else{
+					$("input[name=chkdel]").prop("checked", false);
+				}
+			})
+		});
+		
+		function boardDel(){
+			var chkList="";
+			
+			$("input[name='chkdel']:checked").each(function(){
+				chkList=chkList+$(this).val()+",";
+			});
+
+			chkList = chkList.substring(0, chkList.lastIndexOf(","));
+			
+			if(chkList == ""){
+				alert("삭제할 목록을 선택하세요.");
+				return false;
+			}
+			
+			if(confirm("선택 항목을 삭제 하시겠습니까?")){
+				document.getElementById("boardDelList").value=chkList;
+				$("form[name='frmBoardDel']").submit();
+			}
 		}
 	</script>
 	 

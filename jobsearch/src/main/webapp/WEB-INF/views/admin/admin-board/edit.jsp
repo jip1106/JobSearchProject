@@ -24,7 +24,7 @@
 		          		 <div class="panel-title"><i class="glyphicon glyphicon-question-sign"></i> FAQ 수정</div>
 		      		</c:if>
 		      			<div class="panel-options">
-							<a href="<c:url value='/admin/board/list.do?boardType=1'/>"><i class="glyphicon glyphicon-align-justify"></i>목록으로</a>
+							<a href="<c:url value='/admin/board/list.do?boardType=${boardVo.boardType }'/>"><i class="glyphicon glyphicon-align-justify"></i>목록으로</a>
 						</div>  		
 		       </div>
 					<div class="panel-body">
@@ -59,6 +59,10 @@
 
 	<c:import url="../admin-include/admin-footer.jsp"/>
 
-
+	
+	<script src="<c:url value='/resources/ckeditor/ckeditor.js'/>"></script>
+	<script>			 
+			 CKEDITOR.replace("boardContents");
+	</script>
   </body>
 </html>

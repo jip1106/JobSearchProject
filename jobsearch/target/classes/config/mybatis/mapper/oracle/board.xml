@@ -71,6 +71,6 @@
 	 </update>
 		  	 
   	 <delete parameterType="int" id="deleteBoard"> 
-  	 		delete from tbl_board where boardSeq=#{boardSeq} 
+  	 		delete from tbl_board where board_seq=#{boardSeq} 
   	 </delete>
 </mapper>
