@@ -1,5 +1,6 @@
 package com.ezen.jobsearch.board.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -203,6 +204,33 @@ public class BoardController {
 		if(cnt>0) {
 			msg="수정되었습니다.";
 			url="/admin/board/list.do?boardType="+boardVo.getBoardType();
+		}
+		
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+	
+	@RequestMapping(value = "/admin/board/delete.do", method = RequestMethod.POST)
+	public String adminDel(@RequestParam String boardDelList, @RequestParam String boardType, Model model ) {
+		logger.info("삭제할 게시글 번호={}", boardDelList);
+		String[] boardSeqArr=boardDelList.split(",");
+		
+		List<BoardVO> list=new ArrayList<BoardVO>();
+		for(int i=0;i<boardSeqArr.length;i++) {
+			 list.add(boardService.selectByBoardSeq(Integer.parseInt(boardSeqArr[i])));
+		}		
+		logger.info("삭제할 목록 개수={}", list.size());	
+		
+		int cnt=boardService.deleteBoard(list);
+		logger.info("선택한 상품 삭제 결과, cnt={}", cnt);
+		
+		String msg="", url="/admin/board/list.do?boardType="+boardType;
+		if(cnt>0) {
+			msg="선택한 항목들이 삭제되었습니다.";
+		}else {
+			msg="삭제 중 문제가 발생했습니다.";
 		}
 		
 		model.addAttribute("msg", msg);

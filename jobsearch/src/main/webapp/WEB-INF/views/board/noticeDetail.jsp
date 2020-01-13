@@ -1,6 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 	
@@ -12,7 +13,14 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">${boardVo.boardTitle } </h1>
+    <h1 class="mt-4 mb-3">
+		<c:if test="${fn:length(boardVo.boardTitle)>30}">
+			${fn:substring(boardVo.boardTitle, 0, 30)}...
+		</c:if>
+		<c:if test="${fn:length(boardVo.boardTitle)<=30}">
+			${boardVo.boardTitle}
+		</c:if>
+	 </h1>
     
 
     <ol class="breadcrumb">

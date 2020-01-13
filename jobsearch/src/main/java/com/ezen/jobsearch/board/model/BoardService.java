@@ -10,4 +10,5 @@ public interface BoardService {
 	int selectTotalRecord(SearchVO searchVo);
 	BoardVO selectByBoardSeq(int boardSeq);
 	int updateBoard(BoardVO boardVo);
+	int deleteBoard(List<BoardVO> list);
 }

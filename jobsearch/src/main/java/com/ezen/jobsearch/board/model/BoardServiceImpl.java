@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.ezen.jobsearch.common.SearchVO;
 
@@ -36,6 +37,24 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int updateBoard(BoardVO boardVo) {
 		return boardDao.updateBoard(boardVo);
+	}
+
+	@Override
+	@Transactional
+	public int deleteBoard(List<BoardVO> list) {
+		int cnt=0;
+		try {
+			for(BoardVO vo : list) {
+				int boardSeq=vo.getBoardSeq();
+				if(boardSeq!=0) {
+					cnt=boardDao.deleteBoard(boardSeq);
+				}
+			}
+		}catch (RuntimeException e) {
+			e.printStackTrace();
+			cnt=-1;
+		}
+		return cnt;
 	}
 	
 }
