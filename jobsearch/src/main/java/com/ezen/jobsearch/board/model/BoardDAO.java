@@ -7,7 +7,7 @@ import com.ezen.jobsearch.common.SearchVO;
 public interface BoardDAO {
 	int insertBoard(BoardVO boardVo);
 	List<BoardVO> selectBoard(SearchVO searchVo);
-	int deleteBoard(int boardSeq);
 	int selectTotalRecord(SearchVO searchVo);
 	BoardVO selectByBoardSeq(int boardSeq);
+	int updateBoard(BoardVO boardVo);
 }
