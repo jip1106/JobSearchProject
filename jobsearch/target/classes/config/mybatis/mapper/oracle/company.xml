@@ -27,12 +27,18 @@
 		Select max(member_seq) From tbl_member;
 	</select>
 	
-	<insert id="insertAnn" parameterType="companyVo">
+	<insert id="insertAnn" parameterType="announceMentVo">
 		<selectKey keyProperty="annSeq" resultType="int" order="BEFORE">
 			select ann_seq.nextval from dual
 		</selectKey>
-		insert into tbl_announcement(ann_seq,ann_title,ann_desc,ann_stdt,ann_endt,career_type,career_desc,employee_type,salary,age_limit,ref_cateseq1,ref_careseq2,ref_cateseq3,ref_locationseq1,ref_locationseq2,ref_companyseq)
-		values(#{annSeq},#{annTitle},#{annDesc},#{annStdt},#{annEddt},#{careerType},#{careerDesc},#{employType},#{salary},#{ageLimit},#{refCateseq1},#{refCateseq2},#{refCateseq3},#{refLocationseq1},#{refLocationseq2},#{refCompanyseq})
+		insert into tbl_announcement
+		(
+		ann_seq,ann_title,ann_desc,ann_stdt,ann_endt,career_type,career_desc,employee_type,salary,age_limit,ref_cateseq1,ref_cateseq2,ref_cateseq3,ref_locationseq1,ref_locationseq2,ref_companyseq
+		)
+		values
+		(
+		#{annSeq},#{annTitle},#{annDesc},#{annStdt},#{annEddt},#{careerType},#{careerDesc},#{employType},#{salary},#{ageLimit},#{refCateseq1},#{refCateseq2},#{refCateseq3},#{refLocationseq1},#{refLocationseq2},#{refCompanyseq}
+		)
 	</insert>
 
 </mapper>
