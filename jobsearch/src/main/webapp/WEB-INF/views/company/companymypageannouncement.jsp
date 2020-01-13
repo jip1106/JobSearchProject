@@ -5,9 +5,6 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/mypageedit.css'/>">
 <c:import url="/WEB-INF/views/include/header.jsp" />
 <!-- head start -->
-<script type="text/javascript" src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
-<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 /* 입학졸업일자 */
 $.datepicker.setDefaults({	 
@@ -31,8 +28,12 @@ $(function() {
     
     $("#education_term2").datepicker({
 
-    });   
-});
+    });
+    var locSel1 = $("#lc_select option:selected").val();
+    
+    $("#lc_selected1").html(locSel1);
+
+    }
 </script>
 <style type="text/css">
 input#Insert_text_title {
@@ -77,6 +78,13 @@ div#caution {
 .com-ann-period {
     margin-left: 165px;
 }
+select#lc_select {
+    width: 68%;
+    height: calc(1.5em + .75rem + 15px);
+    margin-left: 0px;
+    width: 30%;
+}
+
 </style>
 
 
@@ -85,16 +93,178 @@ div#caution {
 <body>
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 <c:import url="/WEB-INF/views/include/companymypagenavitop.jsp" />
+
 <!-- section start -->
+<!-- 지역 선택 --> 
+<form name="frmSel">
+  <div class="card mb-4-bt-edit">
+  	 <div id="locTitle">
+    	공고 지역:
+     </div>
+    	<select id="lc_select" name="refLocationseq1" class="form-control" onchange="selectSecondLocation(this)">
+    		<option value="">선택</option>
+    		<c:forEach var="locationVo" items="${locationList1 }">
+    			<option value="${locationVo.locationSeq1 }">${locationVo.locationName }</option>
+    		</c:forEach>
+	   	</select>
+	   	
+	   	<select id="lc2_select" class="form-control" name="refLocationseq2">
+	   		<option value="">선택</option>
+	   	</select> 		
+		<div id="caution" class="chkmessage">*선택하신 항목은 게시후 검색시 중요하므로 신중히 선택해주시기 바랍니다.  </div>
+    
+ 	
+	<script>
+    	function selectSecondLocation(selected){
+    		
+    		var locationSeq1 = selected.value;
+    		
+    		$.ajax({ 
+    			type:"POST", 
+    			url: '/jobsearch/loc/sublocList.do', 
+    			data:{"locationSeq1": locationSeq1 },
+    			dataType: "json", 
+    			cache : false, 
+    			success : function(resData){ 
+    				
+    				console.log(resData);
+    				
+    				var addHtml = '<option value="">선택</option>';
+    				
+    				for(var i=0; i<resData.length; i++){
+    					var locationName2 = resData[i].locationName2;
+    					var locationSeq2 = resData[i].locationSeq2;
+    					
+    					addHtml += '<option value="' + locationSeq2 + '">' + locationName2 + '</option>'
+    					
+    					//console.log(addHtml);
+    				}
+    				
+    				$("#lc2_select").empty();
+    				$("#lc2_select").append(addHtml);
+										
+    			}, 
+    			error : function(xhr, status, e){ 
+    				console.log(status);
+    			} 
+    		});
+    	}
+    </script>		
+<!-- 카테고리선택 -->		
+		<div class="row">
+		카테고리 :
+		<select name="refCateseq1" class="form-control" id="cateList" onchange="sCateList2(this)">
+			<option value="">선택</option>
+			
+			<c:forEach var="categoryVo" items="${categoryList1}">
+				<option value="${categoryVo.cateSeq1}">${categoryVo.cateName1 }</option>
+			</c:forEach>
+			
+		</select>
+		
+		
+		<select id="ca2_select" class="form-control" name="refCateseq2" onchange="sCateList3(this)">
+			<option value="">선택</option>
+		</select>
+		
+		<select id="ca3_select" name="refCateseq3" class="form-control">
+			<option value="">선택</option>
+		</select>
+		
+		<div id="caution" class="chkmessage">*선택하신 항목은 게시후 검색시 중요하므로 신중히 선택해주시기 바랍니다. </div>
+	</div>
+	
+	<script>
+		function sCateList2(selected){
+			$("#ca3_select").empty();
+			$("#ca3_select").append('<option value="">선택</option>');
+			
+    		var cateSeq1 = selected.value;
+    		    		
+    		$.ajax({ 
+    			type:"POST", 
+    			url: '/jobsearch/cate/subCategoryList.do', 
+    			data:{"cateSeq1": cateSeq1 },
+    			dataType: "json", 
+    			cache : false, 
+    			success : function(resData){ 
+    				
+    			//	console.log(resData);
+    				
+    				var addHtml = '<option value="">선택</option>';
+    				
+    				for(var i=0; i<resData.length; i++){
+    					var cateName2 = resData[i].cateName2;
+    					var cateSeq2 = resData[i].cateSeq2;
+    					var refCateSeq1 = resData[i].refCateseq;
+    					
+    					addHtml += '<option value="' + cateSeq2 + ';:;' + refCateSeq1 + '">' + cateName2 + '</option>'
+    					
+    					//console.log(addHtml);
+    				}
+    				
+    				$("#ca2_select").empty();
+    				$("#ca2_select").append(addHtml);
+										
+    			}, 
+    			error : function(xhr, status, e){ 
+    				console.log(status);
+    			} 
+    		});
+		}
+		
+		
+		function sCateList3(selected){
+    		var selectedVal = selected.value;
+    		
+    		
+    		var cateSeq2 = selectedVal.split(';:;')[0];
+    		var cateSeq1 = selectedVal.split(';:;')[1];
+    		
+    		$.ajax({ 
+    			type:"POST", 
+    			url: '/jobsearch/cate/thirdCategoryList.do', 
+    			data:{"cateSeq1": cateSeq1 , "cateSeq2" : cateSeq2},
+    			dataType: "json", 
+    			cache : false, 
+    			success : function(resData){ 
+    				    				    				
+    				var addHtml = '<option value="">선택</option>';
+    				
+    				for(var i=0; i<resData.length; i++){
+    					var cateName3 = resData[i].cateName3;
+    					var cateSeq3 = resData[i].cateSeq3;
+    					
+    					addHtml += '<option value="' + cateSeq3 + '">' + cateName3 + '</option>'
+    					
+    					console.log(addHtml);
+    				}
+    				
+    				$("#ca3_select").empty();
+    				$("#ca3_select").append(addHtml);
+										
+    			}, 
+    			error : function(xhr, status, e){ 
+    				console.log(status);
+    			} 
+    		});
+    		
+		}		
+	</script>
+	</div>
+</form>
+
+<!-- form 시작 -->
 <form action="<c:url value='/announcement/annWrite.do'/>" method="post">
 	<h1>공고글 작성하기</h1>
  		<div class="card mb-4-bt-edit">
- 			<div class="row mb-4 mt-4_text">
+ 			<div class="row mb-4 mt-4_text"> 				
 				<div class="col-lg-4-4t">공고제목  </div>
 				<span class="point-2t"></span>				
 				<div class="col-lg-8 form-label-group mb-2">
 					<input type="text" id="Insert_text_title" name="annTitle" class="form-control" placeholder="제목" required autofocus>
-				<div id="idchkdiv" class="chkmessage"> </div>
+				<div id="idchkdiv" class="chkmessage"><input type="text" value="" id="lc_selected1">
+ 				<input type="text" value="" id="lc2_selected2"> </div>
 				</div>
 			</div>
 			
@@ -160,46 +330,8 @@ div#caution {
 		
 	
 	<h1>추가사항</h1>	
-		<div class="card mb-4-bt-edit">
-			
-			<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">직종별 </div>
-				<span class="point-2t"></span>				
-				<div class="col-lg-8 form-label-group mb-2">
-				<div class="com-cat-sel">					
-					<select id="Insert_text" name="refCateseq1" class="form-control">
-						<option>경력</option>											
-					</select>
-					<br>
-					<select id="Insert_text" name="refCateseq2" class="form-control">
-						<option>경력</option>											
-					</select>
-					<br>
-					<select id="Insert_text" name="refCateseq3" class="form-control">
-						<option>경력</option>											
-					</select>
-				</div>					
-				<div id="caution" class="chkmessage">*선택하신 항목은 게시후 검색시 중요하므로 신중히 선택해주시기 바랍니다. </div>
-				</div>
-			</div>
-			
-			<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">지역별  </div>
-				<span class="point-2t"></span>								
-				<div class="col-lg-8 form-label-group mb-2">
-				<div class="com-loc-sel">
-					<select id="Insert_text" name="refLocationseq1" class="form-control">
-						<option>경력</option>												
-					</select>
-					<br>
-					<select id="Insert_text" name="refLocationseq2" class="form-control">
-						<option>경력</option>												
-					</select>
-				</div>
-				<div id="caution" class="chkmessage">*선택하신 항목은 게시후 검색시 중요하므로 신중히 선택해주시기 바랍니다.  </div>
-				</div>
-			</div>
-			
+		<div class="card mb-4-bt-edit">	
+					
 			<div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-4t">내용 </div>
 				<span class="point-2t"></span>				
@@ -225,8 +357,12 @@ div#caution {
  		<div id="company-ann">
   				<button class="btn-company-ann" type="submit">작성하기</button>
  		</div>
- </form>		
+
+	 
  		
+ 
+ </form>
+
   
 <!-- section end -->
 <c:import url="/WEB-INF/views/include/companymypagenavibottom.jsp" />

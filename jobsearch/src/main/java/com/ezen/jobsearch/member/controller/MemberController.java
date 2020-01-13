@@ -292,7 +292,13 @@ public class MemberController {
 		
 	}
 	
-	//마이페이지 - 회원정보수정
+		//마이페이지 - 회원정보수정 비밀번호체크
+		@RequestMapping("/member/mypageeditcheck.do")
+		public String mypageeditcheck_get() {
+			return "member/mypageeditcheck";
+		}
+		
+		//마이페이지 - 회원정보수정
 		@RequestMapping("/member/mypageedit.do")
 		public String mypageedit_get() {
 			return "member/mypageedit";

@@ -74,7 +74,7 @@ h2.mt-4.mb-3 {
       <div class="col-lg-3 mb-4">
         <div class="list-group">
           <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypagerecentnotice.do">최근 본 공고</a>
-          <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypageedit.do">회원정보수정</a>
+          <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypageeditcheck.do">회원정보수정</a>
           <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypageresume.do">이력서관리</a>
           <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypagebookmark.do">즐겨찾기</a> 
       	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">
