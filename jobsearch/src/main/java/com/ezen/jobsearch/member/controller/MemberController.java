@@ -60,7 +60,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/insertMember.do")
-	public String insertMember(@ModelAttribute MemberVO memberVo,Model model, @ModelAttribute CompanyVO companyVo) {
+	public String insertMember(@ModelAttribute MemberVO memberVo,Model model, @ModelAttribute CompanyVO companyVo,HttpServletRequest request) {
 		
 		logger.info("memberVo={}",memberVo);
 		
@@ -86,11 +86,26 @@ public class MemberController {
 			}
 		}
 		
-		model.addAttribute("regType",regType);
-		model.addAttribute("memberResult",memberResult);
-		model.addAttribute("companyResult",companyResult);
+		String url="/home.do";
+		String message = "회원가입 성공.";
 		
-		return "member/regcomplete";
+		if(memberResult > 0) {
+			
+			if(regType.equals("1")) {
+				message= "일반회원 가입 완료";
+			}
+			if(regType.equals("2")) {
+				message= "기업회원 가입 완료";
+			}
+		}else {
+			message = "오류발생";
+		}
+		
+		request.setAttribute("msg", message);
+		request.setAttribute("url", url);
+			
+		return "common/message";
+		
 	}
 	
 	//ajax 처리 회원 id 중복검사

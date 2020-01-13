@@ -25,12 +25,27 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
+	public int selectTotalRecord(SearchVO searchVo) {
+		return boardDao.selectTotalRecord(searchVo);
+	}
+
+	@Override
+	public BoardVO selectByBoardSeq(int boardSeq) {
+		return boardDao.selectByBoardSeq(boardSeq);
+	}
+
+	@Override
+	public int updateBoard(BoardVO boardVo) {
+		return boardDao.updateBoard(boardVo);
+	}
+
+	@Override
 	@Transactional
 	public int deleteBoard(List<BoardVO> list) {
 		int cnt=0;
 		try {
-			for(BoardVO boardVo : list) {
-				int boardSeq=boardVo.getBoardSeq();
+			for(BoardVO vo : list) {
+				int boardSeq=vo.getBoardSeq();
 				if(boardSeq!=0) {
 					cnt=boardDao.deleteBoard(boardSeq);
 				}
@@ -40,16 +55,6 @@ public class BoardServiceImpl implements BoardService {
 			cnt=-1;
 		}
 		return cnt;
-	}
-
-	@Override
-	public int selectTotalRecord(SearchVO searchVo) {
-		return boardDao.selectTotalRecord(searchVo);
-	}
-
-	@Override
-	public BoardVO selectByBoardSeq(int boardSeq) {
-		return boardDao.selectByBoardSeq(boardSeq);
 	}
 	
 }

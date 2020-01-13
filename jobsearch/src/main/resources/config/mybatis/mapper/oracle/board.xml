@@ -63,8 +63,14 @@
 	 	select * from tbl_board
 		where board_seq=#{boardSeq}
 	 </select>
+	 
+	 <update id="updateBoard" parameterType="boardVo"> 
+	 	update tbl_board
+	 	set board_title=#{boardTitle}, board_contents=#{boardContents}
+	 	where board_seq=#{boardSeq}
+	 </update>
 		  	 
   	 <delete parameterType="int" id="deleteBoard"> 
-  	 		delete from tbl_board where boardSeq=#{boardSeq} 
+  	 		delete from tbl_board where board_seq=#{boardSeq} 
   	 </delete>
 </mapper>
