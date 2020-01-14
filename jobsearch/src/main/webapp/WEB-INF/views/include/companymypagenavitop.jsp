@@ -63,7 +63,7 @@ h2.mt-4.mb-3 {
     <ol class="breadcrumb">
     <span id="member_type">기업회원</span>
    	  <li class="breadcrumb-item">
-        <span id="name_text">홍길동</span><span> 님의 마이페이지입니다.</span>
+        <span id="name_text">${loginMember.memberName }</span><span> 님의 마이페이지입니다.</span>
       </li> 
     </ol>
 

@@ -56,8 +56,12 @@
 	
 	
 	<script src="<c:url value='/resources/ckeditor/ckeditor.js'/>"></script>
-	<script>			 
-			 CKEDITOR.replace("boardContents");
+	<script>
+			 var ckeditor_config = {
+			  	 filebrowserImageUploadUrl : "/jobsearch/imageUpload.do"
+			 };
+			 
+			 CKEDITOR.replace("boardContents", ckeditor_config);
 	</script>
 
   </body>

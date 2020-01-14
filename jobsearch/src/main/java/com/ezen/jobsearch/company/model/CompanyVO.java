@@ -12,7 +12,7 @@ public class CompanyVO {
 	private String employeeNum; 
 	private String comType;
 	private String comSales; 
-	private String comFiled;
+	private String comField;
 	private String comImg; 
 	private String comRenameimage; 
 	private int refMemberseq;
@@ -77,11 +77,11 @@ public class CompanyVO {
 	public void setComSales(String comSales) {
 		this.comSales = comSales;
 	}
-	public String getComFiled() {
-		return comFiled;
+	public String getComField() {
+		return comField;
 	}
-	public void setComFiled(String comFiled) {
-		this.comFiled = comFiled;
+	public void setComFiled(String comField) {
+		this.comField = comField;
 	}
 	public String getComImg() {
 		return comImg;
@@ -105,8 +105,8 @@ public class CompanyVO {
 	public String toString() {
 		return "CompanyVO [comSeq=" + comSeq + ", comRegnumber=" + comRegnumber + ", comName=" + comName + ", ceoName="
 				+ ceoName + ", comDesc=" + comDesc + ", comTel=" + comTel + ", setupDate=" + setupDate
-				+ ", employeeNum=" + employeeNum + ", comType=" + comType + ", comSales=" + comSales + ", comFiled="
-				+ comFiled + ", comImg=" + comImg + ", comRenameimage=" + comRenameimage + ", refMemberseq="
+				+ ", employeeNum=" + employeeNum + ", comType=" + comType + ", comSales=" + comSales + ", comField="
+				+ comField + ", comImg=" + comImg + ", comRenameimage=" + comRenameimage + ", refMemberseq="
 				+ refMemberseq + "]";
 	}
 	
