@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ezen.jobsearch.ann.model.AnnounceMentVO;
+import com.ezen.jobsearch.member.model.MemberVO;
 
 @Repository
 public class CompanyDAOImpl implements CompanyDAO{
@@ -29,6 +30,16 @@ public class CompanyDAOImpl implements CompanyDAO{
 	public CompanyVO selectCompany(int memberSeq) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+"selectComInfo",memberSeq);
+	}
+
+	@Override
+	public int updateComMem(MemberVO memberVo) {
+		return sqlSession.update(namespace+"updateComMem",memberVo);
+	}
+
+	@Override
+	public int updateComInfo(CompanyVO companyVo) {
+		return sqlSession.update(namespace+"updateComInfo",companyVo);
 	}
 
 

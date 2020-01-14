@@ -219,7 +219,7 @@ textarea#textarea_companycont {
     height: 16em;
     margin-bottom: -183px;
 }
-input#comImg{
+input#upfile{
 	visibility: hidden;
 }
 .comImg_photo {
@@ -246,8 +246,12 @@ input#comImg{
 	    border: 1px solid #ced4da;
 	    border-radius: .25rem;
 	    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-	    margin-top: -87px;
-	}
+	    margin-top: -218px;
+	    margin-right: -1px;
+	    position: absolute;
+	    width: 100px;
+}
+
 
 </style>
 <!-- datePicker -->
@@ -282,15 +286,15 @@ var element_wrap = document.getElementById('wrap');
 
 //썸네일 펑션
 function getThumbnailPrivew(html, $target) {
-    if (html.files && html.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function (e) {
-            $target.css('display', '');           
-            $target.html('<img src="' + e.target.result + '" border="0" alt="" width="130" height="140"/>');
-           
-        }
-        reader.readAsDataURL(html.files[0]);
-    }
+    var fileInput = document.getElementById("upfile");
+    var file = fileInput.files[0];
+    var reader = new FileReader();
+    
+    reader.onload = function(e){
+    	$("#comImgPre").attr("src","")
+    	$("#comImgPre").attr("src",e.target.result);
+    };
+    reader.readAsDataURL(file);
 }
 
 
@@ -377,12 +381,20 @@ function sample3_execDaumPostcode() {
 <form action="<c:url value='/company/companymypageedit.do'/>" method="post" name="comInfoForm"  enctype="multipart/form-data" >
   <div class="span_title_edit">기업정보수정</div>
   	<div class="comImg_photo"> 		 	
-       <div class="comImgPre" data-api_type="layer" data-api_id="basic_photo" >                  
-	     <input type="file" id="comImg"accept="image/*" onchange="getThumbnailPrivew(this,$('.comImgPre'))">
+       <div class="comImgPre">
+      	<c:choose>
+      	<c:when test="${empty vo.comImg}" >
+       	<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/images/logo_default.gif'/>" style="width:130px; height:140"></c:when>
+       	<c:when test="${!empty vo.comImg}">
+       	<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/upload_images/${vo.comRenameimage}'/>" style="width:130px; height:140"></c:when>
+       	
+       	</c:choose>
+      
+       	                
+	     <input type="file" name="upfile" id="upfile"accept="image/*" onchange="getThumbnailPrivew()">	      
 	     <br> <!-- 로고이미지 -->	         
-	     <label for="comImg" class="btn_Com_Info_sub" >기업 로고</label>
-	   </div>
-	       
+	     <label for="upfile" class="btn_Com_Info_sub" >기업로고</label>
+	   </div>	     
             <a class="photo_delete" href="##" style="display:none;">
             <span class="blind">사진 삭제</span></a>
     	</div>
@@ -394,7 +406,9 @@ function sample3_execDaumPostcode() {
 					<input type="text" id="Insert_text" name="comRegNum" class="form-control" value="${vo.comRegnumber}" readonly="readonly" autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
-			</div>
+			</div>			
+			<input type="hidden" name="memberSeq" value="${vo.refMemberseq}">
+			<input type="hidden" name="refMemberseq" value="${vo.refMemberseq}">
 			
 			<div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-4t">대표자명  </div>
@@ -490,18 +504,18 @@ function sample3_execDaumPostcode() {
 			
 	     <hr class="companyAdd">
 	     	<h3>추가 기입사항</h3>
-	     			
+	     			<c:if test=""></c:if>
 	        <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-3t-ca">설립일  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="foundation" name="setupDate" class="form-control" placeholder="설립일" required autofocus readonly>
+					<input type="text" id="foundation" name="setupDate" class="form-control" value="${vo.setupDate}" placeholder="설립일" required autofocus readonly>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 	        <div class="row mb-4 mt-4_text_tel">
 				<div class="col-lg-4-6t-ca">회사전화번호  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text_ca" name="comTel" class="form-control" placeholder="회사전화번호  " required autofocus>
+					<input type="text" id="Insert_text_ca" name="comTel" class="form-control" value="${vo.comTel}" placeholder="회사전화번호  "autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -509,14 +523,14 @@ function sample3_execDaumPostcode() {
 			 <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-3t-ca">사원수  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="foundation" name="employeeNum" class="form-control" placeholder="사원수  " required autofocus >
+					<input type="text"  id="foundation" name="employeeNum" class="form-control" value="${vo.employeeNum}" placeholder="사원수  "autofocus >
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			 <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-3t-ca">매출액  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="foundation" name="comSales" class="form-control" placeholder="매출액" required autofocus>
+					<input type="text"  id="foundation" name="comSales" class="form-control" value="${vo.comSales}" placeholder="매출액" autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -525,21 +539,21 @@ function sample3_execDaumPostcode() {
 			 <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-4t-ca">기업형태  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="foundation" name="comType" class="form-control" placeholder="기업형태  " required autofocus >
+					<input type="text"  id="foundation" name="comType" class="form-control" value="${vo.comType}" placeholder="기업형태  " autofocus >
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			 <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-2t-ca">업 종  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="foundation" name="comFiled" class="form-control" placeholder="업종" required autofocus>
+					<input type="text"  id="foundation" name="comField" class="form-control" value="${vo.comField}" placeholder="업종" autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			</div>
 			
 				<div class="col-lg-8 form-label-group mb-2-companycont">
-					<textarea style="resize:none" id="textarea_companycont" class="form-control" name="comDesc" placeholder="회사설명을 간략히 써주세요." required autofocus></textarea>
+					<textarea style="resize:none" id="textarea_companycont" class="form-control" name="comDesc" placeholder="회사설명을 간략히 써주세요." autofocus>${vo.comDesc}</textarea>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			
