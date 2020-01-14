@@ -17,12 +17,12 @@ import com.ezen.jobsearch.location.model.LocationVO2;
 public class LocationController {
 	
 	@Autowired
-	private LocationService loactionService;
+	private LocationService locationService;
 	
 	@RequestMapping(value="/loc/locationList.do")
 	public String locationList(Model model) {
 		
-		List<LocationVO1> locationList1 = loactionService.selectLocation1();
+		List<LocationVO1> locationList1 = locationService.selectLocation1();
 		
 		//System.out.println(locationList1);
 		model.addAttribute("locationList1", locationList1);
@@ -35,9 +35,17 @@ public class LocationController {
 	@RequestMapping(value="/loc/sublocList.do")
 	public @ResponseBody List<LocationVO2> selectSubLocList(Model model,@RequestParam(value="locationSeq1") String locationSeq1){
 		
-		List<LocationVO2> subLocationList = loactionService.selectSubLocList(locationSeq1);
+		List<LocationVO2> subLocationList = locationService.selectSubLocList(locationSeq1);
 		System.out.println(subLocationList);
 		
 		return subLocationList;
 	}
+	
+	@RequestMapping(value="/loc/getlocNamebyseq.do")
+	public @ResponseBody String getlocNamebyseq(@RequestParam(value="locationSeq1") String locationSeq1) {
+		String locationName = locationService.selectLocationName(locationSeq1);
+		
+		return locationName;
+	}
+	
 }

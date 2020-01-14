@@ -1,14 +1,20 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:import url="/WEB-INF/views/include/header.jsp" />
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 
+<style>
+	.location{
+		cursor:pointer;
+		margin-top:3px;
+	}
+</style>
 <script>
 
 	var selectedList;
 	var cnt = 0;
-
 	
 	function selectLocation2(locationSeq1,locationName1){
 		selectedList = new Array();
@@ -87,20 +93,23 @@
 		$("#locationSeq2").val(str);
 	}
 	
-	function searchAnn(){
+	function searchAnn(currentPage){
 		
-		calLocSeq();
+		if($("#locationSeq2").val() == ""){
+			calLocSeq();
+		}
 		
 		var locationSeq1 = $("#locationSeq1").val();
 		var locationSeq2 = $("#locationSeq2").val();
 		
-		console.log("locationSeq1 : " + locationSeq1);
-		console.log("locationSeq2 : " + locationSeq2);
+		//console.log("locationSeq1 : " + locationSeq1);
+		//console.log("locationSeq2 : " + locationSeq2);
 		
 		if(locationSeq1 == "" || locationSeq2 == ""){
 			alert("지역별 검색 조건을 선택 해 주세요.");
 			return false;
 		}else{
+			document.annSearchByLoc.currentPage.value=currentPage;
 			document.annSearchByLoc.submit();	
 		}
 		
@@ -126,7 +135,7 @@
   		<div class="col-md-4" style="max-height:170px; overflow-y:scroll;">
   			<div class="row">
 	  			<c:forEach var="locationVo" items="${locationList1 }">
-	  				<div class="col-md-6 lg-6 sm-4 xs-4">
+	  				<div class="col-md-6 lg-6 sm-4 xs-4 location">
 	  					<span onclick="selectLocation2('${locationVo.locationSeq1}','${locationVo.locationName }');">
 	  						${locationVo.locationName }
 	  					</span>
@@ -151,44 +160,102 @@
     	</div>
     </div>
     <div class="row">
-    	<input type="button" value="검색" onclick = "searchAnn();"> 
+    	<div class="col-md-4"></div>
+    	<div class="col-md-4"></div>
+    	<div class="col-md-4" style="text-align:right;">
+    		<input type="button" value="검색" onclick = "searchAnn('1');" class="btn btn-primary">
+    	</div> 
     </div>
 
 	<form name="annSearchByLoc" action='<c:url value="/ann/getAnnListByLoc.do"/>' method="post">
-		<input type="hidden" name="locationSeq1" id="locationSeq1">
-		<input type="hidden" name="locationSeq2" id="locationSeq2">
+		<input type="hidden" name="locationSeq1" id="locationSeq1" value="${param.locationSeq1 }">
+		<input type="hidden" name="locationSeq2" id="locationSeq2" value="${param.locationSeq2 }">
+		<input type="hidden" name="currentPage" id="currentPage" value="1">
 	</form>
 
-    
     <%//공고영역 %>
-   
-  
-	    <div class="row mt-8">
-			<c:if test="${!empty annList }">
+    <c:if test="${!empty annList }">
+   		<div>검색 결과(갯수 - ${searchCount }): ${searchLocName }
+   			
+   			<c:if test="${!empty searchLocNameList }">
+   				<c:forEach var="searchList" items="${searchLocNameList}">
+   					${searchList['LOCATION_NAME2'] }
+   				</c:forEach>
+   			</c:if>
+   		</div>
+	    <div class="row mt-8" style="margin-top:5%;">
 	   	 		<c:forEach var="mapData" items="${annList }">
-			      <div class="col-lg-4 mb-4">
-			        <div class="card h-100">
-			          <h4 class="card-header">${mapData['ANN_TITLE'] } </h4>
+
+				  <div class="col-lg-4 mb-4">
+			        <div class="card h-100 text-center">
+			        	<c:if test="${!empty mapData['COM_IMG']}">
+			        		<img class="card-img-top" src="" alt="회사이미지">
+			        	</c:if>
+			        	<c:if test="${empty mapData['COM_IMG']}">
+			        		<img class="card-img-top" src="/jobsearch/image/no_image.PNG" alt="회사이미지">
+			        	</c:if>
+			          
 			          <div class="card-body">
+			            <h4 class="card-title">${mapData['ANN_TITLE'] }</h4>
+			            <h6 class="card-subtitle mb-2 text-muted">${mapData['COM_NAME'] }</h6>
 			            <p class="card-text">${mapData['ANN_DESC'] }</p>
 			          </div>
 			          <div class="card-footer">
-			            <a href="#" class="btn btn-primary">Learn More</a>
+			          	<p>지원기간 : <fmt:formatDate value ="${mapData['ANN_STDT']}" pattern="yyyy-MM-dd"/>~<fmt:formatDate value ="${mapData['ANN_ENDT']}" pattern="yyyy-MM-dd"/></p>
 			          </div>
 			        </div>
-			      </div>
+			      </div>			      
 			   </c:forEach>
-			</c:if>	      
+	     </div>
+	     
 
-	     </div>    
-
+	     
+		    		 
+		<ul class="pagination justify-content-center">
+			<c:if test="${pagingInfo.firstPage>1 }">
+		      <li class="page-item">
+		        <a class="page-link" href="#" onclick="searchAnn('${pagingInfo.firstPage-1}')" aria-label="Previous">
+		          <span aria-hidden="true">«</span>
+		          <span class="sr-only">Previous</span>
+		        </a>
+		      </li>
+	     	</c:if>
+				
+				<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage }">			  			  	 
+				  <li class="page-item">
+			        <a class="page-link" href="#" onclick="searchAnn('${i}')" 
+			        	<c:if test="${i==pagingInfo.currentPage }">style="background-color:#dee2e6;"</c:if>>${i }</a>
+			      </li>
+			    </c:forEach>
+      
+			<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
+		      <li class="page-item">
+		        <a class="page-link" href="#" aria-label="Next" onclick="searchAnn('${pagingInfo.lastPage+1}')">
+		          <span aria-hidden="true">»</span>
+		          <span class="sr-only">Next</span>
+		        </a>
+		      </li>
+	      	</c:if>
+	    </ul>
+	</c:if>	
 	
 	
-    
+	<c:if test="${searchCount == 0 }">
+		<div class="row" style="text-align:center;height:100px;">
+			[
+			${searchLocName }   			
+   			<c:if test="${!empty searchLocNameList }">
+   				<c:forEach var="searchList" items="${searchLocNameList}">
+   					${searchList['LOCATION_NAME2'] }
+   				</c:forEach>
+   			</c:if>
+   			] 
+   			조건으로 등록된 공고가 존재하지 않습니다.
+		</div>
+	</c:if>  
 
   </div>
   <!-- /.container -->
-
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 

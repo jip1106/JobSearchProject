@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.jobsearch.category.model.CategoryService;
+import com.ezen.jobsearch.category.model.CategoryVO1;
 import com.ezen.jobsearch.category.model.CategoryVO2;
 import com.ezen.jobsearch.category.model.CategoryVO3;
 
@@ -20,7 +22,15 @@ public class CategoryController {
 	
 	//직업별 공고 리스트 페이지
 	@RequestMapping("/cate/categoryList.do")
-	public String categoryList() {
+	public String categoryList(@RequestParam(value="cateSeq1", required=false, defaultValue="1") String cateSeq1 , Model model) {
+		
+		List<CategoryVO1> categoryList1 = categoryService.selectCategory1();
+		model.addAttribute("categoryList1",categoryList1);
+		
+		
+		List<CategoryVO2> categoryList2 = categoryService.selectSubCateList(cateSeq1);
+		model.addAttribute("categoryList2",categoryList2);
+		
 		return "/ann/categoryList";
 	}
 	
@@ -40,7 +50,6 @@ public class CategoryController {
 		
 		List<CategoryVO3> thirdCategoryList = categoryService.selectThirdCateList(cateSeq1, cateSeq2);
 		
-		System.out.println("cateSeq1 : " + cateSeq1  + " cateSeq2 : " + cateSeq2 );
 		
 		return thirdCategoryList;
 	}
