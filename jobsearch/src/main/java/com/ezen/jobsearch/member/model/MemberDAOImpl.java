@@ -130,6 +130,26 @@ public class MemberDAOImpl implements MemberDAO{
 		return memberList;
 	}
 
+	@Override
+	public MemberVO selectMember(String memberId) {
+		return sqlSession.selectOne(nameSpace+"selectMember",memberId);
+	}
+
+	//***********
+	@Override
+	public int updateMember(MemberVO vo) {
+		return sqlSession.update(nameSpace + "updateMember",vo);
+		
+	}
+	//***********
+
+	@Override
+	public int withdrawMember(String memberId) {
+		return sqlSession.delete(nameSpace + "withdrawMember",memberId);
+	}
+
+	
+	
 	
 	
 }
