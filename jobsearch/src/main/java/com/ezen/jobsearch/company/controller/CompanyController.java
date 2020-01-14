@@ -18,10 +18,12 @@ import com.ezen.jobsearch.ann.model.AnnounceMentVO;
 import com.ezen.jobsearch.category.model.CategoryService;
 import com.ezen.jobsearch.category.model.CategoryVO1;
 import com.ezen.jobsearch.company.model.CompanyService;
+import com.ezen.jobsearch.company.model.CompanyVO;
 import com.ezen.jobsearch.emptype.model.EmpTypeService;
 import com.ezen.jobsearch.emptype.model.EmpTypeVO;
 import com.ezen.jobsearch.location.model.LocationService;
 import com.ezen.jobsearch.location.model.LocationVO1;
+import com.ezen.jobsearch.member.model.MemberService;
 import com.ezen.jobsearch.member.model.MemberVO;
 
 @Controller
@@ -38,12 +40,21 @@ public class CompanyController {
 	private CategoryService cService;
 	@Autowired
 	private EmpTypeService eService;
+	@Autowired
+	private MemberService mService;
 	
 	//기업마이페이지 - 회원정보수정
 	@RequestMapping(value = "/companymypageedit.do",method = RequestMethod.GET)
-	public String insertInfo_get() {
-		logger.info("기업회원 정보수정창");	
+	public String insertInfo_get(HttpSession session, Model model) {
+		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
+		int memberSeq=memberVo.getMemberSeq();		
 		
+			
+		CompanyVO vo=companyService.selectCompany(memberSeq);
+			
+		logger.info("기업회원 정보수정창 memberSeq={}",memberSeq);	
+		
+		model.addAttribute("vo",vo);
 		return "company/companymypageedit";
 	}
 	

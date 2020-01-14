@@ -24,7 +24,13 @@
 	</insert>
 	
 	<select id="selectMaxmemSeq" resultType="int">
-		Select max(member_seq) From tbl_member;
+		Select max(member_seq) From tbl_member
+	</select>
+
+	<select id="selectComInfo" parameterType="int" resultType="companyVo">
+		select * from tbl_company
+		where ref_memberseq=#{memberSeq}
+		
 	</select>
 	
 	<insert id="insertAnn" parameterType="announceMentVo">

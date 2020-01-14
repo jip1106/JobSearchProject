@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.announcement">
+
+	
+	<resultMap type="HashMap" id="sAnnListByLoc">
+		<result property="ANN_DESC" column="ANN_DESC" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
+
+	<select id="selectAnnListByLoc" parameterType="hashmap" resultType="hashmap" resultMap = "sAnnListByLoc">
+		SELECT * FROM TBL_ANNOUNCEMENT ta
+		JOIN TBL_COMPANY tc on ta.ref_companyseq = tc.com_seq
+		Where ta.ref_locationseq1 = #{locationSeq1} 
+		and ta.ref_locationseq2 in 
+		<foreach collection="locList" item="locationSeq2" separator=","	open="(" close=")">
+			#{locationSeq2}
+		</foreach>
+		
+	</select>
+	
+</mapper>

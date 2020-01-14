@@ -25,5 +25,11 @@ public class CompanyDAOImpl implements CompanyDAO{
 		return sqlSession.insert(namespace+"insertAnn",annVo);
 	}
 
+	@Override
+	public CompanyVO selectCompany(int memberSeq) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+"selectComInfo",memberSeq);
+	}
+
 
 }
