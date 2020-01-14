@@ -388,10 +388,8 @@ function sample3_execDaumPostcode() {
        	<c:when test="${!empty vo.comImg}">
        	<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/upload_images/${vo.comRenameimage}'/>" style="width:130px; height:140"></c:when>
        	
-       	</c:choose>
-      
-       	                
-	     <input type="file" name="upfile" id="upfile"accept="image/*" onchange="getThumbnailPrivew()">	      
+       	</c:choose>             	                
+	     <input type="file" name="upfile" id="upfile" accept="image/*" onchange="getThumbnailPrivew()">	      
 	     <br> <!-- 로고이미지 -->	         
 	     <label for="upfile" class="btn_Com_Info_sub" >기업로고</label>
 	   </div>	     

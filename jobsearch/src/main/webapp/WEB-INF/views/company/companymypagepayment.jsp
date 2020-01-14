@@ -75,30 +75,35 @@ button.btn.com_pay{
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 <c:import url="/WEB-INF/views/include/companymypagenavitop.jsp" />
 <!-- section start -->
-<h2>공고글 결제하기</h2>
+<h2>공고글 관리하기</h2>
+<a href="<c:url value='/company/companymypageannouncement.do'/>">공고글 작성하기</a>
 <hr>
 <table>
 <!-- 반복 시작 -->
+<c:forEach var="vo" items="${list}">
 <tr><td>
- <div class="row mb-4 mt-4_text">
+ <div class="row mb-4 mt-4_text"> 
 				<!--<div class="col-lg-4-2t">공고글  </div>  -->
-				<div class="col-lg-8 form-label-group mb-2">
-					<button class="collapsible">내용입니다 내용내용 맨</button>
+				<div class="col-lg-8 form-label-group mb-2">					
+					<button class="collapsible">${vo.annTitle}</button>
 					<div class="content">
 					<table>
 						<tr>
-							<th>제목</td>
-							<th>내용</td>
-							<th>작성일</td>							
-						</tr>
-						<tr>
 							<td>제목</td>
 							<td>내용</td>
-							<td>작성일</td>							
+							<td>게시일</td>
+							<td>마감일</td>							
+						</tr>
+						<tr>
+							<td>${vo.annTitle}</td>
+							<td>${vo.annDesc}</td>
+							<td>${vo.annStdt}</td>
+							<td>${vo.annEddt}</td>							
 						</tr>
 					</table>
 					</div> 
 				<div id="idchkdiv" class="chkmessage"> </div>
+				
 				</div>
 			</div>
  </td> 
@@ -109,7 +114,7 @@ button.btn.com_pay{
  <td id="com_cont_del">
  <input type="button" class="delete" value="삭제">
  </td>
- 
+ </c:forEach>
  <!-- 반복 끝 -->
  
  </table> 

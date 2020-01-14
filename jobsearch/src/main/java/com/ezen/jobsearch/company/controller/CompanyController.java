@@ -101,8 +101,7 @@ public class CompanyController {
 		return "common/message";
 		
 		
-	}
-	
+	}	
 	
 	//기업공고등록 관련 페이지
 	@RequestMapping(value = "/companymypageannouncement.do",method = RequestMethod.GET)
@@ -144,5 +143,16 @@ public class CompanyController {
 		model.addAttribute("url",url);
 		
 		return "common/message";
+	}
+	@RequestMapping("/companymypagepayment.do")
+	public void viewMyAnn(HttpSession session,Model model) {
+		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
+		int refCompanyseq=memberVo.getMemberSeq();
+		
+		logger.info("기업회원 내 공고글 리스트 보여주기 파라미터 refCompanyseq={}",refCompanyseq);		
+		
+		List<AnnounceMentVO> list=companyService.viewMyAnn(refCompanyseq);
+		
+		model.addAttribute("list",list);
 	}
 }

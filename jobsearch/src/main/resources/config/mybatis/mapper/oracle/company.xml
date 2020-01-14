@@ -58,4 +58,8 @@
 		where ref_memberseq=#{refMemberseq}
 	</update>
 
+	<select id="selectMyAnn" parameterType="int" resultType="announceMentVo">
+		select * from tbl_announcement
+		where ref_companyseq=#{refCompanyseq}
+	</select>
 </mapper>
