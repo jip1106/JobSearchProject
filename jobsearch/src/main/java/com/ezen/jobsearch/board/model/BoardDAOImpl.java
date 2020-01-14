@@ -26,11 +26,6 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public int deleteBoard(int boardSeq) {
-		return sqlSession.delete(namespace+"deleteBoard", boardSeq);
-	}
-
-	@Override
 	public int selectTotalRecord(SearchVO searchVo) {
 		return sqlSession.selectOne(namespace+"selectTotalRecord", searchVo);
 	}
@@ -38,6 +33,16 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public BoardVO selectByBoardSeq(int boardSeq) {
 		return sqlSession.selectOne(namespace+"selectByBoardSeq", boardSeq);
+	}
+
+	@Override
+	public int updateBoard(BoardVO boardVo) {
+		return sqlSession.update(namespace+"updateBoard", boardVo);
+	}
+
+	@Override
+	public int deleteBoard(int boardSeq) {
+		return sqlSession.delete(namespace+"deleteBoard", boardSeq);
 	}
 
 }

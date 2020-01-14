@@ -1,5 +1,6 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 	
@@ -52,22 +53,41 @@
 	</form>
 
     <div class="faqlist">
-    	<c:forEach var="boardVo" items="${list }">
-      <div class="card">
-        <div class="card-header" role="tab" id="headingOne">
-          <h5 class="mb-0">
-           Q. ${boardVo.boardTitle }<span class="unfold"><img alt="펼치기" src="<c:url value='/resources/images/unfold.png'/>"></span>
-          </h5>
-        </div>
-
-        <div class="answer">
-          <div class="card-body">
-            A. ${boardVo.boardContents }
-          </div>
-        </div>        
-      </div> 
-      </c:forEach>     
+    	<c:if test="${empty list }">
+	    	<div class="card">
+		        <div class="card-header" role="tab" id="headingOne">
+		          <h5 class="mb-0">
+		           		목록이 존재하지 않습니다.
+		          </h5>
+		        </div>
+	   	 	</div>
+	    </c:if>
+	    <c:if test="${!empty list }">
+	    	<c:forEach var="boardVo" items="${list }">
+		      <div class="card">
+		        <div class="card-header" role="tab" id="headingOne">
+		          <h5 class="mb-0">
+		           Q. 
+		           <c:if test="${fn:length(boardVo.boardTitle)>30}">
+						${fn:substring(boardVo.boardTitle, 0, 30)}...
+					</c:if>
+					<c:if test="${fn:length(boardVo.boardTitle)<=30}">
+						${boardVo.boardTitle}
+					</c:if>
+		           <span class="unfold"><img alt="펼치기" src="<c:url value='/resources/images/unfold.png'/>"></span>
+		          </h5>
+		        </div>
+		
+		        <div class="answer">
+		          <div class="card-body">
+		            A. ${boardVo.boardContents }
+		          </div>
+		        </div>        
+		      </div> 
+	      </c:forEach>  
+	    </c:if>   
     </div>
+   
     <hr>
      <!-- Pagination -->
 		    <ul class="pagination justify-content-center">

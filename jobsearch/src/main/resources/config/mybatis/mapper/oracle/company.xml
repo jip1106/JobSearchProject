@@ -13,26 +13,49 @@
 		insert into TBL_COMPANY
 			(
 				COM_SEQ, COM_REGNUMBER, COM_NAME, CEO_NAME, COM_DESC, COM_TEL, SETUP_DATE,
-				EMPLOYEE_NUM, COM_TYPE ,COM_SALES ,COM_FIELD, COM_IMG ,COM_RENAMEIMAGE,REF_MEMBERSEQ 
+				EMPLOYEE_NUM, COM_TYPE ,COM_SALES ,COM_FIELD, COM_IMG , COM_RENAMEIMAGE, REF_MEMBERSEQ 
 			)
 		values
 		(
 			#{comSeq}, #{comRegnumber}, #{comName}, #{ceoName}, #{comDesc}, #{comTel}, #{setupDate},
-			#{employeeNum}, #{comType} , #{comSales}, #{comFiled} , #{comImg}, #{comRenameimage}, #{refMemberseq}
+			#{employeeNum}, #{comType} , #{comSales}, #{comField} , #{comImg}, #{comRenameimage}, #{refMemberseq}
 		)
 	
 	</insert>
 	
 	<select id="selectMaxmemSeq" resultType="int">
-		Select max(member_seq) From tbl_member;
+		Select max(member_seq) From tbl_member
+	</select>
+
+	<select id="selectComInfo" parameterType="int" resultType="companyVo">
+		select com_seq,com_regnumber,com_name,ceo_name,com_desc,com_tel, to_char(setup_date,'yyyy-mm-dd')as setup_date ,employee_num,com_type,com_sales,com_field,com_img,com_renameImage,ref_memberseq from tbl_company
+		where ref_memberseq=#{memberSeq}		
 	</select>
 	
-	<insert id="insertAnn" parameterType="companyVo">
+	<insert id="insertAnn" parameterType="announceMentVo">
 		<selectKey keyProperty="annSeq" resultType="int" order="BEFORE">
 			select ann_seq.nextval from dual
 		</selectKey>
-		insert into tbl_announcement(ann_seq,ann_title,ann_desc,ann_stdt,ann_endt,career_type,career_desc,employee_type,salary,age_limit,ref_cateseq1,ref_careseq2,ref_cateseq3,ref_locationseq1,ref_locationseq2,ref_companyseq)
-		values(#{annSeq},#{annTitle},#{annDesc},#{annStdt},#{annEddt},#{careerType},#{careerDesc},#{employType},#{salary},#{ageLimit},#{refCateseq1},#{refCateseq2},#{refCateseq3},#{refLocationseq1},#{refLocationseq2},#{refCompanyseq})
+		insert into tbl_announcement
+		(
+		ann_seq,ann_title,ann_desc,ann_stdt,ann_endt,career_type,career_desc,employee_type,salary,age_limit,ref_cateseq1,ref_cateseq2,ref_cateseq3,ref_locationseq1,ref_locationseq2,ref_companyseq
+		)
+		values
+		(
+		#{annSeq},#{annTitle},#{annDesc},#{annStdt},#{annEddt},#{careerType},#{careerDesc},#{employType},#{salary},#{ageLimit},#{refCateseq1},#{refCateseq2},#{refCateseq3},#{refLocationseq1},#{refLocationseq2},#{refCompanyseq}
+		)
 	</insert>
+	
+	<update id="updateComMem" parameterType="memberVo">
+		update tbl_member
+		set member_name=#{memberName},zip_code=#{zipCode},address=#{address},detail_address=#{detailAddress},extra_address=#{extraAddress},phone=#{phone}
+		where member_seq=#{memberSeq}
+	</update>
+	
+	<update id="updateComInfo" parameterType="companyVo">
+		update tbl_company
+		set com_desc=#{comDesc},com_tel=#{comTel},setup_date=#{setupDate},employee_num=#{employeeNum},com_type=#{comType},com_sales=#{comSales},com_field=#{comField},com_img=#{comImg},com_renameimage=#{comRenameimage}
+		where ref_memberseq=#{refMemberseq}
+	</update>
 
 </mapper>

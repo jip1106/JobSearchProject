@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="config.mybatis.mapper.oracle.announcement">
+
+	
+	<resultMap type="HashMap" id="sAnnListByLoc">
+		<result property="ANN_DESC" column="ANN_DESC" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
+
+	<select id="selectAnnListByLoc" parameterType="hashmap" resultType="hashmap" resultMap = "sAnnListByLoc">
+		Select * From (	
+			Select rownum as rNum, A.* From (	
+				SELECT * FROM TBL_ANNOUNCEMENT ta
+					join tbl_company tc on ta.ref_companyseq = tc.com_seq
+				Where ta.ref_locationseq1 = #{locationSeq1} 
+				and ta.ref_locationseq2 in 
+				<foreach collection="locList" item="locationSeq2" separator=","	open="(" close=")">
+					#{locationSeq2}
+				</foreach>
+				order by ta.ann_seq desc
+			)A
+		)B
+		Where 1=1 
+		<![CDATA[ 
+			and (B.rNum >=#{startRow} and B.rNum <= #{endRow})
+		]]>
+		
+		<!-- 
+			1page : >=1 and <= 6
+			2page : >=7 and <= 12
+			3page : >=13 and <= 18
+		-->
+	</select>
+		
+	<!-- 
+	Select * From (
+	    Select rownum as rNum , A.* From (
+	        Select * From tbl_announcement ta
+	            join tbl_company tc on ta.ref_companyseq = tc.com_seq
+	        Where ta.ref_locationseq1 = 1 
+	        and ta.ref_locationseq2 in (1,2) order by ta.ann_seq desc
+	    	) A
+		) B
+	Where B.rNum >=1 and B.rNum <=5
+	 -->
+	 
+	 <select id="selectAnnListCount" parameterType="hashmap" resultType="int">
+	 	SELECT count(*) FROM TBL_ANNOUNCEMENT ta
+			join tbl_company tc on ta.ref_companyseq = tc.com_seq
+		Where ta.ref_locationseq1 = #{locationSeq1} 
+		and ta.ref_locationseq2 in 
+		<foreach collection="locList" item="locationSeq2" separator=","	open="(" close=")">
+			#{locationSeq2}
+		</foreach>
+	 </select>
+	
+</mapper>
