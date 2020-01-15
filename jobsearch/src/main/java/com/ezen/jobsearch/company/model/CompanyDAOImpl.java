@@ -1,5 +1,7 @@
 package com.ezen.jobsearch.company.model;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -40,6 +42,21 @@ public class CompanyDAOImpl implements CompanyDAO{
 	@Override
 	public int updateComInfo(CompanyVO companyVo) {
 		return sqlSession.update(namespace+"updateComInfo",companyVo);
+	}
+
+	@Override
+	public List<AnnounceMentVO> viewMyAnn(int refCompanyseq) {
+		return sqlSession.selectList(namespace+"selectMyAnn",refCompanyseq);
+	}
+
+	@Override
+	public String selectComImg(int refCompanyseq) {
+		return sqlSession.selectOne(namespace+"selectComImg",refCompanyseq);
+	}
+
+	@Override
+	public int deleteMyAnn(int Annseq) {
+		return sqlSession.delete(namespace+"deleteMyAnn",Annseq);
 	}
 
 

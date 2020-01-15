@@ -11,9 +11,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ezen.jobsearch.ann.model.AnnounceMentVO;
 import com.ezen.jobsearch.category.model.CategoryService;
@@ -57,7 +59,7 @@ public class CompanyController {
 		//기존의 컴퍼니 정보를 seq를 이용해서 불러옴	
 		CompanyVO vo=companyService.selectCompany(memberSeq);
 			
-		logger.info("기업회원 정보수정창 memberSeq={}",memberSeq);	
+		logger.info("기업회원 정보수정창 memberSeq={}, companyVo={}",memberSeq,vo);	
 		//model에 저장
 		model.addAttribute("vo",vo);
 		return "company/companymypageedit";
@@ -65,24 +67,34 @@ public class CompanyController {
 	
 	@RequestMapping(value = "/companymypageedit.do",method = RequestMethod.POST)
 	public String insertInfo_post(@ModelAttribute MemberVO memberVo,
-								@ModelAttribute CompanyVO companyVo,HttpSession session,HttpServletRequest request,Model model) {
+								@ModelAttribute CompanyVO companyVo,@RequestParam String chkComImage, HttpSession session,HttpServletRequest request,Model model) {
 		
-		List<Map<String,Object>>list=fileUtil.fileUpload(request);
+		MemberVO sessionVo=(MemberVO)session.getAttribute("loginMember");
+		
+		int memberSeq=sessionVo.getMemberSeq();
+		//이미지 중복 검증용
+		String dbImgname=companyService.selectComImg(memberSeq);
+		memberVo.setMemberSeq(memberSeq);
+		companyVo.setRefMemberseq(memberSeq);
+		
+		logger.info("companyVO ::::::::: {}",companyVo);
+		
+		List<Map<String,Object>> list= fileUtil.fileUpload(request);
+		
 		String comRenameimage="",comImg="";		
 		
 		for(Map<String,Object> map : list) {
 			comImg=(String)map.get("originalFileName");
-			comRenameimage=(String)map.get("fileName");			
+			comRenameimage=(String)map.get("fileName");	
+						companyVo.setComImg(comImg);
+			companyVo.setComRenameimage(comRenameimage);
+			logger.info("기업회원 로고이미지 url={},renameimage={}",comImg,comRenameimage);
 		}
 		//세션에서 vo받아온뒤 seq추출하고 파라미터 memberVo와 companyVo에 세팅해줌
-		MemberVO sessionVo=(MemberVO)session.getAttribute("loginMember");
-		int memberSeq=sessionVo.getMemberSeq();
-		memberVo.setMemberSeq(memberSeq);
-		companyVo.setRefMemberseq(memberSeq);
-		companyVo.setComImg(comImg);
-		companyVo.setComRenameimage(comRenameimage);
-		logger.info("기업회원 로고이미지 url={},renameimage={}",comImg,comRenameimage);
-		
+		//사진 null로 올라갈시 이전사진으로 고정
+		if(comRenameimage==null||comRenameimage.isEmpty()) {
+			companyVo.setComRenameimage(dbImgname);
+		}			
 		logger.info("기업회원 정보수정 처리 파라미터 memberVo={},companyVo={}",memberVo,companyVo);
 		//둘다 업데이트 처리해줌
 		int cnt=companyService.updateComMem(memberVo);
@@ -101,8 +113,7 @@ public class CompanyController {
 		return "common/message";
 		
 		
-	}
-	
+	}	
 	
 	//기업공고등록 관련 페이지
 	@RequestMapping(value = "/companymypageannouncement.do",method = RequestMethod.GET)
@@ -138,7 +149,35 @@ public class CompanyController {
 		String msg="", url="";
 		if(cnt>0) {
 			msg="공고가 정상적으로 등록되었습니다.";
-			url="/company/companymypageedit.do";
+			url="/company/companymypagepayment.do";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
+		return "common/message";
+	}
+	@RequestMapping("/companymypagepayment.do")
+	public void viewMyAnn(HttpSession session,Model model) {
+		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
+		int refCompanyseq=memberVo.getMemberSeq();
+		
+		logger.info("기업회원 내 공고글 리스트 보여주기 파라미터 refCompanyseq={}",refCompanyseq);		
+		
+		List<AnnounceMentVO> list=companyService.viewMyAnn(refCompanyseq);
+		
+		model.addAttribute("list",list);
+	}
+	@RequestMapping("/companyDeleteMyAnn.do")
+	public String deleteMyAnn(@RequestParam(defaultValue = "0")int annSeq,Model model) {
+		//후에 추가 검증처리
+		
+		logger.info("공고글 삭제처리 파라미터 annSeq={}",annSeq);
+		
+		int cnt=companyService.deleteMyAnn(annSeq);
+		
+		String msg="삭제 실패하였습니다.",url="/company/companymypagepayment.do";
+		if(cnt>0) {
+			msg=annSeq+"번 공고글이 삭제되었습니다.";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);

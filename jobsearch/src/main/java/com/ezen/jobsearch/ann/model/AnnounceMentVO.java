@@ -7,10 +7,10 @@ public class AnnounceMentVO {
 	 private String annTitle;  //공고제목
 	 private String annDesc;   //공고내용
 	 private String annStdt; //공고게시시작일
-	 private String annEddt; //공고게시마감일
+	 private String annEndt; //공고게시마감일
 	 private String careerType; //경력
 	 private String careerDesc; //경력추가
-	 private String employType; //근로형태
+	 private String employeeType; //근로형태
 	 private String salary;		//급료
 	 private String ageLimit;	//연령제한
 	 private int hits;			//조회수
@@ -31,7 +31,6 @@ public class AnnounceMentVO {
 	 private String extraAddress;
 	 private String locationName;
 	 private String locationName2;
-	 private String employeeType;
 	 private String comName;
 	 
 	 
@@ -60,11 +59,11 @@ public class AnnounceMentVO {
 	public void setAnnStdt(String annStdt) {
 		this.annStdt = annStdt;
 	}
-	public String getAnnEddt() {
-		return annEddt;
+	public String getAnnEndt() {
+		return annEndt;
 	}
-	public void setAnnEddt(String annEddt) {
-		this.annEddt = annEddt;
+	public void setAnnEndt(String annEndt) {
+		this.annEndt = annEndt;
 	}
 	public String getCareerType() {
 		return careerType;
@@ -78,11 +77,11 @@ public class AnnounceMentVO {
 	public void setCareerDesc(String careerDesc) {
 		this.careerDesc = careerDesc;
 	}
-	public String getEmployType() {
-		return employType;
+	public String getEmployeeType() {
+		return employeeType;
 	}
-	public void setEmployType(String employType) {
-		this.employType = employType;
+	public void setEmployeeType(String employeeType) {
+		this.employeeType = employeeType;
 	}
 	public String getSalary() {
 		return salary;
@@ -148,8 +147,8 @@ public class AnnounceMentVO {
 	@Override
 	public String toString() {
 		return "AnnounceMentVO [annSeq=" + annSeq + ", annTitle=" + annTitle + ", annDesc=" + annDesc + ", annStdt="
-				+ annStdt + ", annEddt=" + annEddt + ", careerType=" + careerType + ", careerDesc=" + careerDesc
-				+ ", employType=" + employType + ", salary=" + salary + ", ageLimit=" + ageLimit + ", hits=" + hits
+				+ annStdt + ", annEddt=" + annEndt + ", careerType=" + careerType + ", careerDesc=" + careerDesc
+				+ ", employeeType=" + employeeType + ", salary=" + salary + ", ageLimit=" + ageLimit + ", hits=" + hits
 				+ ", regDate=" + regDate + ", refCateseq1=" + refCateseq1 + ", refCateseq2=" + refCateseq2
 				+ ", refCateseq3=" + refCateseq3 + ", refLocationseq1=" + refLocationseq1 + ", refLocationseq2="
 				+ refLocationseq2 + ", refCompanyseq=" + refCompanyseq + "]";
@@ -203,12 +202,6 @@ public class AnnounceMentVO {
 	}
 	public void setLocationName2(String locationName2) {
 		this.locationName2 = locationName2;
-	}
-	public String getEmployeeType() {
-		return employeeType;
-	}
-	public void setEmployeeType(String employeeType) {
-		this.employeeType = employeeType;
 	}
 	public String getComName() {
 		return comName;

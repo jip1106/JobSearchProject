@@ -83,7 +83,7 @@ select#lc_select {
 	
 	    });
 	    
-	    $("#annEddt").datepicker({
+	    $("#annEndt").datepicker({
 	
 	    });
 		
@@ -379,7 +379,7 @@ select#lc_select {
  			<div class="com-ann-period">
 						<input type="text"  id="annStdt" name="annStdt" class="form-control" placeholder="시작일" required readonly>
 						<span class="hyphen">~</span>
-						<input type="text"  id="annEddt" name="annEddt" class="form-control" placeholder="마감일" required readonly>
+						<input type="text"  id="annEndt" name="annEndt" class="form-control" placeholder="마감일" required readonly>
 			</div>			
 		</div>	
 		<hr>			
