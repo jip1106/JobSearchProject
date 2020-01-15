@@ -177,12 +177,12 @@
 
   <!-- Page Content -->
   <div class="container">
-    <h1 class="mt-4 mb-3">직업별 공고 리스트
-      <small>직업별</small>
+    <h1 class="mt-4 mb-3">직업별
+      <small>직종을 선택해 주세요</small>
     </h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        	직업별 공고 리스트
+        	
       </li>
     </ol>
     

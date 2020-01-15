@@ -187,7 +187,7 @@
    		</div>
 	    <div class="row mt-8" style="margin-top:5%;">
 	   	 		<c:forEach var="mapData" items="${annList }">
-
+				
 				  <div class="col-lg-4 mb-4">
 			        <div class="card h-100 text-center">
 			        	<c:if test="${!empty mapData['COM_IMG']}">
@@ -206,7 +206,8 @@
 			          	<p>지원기간 : <fmt:formatDate value ="${mapData['ANN_STDT']}" pattern="yyyy-MM-dd"/>~<fmt:formatDate value ="${mapData['ANN_ENDT']}" pattern="yyyy-MM-dd"/></p>
 			          </div>
 			        </div>
-			      </div>			      
+			      </div>	
+			     		      
 			   </c:forEach>
 	     </div>
 	     
