@@ -49,5 +49,15 @@ public class CompanyDAOImpl implements CompanyDAO{
 		return sqlSession.selectList(namespace+"selectMyAnn",refCompanyseq);
 	}
 
+	@Override
+	public String selectComImg(int refCompanyseq) {
+		return sqlSession.selectOne(namespace+"selectComImg",refCompanyseq);
+	}
+
+	@Override
+	public int deleteMyAnn(int Annseq) {
+		return sqlSession.delete(namespace+"deleteMyAnn",Annseq);
+	}
+
 
 }

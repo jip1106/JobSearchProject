@@ -34,4 +34,10 @@ public class CompanyServiceImpl implements CompanyService{
 	public List<AnnounceMentVO> viewMyAnn(int refCompanyseq){
 		return companyDao.viewMyAnn(refCompanyseq);
 	}
+	public String selectComImg(int refCompanyseq) {
+		return companyDao.selectComImg(refCompanyseq);
+	}
+	public int deleteMyAnn(int Annseq) {
+		return companyDao.deleteMyAnn(Annseq);
+	}
 }

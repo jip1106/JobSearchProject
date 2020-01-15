@@ -12,4 +12,6 @@ public interface CompanyService {
 	int updateComMem(MemberVO memberVo);
 	int updateComInfo(CompanyVO companyVo);
 	List<AnnounceMentVO> viewMyAnn(int refCompanyseq);
+	String selectComImg(int refCompanyseq);
+	int deleteMyAnn(int Annseq);
 }
