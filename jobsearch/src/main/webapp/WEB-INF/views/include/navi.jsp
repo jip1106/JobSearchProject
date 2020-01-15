@@ -30,7 +30,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="contact.html">인재검색</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/resume/searchResume.do">인재검색</a>
           </li>
           	 
 	      <li class="nav-item dropdown">

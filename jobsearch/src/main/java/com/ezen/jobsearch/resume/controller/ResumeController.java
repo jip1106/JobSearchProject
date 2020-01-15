@@ -33,12 +33,5 @@ public class ResumeController {
 		return "resume/resume";
 	}
 	
-	//resume
-	//@RequestMapping(value="/resume/resume.do", method=RequestMethod.POST)
-//	public String resume_post() throws ParseException {
-		
-	//}
-	
-	
 	
 }

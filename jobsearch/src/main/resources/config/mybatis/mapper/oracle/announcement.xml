@@ -8,7 +8,8 @@
 	<resultMap type="HashMap" id="sAnnListByLoc">
 		<result property="ANN_DESC" column="ANN_DESC" jdbcType="CLOB" javaType="java.lang.String" />
 	</resultMap>
-
+	
+	<!-- 지역별 공고 리스트 -->
 	<select id="selectAnnListByLoc" parameterType="hashmap" resultType="hashmap" resultMap = "sAnnListByLoc">
 		Select * From (	
 			Select rownum as rNum, A.* From (	
@@ -26,26 +27,10 @@
 		<![CDATA[ 
 			and (B.rNum >=#{startRow} and B.rNum <= #{endRow})
 		]]>
-		
-		<!-- 
-			1page : >=1 and <= 6
-			2page : >=7 and <= 12
-			3page : >=13 and <= 18
-		-->
+
 	</select>
-		
-	<!-- 
-	Select * From (
-	    Select rownum as rNum , A.* From (
-	        Select * From tbl_announcement ta
-	            join tbl_company tc on ta.ref_companyseq = tc.com_seq
-	        Where ta.ref_locationseq1 = 1 
-	        and ta.ref_locationseq2 in (1,2) order by ta.ann_seq desc
-	    	) A
-		) B
-	Where B.rNum >=1 and B.rNum <=5
-	 -->
-	 
+	
+	<!-- 지역별 공고리스트 카운트 -->
 	 <select id="selectAnnListCount" parameterType="hashmap" resultType="int">
 	 	SELECT count(*) FROM TBL_ANNOUNCEMENT ta
 			join tbl_company tc on ta.ref_companyseq = tc.com_seq
@@ -56,12 +41,49 @@
 		</foreach>
 	 </select>
 	 
+
+	 <!-- 카테고리별 공고 리스트 -->
+	<select id="selectAnnListBycate" parameterType="hashmap" resultType="hashmap" resultMap = "sAnnListByLoc">
+		Select * From (	
+			Select rownum as rNum, A.* From (	
+				SELECT * FROM TBL_ANNOUNCEMENT ta
+					join tbl_company tc on ta.ref_companyseq = tc.com_seq
+				Where 
+					ta.ref_cateseq1 = #{cateSeq1} 
+				and	ta.ref_cateseq2 = #{cateSeq2} 
+				and ta.ref_cateseq3 in 
+				<foreach collection="cateList" item="cateSeq3" separator=","	open="(" close=")">
+					#{cateSeq3}
+				</foreach>
+				order by ta.ann_seq desc
+			)A
+		)B
+		Where 1=1 
+		<![CDATA[ 
+			and (B.rNum >=#{startRow} and B.rNum <= #{endRow})
+		]]>
+	</select>
+	
+	<!-- 직업별 공고 수 카운트 -->
+	 <select id="selectAnnListCountBycate" parameterType="hashmap" resultType="int">
+	 	SELECT count(*) FROM TBL_ANNOUNCEMENT ta
+			join tbl_company tc on ta.ref_companyseq = tc.com_seq
+		Where ta.ref_cateseq1 = #{cateSeq1}
+		and ta.ref_cateseq2 = #{cateSeq2} 
+		and ta.ref_cateseq3 in 
+		<foreach collection="cateList" item="cateSeq3" separator=","	open="(" close=")">
+			#{cateSeq3}
+		</foreach>
+	 </select>
+	 
+
 	 <select id="selectBySeq" parameterType="int" resultType="announceMentVo">
 	 	select a.*, 
-	 			b.ceo_name, b.setup_date, b.com_field, b.com_name,
+	 			b.ceo_name, b.setup_date, b.com_field, b.com_name, b.employee_num, b.com_type,
 	 			c.address, c.detail_address, c.extra_address, 
 	 			d.location_name, 
-	 			e.location_name2 
+	 			e.location_name2,
+	 			f.emp_name
 	    from tbl_announcement a join tbl_company b
 	    	on a.ref_companyseq=b.com_seq
 	    join tbl_member c
@@ -70,7 +92,10 @@
 	    	on a.ref_locationseq1=d.location_seq1
 	    join tbl_location2 e
 	    	on a.ref_locationseq2=e.location_seq2
+	   	join tbl_emptype f
+            on a.employee_type=f.emp_type
 	    where ann_seq=#{annSeq}
 	 </select>
+
 	
 </mapper>
