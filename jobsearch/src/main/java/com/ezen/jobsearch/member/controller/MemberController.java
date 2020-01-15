@@ -1,11 +1,14 @@
 package com.ezen.jobsearch.member.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -276,7 +280,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/chkMem.do")
-	public String chkPwd(@RequestParam String memberPwd, @RequestParam String memberId,HttpServletRequest request) {
+	public String chkPwd(@RequestParam String memberPwd, @RequestParam String memberId, HttpServletRequest request) {
 		//암호화 된 비밀번호 비교를 위해 db에서 비밀번호 select
 		
 		String dbPwd = memberService.selectPwd(memberId);
@@ -307,17 +311,147 @@ public class MemberController {
 		
 	}
 	
-		//마이페이지 - 회원정보수정 비밀번호체크
-		@RequestMapping("/member/mypageeditcheck.do")
-		public String mypageeditcheck_get() {
-			return "member/mypageeditcheck";
-		}
 		
-		//마이페이지 - 회원정보수정
-		@RequestMapping("/member/mypageedit.do")
-		public String mypageedit_get() {
+		//마이페이지 - 회원정보수정 비밀번호체크****
+	  	@RequestMapping(value="/member/mypageeditcheck.do", method = RequestMethod.GET) 
+	  	public String mypageeditcheck_get() {
+	  		logger.info("비밀번호체크 화면보여주기");
+	  		
+	  		return "member/mypageeditcheck"; 
+		}
+	  	
+	  	
+	  	@RequestMapping(value="/member/mypageeditcheck.do", method = RequestMethod.POST)
+		public String mypageeditcheck_post(@RequestParam String memberPwd,
+				HttpSession session, Model model) {
+	  		
+	  		MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
+			String memberId = memberVo.getMemberId();	
+	  		String dbPwd = memberService.selectPwd(memberId);
+	  		boolean pwdChk = false;
+	  		
+	  		//비밀번호 비교
+			pwdChk = passwordEncoder.matches(memberPwd, dbPwd);
+	  		
+			if(pwdChk) {
+				String url = "/member/mypageedit.do";
+				String message = "비밀번호 일치";
+				System.out.println("비밀번호 일치");
+				
+				model.addAttribute("msg", message);
+				model.addAttribute("url", url);
+				
+			}else {
+				String url = "/member/mypageeditcheck.do";
+				String message = "비밀번호가 일치하지 않습니다.";
+				
+				System.out.println("비밀번호 불일치");
+				
+				model.addAttribute("msg", message);
+				model.addAttribute("url", url);
+			}
+			
+			return "common/message";
+	  		
+	  	}
+		
+		
+
+		//마이페이지 - 회원탈퇴 비밀번호체크****
+	  	@RequestMapping(value="/member/mypagedeletecheck.do", method = RequestMethod.GET) 
+	  	public String mypagedeletecheck_get() {
+	  		logger.info("회원탈퇴 화면 보여주기");
+	  		return "member/mypagedeletecheck"; 
+		  }
+	  	
+	  	
+	  	@RequestMapping(value="/member/mypagedeletecheck.do", method = RequestMethod.POST)
+		public String mypagedelete_post(@RequestParam String memberPwd,
+				HttpSession session, Model model) {
+	  		
+	  		MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
+			String memberId = memberVo.getMemberId();	
+	  		String dbPwd = memberService.selectPwd(memberId);
+	  		boolean pwdChk = false;
+	  		
+	  		//비밀번호 비교
+			pwdChk = passwordEncoder.matches(memberPwd, dbPwd);
+	  		
+			if(pwdChk) {
+				
+				System.out.println("비밀번호 일치");
+				String message = "회원탈퇴 성공";
+				model.addAttribute("msg", message);
+				
+				return "member/mypageedit";
+			}else {
+				String url = "/member/mypagedeletecheck.do";
+				String message = "비밀번호가 일치하지 않습니다.";
+				
+				System.out.println("비밀번호 불일치");
+				
+				model.addAttribute("msg", message);
+				model.addAttribute("url", url);
+				
+				return "common/message";
+			}
+	  		
+	  	}
+		
+  		//마이페이지 - 회원정보수정****
+	  	@RequestMapping(value="/member/mypageedit.do", method = RequestMethod.GET)
+		public String mypageedit_get(HttpSession session, Model model) {
+			MemberVO memberVo = (MemberVO)session.getAttribute("loginMember");
+			model.addAttribute("vo", memberVo);
+			
 			return "member/mypageedit";
 		}
+	  		
+  		@RequestMapping(value="/member/mypageedit.do", method = RequestMethod.POST)
+  		public String mypageedit_post(@ModelAttribute MemberVO vo, 
+  				HttpSession session,
+  				@RequestParam String memberPwd, 
+  				@RequestParam String memberPwd2, Model model) {
+  			
+  			MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
+			String memberId = memberVo.getMemberId();	
+			String genderType = memberVo.getGenderType();	
+			String oldbirthday= memberVo.getBirthday();
+			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String birthday= sdf.format(oldbirthday);
+			
+  			vo.setMemberId(memberId);
+  			vo.setGenderType(genderType);
+  			vo.setBirthday(birthday);
+  			
+  			
+  			logger.info("회원수정처리 vo={}",vo);
+  			
+  			
+  			//if (StringUtils.equals(memberPwd, memberPwd2)) {
+  				
+			String msg="", url="";
+			int cnt=memberService.updateMember(vo);
+			if(cnt>0) {
+				msg="회원정보 수정되었습니다.";
+				url="/member/mypagerecentnotice.do";
+			}else {
+				msg="회원정보 수정 실패!";
+				url="/member/mypageedit.do";
+			}
+  				
+  			//}else {
+  				
+  			//}
+		
+			model.addAttribute("msg", msg);
+			model.addAttribute("url", url);
+			
+			return "common/message";
+  		}
+		
+		
 		
 		//마이페이지 - 이력서
 		@RequestMapping("/member/mypageresume.do")

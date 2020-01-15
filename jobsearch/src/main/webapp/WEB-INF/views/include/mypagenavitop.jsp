@@ -63,9 +63,9 @@ h2.mt-4.mb-3 {
     <ol class="breadcrumb">
     <span id="member_type">일반회원</span>
    	  <li class="breadcrumb-item">
-        <span id="name_text">홍길동</span><span> 님의 마이페이지입니다.</span>
+        <span id="name_text">${sessionScope.loginMember.memberName}</span><span> 님의 마이페이지입니다.</span>
       </li> 
-      <!-- <li class="breadcrumb-item active">님의 마이페이지입니다.</li> -->
+     <!--  <li class="breadcrumb-item active">님의 마이페이지입니다.</li> -->
     </ol>
 
     <!-- Content Row -->

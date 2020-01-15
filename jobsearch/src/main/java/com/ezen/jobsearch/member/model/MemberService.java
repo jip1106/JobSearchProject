@@ -6,6 +6,9 @@ import java.util.List;
 import com.ezen.jobsearch.common.SearchVO;
 
 public interface MemberService {
+	public static final int EDIT_PASS=1; 
+	public static final int DISAGREE_PWD=2; //비밀번호 불일치
+	
 	//회원가입
 	int insertMember(MemberVO memberVo);
 	
@@ -40,4 +43,12 @@ public interface MemberService {
 
 	//관리자 회원 삭제, 삭제 취소
 	int deleteMember(String memberSeq, String type);
+	
+	//회원수정 
+	MemberVO selectMember(String memberId);
+	
+	//회원정보 업데이트*******************
+	int updateMember(MemberVO vo);
+	
+	public int withdrawMember(String memberId);
 }
