@@ -58,7 +58,7 @@
 	 
 	 <select id="selectBySeq" parameterType="int" resultType="announceMentVo">
 	 	select a.*, 
-	 			b.ceo_name, b.setup_date, b.com_field, b.com_name,
+	 			b.ceo_name, b.setup_date, b.com_field, b.com_name, b.employee_num, b.com_type,
 	 			c.address, c.detail_address, c.extra_address, 
 	 			d.location_name, 
 	 			e.location_name2,

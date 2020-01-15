@@ -415,7 +415,7 @@ span.cna {
 							<div class="info_company" data-remain-time="2442726">
 								<span class="txt">${vo.comName }</span> 
 							</div>
-							<div class="comn"><span class="cn">기업형태</span><span class="cna">대기업</span></div>							
+							<div class="comn"><span class="cn">기업형태</span><span class="cna">${vo.comType }</span></div>							
 							<div class="comn"><span class="cn2">설립일</span><span class="cna">${vo.setupDate }</span></div>							
 							<div class="comn"><span class="cn">업종</span><span class="cna">${vo.comField }</span></div>							
 						</div>
@@ -425,8 +425,8 @@ span.cna {
 								<span class="txt">삼성반도체</span>  
 							</div> -->
 							<div class="ci-right">
-							<div class="comn"><span class="cn">전화번호</span><span class="cna">02-000-0000</span></div>							
-							<div class="comn"><span class="cn2">사원수</span><span class="cna">000명</span></div>							
+							<div class="comn"><span class="cn">대표자명</span><span class="cna">${vo.ceoName }</span></div>							
+							<div class="comn"><span class="cn2">사원수</span><span class="cna">${vo.employeeNum }</span></div>							
 							<div class="comn"><span class="cn">주소</span><span class="cna">${vo.address } ${vo.detailAddress } ${vo.extraAddress }</span></div>
 							</div>							
 							
