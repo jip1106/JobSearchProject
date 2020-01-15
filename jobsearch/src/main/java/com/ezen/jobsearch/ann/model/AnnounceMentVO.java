@@ -22,6 +22,19 @@ public class AnnounceMentVO {
 	 private int refLocationseq2;//지역카테고리2
 	 private int refCompanyseq;//작성회사 고유시퀀스
 	 
+	 //공고상세에 필요한 필드
+	 private String ceoName;
+	 private Timestamp setupDate;
+	 private String comField;
+	 private String address;
+	 private String detailAddress;
+	 private String extraAddress;
+	 private String locationName;
+	 private String locationName2;
+	 private String employeeType;
+	 private String comName;
+	 
+	 
 	 
 	public int getAnnSeq() {
 		return annSeq;
@@ -131,6 +144,7 @@ public class AnnounceMentVO {
 	public void setRefCompanyseq(int refCompanyseq) {
 		this.refCompanyseq = refCompanyseq;
 	}
+
 	@Override
 	public String toString() {
 		return "AnnounceMentVO [annSeq=" + annSeq + ", annTitle=" + annTitle + ", annDesc=" + annDesc + ", annStdt="
@@ -140,8 +154,67 @@ public class AnnounceMentVO {
 				+ ", refCateseq3=" + refCateseq3 + ", refLocationseq1=" + refLocationseq1 + ", refLocationseq2="
 				+ refLocationseq2 + ", refCompanyseq=" + refCompanyseq + "]";
 	}
-	 
-	 
-	 
+	
+	
+	public String getCeoName() {
+		return ceoName;
+	}
+	public void setCeoName(String ceoName) {
+		this.ceoName = ceoName;
+	}
+	public Timestamp getSetupDate() {
+		return setupDate;
+	}
+	public void setSetupDate(Timestamp setupDate) {
+		this.setupDate = setupDate;
+	}
+	public String getComField() {
+		return comField;
+	}
+	public void setComField(String comField) {
+		this.comField = comField;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getDetail_address() {
+		return detailAddress;
+	}
+	public void setDetail_address(String detail_address) {
+		this.detailAddress = detail_address;
+	}
+	public String getExtraAddress() {
+		return extraAddress;
+	}
+	public void setExtraAddress(String extraAddress) {
+		this.extraAddress = extraAddress;
+	}
+	public String getLocationName() {
+		return locationName;
+	}
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
+	}
+	public String getLocationName2() {
+		return locationName2;
+	}
+	public void setLocationName2(String locationName2) {
+		this.locationName2 = locationName2;
+	}
+	public String getEmployeeType() {
+		return employeeType;
+	}
+	public void setEmployeeType(String employeeType) {
+		this.employeeType = employeeType;
+	}
+	public String getComName() {
+		return comName;
+	}
+	public void setComName(String comName) {
+		this.comName = comName;
+	}
 	
 }
