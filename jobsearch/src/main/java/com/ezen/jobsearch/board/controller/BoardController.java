@@ -21,7 +21,7 @@ import com.ezen.jobsearch.common.SearchVO;
 
 @Controller
 public class BoardController {
-	private Logger logger
+	private final Logger logger
 		=LoggerFactory.getLogger(BoardController.class);
 	
 	public static final int BOARD_RECORD=5; //사용자 게시판 레코드

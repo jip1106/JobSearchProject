@@ -21,6 +21,9 @@
    			 width: 20%;
    			 margin-left: 74.7%;
    		}
+   		.breadcrumb {
+   			clear: both;
+   		}
 	</style>
 	
 	<c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -37,7 +40,7 @@
     </form>		
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="index.html">Home</a>
+        <a href="<c:url value='/home.do'/>">Home</a>
       </li>
       <li class="breadcrumb-item active">FAQ</li>         
     </ol>
