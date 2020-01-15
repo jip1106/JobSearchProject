@@ -47,8 +47,9 @@ public interface MemberService {
 	//회원수정 
 	MemberVO selectMember(String memberId);
 	
-	//회원정보 업데이트*******************
+	//회원정보 업데이트
 	int updateMember(MemberVO vo);
 	
+	//회원정보 탈퇴
 	public int withdrawMember(String memberId);
 }

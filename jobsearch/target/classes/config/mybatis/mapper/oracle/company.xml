@@ -42,7 +42,7 @@
 		)
 		values
 		(
-		#{annSeq},#{annTitle},#{annDesc},#{annStdt},#{annEddt},#{careerType},#{careerDesc},#{employType},#{salary},#{ageLimit},#{refCateseq1},#{refCateseq2},#{refCateseq3},#{refLocationseq1},#{refLocationseq2},#{refCompanyseq}
+		#{annSeq},#{annTitle},#{annDesc},#{annStdt},#{annEndt},#{careerType},#{careerDesc},#{employType},#{salary},#{ageLimit},#{refCateseq1},#{refCateseq2},#{refCateseq3},#{refLocationseq1},#{refLocationseq2},#{refCompanyseq}
 		)
 	</insert>
 	
@@ -54,8 +54,23 @@
 	
 	<update id="updateComInfo" parameterType="companyVo">
 		update tbl_company
-		set com_desc=#{comDesc},com_tel=#{comTel},setup_date=#{setupDate},employee_num=#{employeeNum},com_type=#{comType},com_sales=#{comSales},com_field=#{comField},com_img=#{comImg},com_renameimage=#{comRenameimage}
+		set com_desc=#{comDesc},com_tel=#{comTel},setup_date=#{setupDate},employee_num=#{employeeNum},com_type=#{comType},com_sales=#{comSales},COM_FIELD=#{comField},com_img=#{comImg},com_renameimage=#{comRenameimage}
 		where ref_memberseq=#{refMemberseq}
 	</update>
 
+	<select id="selectMyAnn" parameterType="int" resultType="announceMentVo">
+		select ann_seq,ann_title,ann_desc,to_char(ann_stdt,'yyyy-mm-dd')as ann_stdt,to_char(ann_endt,'yyyy-mm-dd')as ann_endt,career_type,career_desc,employee_type,salary,age_limit,hits,reg_date,ref_cateseq1,ref_cateseq2,ref_cateseq3,ref_locationseq1,ref_locationseq2 from tbl_announcement
+		where ref_companyseq=#{refCompanyseq}
+	</select>
+	
+	<select id="selectComImg" parameterType="int" resultType="String">
+		select com_renameimage from tbl_company
+		where ref_memberseq=#{refMemberseq}
+	</select>
+	
+	<delete id="deleteMyAnn" parameterType="int">
+		delete tbl_announcement
+		where ANN_SEQ=#{annSeq}
+	</delete>
+	
 </mapper>

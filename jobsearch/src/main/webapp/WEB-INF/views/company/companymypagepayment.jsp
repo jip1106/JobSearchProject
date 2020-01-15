@@ -39,13 +39,12 @@ input[type=checkbox], input[type=radio] {
 td#com_cont_del {
     width: 10px;
 }
-input.delete {
-    margin-bottom: 16px;
-    font-size: 18;
-    border: none;
-    background-color: #fb612c;
-    border-radius: .25em;
+a.delete {
+    width: 34px;
+    background-color: #ff4a10;
     color: white;
+    margin-bottom: 19px;
+    border-radius: .25em;
 }
 button.btn.com_pay{
 	margin-left: 31em;    
@@ -66,39 +65,45 @@ button.btn.com_pay{
     border-color: #007bff
 
 </style>
-
-
-
 <!-- head end -->
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 <body>
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 <c:import url="/WEB-INF/views/include/companymypagenavitop.jsp" />
 <!-- section start -->
-<h2>공고글 결제하기</h2>
+<h2>공고글 관리하기</h2>
+<a href="<c:url value='/company/companymypageannouncement.do'/>">공고글 작성하기</a>
 <hr>
 <table>
 <!-- 반복 시작 -->
+<c:forEach var="vo" items="${list}">
 <tr><td>
- <div class="row mb-4 mt-4_text">
+ <div class="row mb-4 mt-4_text"> 
 				<!--<div class="col-lg-4-2t">공고글  </div>  -->
-				<div class="col-lg-8 form-label-group mb-2">
-					<button class="collapsible">내용입니다 내용내용 맨</button>
+				<div class="col-lg-8 form-label-group mb-2">					
+					<button class="collapsible">${vo.annSeq}    ${vo.annTitle}</button>					
 					<div class="content">
 					<table>
 						<tr>
-							<th>제목</td>
-							<th>내용</td>
-							<th>작성일</td>							
+							<td>제목</td>
+							<td>${vo.annTitle}</td>													
 						</tr>
 						<tr>
-							<td>제목</td>
 							<td>내용</td>
-							<td>작성일</td>							
+							<td>${vo.annDesc}</td>														
+						</tr>
+						<tr>
+							<td>게시일</td>
+							<td>${vo.annStdt}</td>
+						</tr>
+						<tr>
+							<td>마감일</td>
+							<td>${vo.annEndt}</td>	
 						</tr>
 					</table>
 					</div> 
 				<div id="idchkdiv" class="chkmessage"> </div>
+				
 				</div>
 			</div>
  </td> 
@@ -107,27 +112,21 @@ button.btn.com_pay{
  <td>
  
  <td id="com_cont_del">
- <input type="button" class="delete" value="삭제">
+ <a type="button" class="delete" href="<c:url value='/company/companyDeleteMyAnn.do?annSeq=${vo.annSeq}'/>">삭제</a>
  </td>
  
- <!-- 반복 끝 -->
+ </c:forEach>
+ <!-- 반복 끝 --> 
+ </table>
  
- </table> 
  <hr>
  <br>총액<br><br><!-- 계산 들어갈 여유 공간 -->
  <hr>
  <div id="edit_bt">
   				<button class="btn com_pay" type="submit">결제하기</button>  				
  </div>
-<!-- section end -->
-<c:import url="/WEB-INF/views/include/companymypagenavibottom.jsp" />
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<c:import url="/WEB-INF/views/include/footer.jsp" />
-	
-<script>
-
+ <!-- collapsible function -->
+ <script>
 var coll = document.getElementsByClassName("collapsible");
 var i;
 
@@ -143,7 +142,9 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 </script>
-	
+<!-- collapsible function   -->
+<!-- section end -->
+<c:import url="/WEB-INF/views/include/companymypagenavibottom.jsp" />
+	<c:import url="/WEB-INF/views/include/footer.jsp" />	
 </body>
-
 </html>

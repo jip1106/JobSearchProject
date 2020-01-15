@@ -154,15 +154,15 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectMember(memberId);
 	}
 	
-	//*****************
+	//일반회원수정
 	@Override
 	public int updateMember(MemberVO vo) {
 		
 		return memberDao.updateMember(vo);
 		
 	}
-	//*****************
-
+	
+	//일반회원탈퇴
 	@Override
 	public int withdrawMember(String memberId) {
 		return memberDao.withdrawMember(memberId);

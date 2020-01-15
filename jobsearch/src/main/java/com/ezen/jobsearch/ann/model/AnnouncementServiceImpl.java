@@ -25,6 +25,7 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 	}
 
 	@Override
+
 	public List<HashMap<String, Object>> getAnnListBycate(String cateSeq1, String cateSeq2, String cateSeq3,
 			int startRow, int endRow) {
 		// TODO Auto-generated method stub
@@ -37,6 +38,11 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 		return annDao.selectAnnListCountBycate(cateSeq1, cateSeq2, cateSeq3);
 	}
 
+
+
+	public AnnounceMentVO selectBySeq(int annSeq) {
+		return annDao.selectBySeq(annSeq);
+	}
 
 
 }

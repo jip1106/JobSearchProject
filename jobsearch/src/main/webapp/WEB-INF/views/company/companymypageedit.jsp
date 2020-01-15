@@ -192,6 +192,14 @@ input#foundation {
     width: 42%;
     height: calc(1.5em + .75rem + 15px);
 }
+input#foundation2{
+    width: 42%;
+    height: calc(1.5em + .75rem + 15px);
+}
+select#foundation {
+	 width: 42%;
+    height: calc(1.5em + .75rem + 15px);
+}
 .row.mb-4.mt-4_text_tel {
     position: relative;
     top: -70px;
@@ -246,8 +254,8 @@ input#upfile{
 	    border: 1px solid #ced4da;
 	    border-radius: .25rem;
 	    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-	    margin-top: -218px;
-	    margin-right: -1px;
+	    margin-top: 34px;
+    	margin-right: -2px;
 	    position: absolute;
 	    width: 100px;
 }
@@ -278,6 +286,10 @@ $(function() {
 	
 	});
 	
+	$(".btn_Com_Info_sub").click(function(){
+		$("#divfile").html('<input type="file" name="upfile" id="upfile" accept="image/*" onchange="getThumbnailPrivew()">');	
+		
+	});
 
 });
 // 우편번호 찾기 찾기 화면을 넣을 element
@@ -286,6 +298,7 @@ var element_wrap = document.getElementById('wrap');
 
 //썸네일 펑션
 function getThumbnailPrivew(html, $target) {
+
     var fileInput = document.getElementById("upfile");
     var file = fileInput.files[0];
     var reader = new FileReader();
@@ -383,17 +396,19 @@ function sample3_execDaumPostcode() {
   	<div class="comImg_photo"> 		 	
        <div class="comImgPre">
       	<c:choose>
-      	<c:when test="${empty vo.comImg}" >
-       	<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/images/logo_default.gif'/>" style="width:130px; height:140"></c:when>
-       	<c:when test="${!empty vo.comImg}">
-       	<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/upload_images/${vo.comRenameimage}'/>" style="width:130px; height:140"></c:when>
-       	
+      	<c:when test="${empty vo.comRenameimage}" >
+	       	<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/images/logo_default.gif'/>" style="width:130px; height:140">
+	       	<input type="file" name="upfile" id="upfile" accept="image/*" onchange="getThumbnailPrivew()"></c:when>
+       	<c:when test="${!empty vo.comRenameimage}">
+       		<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/upload_images/${vo.comRenameimage}'/>" style="width:130px; height:140"></c:when>       	
+       		
        	</c:choose>
-      
-       	                
-	     <input type="file" name="upfile" id="upfile"accept="image/*" onchange="getThumbnailPrivew()">	      
+       	
+       	<input type="hidden" name="chkComImage" value="${vo.comRenameimage}">
+       	             
 	     <br> <!-- 로고이미지 -->	         
 	     <label for="upfile" class="btn_Com_Info_sub" >기업로고</label>
+	     <div id="divfile"></div>
 	   </div>	     
             <a class="photo_delete" href="##" style="display:none;">
             <span class="blind">사진 삭제</span></a>
@@ -436,8 +451,7 @@ function sample3_execDaumPostcode() {
 					<input type="text" id="zipCode" name="zipCode" class="form-control" value="${loginMember.zipCode}" placeholder="우편번호" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
-				<!-- 검색 -->
-				<div class="col-lg-4"><a href="#" class="btn btn-primary" onclick="sample3_execDaumPostcode()">검색</a></div>
+				
 				
 			</div>
 			<div class="row mb-4 mt-4_text">
@@ -539,14 +553,28 @@ function sample3_execDaumPostcode() {
 			 <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-4t-ca">기업형태  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="foundation" name="comType" class="form-control" value="${vo.comType}" placeholder="기업형태  " autofocus >
+					<select id="foundation" name="comType" class="form-control">
+						<option value="">선택해주세요</option>
+					<c:choose>
+					<c:when test="${!empty vo.comType}">						
+						<option value="대기업" <c:if test="${vo.comType eq '대기업'}"> selected </c:if>>대기업</option>
+						<option value="중견기업" <c:if test="${vo.comType eq '중견기업'}"> selected </c:if>>중견기업</option>
+						<option value="중소기업" <c:if test="${vo.comType eq '중소기업'}"> selected </c:if>>중소기업</option>
+					</c:when>
+					<c:when test="${empty vo.comType}">
+						<option value="대기업" >대기업</option>
+						<option value="중견기업">중견기업</option>
+						<option value="중소기업">중소기업</option>
+					</c:when>
+					</c:choose>
+					</select>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			 <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-2t-ca">업 종  </div>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="foundation" name="comField" class="form-control" value="${vo.comField}" placeholder="업종" autofocus>
+					<input type="text" id="foundation2" name="comField" class="form-control" value="${vo.comField}" placeholder="업종" autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>

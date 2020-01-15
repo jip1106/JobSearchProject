@@ -73,7 +73,7 @@ h2.mt-4.mb-3 {
       <div class="col-lg-3 mb-4">
         <div class="list-group">
           <a href="<c:url value='/company/companymypageedit.do'/>" class="list-group-item">기업정보수정</a>
-          <a href="#" class="list-group-item">공고관리</a>
+          <a href="companymypagepayment.do" class="list-group-item">공고관리</a>
           <a href="#" class="list-group-item">지원현황</a>
           <a href="<c:url value='/company/companymypagepayment.do'/>" class="list-group-item">결제관리</a> 
       	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">

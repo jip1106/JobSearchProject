@@ -1,5 +1,6 @@
 package com.ezen.jobsearch.member.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -335,8 +336,8 @@ public class MemberController {
 	  		
 			if(pwdChk) {
 				String url = "/member/mypageedit.do";
-				String message = "비밀번호 일치";
-				System.out.println("비밀번호 일치");
+				String message = "비밀번호 확인";
+				System.out.println("비밀번호 확인");
 				
 				model.addAttribute("msg", message);
 				model.addAttribute("url", url);
@@ -357,7 +358,7 @@ public class MemberController {
 		
 		
 
-		//마이페이지 - 회원탈퇴 비밀번호체크****
+	  //마이페이지 - 회원탈퇴 비밀번호체크****
 	  	@RequestMapping(value="/member/mypagedeletecheck.do", method = RequestMethod.GET) 
 	  	public String mypagedeletecheck_get() {
 	  		logger.info("회원탈퇴 화면 보여주기");
@@ -378,12 +379,17 @@ public class MemberController {
 			pwdChk = passwordEncoder.matches(memberPwd, dbPwd);
 	  		
 			if(pwdChk) {
-				
-				System.out.println("비밀번호 일치");
+				memberService.withdrawMember(memberId);
+
+				String url = "/member/login.do";
 				String message = "회원탈퇴 성공";
-				model.addAttribute("msg", message);
 				
-				return "member/mypageedit";
+				System.out.println("회원탈퇴 성공");
+				
+				session.invalidate();
+				
+				model.addAttribute("msg", message);
+				model.addAttribute("url", url);
 			}else {
 				String url = "/member/mypagedeletecheck.do";
 				String message = "비밀번호가 일치하지 않습니다.";
@@ -393,17 +399,21 @@ public class MemberController {
 				model.addAttribute("msg", message);
 				model.addAttribute("url", url);
 				
-				return "common/message";
 			}
+			return "common/message";
 	  		
 	  	}
 		
-  		//마이페이지 - 회원정보수정****
+	  //마이페이지 - 회원정보수정****
 	  	@RequestMapping(value="/member/mypageedit.do", method = RequestMethod.GET)
-		public String mypageedit_get(HttpSession session, Model model) {
+		public String mypageedit_get(HttpSession session, Model model) throws ParseException  {
 			MemberVO memberVo = (MemberVO)session.getAttribute("loginMember");
-			model.addAttribute("vo", memberVo);
 			
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String b = sdf.format(sdf.parse(memberVo.getBirthday()));
+			memberVo.setBirthday(b);
+			
+			model.addAttribute("vo", memberVo);
 			return "member/mypageedit";
 		}
 	  		
@@ -414,40 +424,38 @@ public class MemberController {
   				@RequestParam String memberPwd2, Model model) {
   			
   			MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
+  			MemberVO memberVo2 = memberService.selectMember(memberVo.getMemberId(), memberVo.getRegType());
+  			
 			String memberId = memberVo.getMemberId();	
-			String genderType = memberVo.getGenderType();	
-			String oldbirthday= memberVo.getBirthday();
-			
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String birthday= sdf.format(oldbirthday);
+			//String genderType = memberVo.getGenderType();	
 			
   			vo.setMemberId(memberId);
-  			vo.setGenderType(genderType);
-  			vo.setBirthday(birthday);
-  			
+  			//vo.setGenderType(genderType);
   			
   			logger.info("회원수정처리 vo={}",vo);
-  			
-  			
-  			//if (StringUtils.equals(memberPwd, memberPwd2)) {
-  				
-			String msg="", url="";
-			int cnt=memberService.updateMember(vo);
+  			int cnt = 0;
+  			if(StringUtils.isEmpty(memberPwd)) {
+  				vo.setMemberPwd(memberVo2.getMemberPwd());
+  	  			cnt = memberService.updateMember(vo);
+  			} else if (StringUtils.equals(memberPwd, memberPwd2)){
+	  			String Password = passwordEncoder.encode(memberPwd);
+  	  			memberVo.setMemberPwd(Password);
+  	  			cnt = memberService.updateMember(vo);
+  			}
+	  	  			
+  			String msg="", url="";
+						
 			if(cnt>0) {
 				msg="회원정보 수정되었습니다.";
 				url="/member/mypagerecentnotice.do";
-			}else {
-				msg="회원정보 수정 실패!";
-				url="/member/mypageedit.do";
-			}
-  				
-  			//}else {
-  				
-  			//}
-		
+			}else {	
+	  			msg="회원정보 수정 실패!";
+	  			url="/member/mypageedit.do";
+  			}	
+  		
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", url);
-			
+  		
 			return "common/message";
   		}
 		
