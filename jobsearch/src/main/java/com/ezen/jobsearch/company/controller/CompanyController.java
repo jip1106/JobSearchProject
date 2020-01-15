@@ -73,6 +73,7 @@ public class CompanyController {
 	public String insertInfo_post(@ModelAttribute MemberVO memberVo,
 								@ModelAttribute CompanyVO companyVo,@RequestParam String chkComImage, HttpSession session,HttpServletRequest request,Model model) {
 		logger.info("기업회원 정보수정 처리, 파라미터companyVO ::::::::: {}, memberVO={}",companyVo,memberVo );
+
 		
 		MemberVO sessionVo=(MemberVO)session.getAttribute("loginMember");
 		

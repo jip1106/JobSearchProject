@@ -32,6 +32,9 @@ public class AnnounceMentVO {
 	 private String locationName;
 	 private String locationName2;
 	 private String comName;
+	 private String empName;
+	 private String employeeNum;
+	 private String comType;
 	 
 	 
 	 
@@ -179,11 +182,11 @@ public class AnnounceMentVO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getDetail_address() {
+	public String getDetailAddress() {
 		return detailAddress;
 	}
-	public void setDetail_address(String detail_address) {
-		this.detailAddress = detail_address;
+	public void setDetailAddress(String detailaddress) {
+		this.detailAddress = detailaddress;
 	}
 	public String getExtraAddress() {
 		return extraAddress;
@@ -208,6 +211,24 @@ public class AnnounceMentVO {
 	}
 	public void setComName(String comName) {
 		this.comName = comName;
+	}
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
+	public String getEmployeeNum() {
+		return employeeNum;
+	}
+	public void setEmployeeNum(String employeeNum) {
+		this.employeeNum = employeeNum;
+	}
+	public String getComType() {
+		return comType;
+	}
+	public void setComType(String comType) {
+		this.comType = comType;
 	}
 	
 }

@@ -158,7 +158,7 @@ span.X {
 	</ul>
 	
 	<!-- 이력서 등록하기 -->
-		<div class="col-lg-4"><a href="#" class="btn btn-primary" onclick="resume_apply">이력서등록하기</a></div>
+		<div class="col-lg-4"><a href="<c:url value='/resume/resume.do'/>" class="btn btn-primary" >이력서등록하기</a></div>
 			<strong class="attach_count">총 <span class="count_span">2</span>건</strong>
 			
 	<!-- 반복문 사용해서 통째로 뿌려주기 

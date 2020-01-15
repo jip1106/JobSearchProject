@@ -1,5 +1,6 @@
 package com.ezen.jobsearch.category.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -47,5 +48,40 @@ public class CategoryDAOImpl implements CategoryDAO{
 		
 		return thridCateList;
 	}
+	
+	@Override
+	public String getSearchCateName1(String cateSeq1) {
+		String cateName1 = sqlSession.selectOne(nameSpace+ "getSearchCateName1",cateSeq1); 
+		return cateName1;
+	}
+
+
+	@Override
+	public String getSearchCateName2(String cateSeq2) {
+		String cateName2 = sqlSession.selectOne(nameSpace+ "getSearchCateName2",cateSeq2); 
+		return cateName2;
+	}
+
+
+	@Override
+	public List<String> getSearchCateName3List(String cateSeq3) {
+		
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		List<String> cateList = new ArrayList<String>();
+		
+		String arr[] = cateSeq3.split(",");
+	
+		for(int i=0; i<arr.length;i++) {
+			cateList.add(arr[i]);
+		}
+	
+		map.put("cateList",cateList);
+		
+		List<String> returnList = sqlSession.selectList(nameSpace + "getSearchName3List", map);
+		
+		//System.out.println("LocationDAO : " + returnList);
+		
+		return returnList;
+	}	
 
 }

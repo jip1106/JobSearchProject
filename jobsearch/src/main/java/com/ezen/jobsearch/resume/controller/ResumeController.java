@@ -1,34 +1,37 @@
 package com.ezen.jobsearch.resume.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.ezen.jobsearch.member.model.MemberVO;
 
 @Controller
-@RequestMapping("/resume")
 public class ResumeController {
 	private Logger logger=
 		LoggerFactory.getLogger(ResumeController.class);
 	
-	@RequestMapping("/resume.do")
-	public String resume_get() {
-		logger.info("화면보여주기");
+	//resume화면보여주기
+	@RequestMapping(value="/resume/resume.do", method=RequestMethod.GET)
+	public String resume_get(HttpSession session, Model model) throws ParseException {
+		logger.info("resuem 화면보여주기");
+		MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String b = sdf.format(sdf.parse(memberVo.getBirthday()));
+		memberVo.setBirthday(b);
 		
+		model.addAttribute("vo", memberVo);
 		return "resume/resume";
 	}
-
-	@RequestMapping("/tab.do")
-	public String tab_get() {
-		logger.info("화면보여주기");
-		
-		return "resume/tab";
-	}
 	
-	@RequestMapping("/resume11.do")
-	public String resume11_get() {
-		logger.info("화면보여주기");
-		
-		return "resume/resume11";
-	}
+	
 }

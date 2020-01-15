@@ -1,5 +1,6 @@
 package com.ezen.jobsearch.category.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,6 @@ public class CategoryController {
 		List<CategoryVO1> categoryList1 = categoryService.selectCategory1();
 		model.addAttribute("categoryList1",categoryList1);
 		
-		
 		List<CategoryVO2> categoryList2 = categoryService.selectSubCateList(cateSeq1);
 		model.addAttribute("categoryList2",categoryList2);
 		
@@ -53,4 +53,6 @@ public class CategoryController {
 		
 		return thirdCategoryList;
 	}
+	
+
 }
