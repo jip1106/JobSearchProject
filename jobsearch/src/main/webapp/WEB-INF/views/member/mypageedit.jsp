@@ -5,29 +5,88 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/mypageedit.css'/>">
 <c:import url="/WEB-INF/views/include/header.jsp" />
 <!-- head start -->
+
+<!-- 우편번호API -->
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+<!-- 데이트피커 -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
-$.datepicker.setDefaults({
-    dateFormat: 'yy-mm-dd' //Input Display Format 변경
-   ,showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-   ,showMonthAfterYear:true //년도 먼저 나오고, 뒤에 월 표시
-   ,changeYear: true //콤보박스에서 년 선택 가능
-   ,changeMonth: true //콤보박스에서 월 선택 가능                
-   ,monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'] //달력의 월 부분 텍스트
-   ,monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] //달력의 월 부분 Tooltip 텍스트
-   ,dayNamesMin: ['일','월','화','수','목','금','토'] //달력의 요일 부분 텍스트
-   ,dayNames: ['일요일','월요일','화요일','수요일','목요일','금요일','토요일'] //달력의 요일 부분 Tooltip 텍스트
-   ,minDate: "-80Y" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-   ,maxDate: "-18Y" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)         
+$.datepicker.setDefaults({	 
+	  changeMonth: true, // 월을 바꿀수 있는 셀렉트 박스를 표시한다.
+	  changeYear: true, // 년을 바꿀 수 있는 셀렉트 박스를 표시한다.
+	  minDate: '-100y', // 현재날짜로부터 100년이전까지 년을 표시한다.	 
+	  numberOfMonths: [1,1], // 한번에 얼마나 많은 월을 표시할것인가. [2,3] 일 경우, 2(행) x 3(열) = 6개의 월을 표시한다.
+	  yearRange: 'c-100:c+18', // 년도 선택 셀렉트박스를 현재 년도에서 이전, 이후로 얼마의 범위를 표시할것인가.	 
+	  closeText: '닫기',  // 닫기 버튼 패널
+	  dateFormat: "yy-mm-dd", // 텍스트 필드에 입력되는 날짜 형식.
+	  showMonthAfterYear: true , // 월, 년순의 셀렉트 박스를 년,월 순으로 바꿔준다. 
+	  dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], // 요일의 한글 형식.
+	  monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'] // 월의 한글 형식.     
 });
 
-$(function() {
+$(function(){
 	$("#birthday_term").datepicker({
 
 	});
 });
 
+$(function(){
+   $("input[name=phone]").keyup(function(){
+    	var hypenPhone = autoHypenPhone($(this).val());
 
+    	$(this).val(hypenPhone);
+    })
+});
 
+//전화번호
+function autoHypenPhone(str){
+		
+        str = str.replace(/[^0-9]/g, '');
+        
+        var tmp = '';
+        
+        if( str.length < 4){
+            return str;
+        }else if(str.length < 7){
+            tmp += str.substr(0, 3);
+            tmp += '-';
+            tmp += str.substr(3);
+            return tmp;
+        }else if(str.length < 11){
+            tmp += str.substr(0, 3);
+            tmp += '-';
+            tmp += str.substr(3, 3);
+            tmp += '-';
+            tmp += str.substr(6);
+            return tmp;
+        }else{              
+            tmp += str.substr(0, 3);
+            tmp += '-';
+            tmp += str.substr(3, 4);
+            tmp += '-';
+            tmp += str.substr(7);
+            return tmp;
+        }
+        
+        return str;
+      
+}
+
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		$("form[name=frm_mypageedit]").submit(function(){	
+			if($("input[name=memberPwd]").val().length>0 && $("input[name=memberPwd2]").val().length<0){
+				alert("비밀번호 확인을 입력해주세요!");
+				$("input[name=memberPwd2]").focus();
+				event.preventDefault();
+			}
+		});
+	});
 </script>
 <style type="text/css">
 .span_title_edit{
@@ -100,6 +159,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-edit {
     flaot: left;
     float: left;
     margin-right: 74px;
+    z-index: 10;
 }
 button.btn.btn-lg.btn-primary.btn-block.text-withdrawal {
     background: #5e87f1;
@@ -145,9 +205,34 @@ a.btn.btn-primary {
 }
 div#edit_bt {
     position: relative;
-    left: 13.6em;
     margin-top: 51px;
     margin-bottom: 49px;
+}
+a.withdrawalPage {
+ 	color: #ffffff;
+    background-color: #5e87f1;
+    border-color: #5e87f1;
+    padding: 15.8px 31px;
+    position: relative;
+    left: 419px;
+    top: 3px;
+    margin-bottom: -60px;
+    font-size: 17px;
+    border-radius: 4px;
+}
+input.btn.btn-lg.btn-primary.btn-block.text-edit {
+     background: #5e87f1;
+    width: 17%;
+    height: 53px;
+    border: none;
+    font-size: 17px;
+    flaot: left;
+    float: left;
+    margin-right: 74px;
+    z-index: 10; 
+    position: relative;
+    top: 41px;
+    left: 219px;
 }
 </style> 
 
@@ -169,11 +254,11 @@ div#edit_bt {
     	</div>
     	
         <div class="inpRdoSw sizeXL resume_right focus">
-			<span class="inOption"> <input name="genderType" id="male"
-				type="radio" value="male" checked=""> 
+			<span class="inOption"> 
+			<input name="genderType" id="male" type="radio" value="M" checked=""> 
 				<label for="male" class="lbl">남</label>
 			</span> <span class="inOption"> 
-			<input name="sex" id="female" type="radio" value="female"> 
+			<input name="genderType" id="female" type="radio" value="W"> 
 			<label for="female" class="lbl">여</label>
 			</span>
 			<p class="txt_error"></p>
@@ -183,7 +268,7 @@ div#edit_bt {
 				<div class="col-lg-4-2t">이름  </div>
 				<span class="point-2t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="memberName" class="form-control" value="${vo.memberName }" placeholder="이름" required autofocus>
+					<input type="text" id="Insert_text" name="memberName" class="form-control" value="${vo.memberName }" placeholder="이름" required autofocus readonly>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -216,7 +301,7 @@ div#edit_bt {
 				<div class="col-lg-4-4t">전화번호  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="phone" class="form-control" value="${vo.phone}" placeholder="전화번호" required autofocus>
+					<input type="text" id="Insert_text" name="phone" class="form-control" value="${vo.phone}" placeholder="123-4567-7890" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -257,13 +342,14 @@ div#edit_bt {
 					style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 			  </div>
 			
+  				<input class="btn btn-lg btn-primary btn-block text-edit" type="submit" value="수정"/>
 			<div id="edit_bt">
-  				<button class="btn btn-lg btn-primary btn-block text-edit" type="submit">수정</button>
-  				<button class="btn btn-lg btn-primary btn-block text-withdrawal"
-  				onclick="location.href='<c:url value="member/mypagedeletecheck.do"/>'">회원탈퇴</button>
-  				     
+  				<!-- <button class="btn btn-lg btn-primary btn-block text-edit" type="submit">수정</button> -->
+		     	<div class="col-lg-4"><a class="withdrawalPage" href="<c:url value="/member/mypagedeletecheck.do"/>">회원탈퇴</a></div>
  			</div>
 </form>
+  
+  
   
 <script>
     // 우편번호 찾기 찾기 화면을 넣을 element

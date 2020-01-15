@@ -135,14 +135,14 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.selectOne(nameSpace+"selectMember",memberId);
 	}
 
-	//***********
+	//일반회원수정
 	@Override
 	public int updateMember(MemberVO vo) {
 		return sqlSession.update(nameSpace + "updateMember",vo);
 		
 	}
-	//***********
-
+	
+	//일반회원탈퇴
 	@Override
 	public int withdrawMember(String memberId) {
 		return sqlSession.delete(nameSpace + "withdrawMember",memberId);
