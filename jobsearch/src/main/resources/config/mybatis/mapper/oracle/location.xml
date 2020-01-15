@@ -12,5 +12,16 @@
 		Select * From TBL_LOCATION2 Where REF_LOCATIONSEQ = #{refLocationseq}
 	</select>
 	
+	<select id ="selectLocationName" resultType="string" parameterType="string">
+		Select location_name From TBL_LOCATION1 Where location_seq1 = #{locationSeq1}
+	</select>
+	
+	<select id="searchLocNameList" resultType="hashmap" parameterType="hashmap">
+		Select location_name2 From tbl_location2 Where location_seq2 in 
+		<foreach collection="locList" item="locationSeq2" separator=","	open="(" close=")">
+			#{locationSeq2}
+		</foreach>
+	</select>
 
+	
 </mapper>

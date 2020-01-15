@@ -114,7 +114,21 @@
 	<select id="selectAll" resultType="memberVo">
 		Select * From TBL_MEMBER Order BY reg_date desc
 	</select> 
-	
-	
 
+	<!-- 일반회원수정 -->
+	<update id="updateMember" parameterType="memberVo">
+		update tbl_member
+		set MEMBER_PWD=#{memberPwd}, MEMBER_NAME=#{memberName}, ZIP_CODE=#{zipCode}, 
+		ADDRESS=#{address}, DETAIL_ADDRESS=#{detailAddress}, EXTRA_ADDRESS=#{extraAddress}, 
+		PHONE=#{phone},	GENDER_TYPE=#{genderType}, BIRTHDAY=#{birthday}, PROFILE_IMG=#{profileImg} 
+		where MEMBER_ID=#{memberId}
+	</update>
+	
+	<!-- 일반회원탈퇴 -->
+	<update id="withdrawMember" parameterType="string">
+		update member
+		set DEL_DATE=sysdate 
+		where MEMBER_ID=#{memberId}
+	</update>
+	
 </mapper>
