@@ -80,7 +80,7 @@ public class CompanyVO {
 	public String getComField() {
 		return comField;
 	}
-	public void setComFiled(String comField) {
+	public void setComField(String comField) {
 		this.comField = comField;
 	}
 	public String getComImg() {

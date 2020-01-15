@@ -45,16 +45,83 @@ textarea.form-control {
 	width:70%;
 }
 div#caution {
-    font-size: 13px;
+    font-size: 11px;
+    margin-top: 18px;
+    color: #da4d4d;
+    font-weight: bold;
 }
 .com-ann-period {
     margin-left: 165px;
 }
-select#lc_select {
-    width: 68%;
-    height: calc(1.5em + .75rem + 15px);
-    margin-left: 0px;
-    width: 30%;
+select#lc_select {   
+    height: calc(1.5em + .75rem + 15px); 
+
+    font-weight: bold;
+    color: #293440;
+}
+select#lc2_select{
+	height: calc(1.5em + .75rem + 15px);
+
+    font-weight: bold;
+    color: #293440;
+}
+select#cateList{
+	height: calc(1.5em + .75rem + 15px); 
+
+    font-weight: bold;
+    color: #293440;
+}
+select#ca2_select{
+	height: calc(1.5em + .75rem + 15px); 
+
+    font-weight: bold;
+    color: #293440;
+}
+select#ca3_select{
+	height: calc(1.5em + .75rem + 15px);
+
+    font-weight: bold;
+    color: #293440; 
+}
+.card_select {
+    padding: 26px 29px 16px 29px;
+    margin-bottom: 5px;
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-clip: border-box;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+
+}
+td#select_subject {
+    font-size: 20px;
+    font-weight: bold;
+    color: #3a3e30;
+}
+
+span#sectionTitle{
+	align-self: center;
+	font-size:26px;
+	font-weight:bold;
+}
+input#annStdt {
+    width: 140px;
+}
+input#annEndt {
+    width: 140px;
+}
+span.point-2t_age {
+    color: red;
+    font-size: 12px;
+    position: relative;
+    top: 18px;
+    left: 40px;
+    margin-right: 104px;
 }
 
 </style>
@@ -239,52 +306,63 @@ select#lc_select {
 
 <!-- section start -->
 <!-- 지역 선택 --> 
-
-  <div class="card mb-4-bt-edit">
-  	 <div id="locTitle">
-    	공고 지역:
-     </div>
-    	<select id="lc_select" class="form-control" onchange="selectSecondLocation(this)">
-    		<option value="">선택</option>
-    		<c:forEach var="locationVo" items="${locationList1 }">
-    			<option value="${locationVo.locationSeq1 }">${locationVo.locationName }</option>
-    		</c:forEach>
-	   	</select>
-	   	
-	   	<select id="lc2_select" class="form-control" onchange="locaSeq(this)">
-	   		<option value="">선택</option>
-	   	</select> 		
-		<div id="caution" class="chkmessage">*선택하신 항목은 게시후 검색시 중요하게 사용되므로 신중히 선택해주시기 바랍니다.  </div>
-    
+<span id="sectionTitle">공고글 작성하기</span>
+  <div class="card_select">
+  	 <table>
+  	 	<tr>
+  	 		<td width="145px" id="select_subject">지역  : </td>
+  	 		<td>
+	  	 		<select id="lc_select" class="form-control" onchange="selectSecondLocation(this)">
+	    			<option value="">선택</option>
+	    		<c:forEach var="locationVo" items="${locationList1 }">
+	    			<option value="${locationVo.locationSeq1 }">${locationVo.locationName }</option>
+	    		</c:forEach>
+		   		</select>
+	 		</td>
+  	 		<td>
+  	 			<select id="lc2_select" class="form-control" onchange="locaSeq(this)">
+	   				<option value="">선택</option>
+	  		 	</select> 		
+  	 		</td>  	 	
+  	 	</tr>  	 	
+     </table>
+     <hr> 
 <!-- 카테고리선택 -->		
-		<div class="row">
-		카테고리 :
-		<select class="form-control" id="cateList" onchange="sCateList2(this)">
-			<option value="">선택</option>
-			
-			<c:forEach var="categoryVo" items="${categoryList1}">
-				<option value="${categoryVo.cateSeq1}">${categoryVo.cateName1 }</option>
-			</c:forEach>
-			
-		</select>
-		
-		
-		<select id="ca2_select" class="form-control"onchange="sCateList3(this)">
-			<option value="">선택</option>
-		</select>
-		
-		<select id="ca3_select"class="form-control" onchange="caSeq3(this)">
-			<option value="">선택</option>
-		</select>
-		
-		<div id="caution" class="chkmessage">*선택하신 항목은 게시후 검색시 중요하게 사용되므로 신중히 선택해주시기 바랍니다. </div>
-	</div>
+	<table>
+		<tr>
+			<td width="145px" id="select_subject">카테고리 : </td>
+			<td>
+				<select class="form-control" id="cateList" onchange="sCateList2(this)">
+					<option value="">선택</option>
+				
+				<c:forEach var="categoryVo" items="${categoryList1}">
+					<option value="${categoryVo.cateSeq1}">${categoryVo.cateName1 }</option>
+				</c:forEach>				
+				</select>		
+			</td>			
+			<td>
+				<select id="ca2_select" class="form-control"onchange="sCateList3(this)">
+					<option value="">선택</option>
+				</select>
+			</td>
+			<td>
+				<select id="ca3_select"class="form-control" onchange="caSeq3(this)">
+					<option value="">선택</option>
+				</select>
+			</td>			
+		</tr>
+		<tr>
+			<td colspan="4">
+				<div id="caution" class="chkmessage">*선택하신 항목은 게시후 검색시 중요하게 사용되므로 신중히 선택해주시기 바랍니다. </div>
+			</td>
+		</tr>	
+	</table>
 </div>
 
 
 <!-- form 시작 -->
 <form action="<c:url value='/company/companymypageannouncement.do'/>" method="post" id="annForm" name="annForm" >
-	<h1>공고글 작성하기</h1>
+	<span id="sectionTitle">필수 입력</span>	
 	<!-- 제목시작 -->
  		<div class="card mb-4-bt-edit">
  			<div class="row mb-4 mt-4_text"> 				
@@ -337,7 +415,7 @@ select#lc_select {
 			
 			<div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-4t">나이 사항  </div>
-				<span class="point-2t"></span>				
+				<span class="point-2t_age"></span>				
 				<div class="col-lg-8 form-label-group mb-2">
 					<input type="text" id="Insert_text" name="ageLimit" class="form-control" placeholder="예)만 25세 이상">
 				<div id="idchkdiv" class="chkmessage"> </div>
@@ -347,7 +425,7 @@ select#lc_select {
 				<div class="col-lg-4-4t">고용형태  </div>
 				<span class="point-2t"></span>				
 				<div class="col-lg-8 form-label-group mb-2">
-					<select id="Insert_text" name="employType" class="form-control">
+					<select id="Insert_text" name="employeeType" class="form-control">
 						<option value="">선택하세요</option>
 							<c:forEach var="vo" items="${empTypeList}">						
 							<option value="${vo.empSeq}">${vo.empName}</option>	
@@ -360,7 +438,7 @@ select#lc_select {
 		</div>			
 		
 	
-	<h1>추가사항</h1>	
+	<span id="sectionTitle">추가사항</span>	
 		<div class="card mb-4-bt-edit">	
 					
 			<div class="row mb-4 mt-4_text">
@@ -374,12 +452,20 @@ select#lc_select {
 			
  		</div>
  		
- 	<h1>공고 게시기간</h1>
- 		<div class="card mb-4-bt-edit"> 			
+ 	<span id="sectionTitle">공고 게시기간</span>
+ 		<div class="card mb-4-bt-edit">
  			<div class="com-ann-period">
-						<input type="text"  id="annStdt" name="annStdt" class="form-control" placeholder="시작일" required readonly>
-						<span class="hyphen">~</span>
-						<input type="text"  id="annEndt" name="annEndt" class="form-control" placeholder="마감일" required readonly>
+ 			<table>
+ 				<tr>
+ 					<td>
+ 						<input type="text"  id="annStdt" name="annStdt" class="form-control" placeholder="시작일" required readonly>
+ 					</td>
+ 					<td><span class="hyphen">~</span></td>
+ 					<td>
+ 						<input type="text"  id="annEndt" name="annEndt" class="form-control" placeholder="마감일" required readonly>
+ 					</td>
+ 				</tr>
+ 			</table> 						
 			</div>			
 		</div>	
 		<hr>			
