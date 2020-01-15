@@ -74,9 +74,9 @@ input#memberPwd {
 <!-- section start -->
 
 <div class="div_editcheck">
-  <div class="span_title_editcheck">비밀번호확인</div>
+  <div class="span_title_editcheck">회원탈퇴</div>
   
-<form name="frm_Pwd" method="post" action="<c:url value='/member/mypageeditcheck.do'/>">
+<form name="frm_Pwd" method="post" action="<c:url value='/member/mypagedeletecheck.do'/>">
     <div class="row mb-4 mt-4_text">
 		<div class="col-lg-4-4t">비밀번호  </div>
 		<span class="point-4t">필수</span>

@@ -26,4 +26,20 @@ public class LocationServiceImpl implements LocationService{
 		return locationDao.selectSubLocList(locationSeq1);
 	}
 
+
+	@Override
+	public String selectLocationName(String locationSeq1) {
+		// TODO Auto-generated method stub
+		return locationDao.selectLocationName(locationSeq1);
+	}
+
+
+	@Override
+	public List<String> searchLocNameList(String locationSeq2) {
+		// TODO Auto-generated method stub
+		return locationDao.searchLocNameList(locationSeq2);
+	}
+
+
+
 }

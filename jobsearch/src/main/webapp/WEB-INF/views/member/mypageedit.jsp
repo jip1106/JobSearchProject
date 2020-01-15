@@ -159,6 +159,7 @@ div#edit_bt {
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 <c:import url="/WEB-INF/views/include/mypagenavitop.jsp" />
 <!-- section start -->
+<form name="frm_mypageedit" method="post" action="<c:url value='/member/mypageedit.do'/>">
   <div class="span_title_edit">회원정보수정</div>
   <div class="resume_photo">
             <a href="##" class="box_photo" data-api_type="layer" data-api_id="basic_photo">
@@ -168,37 +169,38 @@ div#edit_bt {
     	</div>
     	
         <div class="inpRdoSw sizeXL resume_right focus">
-			<span class="inOption"> <input name="sex" id="male"
-				type="radio" value="male" checked=""> <label for="male"
-				class="lbl">남</label>
-			</span> <span class="inOption"> <input name="sex" id="female"
-				type="radio" value="female"> <label for="female" class="lbl">여</label>
+			<span class="inOption"> <input name="genderType" id="male"
+				type="radio" value="male" checked=""> 
+				<label for="male" class="lbl">남</label>
+			</span> <span class="inOption"> 
+			<input name="sex" id="female" type="radio" value="female"> 
+			<label for="female" class="lbl">여</label>
 			</span>
 			<p class="txt_error"></p>
 		</div>
-		        
+		    <%-- <input type="text" value="${sessionScope.loginMember.memberName}"/> --%>
 	        <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-2t">이름  </div>
 				<span class="point-2t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="MEMBER_NAME" class="form-control" placeholder="이름" required autofocus>
+					<input type="text" id="Insert_text" name="memberName" class="form-control" value="${vo.memberName }" placeholder="이름" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
-	        <div class="row mb-4 mt-4_text">
+	       <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-4t">생년월일  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="birthday_term" name=" PERIOD_STDT" class="form-control" placeholder="생년월일" required autofocus readonly>
+					<input type="text"  id="birthday_term" name="birthday" class="form-control" value="${vo.birthday }" placeholder="생년월일" required autofocus readonly>
 					<!-- <input type="text" id="Insert_text" name="BIRTHDAY" class="form-control" placeholder="생년월일" required autofocus> -->
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
-			</div>
+			</div> 
 	        <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-4t">비밀번호  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="MEMBER_ID" class="form-control" placeholder="비밀번호" required autofocus>
+					<input type="password" id="Insert_text" name="memberPwd" class="form-control" placeholder="비밀번호" >
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -206,7 +208,7 @@ div#edit_bt {
 				<div class="col-lg-4-6t">비밀번호확인  </div>
 				<span class="point-6t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="MEMBER_ID" class="form-control" placeholder="비밀번호확인" required autofocus>
+					<input type="password" id="Insert_text" name="memberPwd2" class="form-control" placeholder="비밀번호확인" >
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -214,7 +216,7 @@ div#edit_bt {
 				<div class="col-lg-4-4t">전화번호  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="PHONE" class="form-control" placeholder="전화번호" required autofocus>
+					<input type="text" id="Insert_text" name="phone" class="form-control" value="${vo.phone}" placeholder="전화번호" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -222,7 +224,7 @@ div#edit_bt {
 				<div class="col-lg-4-4t">우편번호  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="zipCode" name="ZIP_CODE" class="form-control" placeholder="우편번호" required autofocus>
+					<input type="text" id="zipCode" name="zipCode" class="form-control" value="${vo.zipCode}" placeholder="우편번호" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 				<!-- 검색 -->
@@ -233,19 +235,19 @@ div#edit_bt {
 				<div class="col-lg-4-2t">주소  </div>
 				<span class="point-2t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="address" name="ADDRESS" class="form-control" placeholder="주소" required autofocus>
+					<input type="text" id="address" name="address" class="form-control" value="${vo.address }" placeholder="주소" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			<div class="row mb-4 mt-4_text">
 					<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="detailAddress" name="detailAddress" class="form-control" placeholder="상세주소" required autofocus>
+					<input type="text" id="detailAddress" name="detailAddress" class="form-control" value="${vo.detailAddress}" placeholder="상세주소" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			<div class="row mb-4 mt-4_text">
 					<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="extraAddress" name="extraAddress" class="form-control" placeholder="참고항목" required autofocus>
+					<input type="text" id="extraAddress" name="extraAddress" class="form-control" value="${vo.extraAddress}" placeholder="참고항목" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -257,8 +259,11 @@ div#edit_bt {
 			
 			<div id="edit_bt">
   				<button class="btn btn-lg btn-primary btn-block text-edit" type="submit">수정</button>
-  				<button class="btn btn-lg btn-primary btn-block text-withdrawal" type="submit">회원탈퇴</button>
+  				<button class="btn btn-lg btn-primary btn-block text-withdrawal"
+  				onclick="location.href='<c:url value="member/mypagedeletecheck.do"/>'">회원탈퇴</button>
+  				     
  			</div>
+</form>
   
 <script>
     // 우편번호 찾기 찾기 화면을 넣을 element

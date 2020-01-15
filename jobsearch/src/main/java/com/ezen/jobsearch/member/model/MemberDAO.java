@@ -15,7 +15,8 @@ public interface MemberDAO {
 	int dupchkIdCount(String memberId);
 	
 	String selectPwd(String memberId);
-	MemberVO selectMember(String memberId,String regType);
+	
+	MemberVO selectMember(String memberId, String regType);
 	
 	//아이디찾기
 	List<HashMap<String,String>> findId(String memberName, String phone);
@@ -30,4 +31,14 @@ public interface MemberDAO {
 
 	//관리자 회원 삭제, 삭제 취소
 	int deleteMember(String memberSeq, String type);
+	
+	//회원수정정보 불러오기
+	MemberVO selectMember(String memberId);
+	
+	//회원정보 업데이트*******************
+	int updateMember(MemberVO vo);
+	
+	//회원정보 삭제*******************
+	int withdrawMember(String memberId);
 }
+

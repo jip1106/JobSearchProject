@@ -148,7 +148,26 @@ public class MemberServiceImpl implements MemberService{
 		return memberAllList;
 	}
 
+	//회원수정정보 불러오기
+	@Override
+	public MemberVO selectMember(String memberId) {
+		return memberDao.selectMember(memberId);
+	}
+	
+	//*****************
+	@Override
+	public int updateMember(MemberVO vo) {
+		
+		return memberDao.updateMember(vo);
+		
+	}
+	//*****************
 
+	@Override
+	public int withdrawMember(String memberId) {
+		return memberDao.withdrawMember(memberId);
+	}
 	
 	
+		
 }
