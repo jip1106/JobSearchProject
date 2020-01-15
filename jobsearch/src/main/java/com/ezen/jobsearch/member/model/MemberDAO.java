@@ -35,10 +35,10 @@ public interface MemberDAO {
 	//회원수정정보 불러오기
 	MemberVO selectMember(String memberId);
 	
-	//회원정보 업데이트*******************
+	//회원정보 업데이트
 	int updateMember(MemberVO vo);
 	
-	//회원정보 삭제*******************
+	//회원정보 삭제
 	int withdrawMember(String memberId);
 }
 

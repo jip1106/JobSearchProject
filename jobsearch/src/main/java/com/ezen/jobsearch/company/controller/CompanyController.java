@@ -184,4 +184,6 @@ public class CompanyController {
 		
 		return "common/message";
 	}
+	
+	
 }

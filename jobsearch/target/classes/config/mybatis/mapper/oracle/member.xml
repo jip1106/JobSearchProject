@@ -126,8 +126,8 @@
 	
 	<!-- 일반회원탈퇴 -->
 	<update id="withdrawMember" parameterType="string">
-		update member
-		set DEL_DATE=sysdate 
+		update tbl_member
+		set DEL_DATE=sysdate, DEL_FLAG='Y' 
 		where MEMBER_ID=#{memberId}
 	</update>
 	

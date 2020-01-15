@@ -242,9 +242,6 @@ function autoHypenPhone(str){
 
 
 
-
-
-
 //회원가입 submit 값체크
 function inputChk(){
 	var id_ok	=	$("#id_ok").val();		//아이디 중복 확인
