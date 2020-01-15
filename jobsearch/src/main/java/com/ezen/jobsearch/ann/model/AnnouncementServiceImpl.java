@@ -24,4 +24,9 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 		return annDao.selectAnnListCount(locationSeq1, locationSeq2);
 	}
 
+	@Override
+	public AnnounceMentVO selectBySeq(int annSeq) {
+		return annDao.selectBySeq(annSeq);
+	}
+
 }

@@ -1,5 +1,7 @@
 package com.ezen.jobsearch.company.model;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +30,14 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 	public int updateComInfo(CompanyVO companyVo) {
 		return companyDao.updateComInfo(companyVo);
+	}
+	public List<AnnounceMentVO> viewMyAnn(int refCompanyseq){
+		return companyDao.viewMyAnn(refCompanyseq);
+	}
+	public String selectComImg(int refCompanyseq) {
+		return companyDao.selectComImg(refCompanyseq);
+	}
+	public int deleteMyAnn(int Annseq) {
+		return companyDao.deleteMyAnn(Annseq);
 	}
 }

@@ -3,11 +3,16 @@ package com.ezen.jobsearch.ann.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ezen.jobsearch.ann.model.AnnounceMentVO;
 import com.ezen.jobsearch.ann.model.AnnouncementService;
 import com.ezen.jobsearch.common.PaginationInfo;
 import com.ezen.jobsearch.common.ProjectUtil;
@@ -16,6 +21,8 @@ import com.ezen.jobsearch.location.model.LocationVO1;
 
 @Controller
 public class AnnouncementController {
+	private final Logger logger
+		=LoggerFactory.getLogger(AnnouncementController.class);
 	
 	@Autowired
 	private AnnouncementService annService;
@@ -64,5 +71,24 @@ public class AnnouncementController {
 		
 		return "/ann/locationList";		
 		
+	}
+	
+	@RequestMapping("/ann/detail.do")
+	public String annDetail(@RequestParam(defaultValue = "0")int annSeq, Model model) {
+		logger.info("공고 상세보기, 파라미터 annSeq={}", annSeq);
+		
+		if(annSeq==0) {
+			model.addAttribute("msg", "잘못된 url입니다.");
+			model.addAttribute("url", "/home.do");
+			
+			return "common/message";
+		}
+		
+		AnnounceMentVO vo=annService.selectBySeq(annSeq);
+		logger.info("vo::::::: {}",vo);
+		
+		model.addAttribute("vo", vo);
+		
+		return "ann/annDetail";
 	}
 }

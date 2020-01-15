@@ -7,10 +7,10 @@ public class AnnounceMentVO {
 	 private String annTitle;  //공고제목
 	 private String annDesc;   //공고내용
 	 private String annStdt; //공고게시시작일
-	 private String annEddt; //공고게시마감일
+	 private String annEndt; //공고게시마감일
 	 private String careerType; //경력
 	 private String careerDesc; //경력추가
-	 private String employType; //근로형태
+	 private String employeeType; //근로형태
 	 private String salary;		//급료
 	 private String ageLimit;	//연령제한
 	 private int hits;			//조회수
@@ -21,6 +21,18 @@ public class AnnounceMentVO {
 	 private int refLocationseq1;//지역카테고리1
 	 private int refLocationseq2;//지역카테고리2
 	 private int refCompanyseq;//작성회사 고유시퀀스
+	 
+	 //공고상세에 필요한 필드
+	 private String ceoName;
+	 private Timestamp setupDate;
+	 private String comField;
+	 private String address;
+	 private String detailAddress;
+	 private String extraAddress;
+	 private String locationName;
+	 private String locationName2;
+	 private String comName;
+	 
 	 
 	 
 	public int getAnnSeq() {
@@ -47,11 +59,11 @@ public class AnnounceMentVO {
 	public void setAnnStdt(String annStdt) {
 		this.annStdt = annStdt;
 	}
-	public String getAnnEddt() {
-		return annEddt;
+	public String getAnnEndt() {
+		return annEndt;
 	}
-	public void setAnnEddt(String annEddt) {
-		this.annEddt = annEddt;
+	public void setAnnEndt(String annEndt) {
+		this.annEndt = annEndt;
 	}
 	public String getCareerType() {
 		return careerType;
@@ -65,11 +77,11 @@ public class AnnounceMentVO {
 	public void setCareerDesc(String careerDesc) {
 		this.careerDesc = careerDesc;
 	}
-	public String getEmployType() {
-		return employType;
+	public String getEmployeeType() {
+		return employeeType;
 	}
-	public void setEmployType(String employType) {
-		this.employType = employType;
+	public void setEmployeeType(String employeeType) {
+		this.employeeType = employeeType;
 	}
 	public String getSalary() {
 		return salary;
@@ -131,17 +143,71 @@ public class AnnounceMentVO {
 	public void setRefCompanyseq(int refCompanyseq) {
 		this.refCompanyseq = refCompanyseq;
 	}
+
 	@Override
 	public String toString() {
 		return "AnnounceMentVO [annSeq=" + annSeq + ", annTitle=" + annTitle + ", annDesc=" + annDesc + ", annStdt="
-				+ annStdt + ", annEddt=" + annEddt + ", careerType=" + careerType + ", careerDesc=" + careerDesc
-				+ ", employType=" + employType + ", salary=" + salary + ", ageLimit=" + ageLimit + ", hits=" + hits
+				+ annStdt + ", annEddt=" + annEndt + ", careerType=" + careerType + ", careerDesc=" + careerDesc
+				+ ", employeeType=" + employeeType + ", salary=" + salary + ", ageLimit=" + ageLimit + ", hits=" + hits
 				+ ", regDate=" + regDate + ", refCateseq1=" + refCateseq1 + ", refCateseq2=" + refCateseq2
 				+ ", refCateseq3=" + refCateseq3 + ", refLocationseq1=" + refLocationseq1 + ", refLocationseq2="
 				+ refLocationseq2 + ", refCompanyseq=" + refCompanyseq + "]";
 	}
-	 
-	 
-	 
+	
+	
+	public String getCeoName() {
+		return ceoName;
+	}
+	public void setCeoName(String ceoName) {
+		this.ceoName = ceoName;
+	}
+	public Timestamp getSetupDate() {
+		return setupDate;
+	}
+	public void setSetupDate(Timestamp setupDate) {
+		this.setupDate = setupDate;
+	}
+	public String getComField() {
+		return comField;
+	}
+	public void setComField(String comField) {
+		this.comField = comField;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getDetail_address() {
+		return detailAddress;
+	}
+	public void setDetail_address(String detail_address) {
+		this.detailAddress = detail_address;
+	}
+	public String getExtraAddress() {
+		return extraAddress;
+	}
+	public void setExtraAddress(String extraAddress) {
+		this.extraAddress = extraAddress;
+	}
+	public String getLocationName() {
+		return locationName;
+	}
+	public void setLocationName(String locationName) {
+		this.locationName = locationName;
+	}
+	public String getLocationName2() {
+		return locationName2;
+	}
+	public void setLocationName2(String locationName2) {
+		this.locationName2 = locationName2;
+	}
+	public String getComName() {
+		return comName;
+	}
+	public void setComName(String comName) {
+		this.comName = comName;
+	}
 	
 }

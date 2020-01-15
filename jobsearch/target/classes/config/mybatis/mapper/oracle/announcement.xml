@@ -55,5 +55,22 @@
 			#{locationSeq2}
 		</foreach>
 	 </select>
+	 
+	 <select id="selectBySeq" parameterType="int" resultType="announceMentVo">
+	 	select a.*, 
+	 			b.ceo_name, b.setup_date, b.com_field, b.com_name,
+	 			c.address, c.detail_address, c.extra_address, 
+	 			d.location_name, 
+	 			e.location_name2 
+	    from tbl_announcement a join tbl_company b
+	    	on a.ref_companyseq=b.com_seq
+	    join tbl_member c
+	    	on c.member_seq=b.ref_memberseq
+	    join tbl_location1 d
+	    	on a.ref_locationseq1=d.location_seq1
+	    join tbl_location2 e
+	    	on a.ref_locationseq2=e.location_seq2
+	    where ann_seq=#{annSeq}
+	 </select>
 	
 </mapper>
