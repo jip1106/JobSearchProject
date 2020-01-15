@@ -124,7 +124,7 @@
 
   <!-- Page Content -->
   <div class="container">
-    <h1 class="mt-4 mb-3">직업별 공고 리스트
+    <h1 class="mt-4 mb-3">직업별 공고 리스트aa
       <small>직업별</small>
     </h1>
     <ol class="breadcrumb">
