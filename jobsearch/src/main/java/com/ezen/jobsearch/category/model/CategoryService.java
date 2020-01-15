@@ -11,5 +11,9 @@ public interface CategoryService {
 
 	//세번째 카테고리 리스트
 	List<CategoryVO3> selectThirdCateList(String cateSeq1, String cateSeq2);
+	
+	String getSearchCateName1(String cateSeq1);
+	String getSearchCateName2(String cateSeq2);
+	List<String> getSearchCateName3List(String cateSeq3);	
 
 }

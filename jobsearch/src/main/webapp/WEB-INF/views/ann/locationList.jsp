@@ -17,6 +17,8 @@
 	var cnt = 0;
 	
 	function selectLocation2(locationSeq1,locationName1){
+		$("#selectedArea").show();
+		
 		selectedList = new Array();
 		cnt = 0;
 		
@@ -89,7 +91,7 @@
 			}
 		})
 		
-		console.log(str);
+		//console.log(str);
 		$("#locationSeq2").val(str);
 	}
 	
@@ -150,7 +152,7 @@
   		</div>
     </div>
     
-    <div class="row mb-4" style="border: 1px solid rgba(0,0,0,.125); text-align:center; height:100px;">
+    <div class="row mb-4" style="border: 1px solid rgba(0,0,0,.125); text-align:center; height:100px; display:none;" id="selectedArea">
     	<div class="col-md-2"> 선택지역 :</div>
     	<div class="col-md-2">	 
     		<span id="selectedLoc1"></span>
@@ -189,10 +191,10 @@
 				  <div class="col-lg-4 mb-4">
 			        <div class="card h-100 text-center">
 			        	<c:if test="${!empty mapData['COM_IMG']}">
-			        		<img class="card-img-top" src="" alt="회사이미지">
+			        		<img class="card-img-top" src="/jobsearch/resources/upload_images/${mapData['COM_RENAMEIMAGE'] }" alt="회사이미지" style="max-height:150px;">
 			        	</c:if>
 			        	<c:if test="${empty mapData['COM_IMG']}">
-			        		<img class="card-img-top" src="/jobsearch/image/no_image.PNG" alt="회사이미지">
+			        		<img class="card-img-top" src="/jobsearch/resources/images/no_image.PNG" alt="회사이미지" style="max-height:150px;">
 			        	</c:if>
 			          
 			          <div class="card-body">
@@ -253,7 +255,6 @@
    			조건으로 등록된 공고가 존재하지 않습니다.
 		</div>
 	</c:if>  
-
   </div>
   <!-- /.container -->
 

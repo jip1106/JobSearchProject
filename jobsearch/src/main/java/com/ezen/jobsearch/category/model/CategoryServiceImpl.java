@@ -29,4 +29,22 @@ public class CategoryServiceImpl implements CategoryService{
 		return categoryDao.selectThirdCateList(cateSeq1, cateSeq2);
 	}
 	
+	@Override
+	public String getSearchCateName1(String cateSeq1) {
+		// TODO Auto-generated method stub
+		return categoryDao.getSearchCateName1(cateSeq1);
+	}
+
+	@Override
+	public String getSearchCateName2(String cateSeq2) {
+		// TODO Auto-generated method stub
+		return categoryDao.getSearchCateName2(cateSeq2);
+	}
+
+	@Override
+	public List<String> getSearchCateName3List(String cateSeq3) {
+		// TODO Auto-generated method stub
+		return categoryDao.getSearchCateName3List(cateSeq3);
+	}	
+	
 }
