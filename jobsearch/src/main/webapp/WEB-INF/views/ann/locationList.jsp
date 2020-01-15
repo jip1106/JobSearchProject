@@ -10,6 +10,9 @@
 		cursor:pointer;
 		margin-top:3px;
 	}
+	.cursor{
+		cursor: pointer;
+	}
 </style>
 <script>
 
@@ -114,6 +117,12 @@
 		}
 		
 	}
+	
+	function annView(annSeq){
+		window.open("<c:url value='/ann/detail.do?annSeq='/>"+annSeq, annSeq+"번 공고 상세보기", 
+				"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	}
+	
 </script>
 <body>
 
@@ -186,7 +195,7 @@
 	    <div class="row mt-8" style="margin-top:5%;">
 	   	 		<c:forEach var="mapData" items="${annList }">
 
-				  <div class="col-lg-4 mb-4">
+				  <div class="col-lg-4 mb-4 cursor" onclick="annView('${mapData['ANN_SEQ']}')">
 			        <div class="card h-100 text-center">
 			        	<c:if test="${!empty mapData['COM_IMG']}">
 			        		<img class="card-img-top" src="" alt="회사이미지">

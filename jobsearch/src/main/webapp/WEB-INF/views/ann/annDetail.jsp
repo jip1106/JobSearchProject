@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Modern Business - Start Bootstrap Template</title>
+  <title>[${vo.comName }] ${vo.annTitle }</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath }/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -19,6 +19,10 @@
   <!-- Custom styles for this template -->
   <link href="${pageContext.request.contextPath }/resources/css/modern-business.css" rel="stylesheet">
 
+  <!-- Bootstrap core JavaScript -->
+  <script src="${pageContext.request.contextPath }/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath }/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+ 
 
 <style type="text/css">
 ol#breadcrumb_id {
@@ -326,11 +330,8 @@ span.cna {
     top: 21px;
 }
 </style>
-
-
 </head>
-
-<body>
+<body onload="timer();">
 
   <!-- Page Content -->
   <div class="container">
@@ -387,8 +388,7 @@ span.cna {
 					
 				</div>
 
-			</div>
-
+			</div>			
 			<div class="card-footer text-muted_photo">
 				 <a href="#">사진사진사진</a>
 			</div>
@@ -399,14 +399,14 @@ span.cna {
 					<div class="cont box">
 						<div class="status_left">
 							<div class="info_timer" data-remain-time="2442726">
-								<span class="txt">남은 기간</span> <span class="day">계산계산 시간카운트(수정)</span> <span
+								<span class="txt">남은 기간</span><br> <span id="timer"></span> <span
 									class="txt_day">일</span><!--  <span class="time">06:30:43</span> -->
 							</div>
 								<dl class="info_period">
 								<dt class="day">시작일</dt>
 								<dd class="date">${vo.annStdt }</dd>
 								<dt class="day">마감일</dt>
-								<dd class="date">${vo.annEndt }</dd>
+								<dd id="endt" class="date">${vo.annEndt }</dd>
 							</dl> 
 							
 						</div>
@@ -443,12 +443,26 @@ span.cna {
 	</div>
   <!-- /.container -->
 
-
-
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+	<script type="text/javascript">	
+		function timer(){
+			
+			var nowDate=new Date();
+			var endDate=new Date(2020,02,14,18,00,00);
+			
+			var days = (endDate - nowDate) / 1000 / 60 / 60 / 24; 
+			var daysRound = Math.floor(days); 
+			var hours = (endDate - nowDate) / 1000 / 60 / 60 - (24 * daysRound); 
+			var hoursRound = Math.floor(hours); 
+			var minutes = (endDate - nowDate) / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound); 
+			var minutesRound = Math.floor(minutes); 
+			var seconds = (endDate - nowDate) / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound); 
+			var secondsRound = Math.round(seconds); 
+			
+			document.getElementById("timer").innerHTML=daysRound + "일 " 
+					+ hoursRound + ":" + minutesRound + ":" + secondsRound
+		}
+	</script>
+ 
 </body>
 
 </html>
