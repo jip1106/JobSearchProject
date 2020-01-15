@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class CKImageController {
-	private Logger logger
+	private final Logger logger
 		=LoggerFactory.getLogger(CKImageController.class);
 		
 	@RequestMapping(value = "/imageUpload.do", method = RequestMethod.POST)
