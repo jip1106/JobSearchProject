@@ -20,6 +20,8 @@
 	var cnt = 0;
 	
 	function selectLocation2(locationSeq1,locationName1){
+		$("#selectedArea").show();
+	
 		selectedList = new Array();
 		cnt = 0;
 		

@@ -18,7 +18,24 @@
 		REF_CATESEQ1 = #{cateSeq1} 
 		and
 		REF_CATESEQ2 = #{cateSeq2}
-		
 	</select>
+	
+	 <!-- 카테고리1 이름 -->
+	 <select id = "getSearchCateName1" parameterType="string" resultType="string">
+	 	Select CATE_NAME1 FROM TBL_CATEGORY1 Where CATE_SEQ1 = #{cateSeq1}
+	 </select>
+	
+	<!-- 카테고리2 이름 -->
+	 <select id = "getSearchCateName2" parameterType="string" resultType="string">
+	 	Select CATE_NAME2 FROM TBL_CATEGORY2 Where CATE_SEQ2 = #{cateSeq2}
+	 </select>	 
+	 
+	 <select id="getSearchName3List" resultType="hashmap" parameterType="hashmap">
+	 	Select CATE_NAME3 FROM TBL_CATEGORY3
+	 	Where CATE_SEQ3 in
+	 	<foreach collection="cateList" item="cateSeq3" separator="," open="(" close=")">
+	 		#{cateSeq3}
+	 	</foreach>
+	 </select>	
 
 </mapper>

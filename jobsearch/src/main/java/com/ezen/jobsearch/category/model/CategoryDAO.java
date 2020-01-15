@@ -12,5 +12,9 @@ public interface CategoryDAO {
 	List<CategoryVO2> selectSubCateList(String cateSeq1);
 
 	List<CategoryVO3> selectThirdCateList(String cateSeq1, String cateSeq2);
+	
+	String getSearchCateName1(String cateSeq1);
+	String getSearchCateName2(String cateSeq2);
+	List<String> getSearchCateName3List(String cateSeq3);
 
 }

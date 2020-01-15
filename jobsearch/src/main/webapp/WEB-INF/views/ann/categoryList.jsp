@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:import url="/WEB-INF/views/include/header.jsp" />
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -8,12 +9,21 @@
 		cursor:pointer;
 		margin-top:3px;
 	}
+	
+	.resultArea{
+		margin-top:5%;
+		margin-bottom:5%;
+	}
 </style>
 
 <script>
 	//두번쨰 카테고리 가져오기
 	function selectCategoryList(cateSeq1,cateName1){
+		 $("#selectedArea").show();
+		 
 		 $("#cateSeq1").val(cateSeq1);
+		 $("#cateSeq2").val("");
+		 $("#cateSeq3").val("");
 		 
 		 //선택직종1
 		 $("#selectedCate1").html(cateName1);
@@ -55,12 +65,19 @@
 	
 	//세번째 카테고리 가져오기
 	function selectCategoryList2(cateSeq2,cateName2){
+		
 		selectedList = new Array();
 		cnt=0;
 		
 		var cateSeq1 = $("#cateSeq1").val();
-		//alert(cateSeq1);
-		//alert(cateSeq2);
+		
+		if(cateSeq1 == ""){
+			alert("직종1을 먼저 선택 해 주세요.");
+			return false;
+		}
+		 $("#cateSeq1").val(cateSeq1);
+		 $("#cateSeq2").val(cateSeq2);
+		 $("#cateSeq3").val("");
 		
 		//선택직종2
 		 $("#selectedCate2").html(cateName2);
@@ -79,7 +96,7 @@
 				for(var i=0; i<resData.length; i++){
 					addHtml += '<div class="col-md-4">';
 					addHtml += 	'<label for="cate3_' + i + '" onclick="addSelectedOption(\'' + resData[i].cateName3+ '\', \'' + i + '\')">';
-					addHtml += 		'<input type="checkbox" name="cateChkBox" id="cate3_' + i  + '" >' + resData[i].cateName3 ; 
+					addHtml += 		'<input type="checkbox" value="' + resData[i].cateSeq3 + '" name="cateChkBox" id="cate3_' + i  + '" >' + resData[i].cateName3 ; 
 					addHtml +=  '</label>';
 					addHtml += '</div>';
 				}
@@ -118,18 +135,54 @@
 		$("#selectedCate3").html(str);
 		
 	}
+	
+	function searchAnn(currentPage){
+				
+		var cateSeq3 = $("#cateSeq3").val();
+		
+		if($("#cateSeq3").val() == ""){
+			$("#categoryList3 input[type=checkbox]").each(function(){
+				if($(this).prop("checked")){
+					cateSeq3 += $(this).val() + ",";
+				}
+			})
+		}
+		
+		var cateSeq1 = $("#cateSeq1").val();
+		var cateSeq2 = $("#cateSeq2").val();
+		$("#cateSeq3").val(cateSeq3);
+		cateSeq3 = $("#cateSeq3").val();
+		
+		
+		if(cateSeq1 == "" || cateSeq2 == "" || cateSeq3 == ""){
+			alert("직종을 선택 해 주세요.");
+			return false;
+		}else{
+
+			var obj = document.frmSearch;
+			obj.currentPage.value = currentPage;
+			
+			obj.submit();
+
+			
+		}
+		
+	}
+	
+	
+	
 </script>
 <body>
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 
   <!-- Page Content -->
   <div class="container">
-    <h1 class="mt-4 mb-3">직업별 공고 리스트aa
-      <small>직업별</small>
+    <h1 class="mt-4 mb-3">직업별
+      <small>직종을 선택해 주세요</small>
     </h1>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        	직업별 공고 리스트
+        	
       </li>
     </ol>
     
@@ -166,7 +219,7 @@
   		</div>
     </div>
     
-    <div class="row mb-4" style="border: 1px solid rgba(0,0,0,.125); text-align:center; height:100px;">
+    <div class="row mb-4" style="border: 1px solid rgba(0,0,0,.125); text-align:center; height:100px; display:none;" id="selectedArea">
     	<div class="col-md-2">선택직종:</div>
     	
     	<div class="col-md-2">	 
@@ -182,12 +235,110 @@
     	</div>
     </div>
     
+	<div class="row">
+    	<div class="col-md-4"></div>
+    	<div class="col-md-4"></div>
+    	<div class="col-md-4" style="text-align:right;">
+    		<input type="button" value="검색" onclick = "searchAnn('1');" class="btn btn-primary">
+    	</div> 
+    </div>
+    
+    
+    <%//공고영역 %>
+    <c:if test="${!empty annList }">
+   		
+   		<div class="row resultArea">검색 결과(갯수 - ${searchCount }): 
+   			<div class="col-md-12">직종 1 : ${searchCateName1 }</div>
+   			<div class="col-md-12">직종 2 : ${searchCateName2 }</div>
+   			
+   			<c:if test="${!empty searchCateName3List }">
+   				<div class="col-md-12">
+   					직종 3 : 
+	   				<c:forEach var="searchList" items="${searchCateName3List}">
+	   					${searchList['CATE_NAME3'] }
+	   				</c:forEach>
+   				</div>
+   			</c:if>
+   		</div>
+   		
+	    <div class="row mt-8" style="margin-top:5%;">
+	   	 		<c:forEach var="mapData" items="${annList }">
+				  <div class="col-lg-4 mb-4">
+			        <div class="card h-100 text-center">
+			        	<c:if test="${!empty mapData['COM_IMG']}">
+			        		<img class="card-img-top" src="/jobsearch/resources/upload_images/${mapData['COM_RENAMEIMAGE'] }" alt="회사이미지" style="max-height:150px;">
+			        	</c:if>
+			        	<c:if test="${empty mapData['COM_IMG']}">
+			        		<img class="card-img-top" src="/jobsearch/resources/images/no_image.PNG" alt="회사이미지" style="max-height:150px;">
+			        	</c:if>
+			          
+			          <div class="card-body">
+			            <h4 class="card-title">${mapData['ANN_TITLE'] }</h4>
+			            <h6 class="card-subtitle mb-2 text-muted">${mapData['COM_NAME'] }</h6>
+			            <p class="card-text">${mapData['ANN_DESC'] }</p>
+			          </div>
+			          <div class="card-footer">
+			          	<p>지원기간 : <fmt:formatDate value ="${mapData['ANN_STDT']}" pattern="yyyy-MM-dd"/>~<fmt:formatDate value ="${mapData['ANN_ENDT']}" pattern="yyyy-MM-dd"/></p>
+			          </div>
+			        </div>
+			      </div>			      
+			   </c:forEach>
+	     </div>
+	     
+		    		 
+		<ul class="pagination justify-content-center">
+			<c:if test="${pagingInfo.firstPage>1 }">
+		      <li class="page-item">
+		        <a class="page-link" href="#" onclick="searchAnn('${pagingInfo.firstPage-1}')" aria-label="Previous">
+		          <span aria-hidden="true">«</span>
+		          <span class="sr-only">Previous</span>
+		        </a>
+		      </li>
+	     	</c:if>
+				
+				<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage }">			  			  	 
+				  <li class="page-item">
+			        <a class="page-link" href="#" onclick="searchAnn('${i}')" 
+			        	<c:if test="${i==pagingInfo.currentPage }">style="background-color:#dee2e6;"</c:if>>${i }</a>
+			      </li>
+			    </c:forEach>
+      
+			<c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
+		      <li class="page-item">
+		        <a class="page-link" href="#" aria-label="Next" onclick="searchAnn('${pagingInfo.lastPage+1}')">
+		          <span aria-hidden="true">»</span>
+		          <span class="sr-only">Next</span>
+		        </a>
+		      </li>
+	      	</c:if>
+	    </ul>
+	</c:if>	
+	
+	<c:if test="${searchCount == 0 }">
+   		<div class="row resultArea">검색 결과(갯수 - ${searchCount }): 
+   			<div class="col-md-12">직종 1 : ${searchCateName1 }</div>
+   			<div class="col-md-12">직종 2 : ${searchCateName2 }</div>
+   			
+   			<c:if test="${!empty searchCateName3List }">
+   				<div class="col-md-12">
+   					직종 3 : 
+	   				<c:forEach var="searchList" items="${searchCateName3List}">
+	   					${searchList['CATE_NAME3'] }
+	   				</c:forEach>
+	   				으로 등록된 공고가 존재하지 않습니다.
+   				</div>
+   			</c:if>
+   			
+   		</div>
+	</c:if> 	
   </div>
   <!-- /.container -->
 
-	<form>
-		<input type="hidden" name="cateSeq1" id="cateSeq1">
-	
+	<form method="post" action="<c:url value='/ann/getAnnListBycate.do'/>" name="frmSearch">
+		<input type="hidden" name="cateSeq1" id="cateSeq1" value="${param.cateSeq1 }">
+		<input type="hidden" name="cateSeq2" id="cateSeq2" value="${param.cateSeq2 }">
+		<input type="hidden" name="cateSeq3" id="cateSeq3" value="${param.cateSeq3 }">
+		<input type="hidden" name="currentPage" id="currentPage" value="1">
 	</form>
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />

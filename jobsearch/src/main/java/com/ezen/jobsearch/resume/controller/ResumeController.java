@@ -31,4 +31,10 @@ public class ResumeController {
 		
 		return "resume/resume11";
 	}
+	
+	@RequestMapping("/searchResume.do")
+	public String searchResume() {
+		return "resume/searchResume";
+	}
+	
 }

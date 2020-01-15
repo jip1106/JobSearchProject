@@ -48,7 +48,7 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 	public int selectAnnListCount(String locationSeq1, String locationSeq2) {
 		int count = 0;
 		
-		System.out.println("DAO locationSeq2" + locationSeq2 );
+		//System.out.println("DAO locationSeq2" + locationSeq2 );
 		
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		List<String> locList = new ArrayList<String>();
@@ -61,10 +61,64 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 		map.put("locList",locList);
 		
 		count = sqlSession.selectOne(nameSpace + "selectAnnListCount",map);
+		//System.out.println("AnnDAO count :: " + count);
+		
+		return count;
+	}
+
+
+	@Override
+	public List<HashMap<String, Object>> getAnnListBycate(String cateSeq1, String cateSeq2, String cateSeq3,
+			int startRow, int endRow) {
+		
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		
+		List<String> cateList = new ArrayList<String>();
+		
+		String arr[] = cateSeq3.split(",");
+	
+		for(int i=0; i<arr.length;i++) {
+			cateList.add(arr[i]);
+		}
+		
+		map.put("cateSeq1", cateSeq1);
+		map.put("cateSeq2", cateSeq2);
+		
+		map.put("startRow", startRow);
+		map.put("endRow", endRow);
+		map.put("cateList",cateList);
+		
+		List<HashMap<String,Object>> returnList = sqlSession.selectList(nameSpace + "selectAnnListBycate", map);
+				
+		
+		return returnList;
+	}
+
+
+	@Override
+	public int selectAnnListCountBycate(String cateSeq1, String cateSeq2, String cateSeq3) {
+		int count = 0;
+		
+		//System.out.println("DAO locationSeq2" + locationSeq2 );
+		
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		List<String> cateList = new ArrayList<String>();
+		
+		String arr[] = cateSeq3.split(",");
+		for(int i=0; i<arr.length;i++) {
+			cateList.add(arr[i]);
+		}
+		map.put("cateSeq1",cateSeq1);
+		map.put("cateSeq2",cateSeq2);
+		map.put("cateList",cateList);
+		
+		count = sqlSession.selectOne(nameSpace + "selectAnnListCountBycate",map);
+		
 		System.out.println("AnnDAO count :: " + count);
 		
 		return count;
 	}
+
 
 
 	@Override
