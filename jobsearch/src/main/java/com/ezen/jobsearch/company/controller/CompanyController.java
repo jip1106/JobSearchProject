@@ -67,7 +67,7 @@ public class CompanyController {
 	
 	@RequestMapping(value = "/companymypageedit.do",method = RequestMethod.POST)
 	public String insertInfo_post(@ModelAttribute MemberVO memberVo,
-								@ModelAttribute CompanyVO companyVo,@RequestParam String chkComImage, HttpSession session,HttpServletRequest request,Model model) {
+								@ModelAttribute CompanyVO companyVo, @RequestParam String chkComImage, HttpSession session,HttpServletRequest request,Model model) {
 		
 		MemberVO sessionVo=(MemberVO)session.getAttribute("loginMember");
 		

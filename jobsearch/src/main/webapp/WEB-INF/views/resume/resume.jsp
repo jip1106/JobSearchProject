@@ -198,11 +198,12 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
     	</div>
     	
         <div class="inpRdoSw sizeXL resume_right focus">
-			<span class="inOption"> <input name="sex" id="male"
-				type="radio" value="male" checked=""> <label for="male"
-				class="lbl">남</label>
-			</span> <span class="inOption"> <input name="sex" id="female"
-				type="radio" value="female"> <label for="female" class="lbl">여</label>
+			<span class="inOption"> 
+			<input name="genderType" id="male" type="radio" value="M" checked=""> 
+				<label for="male" class="lbl">남</label>
+			</span> <span class="inOption"> 
+			<input name="genderType" id="female" type="radio" value="W"> 
+			<label for="female" class="lbl">여</label>
 			</span>
 			<p class="txt_error"></p>
 		</div>
@@ -223,7 +224,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<div class="col-lg-4-2t">이름  </div>
 				<span class="point-2t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="MEMBER_NAME" class="form-control" placeholder="이름" required autofocus>
+					<input type="text" id="Insert_text" name="memberName" class="form-control" placeholder="이름" value="${vo.memberName }" required autofocus readonly>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -231,7 +232,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<div class="col-lg-4-4t">생년월일  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text"  id="birthday_term" name=" PERIOD_STDT" class="form-control" placeholder="생년월일" required autofocus readonly>
+					<input type="text"  id="birthday_term" name="birthday" class="form-control" value="${vo.birthday }" placeholder="생년월일" value="${birthday }"required autofocus readonly>
 					<!-- <input type="text" id="Insert_text" name="BIRTHDAY" class="form-control" placeholder="생년월일" required autofocus> -->
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
@@ -240,7 +241,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<div class="col-lg-4-3t">이메일  </div>
 				<span class="point-3t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="MEMBER_ID" class="form-control" placeholder="이메일" required autofocus>
+					<input type="text" id="Insert_text" name="memberId" value="${vo.memberId}" class="form-control" placeholder="이메일" required autofocus readonly>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -248,7 +249,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<div class="col-lg-4-4t">전화번호  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="PHONE" class="form-control" placeholder="전화번호" required autofocus>
+					<input type="text" id="Insert_text" name="phone" class="form-control" value="${vo.phone}" placeholder="전화번호" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -256,7 +257,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<div class="col-lg-4-4t">우편번호  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="ZIP_CODE" class="form-control" placeholder="우편번호" required autofocus>
+					<input type="text" id="Insert_text" name="zipCode" value="${vo.zipCode}" class="form-control" placeholder="우편번호" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -264,13 +265,19 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<div class="col-lg-4-2t">주소  </div>
 				<span class="point-2t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="ADDRESS" class="form-control" placeholder="주소" required autofocus>
+					<input type="text" id="Insert_text" name="address" class="form-control" value="${vo.address }" placeholder="주소" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			<div class="row mb-4 mt-4_text">
 					<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text_da" name="DETAIL_ADDRESS" class="form-control" placeholder="상세주소" required autofocus>
+					<input type="text" id="Insert_text_da" name="detailAddress" value="${vo.detailAddress}" class="form-control" placeholder="상세주소" required autofocus>
+				<div id="idchkdiv" class="chkmessage"> </div>
+				</div>
+			</div>
+			<div class="row mb-4 mt-4_text">
+					<div class="col-lg-8 form-label-group mb-2">
+					<input type="text" id="extraAddress" name="extraAddress" class="form-control" value="${vo.extraAddress}" placeholder="참고항목" required autofocus>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
