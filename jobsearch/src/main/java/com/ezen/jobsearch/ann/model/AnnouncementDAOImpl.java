@@ -119,11 +119,14 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 		return count;
 	}
 
-
-
 	@Override
 	public AnnounceMentVO selectBySeq(int annSeq) {
 		return sqlSession.selectOne(nameSpace+"selectBySeq", annSeq);
+	}
+
+	@Override
+	public int updateAnnHits(int annSeq) {
+		return sqlSession.update(nameSpace+"updateAnnHits", annSeq);
 	}
 
 }
