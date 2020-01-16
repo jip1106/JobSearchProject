@@ -157,7 +157,7 @@ public class CompanyController {
 		String msg="", url="";
 		if(cnt>0) {
 			msg="공고가 정상적으로 등록되었습니다.";
-			url="/company/companymyAnnList.do";
+			url="/company/companyMyAnnList.do";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
@@ -186,7 +186,7 @@ public class CompanyController {
 	}
 	
 	@RequestMapping("/companyMyAnnList.do")
-	public String viewMyAnn(HttpSession session,Model model) {
+	public void viewMyAnn(HttpSession session,Model model) {
 		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
 		int refCompanyseq=memberVo.getMemberSeq();
 		
@@ -194,9 +194,7 @@ public class CompanyController {
 		int count=companyService.countMyAnn(refCompanyseq);
 		List<AnnounceMentVO> list=companyService.viewMyAnn(refCompanyseq);
 		model.addAttribute("count",count);
-		model.addAttribute("list",list);
-		
-		return "company/companyMyAnnList";
+		model.addAttribute("list",list);	
 	}
 	
 	@RequestMapping("/companymypagepayment.do")
