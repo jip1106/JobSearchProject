@@ -46,4 +46,7 @@ public class CompanyServiceImpl implements CompanyService{
 	public int countMyAnn(int refCompanyseq) {
 		return companyDao.countMyAnn(refCompanyseq);
 	}
+	public int selectComSeq(int memberSeq) {
+		return companyDao.selectComSeq(memberSeq);
+	}
 }

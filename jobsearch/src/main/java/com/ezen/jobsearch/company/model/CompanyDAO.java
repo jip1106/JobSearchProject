@@ -16,5 +16,6 @@ public interface CompanyDAO {
 	int countMyAnn(int refCompanyseq);
 	String selectComImg(int refCompanyseq);
 	int deleteMyAnn(int Annseq);
+	int selectComSeq(int memberSeq);
 	
 }

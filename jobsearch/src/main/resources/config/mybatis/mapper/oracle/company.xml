@@ -63,6 +63,11 @@
 		where ref_companyseq=#{refCompanyseq}
 	</select>
 	
+	<select id="selectComSeq" parameterType="int" resultType="int">
+		select com_seq from tbl_company
+		where ref_memberseq=#{memberSeq}
+	</select>
+	
 	<select id="selectMyAnnCount" parameterType="int" resultType="int">
 		select count(*) from tbl_announcement
 		where ref_companyseq=#{refCompanyseq}

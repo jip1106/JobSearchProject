@@ -144,9 +144,11 @@ public class CompanyController {
 	@RequestMapping(value = "/companymypageannouncement.do",method = RequestMethod.POST)
 	public String insertAnn_post(@ModelAttribute AnnounceMentVO announceMentVo,HttpSession session,Model model) {
 		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
-		int memSeq=memberVo.getMemberSeq();
+		int memSeq=memberVo.getMemberSeq();	
+		//회사 번호 찾아오기
+		int comseq=companyService.selectComSeq(memSeq);
 		
-		announceMentVo.setRefCompanyseq(memSeq);
+		announceMentVo.setRefCompanyseq(comseq);
 		
 		logger.info("기업회원 공고글 등록처리 파라미터 vo ={}",announceMentVo);
 		

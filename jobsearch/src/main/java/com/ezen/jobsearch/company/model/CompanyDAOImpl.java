@@ -69,5 +69,10 @@ public class CompanyDAOImpl implements CompanyDAO{
 		return sqlSession.selectOne(namespace+"selectMyAnnCount",refCompanyseq);
 	}
 
+	@Override
+	public int selectComSeq(int memberSeq) {
+		return sqlSession.selectOne(namespace+"selectComSeq",memberSeq);
+	}
+
 
 }
