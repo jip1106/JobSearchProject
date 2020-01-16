@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
@@ -26,6 +25,8 @@ import com.ezen.jobsearch.company.model.CompanyService;
 import com.ezen.jobsearch.company.model.CompanyVO;
 import com.ezen.jobsearch.member.model.MemberService;
 import com.ezen.jobsearch.member.model.MemberVO;
+import com.ezen.jobsearch.resume.model.ResumeService;
+import com.ezen.jobsearch.resume.model.ResumeVO;
 
 @Controller
 public class MemberController {
@@ -42,6 +43,9 @@ public class MemberController {
 	//bean 등록 필요(context-common.xml) , pom.xml 수정 필요(spring security 추가)
 	@Autowired
     private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private ResumeService resumeService;
 	
 	
 	//로그인
@@ -478,6 +482,25 @@ public class MemberController {
 		public String mypagebookmark_get() {
 			return "member/mypagebookmark";
 		}
+		
+		
+		//마이페이지 - 이력서테스트
+		@RequestMapping("/member/mypageresumeTest.do")
+		public String mypageresumeTest(HttpServletRequest request, Model model) {
+			HttpSession session = request.getSession();
+			//int memberSeq = ((MemberVO)session.getAttribute("loginMember")).getMemberSeq();
+			int memberSeq = 8;
+			
+			System.out.println("로그인 회원 seq : " + memberSeq);
+			
+			List<ResumeVO> resumeList = resumeService.selectResumeList(memberSeq);
+			int resumeCount = resumeService.selectMyResumeCount(memberSeq);
+			
+			model.addAttribute("resumeList",resumeList);
+			model.addAttribute("resumeCount",resumeCount);
+			
+			return "member/mypageresume2";
+		}		
 
 	
 	

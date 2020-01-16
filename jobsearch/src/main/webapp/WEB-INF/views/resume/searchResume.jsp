@@ -18,9 +18,65 @@
 	        	인재검색
 	      </li>
 	    </ol>
-	    
 	    <div class="row">
-	    	검색조건 : 경력, 학력
+			<!-- 성별, 학력사항, 경력, 근무형태-->
+			<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-3">
+						<select class="form-control" name="careerType">
+							<option value="">성별</option>
+							<option value="M">남</option>
+							<option value="W">여</option>
+						</select>
+					</div>
+					<div class="col-md-3">
+						<select class="form-control" name="careerType">
+							<option value="">학력</option>
+							<option value="1">고등학교</option>
+							<option value="2">대학교</option>
+							<option value="3">대학원</option>
+						</select>
+					</div>
+					
+					<div class="col-md-3">
+						<select class="form-control" name="careerType">
+							<option value="">경력여부</option>
+							<option value="1">신입</option>
+							<option value="2">경력</option>
+						</select>
+					</div>
+					
+					<div class="col-md-3">
+						<select class="form-control" name="careerType">
+							<option value="">근무형태</option>
+							<option value="1">신입</option>
+							<option value="2">경력</option>
+						</select>
+					</div>	
+				</div>
+				<div class="row mt-4">
+					<div class="col-md-3">
+						<select class="form-control" name="careerType">
+							<option value="">지역</option>
+							<option value="M">남</option>
+							<option value="W">여</option>
+						</select>
+					</div>
+										
+					<div class="col-md-3">
+						<select class="form-control" name="careerType">
+							<option value="">직종</option>
+							<option value="1">신입</option>
+							<option value="2">경력</option>
+						</select>
+					</div>	
+				</div>				
+			</div>
+			
+			<div class="col-md-4">
+				<input type="button" value="검색" onclick="searchAnn('1');" class="btn btn-primary">
+			</div>
+						
 	    </div>
 	    
 		<div class="row" style="margin-top:5%; margin-bottom:5%;">
