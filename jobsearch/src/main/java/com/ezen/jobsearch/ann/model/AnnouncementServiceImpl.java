@@ -38,10 +38,13 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 		return annDao.selectAnnListCountBycate(cateSeq1, cateSeq2, cateSeq3);
 	}
 
-
-
 	public AnnounceMentVO selectBySeq(int annSeq) {
 		return annDao.selectBySeq(annSeq);
+	}
+
+	@Override
+	public int updateAnnHits(int annSeq) {
+		return annDao.updateAnnHits(annSeq);
 	}
 
 

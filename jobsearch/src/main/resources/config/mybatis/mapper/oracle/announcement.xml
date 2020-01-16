@@ -76,7 +76,7 @@
 		</foreach>
 	 </select>
 	 
-
+	<!-- 공고 상세 보기 -->
 	 <select id="selectBySeq" parameterType="int" resultType="announceMentVo">
 	 	select a.*, 
 	 			b.ceo_name, b.setup_date, b.com_field, b.com_name, b.employee_num, b.com_type,
@@ -96,6 +96,13 @@
             on a.employee_type=f.emp_type
 	    where ann_seq=#{annSeq}
 	 </select>
+	 
+	 <!-- 공고 조회수 업데이트 -->
+	 <update id="updateAnnHits" parameterType="int">
+			update tbl_announcement
+			set hits=hits+1
+			where ann_seq=#{annSeq}
+	 </update>
 
 	
 </mapper>

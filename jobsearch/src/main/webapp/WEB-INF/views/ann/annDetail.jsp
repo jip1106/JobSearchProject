@@ -448,7 +448,7 @@ span.star-border {
 						</dl>
 					</div>
 					<ul class="meta">
-                            <li id="li_class">조회수 <strong>1,171</strong></li>
+                            <li id="li_class">조회수 <strong>${vo.hits }</strong></li>
 					</ul>    
 					
 				</div>
