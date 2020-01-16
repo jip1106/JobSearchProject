@@ -66,5 +66,4 @@ public class ResumeVO {
 				+ introduceTitle + ", introduceDesc=" + introduceDesc + ", refMemberseq=" + refMemberseq + "]";
 	}        
 	
-
 }

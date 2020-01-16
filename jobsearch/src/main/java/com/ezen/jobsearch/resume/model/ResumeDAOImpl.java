@@ -2,6 +2,7 @@ package com.ezen.jobsearch.resume.model;
 
 import java.util.List;
 
+
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +39,4 @@ public class ResumeDAOImpl implements ResumeDAO{
 		int count = sqlSession.insert(namespace+"insertResumeTest", resumeVo);
 		return count;
 	}
-
 }

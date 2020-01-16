@@ -30,9 +30,9 @@ $.datepicker.setDefaults({
 });
 
 $(function() {
-	$("#birthday_term").datepicker({
+	/* $("#birthday_term").datepicker({
 
-	});
+	}); */
     $("#education_term1").datepicker({
 
     });
@@ -161,6 +161,19 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
     margin-bottom: 34px;
     margin-top: -22px;
 }
+input#extraAddress {
+    width: 107%;
+    height: calc(1.5em + .75rem + 15px);
+    position: relative;
+    left: 10.3em;
+}
+.span_resume_title {
+    color: #222;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: -2px;
+    line-height: 34px;
+}
 </style>
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 
@@ -177,6 +190,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
       <div class="col-md-8">
       
     	<!-- 이력서 제목 -->
+		<!-- <span class="span_resume_title">이력서</span> -->
 		<div class="row mb-4 mt-4">
 			<!-- <div class="col-lg-4">아이디  </div> -->
 			<div class="col-lg-8 form-label-group mb-2">
@@ -249,7 +263,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<div class="col-lg-4-4t">전화번호  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="phone" class="form-control" value="${vo.phone}" placeholder="전화번호" required autofocus>
+					<input type="text" id="Insert_text" name="phone" class="form-control" value="${vo.phone}" placeholder="전화번호" required autofocus readonly>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -257,7 +271,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<div class="col-lg-4-4t">우편번호  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="zipCode" value="${vo.zipCode}" class="form-control" placeholder="우편번호" required autofocus>
+					<input type="text" id="Insert_text" name="zipCode" value="${vo.zipCode}" class="form-control" placeholder="우편번호" required autofocus readonly>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
@@ -265,24 +279,27 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<div class="col-lg-4-2t">주소  </div>
 				<span class="point-2t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="address" class="form-control" value="${vo.address }" placeholder="주소" required autofocus>
+					<input type="text" id="Insert_text" name="address" class="form-control" value="${vo.address }" placeholder="주소" required autofocus readonly>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			<div class="row mb-4 mt-4_text">
 					<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text_da" name="detailAddress" value="${vo.detailAddress}" class="form-control" placeholder="상세주소" required autofocus>
+					<input type="text" id="Insert_text_da" name="detailAddress" value="${vo.detailAddress}" class="form-control" placeholder="상세주소" required autofocus readonly>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			<div class="row mb-4 mt-4_text">
 					<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="extraAddress" name="extraAddress" class="form-control" value="${vo.extraAddress}" placeholder="참고항목" required autofocus>
+					<input type="text" id="extraAddress" name="extraAddress" class="form-control" value="${vo.extraAddress}" placeholder="참고항목" required autofocus readonly>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			
         </div>
+   
+
+
 
         <!-- 학력사항 -->
         <span class="span_notice_title">학력사항</span>
@@ -432,7 +449,46 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<span class="point-4t-condition">필수</span>
 					<div class="col-lg-8 form-label-group mb-2-condition">
 						<select id="Insert_text_condition" class="form-control">
-							<option>불러와야함</option>
+							<option value="">선택</option>
+							<!-- 반복 시작 -->
+				        	<c:forEach var="map" items="${list }">
+				        		<option value="${map['EMP_TYPE']}">
+				        			${map['EMP_NAME']}
+				        		</option>
+				        	</c:forEach>
+        					<!-- 반복 끝 -->
+						</select>
+					<div id="idchkdiv" class="chkmessage"> </div>
+				    </div>
+				    
+				    <div class="col-lg-4-4t-condition">직종  </div>
+					<span class="point-4t-condition-mon">필수</span>
+					<div class="col-lg-8 form-label-group mb-2-condition">
+						<select id="Insert_text_condition" class="form-control">
+							<option value="">선택</option>
+							<!-- 반복 시작 -->
+				        	<c:forEach var="map" items="${list }">
+				        		<option value="${map['EMP_TYPE']}">
+				        			${map['EMP_NAME']}
+				        		</option>
+				        	</c:forEach>
+        					<!-- 반복 끝 -->
+						</select>
+					<div id="idchkdiv" class="chkmessage"> </div>
+				    </div>
+				    
+				    <div class="col-lg-4-4t-condition">지역  </div>
+					<span class="point-4t-condition-mon">필수</span>
+					<div class="col-lg-8 form-label-group mb-2-condition">
+						<select id="Insert_text_condition" class="form-control">
+							<option value="">선택</option>
+							<!-- 반복 시작 -->
+				        	<c:forEach var="map" items="${list }">
+				        		<option value="${map['EMP_TYPE']}">
+				        			${map['EMP_NAME']}
+				        		</option>
+				        	</c:forEach>
+        					<!-- 반복 끝 -->
 						</select>
 					<div id="idchkdiv" class="chkmessage"> </div>
 				    </div>

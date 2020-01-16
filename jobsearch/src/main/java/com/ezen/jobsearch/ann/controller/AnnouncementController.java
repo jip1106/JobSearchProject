@@ -3,7 +3,8 @@ package com.ezen.jobsearch.ann.controller;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.commons.logging.Log;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ import com.ezen.jobsearch.category.model.CategoryVO2;
 import com.ezen.jobsearch.common.PaginationInfo;
 import com.ezen.jobsearch.location.model.LocationService;
 import com.ezen.jobsearch.location.model.LocationVO1;
+import com.ezen.jobsearch.member.model.MemberService;
+import com.ezen.jobsearch.member.model.MemberVO;
 
 @Controller
 public class AnnouncementController {
@@ -135,7 +138,7 @@ public class AnnouncementController {
 		
 
 	@RequestMapping("/ann/detail.do")
-	public String annDetail(@RequestParam(defaultValue = "0")int annSeq, Model model) {
+	public String annDetail(@RequestParam(defaultValue = "0")int annSeq, HttpSession session, Model model) {
 		logger.info("공고 상세보기, 파라미터 annSeq={}", annSeq);
 		
 		if(annSeq==0) {
@@ -143,6 +146,14 @@ public class AnnouncementController {
 			model.addAttribute("url", "/home.do");
 			
 			return "common/message";
+		}
+		//접속 회원이 일반회원일 경우 조회수 업데이트
+		MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
+		if(memberVo != null) {
+			if(memberVo.getRegType().equals("1")) {
+				logger.info("공고 조회수 업데이트");
+				annService.updateAnnHits(annSeq);
+			}
 		}
 		
 		AnnounceMentVO vo=annService.selectBySeq(annSeq);

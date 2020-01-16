@@ -2,6 +2,8 @@ package com.ezen.jobsearch.resume.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,6 +19,7 @@ import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.resume.model.ResumeService;
 import com.ezen.jobsearch.resume.model.ResumeVO;
 
+
 @Controller
 public class ResumeController {
 	private Logger logger=
@@ -25,7 +28,7 @@ public class ResumeController {
 	@Autowired
 	private ResumeService resumeService;
 	
-	//resume화면보여주기
+
 	@RequestMapping(value="/resume/resume.do", method=RequestMethod.GET)
 	public String resume_get(HttpSession session, Model model) throws ParseException {
 		logger.info("resuem 화면보여주기");
@@ -34,8 +37,20 @@ public class ResumeController {
 		String b = sdf.format(sdf.parse(memberVo.getBirthday()));
 		memberVo.setBirthday(b);
 		
+		//List<Map<String, Object>> list=resumeService.selectEmp();
+		
+		//model.addAttribute("list", list);
 		model.addAttribute("vo", memberVo);
 		return "resume/resume";
+	}
+	
+	@RequestMapping("/ann/annDetail.do")
+	public void annD(){
+		
+	}
+	@RequestMapping("/company/companypopup.do")
+	public void cp(){
+		
 	}
 	
 	

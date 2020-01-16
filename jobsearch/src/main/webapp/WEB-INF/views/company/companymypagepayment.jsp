@@ -63,7 +63,17 @@ button.btn.com_pay{
     color: #fff;
     background-color: #007bff;
     border-color: #007bff
-
+}
+td#ListTitle {
+    padding-right: 30px;
+    width: 100px;
+}
+td#ListDesc {
+    padding-right: 80px;
+}
+td#ListChk {
+    padding-right: 40px;
+}
 </style>
 <!-- head end -->
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -71,54 +81,54 @@ button.btn.com_pay{
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 <c:import url="/WEB-INF/views/include/companymypagenavitop.jsp" />
 <!-- section start -->
-<h2>공고글 관리하기</h2>
+<h2>결제관련</h2>
 <a href="<c:url value='/company/companymypageannouncement.do'/>">공고글 작성하기</a>
 <hr>
-<table>
-<!-- 반복 시작 -->
 <c:forEach var="vo" items="${list}">
-<tr><td>
- <div class="row mb-4 mt-4_text"> 
-				<!--<div class="col-lg-4-2t">공고글  </div>  -->
-				<div class="col-lg-8 form-label-group mb-2">					
-					<button class="collapsible">${vo.annSeq}    ${vo.annTitle}</button>					
-					<div class="content">
-					<table>
-						<tr>
-							<td>제목</td>
-							<td>${vo.annTitle}</td>													
-						</tr>
-						<tr>
-							<td>내용</td>
-							<td>${vo.annDesc}</td>														
-						</tr>
-						<tr>
-							<td>게시일</td>
-							<td>${vo.annStdt}</td>
-						</tr>
-						<tr>
-							<td>마감일</td>
-							<td>${vo.annEndt}</td>	
-						</tr>
-					</table>
-					</div> 
-				<div id="idchkdiv" class="chkmessage"> </div>
-				
-				</div>
-			</div>
- </td> 
- <td>
- <input type="checkbox" class="payment">
- <td>
- 
- <td id="com_cont_del">
- <a type="button" class="delete" href="<c:url value='/company/companyDeleteMyAnn.do?annSeq=${vo.annSeq}'/>">삭제</a>
- </td>
- 
+	마감까지!
+	<table>
+	<!-- 반복 시작 -->
+	
+		
+			<tr><td>
+			 <div class="row mb-4 mt-4_text"> 
+							<!--<div class="col-lg-4-2t">공고글  </div>  -->
+							<div class="col-lg-8 form-label-group mb-2">					
+								<button class="collapsible">${vo.annSeq}    ${vo.annTitle}</button>					
+								<div class="content">
+								<table>
+									<tr>
+										<td id="ListTitle">제목</td>
+										<td id="ListDesc">${vo.annTitle}</td>																													
+									</tr>
+									<tr>
+										<td id="ListTitle">내용</td>
+										<td id="ListDesc">${vo.annDesc}</td>																					
+									</tr>
+									<tr>
+										<td id="ListTitle">게시일</td>
+										<td id="ListDesc">${vo.annStdt}</td>									
+									</tr>
+									<tr>
+										<td id="ListTitle">마감일</td>
+										<td id="ListDesc">${vo.annEndt}</td>									
+									</tr>
+									<tr>
+										<td>결제 옵션</td>
+										<td>만원<input type="checkbox" name="1Chk">2만원<input type="checkbox" name="2Chk">3만원<input type="checkbox" name="3Chk"></td>
+										
+									</tr>
+								</table>
+								</div> 
+							<div id="idchkdiv" class="chkmessage"> </div>
+							
+							</div>
+						</div>
+			 </td>  
+		
+		 <!-- 반복 끝 --> 
+	 </table>
  </c:forEach>
- <!-- 반복 끝 --> 
- </table>
- 
  <hr>
  <br>총액<br><br><!-- 계산 들어갈 여유 공간 -->
  <hr>

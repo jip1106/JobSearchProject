@@ -2,6 +2,7 @@ package com.ezen.jobsearch.resume.model;
 
 import java.util.List;
 
+
 public interface ResumeDAO {
 	//자기 자신 이력서 조회
 	List<ResumeVO> selectResumeList(int memberSeq);

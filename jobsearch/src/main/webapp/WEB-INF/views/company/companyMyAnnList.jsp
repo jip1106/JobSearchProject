@@ -173,7 +173,7 @@ strong.attach_count {
 	
 	<!-- 이력서 등록하기 -->
 		<!-- <div class="col-lg-4"><a href="#" class="btn btn-primary" onclick="resume_apply">이력서등록하기</a></div> -->
-			<strong class="attach_count">총 <span class="count_span">2</span>건</strong>
+			<strong class="attach_count">총 <span class="count_span">${count}</span>건</strong>
 			
 	<!-- 반복문 사용해서 통째로 뿌려주기 
 	if문 사용해서 뿌려리기-->
@@ -185,7 +185,7 @@ strong.attach_count {
                <strong class="tit">
                  <a href="#">
                 	 <span class="point_color">${vo.annTitle } </span>
-                	 <span class="point_color_comp">삼성전자반도체</span>
+                	 <span class="point_color_comp">지원현황</span>
                 	 <div class="point_color_gongchae">${vo.annTitle }</div>
                	 </a>
                </strong>
@@ -193,7 +193,7 @@ strong.attach_count {
                <span class="career_small">${vo.careerType}</span>|<span class="career_small2">${vo.careerDesc}</span>|<span class="career_small2">${vo.refLocationseq1}</span>                        
             </div>
             <span class="txt_date">${vo.annStdt }</span>
-            <button type="button" class="btn_edit_complete" onclick="#">지원하기</button>
+            <button type="button" class="btn_edit_complete" onclick="location.href = '<c:url value="/company/companymypageannedit.do?annSeq=${vo.annSeq}"/>'">수정하기</button>
             <div class="wrap_manage_btn">
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete" onclick = "location.href = '<c:url value="/company/companyDeleteMyAnn.do?annSeq=${vo.annSeq}"/>'">
             		<span class="X">X</span>

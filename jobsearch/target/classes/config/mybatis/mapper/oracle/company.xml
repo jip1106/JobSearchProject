@@ -63,6 +63,16 @@
 		where ref_companyseq=#{refCompanyseq}
 	</select>
 	
+	<select id="selectComSeq" parameterType="int" resultType="int">
+		select com_seq from tbl_company
+		where ref_memberseq=#{memberSeq}
+	</select>
+	
+	<select id="selectMyAnnCount" parameterType="int" resultType="int">
+		select count(*) from tbl_announcement
+		where ref_companyseq=#{refCompanyseq}
+	</select>
+	
 	<select id="selectComImg" parameterType="int" resultType="String">
 		select com_renameimage from tbl_company
 		where ref_memberseq=#{refMemberseq}
@@ -73,5 +83,9 @@
 		where ANN_SEQ=#{annSeq}
 	</delete>
 	
+	<select id="selectMyAnnByAnnSeq" parameterType="int" resultType="announceMentVo">
+		select ann_title,ann_desc,to_char(ann_stdt,'yyyy-mm-dd')as ann_stdt,to_char(ann_endt,'yyyy-mm-dd')as ann_endt,career_type,career_desc,employee_type,salary,age_limit,hits,reg_date,ref_cateseq1,ref_cateseq2,ref_cateseq3,ref_locationseq1,ref_locationseq2 from tbl_announcement
+		where ann_seq=#{annSeq}
+	</select>
 		
 </mapper>
