@@ -21,7 +21,6 @@ public class MemberVO extends SearchVO{
 	 private String delFlag; 
 	 private String delDate;
 	 
-	
 	 
 	public int getMemberSeq() {
 		return memberSeq;

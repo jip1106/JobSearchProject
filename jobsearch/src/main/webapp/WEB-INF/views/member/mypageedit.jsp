@@ -86,7 +86,28 @@ function autoHypenPhone(str){
 				event.preventDefault();
 			}
 		});
+		
+	$(".btn_Com_Info_sub").click(function(){
+		$("#divfile").html('<input type="file" name="upfile" id="upfile" accept="image/*" onchange="getThumbnailPrivew()">');	
+		
 	});
+	});		
+	
+	
+//썸네일 펑션
+function getThumbnailPrivew(html, $target) {
+
+    var fileInput = document.getElementById("upfile");
+    var file = fileInput.files[0];
+    var reader = new FileReader();
+    
+    reader.onload = function(e){
+    	$("#comImgPre").attr("src","")
+    	$("#comImgPre").attr("src",e.target.result);
+    };
+    reader.readAsDataURL(file);
+}
+
 </script>
 <style type="text/css">
 .span_title_edit{
@@ -234,6 +255,24 @@ input.btn.btn-lg.btn-primary.btn-block.text-edit {
     top: 41px;
     left: 219px;
 }
+input#upfile{
+	visibility: hidden;
+}
+.comImg_photo{
+    position: absolute;
+    top: 141px;
+    right: 80px;
+    width: 120px;
+    height: 160px;
+    border: 1px solid #e9e9e9;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #fff;
+}
+label.btn_Com_Info_sub {
+    position: relative;
+    top: 2px;
+}
 </style> 
 
 
@@ -244,14 +283,36 @@ input.btn.btn-lg.btn-primary.btn-block.text-edit {
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 <c:import url="/WEB-INF/views/include/mypagenavitop.jsp" />
 <!-- section start -->
-<form name="frm_mypageedit" method="post" action="<c:url value='/member/mypageedit.do'/>">
+<form name="frm_mypageedit" method="post" action="<c:url value='/member/mypageedit.do'/>" enctype="multipart/form-data">
   <div class="span_title_edit">회원정보수정</div>
-  <div class="resume_photo">
+  <!-- <div class="resume_photo">
             <a href="##" class="box_photo" data-api_type="layer" data-api_id="basic_photo">
                +<br><span>사진추가</span>  </a>
             <a class="photo_delete" href="##" style="display:none;">
             <span class="blind">사진 삭제</span></a>
     	</div>
+    	 -->
+   
+   		<div class="comImg_photo"> 		 	
+       <div class="comImgPre">
+      	<c:choose>
+      	<c:when test="${empty vo.profileRenameimg}" >
+	       	<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/images/logo_default.gif'/>" style="width:120px; height:160px">
+	       	<input type="file" name="upfile" id="upfile" accept="image/*" onchange="getThumbnailPrivew()"></c:when>
+       	<c:when test="${!empty vo.profileRenameimg}">
+       		<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/upload_images/${vo.profileRenameimg}'/>" style="width:120px; height:160px"></c:when>       	
+       	</c:choose>
+       	
+       	<input type="hidden" name="chkComImage" value="${vo.profileRenameimg}">
+       	             
+	     <br> <!-- 로고이미지 -->	         
+	     <label for="upfile" class="btn_Com_Info_sub" >사진선택</label>
+	     <div id="divfile"></div>
+	   </div>	     
+            <a class="photo_delete" href="##" style="display:none;">
+            <span class="blind">사진 삭제</span></a>
+    	</div>
+    	
     	
         <div class="inpRdoSw sizeXL resume_right focus">
 			<span class="inOption"> 

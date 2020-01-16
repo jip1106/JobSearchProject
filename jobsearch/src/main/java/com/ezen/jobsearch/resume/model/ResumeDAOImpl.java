@@ -21,5 +21,17 @@ public class ResumeDAOImpl implements ResumeDAO{
 	public List<Map<String, Object>> selectEmp() {
 		return sqlSession.selectList(namespace+"selectEmp");
 	}
+
+
+	@Override
+	public List<Map<String, Object>> selectCate() {
+		return sqlSession.selectList(namespace+"selectCate");
+	}
+
+
+	@Override
+	public List<Map<String, Object>> selectLoca() {
+		return sqlSession.selectList(namespace+"selectLoca");
+	}
 	
 }

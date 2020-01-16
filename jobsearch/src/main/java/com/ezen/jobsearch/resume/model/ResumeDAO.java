@@ -5,5 +5,7 @@ import java.util.Map;
 
 public interface ResumeDAO {
 	List<Map<String, Object>> selectEmp();
+	List<Map<String, Object>> selectCate();
+	List<Map<String, Object>> selectLoca();
 
 }

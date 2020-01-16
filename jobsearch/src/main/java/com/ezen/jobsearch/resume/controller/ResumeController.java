@@ -37,8 +37,12 @@ public class ResumeController {
 		memberVo.setBirthday(b);
 		
 		List<Map<String, Object>> list=resumeService.selectEmp();
+		List<Map<String, Object>> list_cate=resumeService.selectCate();
+		List<Map<String, Object>> list_loca=resumeService.selectLoca();
 		
 		model.addAttribute("list", list);
+		model.addAttribute("list_cate", list_cate);
+		model.addAttribute("list_loca", list_loca);
 		model.addAttribute("vo", memberVo);
 		return "resume/resume";
 	}

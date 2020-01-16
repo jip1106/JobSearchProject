@@ -6,4 +6,11 @@
 	<select id="selectEmp" resultType="map">
 		select * from tbl_emptype order by emp_type
 	</select>
+	<select id="selectLoca" resultType="map">
+		select * from tbl_location1 order by location_seq1
+
+	</select>
+	<select id="selectCate" resultType="map">
+		select * from tbl_category1 order by cate_seq1
+	</select>
 </mapper>

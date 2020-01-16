@@ -120,7 +120,8 @@
 		update tbl_member
 		set MEMBER_PWD=#{memberPwd}, MEMBER_NAME=#{memberName}, ZIP_CODE=#{zipCode}, 
 		ADDRESS=#{address}, DETAIL_ADDRESS=#{detailAddress}, EXTRA_ADDRESS=#{extraAddress}, 
-		PHONE=#{phone},	GENDER_TYPE=#{genderType}, BIRTHDAY=#{birthday}, PROFILE_IMG=#{profileImg} 
+		PHONE=#{phone},	GENDER_TYPE=#{genderType}, BIRTHDAY=#{birthday}, PROFILE_IMG=#{profileImg} , 
+		PROFILE_RENAMEIMG=#{profileRenameimg}
 		where MEMBER_ID=#{memberId}
 	</update>
 	

@@ -211,7 +211,7 @@ input#extraAddress {
             <span class="blind">사진 삭제</span></a>
     	</div>
     	
-        <div class="inpRdoSw sizeXL resume_right focus">
+       <!--  <div class="inpRdoSw sizeXL resume_right focus">
 			<span class="inOption"> 
 			<input name="genderType" id="male" type="radio" value="M" checked=""> 
 				<label for="male" class="lbl">남</label>
@@ -220,7 +220,7 @@ input#extraAddress {
 			<label for="female" class="lbl">여</label>
 			</span>
 			<p class="txt_error"></p>
-		</div>
+		</div>	 -->
 		
         <div class="row mb-4 mt-4_text">
 				<div class="col-lg-8 form-label-group mb-2">
@@ -449,7 +449,7 @@ input#extraAddress {
 				<span class="point-4t-condition">필수</span>
 					<div class="col-lg-8 form-label-group mb-2-condition">
 						<select id="Insert_text_condition" class="form-control">
-							<option value="">선택</option>
+							<option value="">근무형태 선택</option>
 							<!-- 반복 시작 -->
 				        	<c:forEach var="map" items="${list }">
 				        		<option value="${map['EMP_TYPE']}">
@@ -465,13 +465,14 @@ input#extraAddress {
 					<span class="point-4t-condition-mon">필수</span>
 					<div class="col-lg-8 form-label-group mb-2-condition">
 						<select id="Insert_text_condition" class="form-control">
-							<option value="">선택</option>
+							<option value="">직종 선택</option>
 							<!-- 반복 시작 -->
-				        	<c:forEach var="map" items="${list }">
-				        		<option value="${map['EMP_TYPE']}">
-				        			${map['EMP_NAME']}
+				        	<c:forEach var="map" items="${list_cate }">
+				        		<option value="${map['CATE_SEQ1']}">
+				        			${map['CATE_NAME1']}
 				        		</option>
 				        	</c:forEach>
+				        	
         					<!-- 반복 끝 -->
 						</select>
 					<div id="idchkdiv" class="chkmessage"> </div>
@@ -481,13 +482,14 @@ input#extraAddress {
 					<span class="point-4t-condition-mon">필수</span>
 					<div class="col-lg-8 form-label-group mb-2-condition">
 						<select id="Insert_text_condition" class="form-control">
-							<option value="">선택</option>
+							<option value="">지역 선택</option>
 							<!-- 반복 시작 -->
-				        	<c:forEach var="map" items="${list }">
-				        		<option value="${map['EMP_TYPE']}">
-				        			${map['EMP_NAME']}
+				        	<c:forEach var="map" items="${list_loca }">
+				        		<option value="${map['LOCATION_SEQ1']}">
+				        			${map['LOCATION_NAME']}
 				        		</option>
 				        	</c:forEach>
+
         					<!-- 반복 끝 -->
 						</select>
 					<div id="idchkdiv" class="chkmessage"> </div>
@@ -538,7 +540,7 @@ input#extraAddress {
 					<span class="col-lg-4-newcompany_4t_3">퇴사사유</span>
 					<!-- <span class="point-4t-c_2">필수</span> -->
 				<div class="col-lg-8 form-label-group mb-2-career">
-					<textarea id="textarea_career" class="form-control" name="content" placeholder="퇴사사유" required autofocus></textarea>
+					<textarea id="textarea_career" class="form-control" name="content" placeholder="퇴사사유" style="resize:none" required autofocus></textarea>
 				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 				
@@ -561,7 +563,7 @@ input#extraAddress {
 		 <!--  </div> -->
       	   <!-- <div class="row mb-4 mt-4-it"> -->
 			<div class="col-lg-8 form-label-group mb-2">
-				<textarea id="textarea_it" class="form-control" name="content" placeholder="자소서 내용" required autofocus></textarea>
+				<textarea id="textarea_it" class="form-control" name="content" placeholder="자소서 내용" style="resize:none" required autofocus></textarea>
 				<span class="txsub">남은 글자수 : </span>
 				<input type="text" readonly  value="1000" name="counter" id="counter" class="form-control"></span> 
 			<div id="idchkdiv" class="chkmessage"> </div>
