@@ -322,7 +322,7 @@ span.point-2t_age {
 	    			<option value="">선택</option>
 	    				    	
 	    			<c:forEach var="locationVo" items="${locationList1 }">
-	    			<option  value="${locationVo.locationSeq1 }" <c:if test="${annVo.refLocationseq1 == locationVo.locationSeq1 }">selected</c:if>>${locationVo.locationName }</option>
+	    			<option  value="${locationVo.locationSeq1 }">${locationVo.locationName }</option>
 	    			</c:forEach>
 	    				    
 		   		</select>
@@ -344,7 +344,7 @@ span.point-2t_age {
 					<option value="">선택</option>
 				
 				<c:forEach var="categoryVo" items="${categoryList1}">
-					<option value="${categoryVo.cateSeq1}" <c:if test="${annVo.refCateseq1 == categoryVo.cateSeq1}">selected</c:if>>${categoryVo.cateName1 }</option>
+					<option value="${categoryVo.cateSeq1}">${categoryVo.cateName1 }</option>
 				</c:forEach>				
 				</select>		
 			</td>			
@@ -361,7 +361,7 @@ span.point-2t_age {
 		</tr>
 		<tr>
 			<td colspan="4">
-				<div id="caution" class="chkmessage">*선택하신 항목은 게시후 검색시 중요하게 사용되므로 신중히 선택해주시기 바랍니다. </div>
+				<div id="caution" class="chkmessage">*작성시 등록하셨던 지역, 직업군설정은 수정하지않으시면 동일하게 적용됩니다. </div>
 			</td>
 		</tr>	
 	</table>
@@ -384,7 +384,8 @@ span.point-2t_age {
 		 				<input type="hidden" value="${annVo.refLocationseq2}" id="lc2_selected" name="refLocationseq2"> 
 		 				<input type="hidden" value="${annVo.refCateseq1}" id="ca_selected" name="refCateseq1">
 		 				<input type="hidden" value="${annVo.refCateseq2}" id="ca2_selected" name="refCateseq2"> 
-		 				<input type="hidden" value="${annVo.refCateseq3}" id="ca3_selected" name="refCateseq3">			
+		 				<input type="hidden" value="${annVo.refCateseq3}" id="ca3_selected" name="refCateseq3">
+		 				<input type="hidden" value="${annVo.annSeq}" name="annSeq">			
 	 				</div>				
 				</div>
 			</div>

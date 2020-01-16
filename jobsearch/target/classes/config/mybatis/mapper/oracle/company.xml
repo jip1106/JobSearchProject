@@ -46,6 +46,12 @@
 		)
 	</insert>
 	
+	<update id="updateMyAnn" parameterType="announceMentVo">
+		update tbl_announcement
+		set ann_title=#{annTitle},ann_desc=#{annDesc},ann_stdt=#{annStdt},ann_endt=#{annEndt},career_type=#{careerType},career_desc=#{careerDesc},employee_type=#{employeeType},salary=#{salary},age_limit=#{ageLimit},ref_cateseq1=#{refCateseq1},ref_cateseq2=#{refCateseq2},ref_cateseq3=#{refCateseq3},ref_locationseq1=#{refLocationseq1},ref_locationseq2=#{refLocationseq2}
+		where ann_seq=#{annSeq}
+	</update>
+	
 	<update id="updateComMem" parameterType="memberVo">
 		update tbl_member
 		set member_name=#{memberName},zip_code=#{zipCode},address=#{address},detail_address=#{detailAddress},extra_address=#{extraAddress},phone=#{phone}

@@ -74,7 +74,32 @@ td#ListDesc {
 td#ListChk {
     padding-right: 40px;
 }
+span#deadLine {
+    float: left;
+}
+span#days {
+    float: right;
+}
+p#countDay {
+    float: right;
+}
 </style>
+
+<script type="text/javascript">
+
+function itemSum(frm)
+{
+   var sum = 0;
+   var count = frm.chkbox.length;
+   for(var i=0; i < count; i++ ){
+       if( frm.chkbox[i].checked == true ){
+	    sum += parseInt(frm.chkbox[i].value);
+       }
+   }
+   frm.total_sum.value = sum;
+}
+
+</script>
 <!-- head end -->
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 <body>
@@ -84,8 +109,13 @@ td#ListChk {
 <h2>결제관련</h2>
 <a href="<c:url value='/company/companymypageannouncement.do'/>">공고글 작성하기</a>
 <hr>
+
 <c:forEach var="vo" items="${list}">
-	마감까지!
+<c:set var="sum" value='' />
+	<div>
+		<span id="deadLine">마감까지!</span>
+		<span id="days">일 남음</span><p id="countDay">10</p>
+	</div>
 	<table>
 	<!-- 반복 시작 -->
 	
@@ -115,7 +145,10 @@ td#ListChk {
 									</tr>
 									<tr>
 										<td>결제 옵션</td>
-										<td>만원<input type="checkbox" name="1Chk">2만원<input type="checkbox" name="2Chk">3만원<input type="checkbox" name="3Chk"></td>
+										<td>만원<input type="checkbox" value="10000">
+										2만원<input type="checkbox" value="20000">
+										3만원<input type="checkbox"  value="30000">
+										</td>
 										
 									</tr>
 								</table>
