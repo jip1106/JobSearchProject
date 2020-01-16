@@ -329,6 +329,62 @@ span.cna {
     position: relative;
     top: 21px;
 }
+.sri_btn_lg span.sri_btn_immediately {
+    border:0;
+    outline:0;
+    color: #fff;
+    background: #ff8d5a;
+    
+}
+.sri_btn_lg span {
+    display: inline-block;
+    width: 122px;
+    height: 54px;
+    border: 1px solid #dce2ef;
+    color: #8a92a6;
+    font-family: "Malgun Gothic",sans-serif !important;
+    font-size: 20px !important;
+    font-weight: bold;
+    letter-spacing: -2px;
+    line-height: 54px;
+    background: #fff;
+}
+
+button.sri_btn_lg.for_btn_event {
+    border: 0;
+    outline: 0;
+    background-color: #ff8d59;
+    position: absolute;
+    left: 42em;
+    top: -7px;
+}
+.cont .meta {
+    clear: both;
+    position: relative;
+    padding-top: 12px;
+    border-top: 1px solid #e5e6eb;
+    font-size: 0;
+    line-height: 18px;
+    text-align: right;
+    margin-bottom: -6px;
+}
+img.yellow_star {
+    resize: both;
+    width: 31px;
+}
+img.yellow_star {
+    resize: both;
+    width: 31px;
+   
+}
+
+span.star-border {
+    position: absolute;
+    top: -5px;
+    left: 38.2em;
+    border: 1px solid #d2d2d2;
+    padding: 10px 10px;
+}
 </style>
 </head>
 <body onload="timer();">
@@ -352,6 +408,12 @@ span.cna {
 			    	<a href="#" class="company_title" target="_blank">${vo.comName }</a>
 			     </div>
 			        <span class="company_title2">${vo.annTitle }</span>
+			        <span class="star-border">
+			        	<img class="yellow_star" src="<c:url value='/resources/images/yellow_star.png'/>">
+			        </span>
+			        <button class="sri_btn_lg for_btn_event">
+						<span class="sri_btn_immediately">즉시지원</span>
+					</button>
 		    </div>
 		    
 				<div class="cont">
@@ -385,6 +447,9 @@ span.cna {
 							<dd>${vo.locationName } ${vo.locationName2 }</dd>
 						</dl>
 					</div>
+					<ul class="meta">
+                            <li id="li_class">조회수 <strong>1,171</strong></li>
+					</ul>    
 					
 				</div>
 
