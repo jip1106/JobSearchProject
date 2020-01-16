@@ -42,7 +42,7 @@
 		)
 		values
 		(
-		#{annSeq},#{annTitle},#{annDesc},#{annStdt},#{annEndt},#{careerType},#{careerDesc},#{employType},#{salary},#{ageLimit},#{refCateseq1},#{refCateseq2},#{refCateseq3},#{refLocationseq1},#{refLocationseq2},#{refCompanyseq}
+		#{annSeq},#{annTitle},#{annDesc},#{annStdt},#{annEndt},#{careerType},#{careerDesc},#{employeeType},#{salary},#{ageLimit},#{refCateseq1},#{refCateseq2},#{refCateseq3},#{refLocationseq1},#{refLocationseq2},#{refCompanyseq}
 		)
 	</insert>
 	
@@ -73,4 +73,5 @@
 		where ANN_SEQ=#{annSeq}
 	</delete>
 	
+		
 </mapper>

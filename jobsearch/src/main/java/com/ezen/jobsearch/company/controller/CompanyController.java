@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -48,6 +49,9 @@ public class CompanyController {
 	private MemberService mService;
 	@Autowired
 	private FileUploadUtil fileUtil;
+	@Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+	
 	
 	//기업마이페이지 - 회원정보수정
 	@RequestMapping(value = "/companymypageedit.do",method = RequestMethod.GET)
@@ -68,6 +72,8 @@ public class CompanyController {
 	@RequestMapping(value = "/companymypageedit.do",method = RequestMethod.POST)
 	public String insertInfo_post(@ModelAttribute MemberVO memberVo,
 								@ModelAttribute CompanyVO companyVo,@RequestParam String chkComImage, HttpSession session,HttpServletRequest request,Model model) {
+		logger.info("기업회원 정보수정 처리, 파라미터companyVO ::::::::: {}, memberVO={}",companyVo,memberVo );
+
 		
 		MemberVO sessionVo=(MemberVO)session.getAttribute("loginMember");
 		
@@ -77,7 +83,6 @@ public class CompanyController {
 		memberVo.setMemberSeq(memberSeq);
 		companyVo.setRefMemberseq(memberSeq);
 		
-		logger.info("companyVO ::::::::: {}",companyVo);
 		
 		List<Map<String,Object>> list= fileUtil.fileUpload(request);
 		
@@ -95,7 +100,7 @@ public class CompanyController {
 		if(comRenameimage==null||comRenameimage.isEmpty()) {
 			companyVo.setComRenameimage(dbImgname);
 		}			
-		logger.info("기업회원 정보수정 처리 파라미터 memberVo={},companyVo={}",memberVo,companyVo);
+		logger.info("변경후 파라미터 memberVo={},companyVo={}",memberVo,companyVo);
 		//둘다 업데이트 처리해줌
 		int cnt=companyService.updateComMem(memberVo);
 		int cnt2=companyService.updateComInfo(companyVo);
@@ -156,7 +161,7 @@ public class CompanyController {
 		
 		return "common/message";
 	}
-	@RequestMapping("/companymypagepayment.do")
+	@RequestMapping("/companyMyAnnList.do")
 	public void viewMyAnn(HttpSession session,Model model) {
 		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
 		int refCompanyseq=memberVo.getMemberSeq();
@@ -167,6 +172,18 @@ public class CompanyController {
 		
 		model.addAttribute("list",list);
 	}
+	@RequestMapping("/companymypagepayment.do")
+	public void payment(HttpSession session,Model model) {
+		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
+		int refCompanyseq=memberVo.getMemberSeq();
+		
+		logger.info("기업회원 내 결제용 공고글 리스트 보여주기 파라미터 refCompanyseq={}",refCompanyseq);		
+		
+		List<AnnounceMentVO> list=companyService.viewMyAnn(refCompanyseq);
+		
+		model.addAttribute("list",list);
+	}
+	
 	@RequestMapping("/companyDeleteMyAnn.do")
 	public String deleteMyAnn(@RequestParam(defaultValue = "0")int annSeq,Model model) {
 		//후에 추가 검증처리
@@ -175,7 +192,7 @@ public class CompanyController {
 		
 		int cnt=companyService.deleteMyAnn(annSeq);
 		
-		String msg="삭제 실패하였습니다.",url="/company/companymypagepayment.do";
+		String msg="삭제 실패하였습니다.",url="/company/companyMyAnnList.do";
 		if(cnt>0) {
 			msg=annSeq+"번 공고글이 삭제되었습니다.";
 		}
@@ -185,5 +202,44 @@ public class CompanyController {
 		return "common/message";
 	}
 	
+	@RequestMapping(value="/companyPwdChk.do", method = RequestMethod.GET) 
+  	public String mypageeditcheck_get() {
+  		logger.info("비밀번호체크 화면보여주기");  		
+  		return "company/companyPwdChk"; 
+	}
+
+  	@RequestMapping(value="/companyPwdChk.do", method = RequestMethod.POST)
+	public String mypageeditcheck_post(@RequestParam String memberPwd,
+			HttpSession session, Model model) {
+  		
+  		MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
+		String memberId = memberVo.getMemberId();	
+  		String dbPwd = mService.selectPwd(memberId);
+  		boolean pwdChk = false;
+  		
+  		//비밀번호 비교
+		pwdChk = passwordEncoder.matches(memberPwd, dbPwd);
+  		
+		if(pwdChk) {
+			String url = "/company/companymypageedit.do";
+			String message = "비밀번호 확인";
+			System.out.println("비밀번호 확인");
+			
+			model.addAttribute("msg", message);
+			model.addAttribute("url", url);
+			
+		}else {
+			String url = "/company/companyPwdChk.do";
+			String message = "비밀번호가 일치하지 않습니다.";
+			
+			System.out.println("비밀번호 불일치");
+			
+			model.addAttribute("msg", message);
+			model.addAttribute("url", url);
+		}
+		
+		return "common/message";
+  		
+  	}
 	
 }

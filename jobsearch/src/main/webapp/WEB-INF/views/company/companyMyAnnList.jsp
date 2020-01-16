@@ -20,6 +20,7 @@
 }
 ul.resume_notice {
     margin-left: -16px;
+    margin-bottom: -28px;
 }
 a.btn.btn-primary {
     color: #ffffff;
@@ -67,7 +68,7 @@ a.btn.btn-primary {
 	margin-right: 9px;
 }
 
-.point_color_date{
+.point_color_comp{
 	color: black;
 }
 .list_manage_resume .info_resume .desc {
@@ -140,89 +141,74 @@ span.X {
 }
 .info_resume {
     height: 121px;
+    margin-bottom: 27px;
+}
+
+strong.attach_count {
+    width: 132px;
+    position: relative;
+    top: -53px;
+    left: 18em;
+    font-size: 32px;
+}
+.point_color_gongchae {
+    color: #ff521b;
+    font-size: 17px;
+    margin-top: -2px;
 }
 </style>
-
-
-<!-- head end -->
 <c:import url="/WEB-INF/views/include/headend.jsp" />
+<!-- head end -->
+
 <body>
 <c:import url="/WEB-INF/views/include/navi.jsp" />
-<c:import url="/WEB-INF/views/include/mypagenavitop.jsp" />
+<c:import url="/WEB-INF/views/include/companymypagenavitop.jsp" />
+
 <!-- section start -->
-	<div class="span_title_resume">이력서현황</div>
+	<div class="span_title_resume">공고 관리</div>
 	<ul class="resume_notice">
-		<!-- <li>이력서는 최대 10개까지 작성하여 등록 가능합니다.</li> -->
-		<li>이력서 지원은 1개의 이력서만 가능합니다.</li>
-		<li>미완성 이력서는 이력서 등록이 완료되지 않은 상태에서 저장된 이력서입니다.</li>
-	</ul>
+		<li>공고 관리페이지입니다.</li>
+		<li>공고를 누르시면 더 자세한 정보를 볼수 있습니다.</li>
+	</ul> 
 	
 	<!-- 이력서 등록하기 -->
-		<div class="col-lg-4"><a href="<c:url value='/resume/resume.do'/>" class="btn btn-primary" >이력서등록하기</a></div>
+		<!-- <div class="col-lg-4"><a href="#" class="btn btn-primary" onclick="resume_apply">이력서등록하기</a></div> -->
 			<strong class="attach_count">총 <span class="count_span">2</span>건</strong>
 			
 	<!-- 반복문 사용해서 통째로 뿌려주기 
-	if문 사용해서 작성중일때 1번뿌려주고 /작성완료 2번뿌려주고-->
-	
-	<!-- 1번 -->
+	if문 사용해서 뿌려리기-->
+	<c:forEach var="vo" items="${list}">
 	<a href="http://www.saramin.co.kr" target="_blank"/>
 	 	<div class="card mb-4-bt">
 	 		<div class="info_resume">
                <input type="hidden" name="res_idx" value="14137844" id="res_idx">
                <strong class="tit">
                  <a href="#">
-                	 <span class="point_color">[미완성] </span>
-                	 <span class="point_color_date">2020-01-08</span><span class="point_color_date">날 저장된 이력서 입니다.</span>
+                	 <span class="point_color">${vo.annTitle } </span>
+                	 <span class="point_color_comp">삼성전자반도체</span>
+                	 <div class="point_color_gongchae">${vo.annTitle }</div>
                	 </a>
                </strong>
             <div class="desc">
-               <span class="career_small">신입</span>|<span class="career_small2">희망연봉란</span>                        
+               <span class="career_small">${vo.careerType}</span>|<span class="career_small2">${vo.careerDesc}</span>|<span class="career_small2">${vo.refLocationseq1}</span>                        
             </div>
-            <span class="txt_date">수정 2020.01.08</span>
-            <button type="button" class="btn_edit_complete" onclick="#">완성하기</button>
+            <span class="txt_date">${vo.annStdt }</span>
+            <button type="button" class="btn_edit_complete" onclick="#">지원하기</button>
             <div class="wrap_manage_btn">
-            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete">
+            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete" onclick = "location.href = '<c:url value="/company/companyDeleteMyAnn.do?annSeq=${vo.annSeq}"/>'">
             		<span class="X">X</span>
            		</button>
             </div>
            </div>
 		</div>
     </a>
-    
-	<!-- 2번 -->
-	<a href="http://www.saramin.co.kr" target="_blank"/>
-	 	<div class="card mb-4-bt">
-	 		<div class="info_resume">
-               <input type="hidden" name="res_idx" value="14137844" id="res_idx">
-               <strong class="tit">
-                 <a href="#">
-                	 <span class="point_color">[완성] </span>
-                	 <span class="point_color_date">이력서 제목 이력서 제목 이력서 제목 이력서 제목 </span>
-               	 </a>
-               </strong>
-            <div class="desc">
-               <span class="career_small">신입</span>|<span class="career_small2">희망연봉란</span>                        
-            </div>
-            <span class="txt_date">수정 2020.01.08</span>
-            <button type="button" class="btn_edit_complete" onclick="#">수정하기</button>
-            <div class="wrap_manage_btn">
-            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete">
-            		<span class="X">X</span>
-           		</button>
-            </div>
-           </div>
-		</div>
-    </a>
-	
+    </c:forEach>
 	
       
   
   
 <!-- section end -->
-<c:import url="/WEB-INF/views/include/mypagenavibottom.jsp" />
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<c:import url="/WEB-INF/views/include/companymypagenavibottom.jsp" />
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 
