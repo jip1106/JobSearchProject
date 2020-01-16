@@ -356,7 +356,7 @@ button.sri_btn_lg.for_btn_event {
     background-color: #ff8d59;
     position: absolute;
     left: 42em;
-    top: -7px;
+    top: 16px;
 }
 .cont .meta {
     clear: both;
@@ -380,7 +380,7 @@ img.yellow_star {
 
 span.star-border {
     position: absolute;
-    top: -5px;
+    top: 21px;
     left: 38.2em;
     border: 1px solid #d2d2d2;
     padding: 10px 10px;
