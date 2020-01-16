@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -402,14 +403,15 @@ span.star-border {
     <!-- Blog Post -->
 		<div class="card mb-4">
 			<div class="card-body">
-			
+			<input type="hidden" id=memberSeq value="${loginMember.memberSeq }">
+			<input type="hidden" id=annSeq value="${vo.annSeq}">
 			<div class="top_title">
 				 <div class="c_title">
 			    	<a href="#" class="company_title" target="_blank">${vo.comName }</a>
 			     </div>
 			        <span class="company_title2">${vo.annTitle }</span>
 			        <span class="star-border">
-			        	<img class="yellow_star" src="<c:url value='/resources/images/yellow_star.png'/>">
+			        	<img class="yellow_star" src="<c:url value='/resources/images/gray_star.png'/>" style="cursor: pointer;">
 			        </span>
 			        <button class="sri_btn_lg for_btn_event">
 						<span class="sri_btn_immediately">즉시지원</span>
@@ -484,7 +486,7 @@ span.star-border {
 								<span class="txt">${vo.comName }</span> 
 							</div>
 							<div class="comn"><span class="cn">기업형태</span><span class="cna">${vo.comType }</span></div>							
-							<div class="comn"><span class="cn2">설립일</span><span class="cna">${vo.setupDate }</span></div>							
+							<div class="comn"><span class="cn2">설립일</span><span class="cna"><fmt:formatDate value="${vo.setupDate }" pattern="yyyy-MM-dd"/></span></div>							
 							<div class="comn"><span class="cn">업종</span><span class="cna">${vo.comField }</span></div>							
 						</div>
 						
@@ -494,7 +496,7 @@ span.star-border {
 							</div> -->
 							<div class="ci-right">
 							<div class="comn"><span class="cn">대표자명</span><span class="cna">${vo.ceoName }</span></div>							
-							<div class="comn"><span class="cn2">사원수</span><span class="cna">${vo.employeeNum }</span></div>							
+							<div class="comn"><span class="cn2">사원수</span><span class="cna">${vo.employeeNum }명</span></div>							
 							<div class="comn"><span class="cn">주소</span><span class="cna">${vo.address } ${vo.detailAddress } ${vo.extraAddress }</span></div>
 							</div>							
 							
@@ -538,8 +540,28 @@ span.star-border {
 		
 		$(document).ready(function(){
 			timerStart=setInterval('timer()', 1000);
+			
+			
+			$(".yellow_star").click(function(){
+				$(this).attr("src", "<c:url value='/resources/images/yellow_star.png'/>");
+				
+				$.ajax({
+					url:"<c:url value='/addScrap.do'/>",
+					type:"post",
+					data:{ "ref_annseq": $("#annSeq").val(), "ref_memberseq": $("#memberSeq").val()},				
+					dataType:"json",
+					success:function(res){									
+						alert("즐겨찾기 등록 완료");
+					},
+					error:function(xhr, status, error){
+						alert("Error:"+ status+"=>"+ error);
+					}
+				});
+			});
+			
 		});
 		
+
 	</script> 
  
 </body>

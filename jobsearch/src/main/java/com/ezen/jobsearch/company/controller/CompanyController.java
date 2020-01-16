@@ -184,6 +184,30 @@ public class CompanyController {
 		model.addAttribute("empTypeList",list3);		
 		
 	}
+
+	@RequestMapping(value = "/companymypageannedit.do",method = RequestMethod.POST)
+	public String editMyAnn_post(@ModelAttribute AnnounceMentVO announceMentVo,HttpSession session,Model model) {
+		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
+		int memSeq=memberVo.getMemberSeq();	
+		//회사 번호 찾아오기
+		int comseq=companyService.selectComSeq(memSeq);
+		
+		announceMentVo.setRefCompanyseq(comseq);
+		
+		logger.info("기업회원 공고글 등록처리 파라미터 vo ={}",announceMentVo);
+		
+		int cnt=companyService.insertAnn(announceMentVo);
+		
+		String msg="", url="";
+		if(cnt>0) {
+			msg="공고가 정상적으로 등록되었습니다.";
+			url="/company/companyMyAnnList.do";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
+		return "common/message";
+	}
 	
 	@RequestMapping("/companyMyAnnList.do")
 	public void viewMyAnn(HttpSession session,Model model) {

@@ -21,7 +21,6 @@ import com.ezen.jobsearch.category.model.CategoryVO2;
 import com.ezen.jobsearch.common.PaginationInfo;
 import com.ezen.jobsearch.location.model.LocationService;
 import com.ezen.jobsearch.location.model.LocationVO1;
-import com.ezen.jobsearch.member.model.MemberService;
 import com.ezen.jobsearch.member.model.MemberVO;
 
 @Controller
