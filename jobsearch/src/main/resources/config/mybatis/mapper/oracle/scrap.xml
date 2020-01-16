@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="config.mybatis.mapper.oracle.scrap">
+	<insert id="insertScrap" parameterType="scrapVo">
+		<selectKey keyProperty="scrapSeq" resultType="int" order="BEFORE">
+			select SCRAP_SEQ.nextval from dual
+		</selectKey>
+		insert into tbl_scrap(scrap_seq, ref_annseq, ref_memberseq)
+		values(#{scrapSeq}, #{refAnnseq}, #{memberSeq)
+	</insert>
+	
+	<delete id="deleteScrap" parameterType="scrapVo">
+		delete from tbl_scrap
+		where ref_annseq=#{refAnnseq} and ref_memberSeq=#{memberSeq)
+	</delete>
+</mapper>

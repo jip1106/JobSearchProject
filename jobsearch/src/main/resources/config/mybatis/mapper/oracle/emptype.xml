@@ -7,7 +7,7 @@
 	<select id="selectEmpType" resultType="emptypeVo">
 		Select * From TBL_EMPTYPE
 	</select>	
-	
+
 	
 
 </mapper>

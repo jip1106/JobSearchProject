@@ -140,12 +140,15 @@ public class CompanyController {
 		
 		return "company/companymypageannouncement";
 	}
+	
 	@RequestMapping(value = "/companymypageannouncement.do",method = RequestMethod.POST)
 	public String insertAnn_post(@ModelAttribute AnnounceMentVO announceMentVo,HttpSession session,Model model) {
 		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
-		int memSeq=memberVo.getMemberSeq();
+		int memSeq=memberVo.getMemberSeq();	
+		//회사 번호 찾아오기
+		int comseq=companyService.selectComSeq(memSeq);
 		
-		announceMentVo.setRefCompanyseq(memSeq);
+		announceMentVo.setRefCompanyseq(comseq);
 		
 		logger.info("기업회원 공고글 등록처리 파라미터 vo ={}",announceMentVo);
 		
@@ -154,24 +157,70 @@ public class CompanyController {
 		String msg="", url="";
 		if(cnt>0) {
 			msg="공고가 정상적으로 등록되었습니다.";
-			url="/company/companymypagepayment.do";
+			url="/company/companyMyAnnList.do";
 		}
 		model.addAttribute("msg",msg);
 		model.addAttribute("url",url);
 		
 		return "common/message";
 	}
+	
+	@RequestMapping("/companymypageannedit.do")
+	public void editMyAnn(@RequestParam(defaultValue = "0") int annSeq,Model model) {		
+		logger.info("기업회원 공고글 수정페이지 리스트 보여주기 파라미터 annSeq={}",annSeq);
+		
+		AnnounceMentVO annVo=companyService.viewMyAnnByAnnSeq(annSeq);
+		logger.info("기업회원 공고글 수정페이지 annVo={}",annVo);
+		//1번지역 불러오기
+		List<LocationVO1> list1=lService.selectLocation1();	
+		//1번 카테고리 불러오기
+		List<CategoryVO1> list2=cService.selectCategory1();
+		//직종 불러오기
+		List<EmpTypeVO> list3=eService.selectEmpType();
+		
+		model.addAttribute("annVo",annVo);
+		model.addAttribute("locationList1",list1);
+		model.addAttribute("categoryList1",list2);
+		model.addAttribute("empTypeList",list3);		
+		
+	}
+
+	@RequestMapping(value = "/companymypageannedit.do",method = RequestMethod.POST)
+	public String editMyAnn_post(@ModelAttribute AnnounceMentVO announceMentVo,HttpSession session,Model model) {
+		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
+		int memSeq=memberVo.getMemberSeq();	
+		//회사 번호 찾아오기
+		int comseq=companyService.selectComSeq(memSeq);
+		
+		announceMentVo.setRefCompanyseq(comseq);
+		
+		logger.info("기업회원 공고글 등록처리 파라미터 vo ={}",announceMentVo);
+		
+		int cnt=companyService.insertAnn(announceMentVo);
+		
+		String msg="", url="";
+		if(cnt>0) {
+			msg="공고가 정상적으로 등록되었습니다.";
+			url="/company/companyMyAnnList.do";
+		}
+		model.addAttribute("msg",msg);
+		model.addAttribute("url",url);
+		
+		return "common/message";
+	}
+	
 	@RequestMapping("/companyMyAnnList.do")
 	public void viewMyAnn(HttpSession session,Model model) {
 		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
 		int refCompanyseq=memberVo.getMemberSeq();
 		
 		logger.info("기업회원 내 공고글 리스트 보여주기 파라미터 refCompanyseq={}",refCompanyseq);		
-		
+		int count=companyService.countMyAnn(refCompanyseq);
 		List<AnnounceMentVO> list=companyService.viewMyAnn(refCompanyseq);
-		
-		model.addAttribute("list",list);
+		model.addAttribute("count",count);
+		model.addAttribute("list",list);	
 	}
+	
 	@RequestMapping("/companymypagepayment.do")
 	public void payment(HttpSession session,Model model) {
 		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");

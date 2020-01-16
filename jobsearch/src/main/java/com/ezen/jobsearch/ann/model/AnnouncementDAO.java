@@ -16,9 +16,10 @@ public interface AnnouncementDAO {
 	//직업별 공고 카운트
 	int selectAnnListCountBycate(String cateSeq1, String cateSeq2, String cateSeq3);
 	
-	
-
 	AnnounceMentVO selectBySeq(int annSeq);
 
+	int updateAnnHits(int annSeq);
 	
 }
+
+

@@ -16,4 +16,6 @@ public interface AnnouncementService {
 
 	AnnounceMentVO selectBySeq(int annSeq);
 
+	int updateAnnHits(int annSeq);
+	
 }
