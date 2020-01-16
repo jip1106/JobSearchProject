@@ -12,6 +12,9 @@ public interface CompanyDAO {
 	int updateComMem(MemberVO memberVo);
 	int updateComInfo(CompanyVO companyVo);
 	List<AnnounceMentVO> viewMyAnn(int refCompanyseq);
+	AnnounceMentVO viewMyAnnByAnnSeq(int AnnSeq);
+	int countMyAnn(int refCompanyseq);
 	String selectComImg(int refCompanyseq);
 	int deleteMyAnn(int Annseq);
+	
 }

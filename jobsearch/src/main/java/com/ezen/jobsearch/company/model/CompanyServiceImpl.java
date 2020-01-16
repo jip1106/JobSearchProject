@@ -40,4 +40,10 @@ public class CompanyServiceImpl implements CompanyService{
 	public int deleteMyAnn(int Annseq) {
 		return companyDao.deleteMyAnn(Annseq);
 	}
+	public AnnounceMentVO viewMyAnnByAnnSeq(int AnnSeq) {
+		return companyDao.viewMyAnnByAnnSeq(AnnSeq);
+	}
+	public int countMyAnn(int refCompanyseq) {
+		return companyDao.countMyAnn(refCompanyseq);
+	}
 }

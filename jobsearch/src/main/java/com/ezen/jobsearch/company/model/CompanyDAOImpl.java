@@ -59,5 +59,15 @@ public class CompanyDAOImpl implements CompanyDAO{
 		return sqlSession.delete(namespace+"deleteMyAnn",Annseq);
 	}
 
+	@Override
+	public AnnounceMentVO viewMyAnnByAnnSeq(int AnnSeq) {
+		return sqlSession.selectOne(namespace+"selectMyAnnByAnnSeq",AnnSeq);
+	}
+
+	@Override
+	public int countMyAnn(int refCompanyseq) {
+		return sqlSession.selectOne(namespace+"selectMyAnnCount",refCompanyseq);
+	}
+
 
 }

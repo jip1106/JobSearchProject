@@ -14,4 +14,6 @@ public interface CompanyService {
 	List<AnnounceMentVO> viewMyAnn(int refCompanyseq);
 	String selectComImg(int refCompanyseq);
 	int deleteMyAnn(int Annseq);
+	AnnounceMentVO viewMyAnnByAnnSeq(int AnnSeq);
+	int countMyAnn(int refCompanyseq);
 }
