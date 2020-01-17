@@ -19,4 +19,9 @@ public class ScrapServiceImpl implements ScrapService {
 		return scrapDao.deleteScrap(scrapVo);
 	}
 
+	@Override
+	public int selectScrapYN(ScrapVO scrapVo) {
+		return scrapDao.selectScrapYN(scrapVo);
+	}
+
 }

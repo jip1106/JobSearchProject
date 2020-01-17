@@ -369,11 +369,11 @@ button.sri_btn_lg.for_btn_event {
     text-align: right;
     margin-bottom: -6px;
 }
-img.yellow_star {
+img.scrapY {
     resize: both;
     width: 31px;
 }
-img.yellow_star {
+img.scrapN {
     resize: both;
     width: 31px;
    
@@ -410,12 +410,21 @@ span.star-border {
 			    	<a href="#" class="company_title" target="_blank">${vo.comName }</a>
 			     </div>
 			        <span class="company_title2">${vo.annTitle }</span>
-			        <span class="star-border">
-			        	<img class="yellow_star" src="<c:url value='/resources/images/gray_star.png'/>" style="cursor: pointer;">
-			        </span>
-			        <button class="sri_btn_lg for_btn_event">
-						<span class="sri_btn_immediately">즉시지원</span>
-					</button>
+			        <c:if test="${loginMember.regType == 1 }">
+				        <c:if test="${scrapYN > 0}">
+					        <span class="star-border">
+					        	<img id="scrap" class="scrapY" src="<c:url value='/resources/images/yellow_star.png'/>" style="cursor: pointer;">
+					        </span>
+				        </c:if>
+				        <c:if test="${scrapYN == 0 || empty scrapYN}">
+					        <span class="star-border">
+					        	<img id="scrap" class="scrapN" src="<c:url value='/resources/images/gray_star.png'/>" style="cursor: pointer;">
+					        </span>
+				        </c:if>
+				        <button class="sri_btn_lg for_btn_event">
+							<span class="sri_btn_immediately">즉시지원</span>
+						</button>
+					</c:if>
 		    </div>
 		    
 				<div class="cont">
@@ -542,23 +551,39 @@ span.star-border {
 			timerStart=setInterval('timer()', 1000);
 			
 			
-			$(".yellow_star").click(function(){
-				$(this).attr("src", "<c:url value='/resources/images/yellow_star.png'/>");
+			$("#scrap").click(function(){
+				var sUrl = "";
+				
+				var sClass = $("#scrap").attr("class");
+				if(sClass == "scrapN"){
+					sUrl = "<c:url value='/addScrap.do'/>";
+				}else if(sClass == "scrapY"){
+					sUrl = "<c:url value='/delScrap.do'/>";
+				}
 				
 				$.ajax({
-					url:"<c:url value='/addScrap.do'/>",
+					url:sUrl,
 					type:"post",
-					data:{ "ref_annseq": $("#annSeq").val(), "ref_memberseq": $("#memberSeq").val()},				
-					dataType:"json",
+					data:{ "refAnnseq": $("#annSeq").val(), "refMemberseq": $("#memberSeq").val()},				
+					dataType:"text",
 					success:function(res){									
-						alert("즐겨찾기 등록 완료");
+						alert(res);
+						
+						if(sClass == "scrapN"){
+							$("#scrap").attr("src", "<c:url value='/resources/images/yellow_star.png'/>");
+							$("#scrap").removeClass('scrapN');
+							$("#scrap").addClass('scrapY');
+						}else if(sClass == "scrapY"){
+							$("#scrap").attr("src", "<c:url value='/resources/images/gray_star.png'/>");
+							$("#scrap").removeClass('scrapY');
+							$("#scrap").addClass('scrapN');
+						}
 					},
 					error:function(xhr, status, error){
-						alert("Error:"+ status+"=>"+ error);
+						alert("로그인을 해주세요");
 					}
 				});
 			});
-			
 		});
 		
 
