@@ -15,6 +15,7 @@ public class ResumeDAOImpl implements ResumeDAO{
 	SqlSessionTemplate sqlSession;
 	
 	private String namespace = "config.mybatis.mapper.oracle.resumeTest.";
+	private String namespace2 = "config.mybatis.mapper.oracle.resume.";
 	
 	@Override
 	public List<ResumeVO> selectResumeList(int memberSeq) {
@@ -28,18 +29,18 @@ public class ResumeDAOImpl implements ResumeDAO{
 
 	@Override
 	public List<Map<String, Object>> selectCate() {
-		return sqlSession.selectList(namespace+"selectCate");
+		return sqlSession.selectList(namespace2+"selectCate");
 	}
 
 
 	@Override
 	public List<Map<String, Object>> selectLoca() {
-		return sqlSession.selectList(namespace+"selectLoca");
+		return sqlSession.selectList(namespace2+"selectLoca");
 	}
 	
 	@Override
 	public List<Map<String, Object>> selectEmp() {
-		return sqlSession.selectList(namespace+"selectEmp");
+		return sqlSession.selectList(namespace2+"selectEmp");
 	}
 	
 	@Override
