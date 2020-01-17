@@ -21,3 +21,5 @@ public interface AnnouncementDAO {
 	int updateAnnHits(int annSeq);
 	
 }
+
+

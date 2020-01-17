@@ -4,9 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
@@ -22,10 +22,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ezen.jobsearch.common.FileUploadUtil;
 import com.ezen.jobsearch.company.model.CompanyService;
 import com.ezen.jobsearch.company.model.CompanyVO;
 import com.ezen.jobsearch.member.model.MemberService;
 import com.ezen.jobsearch.member.model.MemberVO;
+import com.ezen.jobsearch.resume.model.ResumeService;
+import com.ezen.jobsearch.resume.model.ResumeVO;
 
 @Controller
 public class MemberController {
@@ -38,10 +41,16 @@ public class MemberController {
 	@Autowired
 	private CompanyService companyService; 
 	
+	@Autowired
+	private FileUploadUtil fileUtil;
+	
 	//암호화 의존성 주입
 	//bean 등록 필요(context-common.xml) , pom.xml 수정 필요(spring security 추가)
 	@Autowired
     private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private ResumeService resumeService;
 	
 	
 	//로그인
@@ -419,18 +428,38 @@ public class MemberController {
 	  		
   		@RequestMapping(value="/member/mypageedit.do", method = RequestMethod.POST)
   		public String mypageedit_post(@ModelAttribute MemberVO vo, 
-  				HttpSession session,
-  				@RequestParam String memberPwd, 
-  				@RequestParam String memberPwd2, Model model) {
+  				HttpSession session, HttpServletRequest request,
+  				@RequestParam String memberPwd, @RequestParam String memberPwd2, 
+  				Model model) {
   			
   			MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
   			MemberVO memberVo2 = memberService.selectMember(memberVo.getMemberId(), memberVo.getRegType());
+
+			String memberId = memberVo.getMemberId();
   			
-			String memberId = memberVo.getMemberId();	
+  			//중복검증용
+  			String dbImgname= memberVo.getprofileRenameimg();
 			//String genderType = memberVo.getGenderType();	
 			
   			vo.setMemberId(memberId);
   			//vo.setGenderType(genderType);
+  			
+  			List<Map<String,Object>> list= fileUtil.fileUpload(request);
+  			
+  			String profileRenameimg="", profileImg="";		
+  			
+  			for(Map<String,Object> map : list) {
+  				profileImg=(String)map.get("originalFileName");
+  				profileRenameimg=(String)map.get("fileName");	
+  						vo.setProfileImg(profileImg);
+						vo.setProfileRenameimg(profileRenameimg);
+  				logger.info("기업회원 로고이미지 url={},renameimage={}",profileImg, profileRenameimg);
+  			}
+  			//세션에서 vo받아온뒤 seq추출하고 파라미터 memberVo와 companyVo에 세팅해줌
+  			//사진 null로 올라갈시 이전사진으로 고정
+  			if(profileRenameimg==null||profileRenameimg.isEmpty()) {
+  				vo.setProfileRenameimg(dbImgname);
+  			}
   			
   			logger.info("회원수정처리 vo={}",vo);
   			int cnt = 0;
@@ -459,6 +488,49 @@ public class MemberController {
 			return "common/message";
   		}
 		
+  		/*
+  		@RequestMapping(value="/member/mypageedit.do", method = RequestMethod.POST)
+  		public String mypageedit_post(@ModelAttribute MemberVO vo, 
+  				HttpSession session,
+  				@RequestParam String memberPwd, 
+  				@RequestParam String memberPwd2, Model model) {
+  			
+  			MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
+  			MemberVO memberVo2 = memberService.selectMember(memberVo.getMemberId(), memberVo.getRegType());
+  			
+  			String memberId = memberVo.getMemberId();	
+  			//String genderType = memberVo.getGenderType();	
+  			
+  			vo.setMemberId(memberId);
+  			//vo.setGenderType(genderType);
+  			
+  			
+  			logger.info("회원수정처리 vo={}",vo);
+  			int cnt = 0;
+  			if(StringUtils.isEmpty(memberPwd)) {
+  				vo.setMemberPwd(memberVo2.getMemberPwd());
+  				cnt = memberService.updateMember(vo);
+  			} else if (StringUtils.equals(memberPwd, memberPwd2)){
+  				String Password = passwordEncoder.encode(memberPwd);
+  				memberVo.setMemberPwd(Password);
+  				cnt = memberService.updateMember(vo);
+  			}
+  			
+  			String msg="", url="";
+  			
+  			if(cnt>0) {
+  				msg="회원정보 수정되었습니다.";
+  				url="/member/mypagerecentnotice.do";
+  			}else {	
+  				msg="회원정보 수정 실패!";
+  				url="/member/mypageedit.do";
+  			}	
+  			
+  			model.addAttribute("msg", msg);
+  			model.addAttribute("url", url);
+  			
+  			return "common/message";
+  		}*/
 		
 		
 		//마이페이지 - 이력서
@@ -478,6 +550,25 @@ public class MemberController {
 		public String mypagebookmark_get() {
 			return "member/mypagebookmark";
 		}
+		
+		
+		//마이페이지 - 이력서테스트
+		@RequestMapping("/member/mypageresumeTest.do")
+		public String mypageresumeTest(HttpServletRequest request, Model model) {
+			HttpSession session = request.getSession();
+			//int memberSeq = ((MemberVO)session.getAttribute("loginMember")).getMemberSeq();
+			int memberSeq = 8;
+			
+			System.out.println("로그인 회원 seq : " + memberSeq);
+			
+			List<ResumeVO> resumeList = resumeService.selectResumeList(memberSeq);
+			int resumeCount = resumeService.selectMyResumeCount(memberSeq);
+			
+			model.addAttribute("resumeList",resumeList);
+			model.addAttribute("resumeCount",resumeCount);
+			
+			return "member/mypageresume2";
+		}		
 
 	
 	

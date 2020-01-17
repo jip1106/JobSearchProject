@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="config.mybatis.mapper.oracle.resumeTest">
+	
+	
+	<select id="selectResumeList" resultType="resumeVo" parameterType="int">
+		Select * From TBL_RESUME 
+		Where ref_memberseq = #{memberSeq}
+	</select>
+	
+	<select id="selectMyResumeCount" resultType="int" parameterType="int">
+		Select count(*) From TBL_RESUME 
+		Where ref_memberseq = #{memberSeq}
+	</select>
+	
+	<insert id="insertResumeTest" parameterType="resumeVo" >
+		<selectKey keyProperty="resumeSeq" resultType="int" order="BEFORE">
+			select resume_seq.nextval from dual
+		</selectKey>
+		
+		insert into tbl_resume (RESUME_SEQ, reg_date, resume_status, ref_memberseq)
+		values
+		(#{resumeSeq}, sysdate, 1, #{refMemberseq})
+	</insert>
+	
+	
+</mapper>
