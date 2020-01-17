@@ -410,19 +410,21 @@ span.star-border {
 			    	<a href="#" class="company_title" target="_blank">${vo.comName }</a>
 			     </div>
 			        <span class="company_title2">${vo.annTitle }</span>
-			        <c:if test="${scrapYN > 0}">
-				        <span class="star-border">
-				        	<img id="scrap" class="scrapY" src="<c:url value='/resources/images/yellow_star.png'/>" style="cursor: pointer;">
-				        </span>
-			        </c:if>
-			        <c:if test="${scrapYN == 0 || empty scrapYN}">
-				        <span class="star-border">
-				        	<img id="scrap" class="scrapN" src="<c:url value='/resources/images/gray_star.png'/>" style="cursor: pointer;">
-				        </span>
-			        </c:if>
-			        <button class="sri_btn_lg for_btn_event">
-						<span class="sri_btn_immediately">즉시지원</span>
-					</button>
+			        <c:if test="${loginMember.regType == 1 }">
+				        <c:if test="${scrapYN > 0}">
+					        <span class="star-border">
+					        	<img id="scrap" class="scrapY" src="<c:url value='/resources/images/yellow_star.png'/>" style="cursor: pointer;">
+					        </span>
+				        </c:if>
+				        <c:if test="${scrapYN == 0 || empty scrapYN}">
+					        <span class="star-border">
+					        	<img id="scrap" class="scrapN" src="<c:url value='/resources/images/gray_star.png'/>" style="cursor: pointer;">
+					        </span>
+				        </c:if>
+				        <button class="sri_btn_lg for_btn_event">
+							<span class="sri_btn_immediately">즉시지원</span>
+						</button>
+					</c:if>
 		    </div>
 		    
 				<div class="cont">
