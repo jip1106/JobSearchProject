@@ -82,11 +82,7 @@ p#countDay {
 }
 </style>
 <script type="text/javascript">
-	$(function(){
-		$(".price").val($(".pay option:selected").val());
-		
-	});
-
+	
 </script>
 
 <!-- head end -->
@@ -98,17 +94,19 @@ p#countDay {
 <h2>결제관련</h2>
 <a href="<c:url value='/company/companymypageannouncement.do'/>">공고글 작성하기</a>
 <hr>
+<input type="text" value="${count}" id="count">
 
+<c:set var="idx" value="0"/>
 <c:forEach var="vo" items="${list}">
-<c:set var="sum" value='0' />
+<c:set var="total" value='0'/>
+<c:set var="pay" value="0"/>
 	<div>
 		<span id="deadLine">마감일!</span>
 		<span id="days">일</span><p id="countDay">${vo.annEndt}</p>
 	</div>
 	<table>
 	<!-- 반복 시작 -->
-	
-		
+			
 			<tr><td>
 			 <div class="row mb-4 mt-4_text"> 
 							<!--<div class="col-lg-4-2t">공고글  </div>  -->
@@ -153,19 +151,37 @@ p#countDay {
 			 </td>  
 			</tr>
 			<tr>
-				<td>선택한 금액<input type="text" class="price"></td>
+				<td>선택한 금액<input type="text" class="price" id="pr_${idx }" value="${pay}"></td>
+				<c:set var="idx" value="${idx+1}"/>
+				<c:set var="total" value="${total+pay}"/>
 			</tr>
 		 <!-- 반복 끝 --> 
 	 </table>
  </c:forEach>
+ 
+ <input type="button" id="sure" value="확정하기!">
  <hr>
- <br>총액<br><br><!-- 계산 들어갈 여유 공간 -->
+ <br>총액     :<input type="text" id="total" value="${total} "> <br><br><!-- 계산 들어갈 여유 공간 -->
  <hr>
  <div id="edit_bt">
   				<button class="btn com_pay" type="submit">결제하기</button>  				
  </div>
- <!-- collapsible function -->
+ 
  <script>
+ var total=0;
+	$(function(){
+		$(".pay").each(function(index,item){
+			$(this).change(function(){
+				var pay=$(this).val();
+				$("#pr_"+index).val(pay);				
+			});
+						
+		});
+		$("#sure").click(function(index,item){
+			
+		});			
+		
+	});
 var coll = document.getElementsByClassName("collapsible");
 var i;
 

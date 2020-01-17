@@ -230,7 +230,8 @@ public class CompanyController {
 		logger.info("기업회원 내 결제용 공고글 리스트 보여주기 파라미터 refCompanyseq={}",refCompanyseq);		
 		
 		List<AnnounceMentVO> list=companyService.viewMyAnn(refCompanyseq);
-		
+		int count=companyService.countMyAnn(refCompanyseq);
+		model.addAttribute("count",count);
 		model.addAttribute("list",list);
 	}
 	
