@@ -1,5 +1,6 @@
 package com.ezen.jobsearch.company.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -194,13 +195,13 @@ public class CompanyController {
 		
 		announceMentVo.setRefCompanyseq(comseq);
 		
-		logger.info("기업회원 공고글 등록처리 파라미터 vo ={}",announceMentVo);
+		logger.info("기업회원 공고글 수정처리 파라미터 annVo ={}",announceMentVo);
 		
-		int cnt=companyService.insertAnn(announceMentVo);
+		int cnt=companyService.updateMyAnn(announceMentVo);
 		
 		String msg="", url="";
 		if(cnt>0) {
-			msg="공고가 정상적으로 등록되었습니다.";
+			msg="공고가 정상적으로 수정되었습니다.";
 			url="/company/companyMyAnnList.do";
 		}
 		model.addAttribute("msg",msg);

@@ -17,4 +17,5 @@ public interface CompanyService {
 	AnnounceMentVO viewMyAnnByAnnSeq(int AnnSeq);
 	int countMyAnn(int refCompanyseq);
 	int selectComSeq(int memberSeq);
+	int updateMyAnn(AnnounceMentVO annVo);
 }

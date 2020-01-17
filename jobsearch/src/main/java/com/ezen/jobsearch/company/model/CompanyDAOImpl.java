@@ -74,5 +74,9 @@ public class CompanyDAOImpl implements CompanyDAO{
 		return sqlSession.selectOne(namespace+"selectComSeq",memberSeq);
 	}
 
+	@Override
+	public int updateMyAnn(AnnounceMentVO annVo) {
+		return sqlSession.update(namespace+"updateMyAnn",annVo);
+	}
 
 }

@@ -369,7 +369,7 @@ span.point-2t_age {
 
 
 <!-- form 시작 -->
-<form action="<c:url value='/company/companymypageannouncement.do'/>" method="post" id="annForm" name="annForm" >
+<form action="<c:url value='/company/companymypageannedit.do'/>" method="post" id="annForm" name="annForm" >
 	<span id="sectionTitle">필수 입력</span>	
 	<!-- 제목시작 -->
  		<div class="card mb-4-bt-edit">
@@ -385,7 +385,7 @@ span.point-2t_age {
 		 				<input type="hidden" value="${annVo.refCateseq1}" id="ca_selected" name="refCateseq1">
 		 				<input type="hidden" value="${annVo.refCateseq2}" id="ca2_selected" name="refCateseq2"> 
 		 				<input type="hidden" value="${annVo.refCateseq3}" id="ca3_selected" name="refCateseq3">
-		 				<input type="hidden" value="${annVo.annSeq}" name="annSeq">			
+		 				<input type="hidden" value="${param.annSeq}" name="annSeq">			
 	 				</div>				
 				</div>
 			</div>

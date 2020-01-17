@@ -19,9 +19,6 @@
     font-size: 15px;
     border-radius: .25em;
 }
-
-
-
 .content {
   padding: 0 18px;
   max-height: 0;
@@ -84,22 +81,14 @@ p#countDay {
     float: right;
 }
 </style>
-
 <script type="text/javascript">
-
-function itemSum(frm)
-{
-   var sum = 0;
-   var count = frm.chkbox.length;
-   for(var i=0; i < count; i++ ){
-       if( frm.chkbox[i].checked == true ){
-	    sum += parseInt(frm.chkbox[i].value);
-       }
-   }
-   frm.total_sum.value = sum;
-}
+	$(function(){
+		$(".price").val($(".pay option:selected").val());
+		
+	});
 
 </script>
+
 <!-- head end -->
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 <body>
@@ -111,10 +100,10 @@ function itemSum(frm)
 <hr>
 
 <c:forEach var="vo" items="${list}">
-<c:set var="sum" value='' />
+<c:set var="sum" value='0' />
 	<div>
-		<span id="deadLine">마감까지!</span>
-		<span id="days">일 남음</span><p id="countDay">10</p>
+		<span id="deadLine">마감일!</span>
+		<span id="days">일</span><p id="countDay">${vo.annEndt}</p>
 	</div>
 	<table>
 	<!-- 반복 시작 -->
@@ -124,7 +113,7 @@ function itemSum(frm)
 			 <div class="row mb-4 mt-4_text"> 
 							<!--<div class="col-lg-4-2t">공고글  </div>  -->
 							<div class="col-lg-8 form-label-group mb-2">					
-								<button class="collapsible">${vo.annSeq}    ${vo.annTitle}</button>					
+								<button class="collapsible">${vo.annSeq}    ${vo.annTitle} 금액</button>					
 								<div class="content">
 								<table>
 									<tr>
@@ -145,9 +134,13 @@ function itemSum(frm)
 									</tr>
 									<tr>
 										<td>결제 옵션</td>
-										<td>만원<input type="checkbox" value="10000">
-										2만원<input type="checkbox" value="20000">
-										3만원<input type="checkbox"  value="30000">
+										<td>
+											<select class="pay">
+												<option value="">선택</option>
+												<option value="10000">만원</option>
+												<option value="20000">2만원</option>
+												<option value="30000">3만원</option>
+											</select>											
 										</td>
 										
 									</tr>
@@ -158,7 +151,10 @@ function itemSum(frm)
 							</div>
 						</div>
 			 </td>  
-		
+			</tr>
+			<tr>
+				<td>선택한 금액<input type="text" class="price"></td>
+			</tr>
 		 <!-- 반복 끝 --> 
 	 </table>
  </c:forEach>

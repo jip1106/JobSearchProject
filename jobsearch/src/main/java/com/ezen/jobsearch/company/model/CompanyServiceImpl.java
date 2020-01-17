@@ -49,4 +49,7 @@ public class CompanyServiceImpl implements CompanyService{
 	public int selectComSeq(int memberSeq) {
 		return companyDao.selectComSeq(memberSeq);
 	}
+	public int updateMyAnn(AnnounceMentVO annVo) {
+		return companyDao.updateMyAnn(annVo);
+	}
 }
