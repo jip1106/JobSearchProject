@@ -173,12 +173,15 @@ strong.attach_count {
 	
 	<!-- 이력서 등록하기 -->
 		<!-- <div class="col-lg-4"><a href="#" class="btn btn-primary" onclick="resume_apply">이력서등록하기</a></div> -->
-			<strong class="attach_count">총 <span class="count_span">2</span>건</strong>
+			<strong class="attach_count">총 <span class="count_span">${count }</span>건</strong>
 			
 	<!-- 반복문 사용해서 통째로 뿌려주기 
 	if문 사용해서 뿌려리기-->
 	
-	<a href="http://www.saramin.co.kr" target="_blank"/>
+	<a href="http://www.saramin.co.kr" target="_blank"></a>
+	
+	<c:if test="${!empty list}">
+	 <c:forEach var="Vo" items="${list }">
 	 	<div class="card mb-4-bt">
 	 		<div class="info_resume">
                <input type="hidden" name="res_idx" value="14137844" id="res_idx">
@@ -201,34 +204,23 @@ strong.attach_count {
             </div>
            </div>
 		</div>
-    </a>
-    
-	<a href="http://www.saramin.co.kr" target="_blank"/>
+		</c:forEach>
+	</c:if>
+   
+    <!-- 이력서 목록이 없을 때  -->
+	<a href="http://www.saramin.co.kr" target="_blank"></a>
+	<c:if test="${empty list }">
 	 	<div class="card mb-4-bt">
 	 		<div class="info_resume">
                <input type="hidden" name="res_idx" value="14137844" id="res_idx">
                <strong class="tit">
-                 <a href="#">
-                	 <span class="point_color">[수원] </span>
-                	 <span class="point_color_comp">삼성전자반도체</span>
-                	 <div class="point_color_gongchae">2020년도 상반기 신입사원 공채 공고</div>
-               	 </a>
+               		공고를 검색해주세요!
                </strong>
             <div class="desc">
-               <span class="career_small">경력</span>|<span class="career_small2">대학교 ↑</span>|<span class="career_small2">서울</span>                        
-            </div>
-            <span class="txt_date">2020.01.08</span>
-            <button type="button" class="btn_edit_complete" onclick="#">지원하기</button>
-            <div class="wrap_manage_btn">
-            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete">
-            		<span class="X">X</span>
-           		</button>
             </div>
            </div>
 		</div>
-    </a>
-    
-	
+	</c:if>
 	
 	
       

@@ -43,8 +43,6 @@ public class ResumeController {
 		List<Map<String, Object>> list_loca=resumeService.selectLoca();
 
 
-		
-
 		model.addAttribute("list", list);
 		model.addAttribute("list_cate", list_cate);
 		model.addAttribute("list_loca", list_loca);
@@ -53,15 +51,7 @@ public class ResumeController {
 		return "resume/resume";
 	}
 	
-	@RequestMapping("/ann/annDetail.do")
-	public void annD(){
 		
-	}
-	@RequestMapping("/company/companypopup.do")
-	public void cp(){
-		
-	}
-	
 	
 	//인재검색
 	@RequestMapping(value="/resume/searchResume.do")
