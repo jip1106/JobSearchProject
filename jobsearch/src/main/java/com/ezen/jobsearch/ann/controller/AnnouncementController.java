@@ -22,6 +22,8 @@ import com.ezen.jobsearch.common.PaginationInfo;
 import com.ezen.jobsearch.location.model.LocationService;
 import com.ezen.jobsearch.location.model.LocationVO1;
 import com.ezen.jobsearch.member.model.MemberVO;
+import com.ezen.jobsearch.scrap.model.ScrapService;
+import com.ezen.jobsearch.scrap.model.ScrapVO;
 
 @Controller
 public class AnnouncementController {
@@ -36,6 +38,9 @@ public class AnnouncementController {
 	
 	@Autowired
 	private LocationService locationService;
+	
+	@Autowired
+	private ScrapService scrapService;
 	
 	@RequestMapping(value = "/ann/getAnnListByLoc.do")
 	public String getAnnListByLoc(String locationSeq1, String locationSeq2,String currentPage , Model model){
@@ -150,8 +155,17 @@ public class AnnouncementController {
 		MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
 		if(memberVo != null) {
 			if(memberVo.getRegType().equals("1")) {
-				logger.info("공고 조회수 업데이트");
-				annService.updateAnnHits(annSeq);
+				int cnt=annService.updateAnnHits(annSeq);
+				logger.info("공고 조회수 업데이트, cnt={}", cnt);
+				ScrapVO scrapVo=new ScrapVO();
+				scrapVo.setRefAnnseq(annSeq);
+				scrapVo.setRefMemberseq(memberVo.getMemberSeq());
+				
+				//즐겨찾기 여부
+				int scrapYN=scrapService.selectScrapYN(scrapVo);
+				logger.info("즐겨찾기 여부 scrapYN={}", scrapYN);
+				
+				model.addAttribute("scrapYN", scrapYN);
 			}
 		}
 		
