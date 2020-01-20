@@ -54,7 +54,7 @@ public class CompanyController {
     private BCryptPasswordEncoder passwordEncoder;
 	
 	
-	//기업마이페이지 - 회원정보수정
+	//마이페이지 - 회원정보수정
 	@RequestMapping(value = "/companymypageedit.do",method = RequestMethod.GET)
 	public String insertInfo_get(HttpSession session, Model model) {
 		//세션에서 vo받아온 뒤 seq추출
