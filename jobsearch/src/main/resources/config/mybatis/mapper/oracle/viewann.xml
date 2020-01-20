@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="config.mybatis.mapper.oracle.viewann">
+	<insert id="insertViewAnn" parameterType="viewAnnVo">		
+		<selectKey keyProperty="viewSeq" resultType="int" order="BEFORE">
+			select VIEW_SEQ.nextval from dual
+		</selectKey>
+		insert into tbl_viewann(view_seq, ref_annseq, ref_memberseq)
+		values(#{viewSeq}, #{refAnnseq}, #{refMemberseq})
+	</insert>
+	
+	<select id="selectViewAnnYN" parameterType="viewAnnVo" resultType="int">
+		select count(*) from tbl_viewann
+		where ref_annseq=#{refAnnseq} and ref_memberseq=#{refMemberseq}
+	</select>
+	
+	<delete id="deleteOldView" parameterType="int">
+		delete from tbl_viewann
+		where view_seq=
+				(select min(view_seq) from tbl_viewann where ref_memberseq=#{refMemberseq})
+	</delete>
+	
+	<select id="selectViewAnn" parameterType="int" resultType="viewAnnVo">
+		select * from tbl_viewann
+		where ref_memberseq=#{refMemberseq}	
+	</select>
+</mapper>
