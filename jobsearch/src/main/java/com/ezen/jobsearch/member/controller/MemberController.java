@@ -475,6 +475,7 @@ public class MemberController {
   			String msg="", url="";
 						
 			if(cnt>0) {
+				session.setAttribute("loginMember", memberService.selectMember(memberVo.getMemberId(), memberVo.getRegType()));
 				msg="회원정보 수정되었습니다.";
 				url="/member/mypagerecentnotice.do";
 			}else {	
@@ -535,8 +536,41 @@ public class MemberController {
 		
 		//마이페이지 - 이력서
 		@RequestMapping("/member/mypageresume.do")
-		public String mypageresume_get() {
+		public String mypageresume_get(HttpSession session, HttpServletRequest request, Model model) {
+			
+			MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
+			int memberSeq =memberVo.getMemberSeq();
+			
+			List<ResumeVO> list=resumeService.resumeList(memberSeq);
+			int count=resumeService.resumeListCount(memberSeq);
+			
+			model.addAttribute("list",list);
+			model.addAttribute("count",count);
+			
 			return "member/mypageresume";
+		}
+		
+		//마이페이지 - 이력서삭제
+		@RequestMapping("/resume/resumeListDel.do")
+		public String mypageresuem_del(@RequestParam(defaultValue = "0")int resumeSeq, Model model) {
+			
+			int cnt=resumeService.resumeListDel(resumeSeq);
+			
+			String msg="", url="";
+			if(cnt>0) {
+				msg=resumeSeq+"번 이력서 삭제!";
+				url="/member/mypageresume.do";
+			}else {
+				msg="이력서 목록 삭제 실패!";
+				url="/member/mypageresume.do";
+			}
+			
+			
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			
+			return "common/message";
+			
 		}
 
 		//마이페이지 - 최근본 공고

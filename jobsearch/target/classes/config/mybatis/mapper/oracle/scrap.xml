@@ -9,16 +9,11 @@
 			select SCRAP_SEQ.nextval from dual
 		</selectKey>
 		insert into tbl_scrap(scrap_seq, ref_annseq, ref_memberseq)
-		values(#{scrapSeq}, #{refAnnseq}, #{refMemberseq})
+		values(#{scrapSeq}, #{refAnnseq}, #{memberSeq)
 	</insert>
-	
-	<select id="selectScrapYN" parameterType="scrapVo" resultType="int">
-		select count(*) from tbl_scrap
-		where ref_annseq=#{refAnnseq} and ref_memberseq=#{refMemberseq}
-	</select>
 	
 	<delete id="deleteScrap" parameterType="scrapVo">
 		delete from tbl_scrap
-		where ref_annseq=#{refAnnseq} and ref_memberseq=#{refMemberseq}
+		where ref_annseq=#{refAnnseq} and ref_memberSeq=#{memberSeq)
 	</delete>
 </mapper>

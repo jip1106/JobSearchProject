@@ -20,11 +20,6 @@ public class ScrapDAOImpl implements ScrapDAO {
 	public int deleteScrap(ScrapVO scrapVo) {
 		return sqlSession.delete(namespace+"deleteScrap", scrapVo);
 	}
-
-	@Override
-	public int selectScrapYN(ScrapVO scrapVo) {
-		return sqlSession.selectOne(namespace+"selectScrapYN", scrapVo);
-	}
 	
 	
 }

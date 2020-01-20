@@ -236,7 +236,7 @@ public class CompanyController {
 	}
 	
 	@RequestMapping("/companyDeleteMyAnn.do")
-	public String deleteMyAnn(@RequestParam(defaultValue = "0")int annSeq,Model model) {
+	public String deleteMyAnn(@RequestParam(defaultValue = "0")int annSeq, Model model) {
 		//후에 추가 검증처리
 		
 		logger.info("공고글 삭제처리 파라미터 annSeq={}",annSeq);

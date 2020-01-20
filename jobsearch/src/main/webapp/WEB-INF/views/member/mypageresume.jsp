@@ -7,7 +7,6 @@
 <!-- 외부css -->
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
 
-
 <style type="text/css">
 .span_title_resume {
     /* text-align: center; */
@@ -51,14 +50,24 @@ a.btn.btn-primary {
     letter-spacing: 0;
 
 }
+.txt_date_in 
+{
+    position: absolute;
+    top: -1px;
+    left: 30px;
+    color: #888;
+    font-size: 13px;
+    line-height: 17px;
+    letter-spacing: 0;
+    width: 130px;
+}
 .info_resume .tit {
     display: inline-block;
     padding-right: 5px;
-    color: #222;
+    color: #FF5722;
     font-size: 18px;
     line-height: 30px;
     vertical-align: top;
-    letter-spacing: -2px;
     box-sizing: border-box;
     margin: 30px 0 0 8px;
 }
@@ -89,12 +98,6 @@ span.career_small2 {
 span.point_color_date {
     margin-right: 9px;
 }
-/* button.btn_edit_complete{
-    border-color: #4876ef;
-    color: #fff;
-    background: #4876ef;
-    border: none;
-} */
 button.btn_edit_complete {
     color: #ffffff;
     background-color: #5e87f1;
@@ -159,60 +162,56 @@ span.X {
 	
 	<!-- 이력서 등록하기 -->
 		<div class="col-lg-4"><a href="<c:url value='/resume/resume.do'/>" class="btn btn-primary" >이력서등록하기</a></div>
-			<strong class="attach_count">총 <span class="count_span">2</span>건</strong>
 			
-	<!-- 반복문 사용해서 통째로 뿌려주기 
-	if문 사용해서 작성중일때 1번뿌려주고 /작성완료 2번뿌려주고-->
+			<strong class="attach_count">총 <span class="count_span">${count }</span>건</strong>
+	<!-- 이력서 목록이 있을 때  -->
+	<a href="http://www.saramin.co.kr" target="_blank"></a>
 	
-	<!-- 1번 -->
-	<a href="http://www.saramin.co.kr" target="_blank"/>
+	<c:if test="${!empty list}">
+	 <c:forEach var="resumeVo" items="${list }">
 	 	<div class="card mb-4-bt">
 	 		<div class="info_resume">
                <input type="hidden" name="res_idx" value="14137844" id="res_idx">
                <strong class="tit">
                  <a href="#">
-                	 <span class="point_color">[미완성] </span>
-                	 <span class="point_color_date">2020-01-08</span><span class="point_color_date">날 저장된 이력서 입니다.</span>
+                	 <span class="point_color">
+	                	 <c:if test="${resumeVo.resumeStatus==1 }">[미완성]</c:if>
+    	            	 <c:if test="${resumeVo.resumeStatus==2 }">[완성]</c:if>
+                	 </span>
+                	 <span class="point_color_date">${resumeVo.regDate }</span><span class="point_color_date">에 저장된 이력서 입니다.</span>
                	 </a>
                </strong>
             <div class="desc">
                <span class="career_small">신입</span>|<span class="career_small2">희망연봉란</span>                        
             </div>
-            <span class="txt_date">수정 2020.01.08</span>
+            <span class="txt_date">수정 <span class="txt_date_in">${resumeVo.regDate }</span></span>
             <button type="button" class="btn_edit_complete" onclick="#">완성하기</button>
             <div class="wrap_manage_btn">
-            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete">
+            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
+            	onclick="location.href = '<c:url value="/resume/resumeListDel.do?resumeSeq=${resumeVo.resumeSeq}"/>'">
             		<span class="X">X</span>
            		</button>
             </div>
            </div>
 		</div>
-    </a>
+		</c:forEach>
+    </c:if>
     
-	<!-- 2번 -->
-	<a href="http://www.saramin.co.kr" target="_blank"/>
+    
+	<!-- 이력서 목록이 없을 때  -->
+	<a href="http://www.saramin.co.kr" target="_blank"></a>
+	<c:if test="${empty list }">
 	 	<div class="card mb-4-bt">
 	 		<div class="info_resume">
                <input type="hidden" name="res_idx" value="14137844" id="res_idx">
                <strong class="tit">
-                 <a href="#">
-                	 <span class="point_color">[완성] </span>
-                	 <span class="point_color_date">이력서 제목 이력서 제목 이력서 제목 이력서 제목 </span>
-               	 </a>
+               		이력서를 등록해주세요!
                </strong>
             <div class="desc">
-               <span class="career_small">신입</span>|<span class="career_small2">희망연봉란</span>                        
-            </div>
-            <span class="txt_date">수정 2020.01.08</span>
-            <button type="button" class="btn_edit_complete" onclick="#">수정하기</button>
-            <div class="wrap_manage_btn">
-            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete">
-            		<span class="X">X</span>
-           		</button>
             </div>
            </div>
 		</div>
-    </a>
+	</c:if>
 	
 	
       

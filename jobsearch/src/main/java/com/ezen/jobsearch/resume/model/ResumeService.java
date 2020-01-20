@@ -8,6 +8,10 @@ public interface ResumeService {
 	List<Map<String, Object>> selectEmp();
 	List<Map<String, Object>> selectCate();
 	List<Map<String, Object>> selectLoca();
+	List<ResumeVO> resumeList(int memberSeq);
+	int resumeListCount(int memberSeq);
+	int resumeListDel(int resumeSeq);
+	
 	//자신 이력서 조회
 	List<ResumeVO> selectResumeList(int memberSeq);
 	
