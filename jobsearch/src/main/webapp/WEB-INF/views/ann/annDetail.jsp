@@ -518,7 +518,7 @@ span.star-border {
 
 			</div>			
 			<div class="card-footer text-muted_photo">
-				 <a href="#">사진사진사진</a>
+				 <a href="#">사진1사진2사진3</a>
 			</div>
 			<div class="ann_desc">
 				${vo.annDesc }
