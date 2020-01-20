@@ -188,13 +188,17 @@ strong.attach_count {
                <span class="career_small">${vo.careerType}</span>|<span class="career_small2">${vo.careerDesc}</span>|<span class="career_small2">${vo.refLocationseq1}</span>                        
             </div>
             <span class="txt_date">${vo.annStdt }</span>
+            <button type="button" class="btn_edit_complete" style=" margin-left: -208px;margin-top: 12px;"
+            onclick="window.open('<c:url value="/company/companymypageorder.do?annSeq=${vo.annSeq}"/>', 'payment', 'top=100px, left=100px, height=550px, width=550px, menubar=no, toolbar=no,status=no')"
+            >프리미엄으로 등록하기</button>
             <button type="button" class="btn_edit_complete" onclick="location.href = '<c:url value="/company/companymypageannedit.do?annSeq=${vo.annSeq}"/>'">수정하기</button>
             <div class="wrap_manage_btn">
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete" onclick = "location.href = '<c:url value="/company/companyDeleteMyAnn.do?annSeq=${vo.annSeq}"/>'">
             		<span class="X">X</span>
            		</button>
             </div>
-           </div>
+           </div>																																			
+
 		</div>
     </a>
     </c:forEach>
