@@ -171,12 +171,7 @@ strong.attach_count {
 		<li>공고를 누르시면 더 자세한 정보를 볼수 있습니다.</li>
 	</ul> 
 	
-	<!-- 이력서 등록하기 -->
-		<!-- <div class="col-lg-4"><a href="#" class="btn btn-primary" onclick="resume_apply">이력서등록하기</a></div> -->
-			<strong class="attach_count">총 <span class="count_span">${count}</span>건</strong>
-			
-	<!-- 반복문 사용해서 통째로 뿌려주기 
-	if문 사용해서 뿌려리기-->
+	
 	<c:forEach var="vo" items="${list}">
 	<a href="http://www.saramin.co.kr" target="_blank"/>
 	 	<div class="card mb-4-bt">

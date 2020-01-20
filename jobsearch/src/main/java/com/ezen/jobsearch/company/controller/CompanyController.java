@@ -292,5 +292,9 @@ public class CompanyController {
 		return "common/message";
   		
   	}
+  	@RequestMapping("/companymypagepay.do")
+  	public void companymypagepay() {
+  		logger.info("결제 상품 안내 페이지");
+  	}
 	
 }

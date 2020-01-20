@@ -161,7 +161,7 @@ p#countDay {
  
  <input type="button" id="sure" value="확정하기!">
  <hr>
- <br>총액     :<input type="text" id="total" value="${total} "> <br><br><!-- 계산 들어갈 여유 공간 -->
+ <br>총액     :<input type="text" id="total" value=" "> <br><br><!-- 계산 들어갈 여유 공간 -->
  <hr>
  <div id="edit_bt">
   				<button class="btn com_pay" type="submit">결제하기</button>  				
