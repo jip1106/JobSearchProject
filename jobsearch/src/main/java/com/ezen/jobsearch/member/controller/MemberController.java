@@ -29,6 +29,7 @@ import com.ezen.jobsearch.member.model.MemberService;
 import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.resume.model.ResumeService;
 import com.ezen.jobsearch.resume.model.ResumeVO;
+import com.ezen.jobsearch.scrap.model.ScrapService;
 import com.ezen.jobsearch.viewann.model.ViewAnnService;
 
 @Controller
@@ -44,6 +45,9 @@ public class MemberController {
 	
 	@Autowired
 	private ViewAnnService viewAnnService;
+	
+	@Autowired
+	private ScrapService scrapService;
 	
 	@Autowired
 	private FileUploadUtil fileUtil;
@@ -613,10 +617,42 @@ public class MemberController {
 			return "common/message";
 			
 		}
+		
 		//마이페이지 - 즐겨찾기
 		@RequestMapping("/member/mypagebookmark.do")
-		public String mypagebookmark_get() {
+		public String Viewbookmark(HttpSession session, Model model) {
+			MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
+			int memberSeq =memberVo.getMemberSeq();
+			
+			List<Map<String, Object>> list =scrapService.selectmypagebookmarkList(memberSeq);
+			
+			model.addAttribute("list",list);
+			model.addAttribute("count",list.size());
+			
 			return "member/mypagebookmark";
+		}
+		
+		//마이페이지 - 즐겨찾기 삭제
+		@RequestMapping("/member/mypagebookmarkListDel.do")
+		public String mypagebookmark_del(@RequestParam(defaultValue = "0")int scrapSeq, Model model) {
+		
+			int cnt=scrapService.mypagebookmarkListDel(scrapSeq);
+			
+			String msg="", url="";
+			if(cnt>0) {
+				msg=scrapSeq+"번 즐겨찾기 목록 삭제!";
+				url="/member/mypagebookmark.do";
+			}else {
+				msg="이력서 목록 삭제 실패!";
+				url="/member/mypagebookmark.do";
+			}
+			
+			
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			
+			return "common/message";
+			
 		}
 		
 		
@@ -624,10 +660,10 @@ public class MemberController {
 		@RequestMapping("/member/mypageresumeTest.do")
 		public String mypageresumeTest(HttpServletRequest request, Model model) {
 			HttpSession session = request.getSession();
-			//int memberSeq = ((MemberVO)session.getAttribute("loginMember")).getMemberSeq();
-			int memberSeq = 8;
+			int memberSeq = ((MemberVO)session.getAttribute("loginMember")).getMemberSeq();
 			
-			System.out.println("로그인 회원 seq : " + memberSeq);
+			
+			System.out.println("MemberController 로그인 회원 seq : " + memberSeq);
 			
 			List<ResumeVO> resumeList = resumeService.selectResumeList(memberSeq);
 			int resumeCount = resumeService.selectMyResumeCount(memberSeq);

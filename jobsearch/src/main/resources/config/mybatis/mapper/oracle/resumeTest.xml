@@ -21,9 +21,9 @@
 			select resume_seq.nextval from dual
 		</selectKey>
 		
-		insert into tbl_resume (RESUME_SEQ, reg_date, resume_status, ref_memberseq)
+		insert into tbl_resume (RESUME_SEQ, RESUME_TITLE, REG_DATE, RESUME_STATUS, RECURIT_STATUS, INTRODUCE_TITLE, INTRODUCE_DESC, REF_MEMBERSEQ )
 		values
-		(#{resumeSeq}, sysdate, 1, #{refMemberseq})
+		(#{resumeSeq}, #{resumeTitle}, sysdate, #{resumeStatus}, #{recuritStatus}, #{introduceTitle}, #{introduceDesc}, #{refMemberseq})
 	</insert>
 	
 	

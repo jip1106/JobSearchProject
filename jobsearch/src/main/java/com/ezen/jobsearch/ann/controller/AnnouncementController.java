@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.javassist.expr.NewArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,8 @@ import com.ezen.jobsearch.common.PaginationInfo;
 import com.ezen.jobsearch.location.model.LocationService;
 import com.ezen.jobsearch.location.model.LocationVO1;
 import com.ezen.jobsearch.member.model.MemberVO;
+import com.ezen.jobsearch.resume.model.ResumeService;
+import com.ezen.jobsearch.resume.model.ResumeVO;
 import com.ezen.jobsearch.scrap.model.ScrapService;
 import com.ezen.jobsearch.scrap.model.ScrapVO;
 import com.ezen.jobsearch.viewann.model.ViewAnnService;
@@ -49,6 +50,9 @@ public class AnnouncementController {
 	
 	@Autowired
 	private ViewAnnService viewAnnService;
+	
+	@Autowired
+	private ResumeService resumeService;
 	
 	@RequestMapping(value = "/ann/getAnnListByLoc.do")
 	public String getAnnListByLoc(String locationSeq1, String locationSeq2,String currentPage , Model model){
@@ -181,19 +185,21 @@ public class AnnouncementController {
 				//즐겨찾기 여부
 				int scrapYN=scrapService.selectScrapYN(scrapVo);
 				logger.info("즐겨찾기 여부 scrapYN={}", scrapYN);
+				
+				//지원할 이력서 목록
+				List<ResumeVO> resumeList=resumeService.selectResumeList(memberVo.getMemberSeq());
+				logger.info("조회한 이력서 목록, resumeList.size()={}", resumeList.size());
 								
 				model.addAttribute("scrapYN", scrapYN);
+				model.addAttribute("resumeList", resumeList);
 			}
 		}
 		
 		AnnounceMentVO vo=annService.selectBySeq(annSeq);
-		logger.info("vo::::::: {}",vo);
-		
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		logger.info("vo::::::: {}",vo);	
 				
 		model.addAttribute("vo", vo);
-		model.addAttribute("today", sdf.format(new Date()));
-		
+				
 		return "ann/annDetail";
 
 	}
