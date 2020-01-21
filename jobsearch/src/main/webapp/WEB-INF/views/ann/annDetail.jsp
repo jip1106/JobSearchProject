@@ -400,7 +400,7 @@ span.star-border {
 #modal{
 	 display: none; 
      position: fixed; 
-     z-index: 1;
+     z-index: 3;
      left: 0;
      top: 0;
      width: 100%;
@@ -446,36 +446,43 @@ span.star-border {
 			    	<a href="#" class="company_title" target="_blank">${vo.comName }</a>
 			     </div>			  	  	   	
 			        <span class="company_title2">${vo.annTitle }</span>
-			        <c:if test="${loginMember.regType == 1 && vo.annEndt > today }">
+			        <c:if test="${loginMember.regType == 1}">
 				        <c:if test="${scrapYN > 0}">
 					        <span class="star-border">
 					        	<img id="scrap" class="scrapY" src="<c:url value='/resources/images/yellow_star.png'/>" style="cursor: pointer;">
 					        </span>
 				        </c:if>
 				        <c:if test="${scrapYN == 0 || empty scrapYN}">
-					        <span class="star-border">
+					        <span id="scarp_bt" class="star-border">
 					        	<img id="scrap" class="scrapN" src="<c:url value='/resources/images/gray_star.png'/>" style="cursor: pointer;">
 					        </span>
 				        </c:if>
-				        <button class="sri_btn_lg for_btn_event" onclick="apply()">
+				        <button id="immediately_bt" class="sri_btn_lg for_btn_event" onclick="apply()">
 							<span class="sri_btn_immediately">즉시지원</span>
 						</button>
+				
+		        		<!-- 즉시지원  modal -->
 						<div id="modal">
 							<button id="apply_close" onclick="exit()"><img alt="닫기" src="<c:url value='/resources/images/close.png'/>"></button>
 							<div id="modal_apply">
 							    <h3><b>${vo.comName }</b> 입사지원</h3>
 							    <p><small>제출서류</small></p>
-							    <c:if test="${empty list }">				       
+							    <c:if test="${empty resumeList }">				       
 									<span id="resumeWrite" onclick="resumeWrite()" style="cursor: pointer; text-decoration:underline; color: #6b80f1; ">이력서를 작성해주세요.</span>
 								</c:if>  
 								<c:if test="${!empty resumeList }">
 					              	<c:forEach var="resumeVo" items="${resumeList }">
-							   			<p>${resumeVo.resumeTitle } <small>${resumeVo.regDate }</small></p>	
+							   			<input type="radio" name="no" value="${resumeVo.resumeSeq }"><span>${resumeVo.resumeTitle } <small>[수정일 : ${resumeVo.regDate }]</small></span><br>	
 							    	</c:forEach>
-								    <button id="confirm_button">지원하기</button>							  
-							    </c:if>						 
+									<form name="frmApply" action="<c:url value='/apply.do'/>" method="post">
+										<input type="hidden" name="refAnnseq" value="${vo.annSeq }">
+										<input type="hidden" name="refResumeseq">
+								    	<input type="submit" value="제출하기">						  
+							    	</form>
+							    </c:if>												 
 							</div>
-						</div>
+						</div>						
+						<!-- 즉시지원  modal -->
 					</c:if>
 		    </div>
 		    
@@ -576,7 +583,7 @@ span.star-border {
 
 	<script type="text/javascript">	
 		function timer(){			
-			var nowDate=new Date('${today}');
+			var nowDate=new Date();
 			var endDate=new Date('${vo.annEndt}');
 			var remainDate=endDate-nowDate;
 			
@@ -595,7 +602,10 @@ span.star-border {
 			if(remainDate<0){
 				clearInterval(timerStart);
 				document.getElementById("close").innerHTML="[지원 마감]";
-				document.getElementById("timer").innerHTML="";
+				document.getElementById("timer").innerHTML="";		
+				document.getElementById("immediately_bt").style.display="none";
+				document.getElementById("scarp_bt").style.display="none";
+				
 			}
 		}
 		
@@ -657,6 +667,7 @@ span.star-border {
         function resumeWrite(){
         	window.open("<c:url value='/resume/resumeTest.do'/>")
         }
+       
 
 	</script> 
  
