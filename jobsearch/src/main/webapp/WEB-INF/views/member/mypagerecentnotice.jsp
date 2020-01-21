@@ -165,6 +165,12 @@ display: inline-block;
 
 </style>
 
+<script type="text/javascript">
+	function annView(annSeq){
+		window.open("<c:url value='/ann/detail.do?annSeq='/>"+annSeq, annSeq+"번 공고 상세보기", 
+				"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	}
+</script>
 
 <!-- head end -->
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -192,7 +198,7 @@ display: inline-block;
 	 		<div class="info_resume">
                <input type="hidden" name="res_idx" value="14137844" id="res_idx">
                <strong class="tit">
-                 <a href="#">
+                 <a href="#" onclick="annView(${item['ANNSEQ']})">
                 	 <span class="point_color">[${item['COMTYPE']}] </span>
                 	 <span class="point_color_comp">${item['COMNAME']}</span>
                 	 <div class="point_color_gongchae">${item['TITLE']}</div>
