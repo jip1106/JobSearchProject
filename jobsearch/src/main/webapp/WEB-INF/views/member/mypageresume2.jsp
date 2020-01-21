@@ -6,7 +6,7 @@
 
 <!-- 외부css -->
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
-
+<script></script>
 
 <style type="text/css">
 .span_title_resume {
@@ -144,12 +144,23 @@ span.X {
 </style>
 
 
+
 <!-- head end -->
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 <body>
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 <c:import url="/WEB-INF/views/include/mypagenavitop.jsp" />
-<!-- section start -->
+	<script>
+		function insertResume(resumeSeq){
+			document.getElementById("frm").resumeSeq.value=resumeSeq;
+			document.getElementById("frm").submit();
+		}
+	</script>
+
+	<form name="frm" id="frm" method="post" action="/jobsearch/resume/resumeView.do">
+		<input type="hidden" name="resumeSeq" value="" id="resumeSeq" >
+	</form>
+	
 	<div class="span_title_resume">이력서현황</div>
 	<ul class="resume_notice">
 		<!-- <li>이력서는 최대 10개까지 작성하여 등록 가능합니다.</li> -->
@@ -158,14 +169,10 @@ span.X {
 	</ul>
 	
 	<!-- 이력서 등록하기 -->
-		<div class="col-lg-4"><a href="<c:url value='/resume/resumeTest.do'/>" class="btn btn-primary" >이력서등록하기</a></div>
+		<div class="col-lg-4"><a href="/jobsearch/resume/resumeView.do"  class="btn btn-primary" >이력서등록하기</a></div>
 			<strong class="attach_count">총 <span class="count_span">${resumeCount }</span>건</strong>
 			
-	<!-- 반복문 사용해서 통째로 뿌려주기 
-	if문 사용해서 작성중일때 1번뿌려주고 /작성완료 2번뿌려주고-->
 	
-	
-	<!-- 1번 -->
 	<c:if test="${!empty resumeList }">	
 		<c:forEach var="resumeVo" items="${resumeList }">
 			<div class="card mb-4-bt">
@@ -185,7 +192,7 @@ span.X {
 		               <span class="career_small">신입</span>|<span class="career_small2">희망연봉란</span>                        
 		            </div>
 	           		<span class="txt_date">수정 2020.01.08</span>
-	         	    <button type="button" class="btn_edit_complete" onclick="#">완성하기</button>
+	         	    <button type="button" class="btn_edit_complete" onclick="insertResume('${resumeVo.resumeSeq}')">완성하기</button>
 		            <div class="wrap_manage_btn">
 		            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete">
 		            		<span class="X">X</span>
@@ -217,10 +224,7 @@ span.X {
   
   
 <!-- section end -->
-<c:import url="/WEB-INF/views/include/mypagenavibottom.jsp" />
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<c:import url="/WEB-INF/views/include/mypagenavibottom.jsp" />
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 

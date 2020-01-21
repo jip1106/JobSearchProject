@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="config.mybatis.mapper.oracle.mycareerTest">
+	
+	<insert id="insertMycareerTest" parameterType="mycareerVo" >
+		<selectKey keyProperty="mycareerSeq" resultType="int" order="BEFORE">
+			select MYCAREER_SEQ.nextval from dual
+		</selectKey>
+		
+		insert into tbl_mycareer (MYCAREER_SEQ, CAREER_TYPE, PRE_COMNAME, PRE_STDT, PRE_ENDT, RETIRE_DESC, MANAGE_DESC, REF_RESUMESEQ)
+		values
+		(#{mycareerSeq}, #{careerType}, #{preComname} , #{preStdt}, #{preEndt} , #{retireDesc}, #{manageDesc}, #{refResumeseq})
+	</insert>
+	
+	
+	
+	
+</mapper>
