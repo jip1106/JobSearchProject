@@ -1,6 +1,7 @@
 package com.ezen.jobsearch.viewann.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,5 +34,14 @@ public class ViewAnnDAOImpl implements ViewAnnDAO {
 	public int deleteOldView(int memberSeq) {
 		return sqlSession.delete(namespace+"deleteOldView", memberSeq);
 	}
-
+	
+	@Override
+	public int mypagerecentnoticeListDel(int viewSeq) {
+		return sqlSession.delete(namespace+"mypagerecentnoticeListDel", viewSeq);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectmypagerecentnoticeList(int memberSeq) {
+		return sqlSession.selectList(namespace + "selectmypagerecentnoticeList", memberSeq);
+	}
 }
