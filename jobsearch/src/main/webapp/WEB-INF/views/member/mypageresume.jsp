@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="/WEB-INF/views/include/header.jsp" />
 <!-- head start -->
 
@@ -178,13 +178,18 @@ span.X {
 	                	 <c:if test="${resumeVo.resumeStatus==1 }">[미완성]</c:if>
     	            	 <c:if test="${resumeVo.resumeStatus==2 }">[완성]</c:if>
                 	 </span>
-                	 <span class="point_color_date">${resumeVo.regDate }</span><span class="point_color_date">에 저장된 이력서 입니다.</span>
+                	 <span class="point_color_date">
+                	    <fmt:formatDate value="${resumeVo.regDate }" pattern="yyyy년 MM월 dd일 HH시 mm분"/>
+                	    에 저장된 이력서 입니다.
+                	 </span>
                	 </a>
                </strong>
             <div class="desc">
                <span class="career_small">신입</span>|<span class="career_small2">희망연봉란</span>                        
             </div>
-            <span class="txt_date">수정 <span class="txt_date_in">${resumeVo.regDate }</span></span>
+             <span class="txt_date">수정 <span class="txt_date_in">
+             <fmt:formatDate value="${resumeVo.regDate }" pattern="yyyy.MM.dd" />
+            </span></span>
             <button type="button" class="btn_edit_complete" onclick="#">완성하기</button>
             <div class="wrap_manage_btn">
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"

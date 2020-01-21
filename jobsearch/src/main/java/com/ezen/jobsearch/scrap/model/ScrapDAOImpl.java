@@ -1,5 +1,8 @@
 package com.ezen.jobsearch.scrap.model;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,5 +29,14 @@ public class ScrapDAOImpl implements ScrapDAO {
 		return sqlSession.selectOne(namespace+"selectScrapYN", scrapVo);
 	}
 	
+	@Override
+	public int mypagebookmarkListDel(int scrapSeq) {
+		return sqlSession.delete(namespace+"mypagebookmarkListDel", scrapSeq);
+	}
+
+	@Override
+	public List<Map<String, Object>> selectmypagebookmarkList(int memberSeq) {
+		return sqlSession.selectList(namespace + "selectmypagebookmarkList", memberSeq);
+	}
 	
 }

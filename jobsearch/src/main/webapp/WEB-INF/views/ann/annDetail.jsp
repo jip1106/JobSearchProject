@@ -286,7 +286,7 @@ dd.date {
     font-weight: normal;
     letter-spacing: -1px;
 }
-.jv_howto .status_left {
+/* .jv_howto .status_left {
     display: table-cell;
     position: relative;
     z-index: 2;
@@ -296,6 +296,17 @@ dd.date {
     text-align: center;
     vertical-align: middle;
     background: #efefef;
+} */
+.jv_howto .status_left {
+    display: table-cell;
+    position: relative;
+    z-index: 2;
+    padding: 30px 0 20px;
+    width: 269px;
+    box-sizing: border-box;
+    text-align: center;
+    vertical-align: middle;
+    border-right: 1px solid #bbbbbb;
 }
 span.cn {
     margin-right: 24px;
@@ -386,6 +397,31 @@ span.star-border {
     border: 1px solid #d2d2d2;
     padding: 10px 10px;
 }
+#modal{
+	 display: none; 
+     position: fixed; 
+     z-index: 1;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%; 
+     overflow: auto; 
+     background-color: rgba(0,0,0,0.4); 
+}
+#modal_apply {
+    background-color: #fefefe;
+    margin: 15% auto; 
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;                         
+}
+#apply_close{
+    background: none;
+    margin-left: 90%;
+    margin-top: 25px;
+    border: none;
+}
+}	
 </style>
 </head>
 <body>
@@ -408,9 +444,9 @@ span.star-border {
 			<div class="top_title">
 				 <div class="c_title">
 			    	<a href="#" class="company_title" target="_blank">${vo.comName }</a>
-			     </div>
+			     </div>			  	  	   	
 			        <span class="company_title2">${vo.annTitle }</span>
-			        <c:if test="${loginMember.regType == 1 }">
+			        <c:if test="${loginMember.regType == 1 && vo.annEndt > today }">
 				        <c:if test="${scrapYN > 0}">
 					        <span class="star-border">
 					        	<img id="scrap" class="scrapY" src="<c:url value='/resources/images/yellow_star.png'/>" style="cursor: pointer;">
@@ -421,9 +457,25 @@ span.star-border {
 					        	<img id="scrap" class="scrapN" src="<c:url value='/resources/images/gray_star.png'/>" style="cursor: pointer;">
 					        </span>
 				        </c:if>
-				        <button class="sri_btn_lg for_btn_event">
+				        <button class="sri_btn_lg for_btn_event" onclick="apply()">
 							<span class="sri_btn_immediately">즉시지원</span>
 						</button>
+						<div id="modal">
+							<button id="apply_close" onclick="exit()"><img alt="닫기" src="<c:url value='/resources/images/close.png'/>"></button>
+							<div id="modal_apply">
+							    <h3><b>${vo.comName }</b> 입사지원</h3>
+							    <p><small>제출서류</small></p>
+							    <c:if test="${empty list }">				       
+									<span id="resumeWrite" onclick="resumeWrite()" style="cursor: pointer; text-decoration:underline; color: #6b80f1; ">이력서를 작성해주세요.</span>
+								</c:if>  
+								<c:if test="${!empty resumeList }">
+					              	<c:forEach var="resumeVo" items="${resumeList }">
+							   			<p>${resumeVo.resumeTitle } <small>${resumeVo.regDate }</small></p>	
+							    	</c:forEach>
+								    <button id="confirm_button">지원하기</button>							  
+							    </c:if>						 
+							</div>
+						</div>
 					</c:if>
 		    </div>
 		    
@@ -466,7 +518,7 @@ span.star-border {
 
 			</div>			
 			<div class="card-footer text-muted_photo">
-				 <a href="#">사진사진사진</a>
+				 <a href="#">사진1사진2사진3</a>
 			</div>
 			<div class="ann_desc">
 				${vo.annDesc }
@@ -524,7 +576,7 @@ span.star-border {
 
 	<script type="text/javascript">	
 		function timer(){			
-			var nowDate=new Date();
+			var nowDate=new Date('${today}');
 			var endDate=new Date('${vo.annEndt}');
 			var remainDate=endDate-nowDate;
 			
@@ -549,7 +601,6 @@ span.star-border {
 		
 		$(document).ready(function(){
 			timerStart=setInterval('timer()', 1000);
-			
 			
 			$("#scrap").click(function(){
 				var sUrl = "";
@@ -586,6 +637,26 @@ span.star-border {
 			});
 		});
 		
+		var modal = document.getElementById('modal');
+
+        function apply() {
+            modal.style.display = "block";
+        }
+        
+        //닫기 이미지로 모달 닫음
+        function exit(){
+            modal.style.display = "none";
+        }       
+        // 창 주변 누르면 모달 닫음
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        
+        function resumeWrite(){
+        	window.open("<c:url value='/resume/resumeTest.do'/>")
+        }
 
 	</script> 
  

@@ -1,10 +1,13 @@
 package com.ezen.jobsearch.ann.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.javassist.expr.NewArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +27,8 @@ import com.ezen.jobsearch.location.model.LocationVO1;
 import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.scrap.model.ScrapService;
 import com.ezen.jobsearch.scrap.model.ScrapVO;
+import com.ezen.jobsearch.viewann.model.ViewAnnService;
+import com.ezen.jobsearch.viewann.model.ViewAnnVO;
 
 @Controller
 public class AnnouncementController {
@@ -41,6 +46,9 @@ public class AnnouncementController {
 	
 	@Autowired
 	private ScrapService scrapService;
+	
+	@Autowired
+	private ViewAnnService viewAnnService;
 	
 	@RequestMapping(value = "/ann/getAnnListByLoc.do")
 	public String getAnnListByLoc(String locationSeq1, String locationSeq2,String currentPage , Model model){
@@ -151,20 +159,29 @@ public class AnnouncementController {
 			
 			return "common/message";
 		}
-		//접속 회원이 일반회원일 경우 조회수 업데이트
+		//접속 회원이 일반회원일 경우 
 		MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
 		if(memberVo != null) {
 			if(memberVo.getRegType().equals("1")) {
+				//공고 조회수 업데이트
 				int cnt=annService.updateAnnHits(annSeq);
 				logger.info("공고 조회수 업데이트, cnt={}", cnt);
 				ScrapVO scrapVo=new ScrapVO();
 				scrapVo.setRefAnnseq(annSeq);
 				scrapVo.setRefMemberseq(memberVo.getMemberSeq());
 				
+				ViewAnnVO viewAnnVo=new ViewAnnVO();
+				viewAnnVo.setRefAnnseq(annSeq);
+				viewAnnVo.setRefMemberseq(memberVo.getMemberSeq());
+				
+				//최근 본 공고 등록
+				cnt=viewAnnService.insertViewAnn(viewAnnVo);
+				logger.info("최근 본 공고에 등록, cnt={}", cnt);
+				
 				//즐겨찾기 여부
 				int scrapYN=scrapService.selectScrapYN(scrapVo);
 				logger.info("즐겨찾기 여부 scrapYN={}", scrapYN);
-				
+								
 				model.addAttribute("scrapYN", scrapYN);
 			}
 		}
@@ -172,9 +189,17 @@ public class AnnouncementController {
 		AnnounceMentVO vo=annService.selectBySeq(annSeq);
 		logger.info("vo::::::: {}",vo);
 		
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				
 		model.addAttribute("vo", vo);
+		model.addAttribute("today", sdf.format(new Date()));
 		
 		return "ann/annDetail";
 
 	}
+	
+	
+	
+	
+	
 }

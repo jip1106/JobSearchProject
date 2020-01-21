@@ -54,7 +54,7 @@ public class CompanyController {
     private BCryptPasswordEncoder passwordEncoder;
 	
 	
-	//기업마이페이지 - 회원정보수정
+	//마이페이지 - 회원정보수정
 	@RequestMapping(value = "/companymypageedit.do",method = RequestMethod.GET)
 	public String insertInfo_get(HttpSession session, Model model) {
 		//세션에서 vo받아온 뒤 seq추출
@@ -292,9 +292,16 @@ public class CompanyController {
 		return "common/message";
   		
   	}
-  	@RequestMapping("/companymypagepay.do")
-  	public void companymypagepay() {
-  		logger.info("결제 상품 안내 페이지");
+  	
+  	@RequestMapping("/companymypageorder.do")
+  	public void companymypageorder(@RequestParam int annSeq,HttpSession session,Model model) {
+  		logger.info("결제하기 페이지 파라미터 annSeq={}",annSeq);
+  		MemberVO vo=(MemberVO)session.getAttribute("loginMember");
+  		String Name=vo.getMemberName();
+  		
+  		model.addAttribute("Name",Name);
+  		
+  		
   	}
 	
 }
