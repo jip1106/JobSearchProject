@@ -21,4 +21,21 @@
 		delete from tbl_scrap
 		where ref_annseq=#{refAnnseq} and ref_memberseq=#{refMemberseq}
 	</delete>
+	
+	<select id="selectmypagebookmarkList" parameterType="int" resultType="map">
+		select 
+			tc.com_name as COMNAME, ta.ANN_TITLE AS TITLE,
+			ta.SALARY as SALARY, ta.REG_DATE as REGDATE,
+			ta.CAREER_TYPE as CAREER, ta.EMPLOYEE_TYPE as EMPLOYEE,tc.com_type as COMTYPE ,scrap_seq 
+		from 
+			tbl_company tc join tbl_announcement ta
+			on tc.com_seq=ta.REF_COMPANYSEQ
+			join tbl_scrap ts
+			on ta.ann_seq= ts.ref_annseq
+		where ts.ref_memberseq=#{memberSeq}
+	</select>
+	
+	<delete id="mypagebookmarkListDel" parameterType="int">
+		delete from tbl_scrap where scrap_seq=#{scrapSeq}
+	</delete>
 </mapper>

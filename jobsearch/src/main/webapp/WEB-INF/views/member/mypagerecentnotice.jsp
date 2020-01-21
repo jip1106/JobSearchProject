@@ -208,7 +208,7 @@ display: inline-block;
             <button type="button" class="btn_edit_complete" onclick="#">지원하기</button>
             <div class="wrap_manage_btn">
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
-            	onclick="location.href = '<c:url value="/member/mypagerecentnoticeListDel.do?viewSeq=${item['VIEW_SEQ']}"/>'">
+            	onclick="location.href = '<c:url value="/member/mypagerecentnoticeListDel.do?viewSeq=${item.VIEW_SEQ}"/>'">
             		<span class="X">X</span>
            		</button>
             </div>
