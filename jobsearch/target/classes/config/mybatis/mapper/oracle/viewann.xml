@@ -27,4 +27,21 @@
 		select * from tbl_viewann
 		where ref_memberseq=#{refMemberseq}	
 	</select>
+	
+	<select id="selectmypagerecentnoticeList" parameterType="int" resultType="map">
+		select 
+			tc.com_name as COMNAME, ta.ANN_TITLE AS TITLE,
+			ta.SALARY as SALARY, ta.REG_DATE as REGDATE,
+			ta.CAREER_TYPE as CAREER, ta.EMPLOYEE_TYPE as EMPLOYEE,tc.com_type as COMTYPE  
+		from 
+			tbl_company tc join tbl_announcement ta
+			on tc.com_seq=ta.REF_COMPANYSEQ
+			join tbl_viewann tv
+			on ta.ann_seq= tv.ref_annseq
+		where tv.ref_memberseq=#{memberSeq}
+	</select>
+	
+	<delete id="mypagerecentnoticeListDel" parameterType="int">
+		delete from tbl_viewann where view_seq=#{viewSeq}
+	</delete>
 </mapper>

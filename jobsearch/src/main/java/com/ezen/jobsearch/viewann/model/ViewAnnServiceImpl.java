@@ -1,5 +1,8 @@
 package com.ezen.jobsearch.viewann.model;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +26,17 @@ public class ViewAnnServiceImpl implements ViewAnnService {
 		}
 		return viewAnnDao.insertViewAnn(viewAnnVo);
 	}
+	
+
+	@Override
+	public int mypagerecentnoticeListDel(int viewSeq) {
+		return viewAnnDao.mypagerecentnoticeListDel(viewSeq);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectmypagerecentnoticeList(int memberSeq) {
+		return viewAnnDao.selectmypagerecentnoticeList(memberSeq);
+	}
+	
 	
 }

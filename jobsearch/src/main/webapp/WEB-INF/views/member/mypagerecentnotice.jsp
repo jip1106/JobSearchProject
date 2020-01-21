@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:import url="/WEB-INF/views/include/header.jsp" />
 <!-- head start -->
@@ -86,16 +87,11 @@ span.career_small {
 }
 span.career_small2 {
     margin-left: 7px;
+    margin-right: 7px;
 }
 span.point_color_date {
     margin-right: 9px;
 }
-/* button.btn_edit_complete{
-    border-color: #4876ef;
-    color: #fff;
-    background: #4876ef;
-    border: none;
-} */
 button.btn_edit_complete {
     color: #ffffff;
     background-color: #5e87f1;
@@ -156,6 +152,17 @@ strong.attach_count {
     font-size: 17px;
     margin-top: -2px;
 }
+.info_recentnotice .tit {
+display: inline-block;
+    padding-right: 5px;
+    color: #FF5722;
+    font-size: 18px;
+    line-height: 30px;
+    vertical-align: top;
+    box-sizing: border-box;
+    margin: 30px 0 53px 8px;
+}
+
 </style>
 
 
@@ -178,58 +185,52 @@ strong.attach_count {
 	<!-- 반복문 사용해서 통째로 뿌려주기 
 	if문 사용해서 뿌려리기-->
 	
-	<a href="http://www.saramin.co.kr" target="_blank"/>
+	<a href="http://www.saramin.co.kr" target="_blank"></a>
+	<c:if test="${!empty list}">
+		 <c:forEach var="item" items="${list}">
 	 	<div class="card mb-4-bt">
 	 		<div class="info_resume">
                <input type="hidden" name="res_idx" value="14137844" id="res_idx">
                <strong class="tit">
                  <a href="#">
-                	 <span class="point_color">[서울] </span>
-                	 <span class="point_color_comp">삼성전자반도체</span>
-                	 <div class="point_color_gongchae">2020년도 상반기 신입사원 공채 공고</div>
+                	 <span class="point_color">[${item['COMTYPE']}] </span>
+                	 <span class="point_color_comp">${item['COMNAME']}</span>
+                	 <div class="point_color_gongchae">${item['TITLE']}</div>
                	 </a>
                </strong>
             <div class="desc">
-               <span class="career_small">신입</span>|<span class="career_small2">대학교 4년 ↑</span>|<span class="career_small2">서울</span>                        
+               <span class="career_small">${item['CAREER']}</span>|<span class="career_small2">${item['EMPLOYEE']}</span>|<span class="career_small2">${item['SALARY']}이상</span>                        
             </div>
-            <span class="txt_date">2020.01.08</span>
+
+            <span class="txt_date">
+            <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd" />
+            </span>
             <button type="button" class="btn_edit_complete" onclick="#">지원하기</button>
             <div class="wrap_manage_btn">
-            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete">
+            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
+            	onclick="location.href = '<c:url value="/member/mypagerecentnoticeListDel.do?viewSeq=${item['VIEW_SEQ']}"/>'">
             		<span class="X">X</span>
            		</button>
             </div>
            </div>
 		</div>
-    </a>
-    
-	<a href="http://www.saramin.co.kr" target="_blank"/>
+		</c:forEach>
+		</c:if>
+	
+	<!-- 이력서 목록이 없을 때  -->
+	<a href="http://www.saramin.co.kr" target="_blank"></a>
+	<c:if test="${empty list }">
 	 	<div class="card mb-4-bt">
-	 		<div class="info_resume">
+	 		<div class="info_recentnotice">
                <input type="hidden" name="res_idx" value="14137844" id="res_idx">
                <strong class="tit">
-                 <a href="#">
-                	 <span class="point_color">[수원] </span>
-                	 <span class="point_color_comp">삼성전자반도체</span>
-                	 <div class="point_color_gongchae">2020년도 상반기 신입사원 공채 공고</div>
-               	 </a>
+               		관심공고를 선택해주세요!
                </strong>
             <div class="desc">
-               <span class="career_small">경력</span>|<span class="career_small2">대학교 ↑</span>|<span class="career_small2">서울</span>                        
-            </div>
-            <span class="txt_date">2020.01.08</span>
-            <button type="button" class="btn_edit_complete" onclick="#">지원하기</button>
-            <div class="wrap_manage_btn">
-            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete">
-            		<span class="X">X</span>
-           		</button>
             </div>
            </div>
 		</div>
-    </a>
-    
-	
-	
+	</c:if>
 	
       
   

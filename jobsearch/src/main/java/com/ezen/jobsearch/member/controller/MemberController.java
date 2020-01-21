@@ -29,6 +29,7 @@ import com.ezen.jobsearch.member.model.MemberService;
 import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.resume.model.ResumeService;
 import com.ezen.jobsearch.resume.model.ResumeVO;
+import com.ezen.jobsearch.viewann.model.ViewAnnService;
 
 @Controller
 public class MemberController {
@@ -39,7 +40,10 @@ public class MemberController {
 	private MemberService memberService;
 	
 	@Autowired
-	private CompanyService companyService; 
+	private CompanyService companyService;
+	
+	@Autowired
+	private ViewAnnService viewAnnService;
 	
 	@Autowired
 	private FileUploadUtil fileUtil;
@@ -573,12 +577,42 @@ public class MemberController {
 			
 		}
 
-		//마이페이지 - 최근본 공고
+		//최근본 공고
 		@RequestMapping("/member/mypagerecentnotice.do")
-		public String mypagenotice_get() {
+		public String viewNotice(HttpSession session, Model model) {
+			MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
+			int memberSeq =memberVo.getMemberSeq();
+			
+			List<Map<String, Object>> list =viewAnnService.selectmypagerecentnoticeList(memberSeq);
+			
+			model.addAttribute("list",list);
+			model.addAttribute("count",list.size());
+			
 			return "member/mypagerecentnotice";
 		}
 		
+		//최근본 공고 삭제 
+		@RequestMapping("/member/mypagerecentnoticeListDel.do")
+		public String mypagerecentnotice_del(@RequestParam(defaultValue = "0")int viewSeq, Model model) {
+			
+			int cnt=viewAnnService.mypagerecentnoticeListDel(viewSeq);
+			
+			String msg="", url="";
+			if(cnt>0) {
+				msg=viewSeq+"번 최근 공고 삭제!";
+				url="/member/mypagerecentnotice.do";
+			}else {
+				msg="이력서 목록 삭제 실패!";
+				url="/member/mypagerecentnotice.do";
+			}
+			
+			
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			
+			return "common/message";
+			
+		}
 		//마이페이지 - 즐겨찾기
 		@RequestMapping("/member/mypagebookmark.do")
 		public String mypagebookmark_get() {
