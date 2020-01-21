@@ -660,10 +660,10 @@ public class MemberController {
 		@RequestMapping("/member/mypageresumeTest.do")
 		public String mypageresumeTest(HttpServletRequest request, Model model) {
 			HttpSession session = request.getSession();
-			//int memberSeq = ((MemberVO)session.getAttribute("loginMember")).getMemberSeq();
-			int memberSeq = 8;
+			int memberSeq = ((MemberVO)session.getAttribute("loginMember")).getMemberSeq();
 			
-			System.out.println("로그인 회원 seq : " + memberSeq);
+			
+			System.out.println("MemberController 로그인 회원 seq : " + memberSeq);
 			
 			List<ResumeVO> resumeList = resumeService.selectResumeList(memberSeq);
 			int resumeCount = resumeService.selectMyResumeCount(memberSeq);

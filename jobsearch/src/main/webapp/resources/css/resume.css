@@ -331,6 +331,8 @@ label.lbl {
     text-align: center;
     background-color: #fff;
 }
+
+
 .resume_photo .box_photo {
     display: block;
     position: relative;
@@ -340,6 +342,30 @@ label.lbl {
     box-sizing: border-box;
     background-color: #fafafa;
 }
+
+.resume_photo2 {
+    position: absolute;
+    top: 46px;
+    left: 70%;
+    padding: 9px;
+    width: 120px;
+    height: 160px;
+    border: 1px solid #e9e9e9;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #fff;
+}
+
+.resume_photo2 .box_photo2 {
+    display: block;
+    position: relative;
+    padding-top: 50px;
+    width: 100px;
+    height: 140px;
+    box-sizing: border-box;
+    background-color: #fafafa;
+}
+
 /* 신입,경력 */
 .row.mt-4_career {
     margin-top: -54px;
