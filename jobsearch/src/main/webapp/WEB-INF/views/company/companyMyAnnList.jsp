@@ -157,6 +157,19 @@ strong.attach_count {
     margin-top: -2px;
 }
 </style>
+<script type="text/javascript">
+	function deleteConfirm(annseq){
+		 if (confirm("정말 삭제하시겠습니까?"))
+		  {
+			 location.href = "${pageContext.request.contextPath }/company/companyDeleteMyAnn.do?annSeq="+annseq;
+		  } else {
+		   alert("취소되었습니다");
+		  }
+			
+
+	}
+</script>
+
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 <!-- head end -->
 
@@ -201,7 +214,7 @@ strong.attach_count {
             </c:if>
             <button type="button" class="btn_edit_complete" onclick="location.href = '<c:url value="/company/companymypageannedit.do?annSeq=${map['ANN_SEQ']}"/>'">수정하기</button>
             <div class="wrap_manage_btn">
-            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete" onclick = "location.href = '<c:url value="/company/companyDeleteMyAnn.do?annSeq=${map['ANN_SEQ']}"/>'">
+            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete" onclick = "deleteConfirm(${map['ANN_SEQ']})">
             		<span class="X">X</span>
            		</button>
             </div>
