@@ -8,7 +8,12 @@
 		<selectKey keyProperty="applySeq" resultType="int" order="BEFORE">
 			select apply_seq.nextval from dual		
 		</selectKey>
-		insert into apply(apply_seq, ref_annseq, ref_resumeseq)
+		insert into tbl_apply(apply_seq, ref_annseq, ref_resumeseq)
 		values(#{applySeq}, #{refAnnseq}, #{refResumeseq})
 	</insert>
+	
+	<delete id="deleteApply" parameterType="applyVo">
+		delete from tbl_apply
+		where ref_annseq=#{refAnnseq} and ref_resumeseq=#{refResumeseq}		
+	</delete>
 </mapper>
