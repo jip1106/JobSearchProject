@@ -218,7 +218,7 @@ display: inline-block;
             <span class="txt_date">
             <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd" />
             </span>
-            <button type="button" class="btn_edit_complete" onclick="#">지원하기</button>
+            <button type="button" class="btn_edit_complete" onclick="annView(${item['ANNSEQ']})">지원하기</button>
             <div class="wrap_manage_btn">
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
             	onclick="button_event(${item.SCRAP_SEQ})">

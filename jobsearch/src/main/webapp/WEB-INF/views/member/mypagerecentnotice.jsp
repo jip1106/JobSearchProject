@@ -220,6 +220,7 @@ display: inline-block;
             </span>
             <button type="button" class="btn_edit_complete" onclick="annView(${item['ANNSEQ']})">지원하기</button>
             <div class="wrap_manage_btn">
+            	<%-- <span id=ramain_time>${item.TIME}</span> --%>
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
             	onclick="button_event(${item.VIEW_SEQ})">
             	<!-- <button type="button" onclick="button_event();">삭제하기</button> -->
@@ -228,6 +229,7 @@ display: inline-block;
            		</button>
             </div>
            </div>
+           
 		</div>
 		</c:forEach>
 		</c:if>
