@@ -50,6 +50,15 @@ public class ResumeDAOImpl implements ResumeDAO{
 	}
 
 	@Override
+	public List<Map<String,Object>> selectResumeListMap(int memberSeq) {
+		// TODO Auto-generated method stub
+		
+		List<Map<String,Object>> resumeList = sqlSession.selectList(namespace + "selectResumeListMap", memberSeq);
+		
+		return resumeList;
+	}
+	
+	@Override
 	public List<ResumeVO> selectResumeList(int memberSeq) {
 		// TODO Auto-generated method stub
 		
@@ -80,8 +89,23 @@ public class ResumeDAOImpl implements ResumeDAO{
 		// TODO Auto-generated method stub
 		
 		Map<String,Object> resumeInfo = sqlSession.selectOne(namespace+"selectMyResumeInfo",resumeSeq);
-		System.out.println("DAOImpl " + resumeInfo);
+		//System.out.println("DAOImpl " + resumeInfo);
 		return resumeInfo;
+	}
+
+	@Override
+	public int updateResume(ResumeVO resumeVo) {
+		// TODO Auto-generated method stub
+		
+		int cnt = sqlSession.update(namespace + "updateResumeInfoTest",resumeVo);
+		return cnt;
+	}
+
+	@Override
+	public int deleteResume(String resumeSeq) {
+		// TODO Auto-generated method stub
+		int cnt = sqlSession.delete(namespace + "deleteResumeTest",resumeSeq);
+		return cnt;
 	}
 
 

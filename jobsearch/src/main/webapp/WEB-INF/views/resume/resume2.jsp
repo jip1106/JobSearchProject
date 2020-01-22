@@ -78,8 +78,19 @@ $(document).ready(function() {
         }
 	});	
 	
-	//학력정보 
-	showDiv('1');
+	//학력정보 스크립트
+	if(${resumeSeq == 0 }){	//등록인경우
+		showDiv('1');
+	}else{
+		if(${list_edu.size() == 1}){	//고등학교
+			showDiv('1');	
+		}else if(${list_edu.size() == 2}){	//대학교
+			showDiv('2');
+		}else if(${list_edu.size() == 3}){	//대학원
+			showDiv('3');
+		}
+		
+	}
 });
 
 function showDiv(index){
@@ -162,16 +173,22 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 
 <body>
+
 <c:import url="/WEB-INF/views/include/navi.jsp" />
   
   
   <!-- Page Content -->
   <div class="container">
+  
   	<c:if test="${resumeSeq ==0 }"> 	<% //이력서 등록 %>
   		<form name="frm" method="post" action="/jobsearch/resume/resumeInsert.do" onsubmit="insertResume()">
   	</c:if>
   	<c:if test="${resumeSeq !=0 }"> 	<% //이력서 수정 %>
   		<form name="frm" method="post" action="/jobsearch/resume/resumeUpdate.do" onsubmit="insertResume()">
+  			<input type="hidden" value="${resumeSeq }" name="resumeSeq">
+  			<input type="hidden" value="${resumeInfo['HOPEWORK_SEQ'] }" name="hopeworkSeq">
+  			<input type="hidden" value="${resumeInfo['MYCAREER_SEQ']}" name="mycareerSeq">
+  			
   	</c:if>
   	
 	    
@@ -284,22 +301,30 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 			
 		</div>
 		
+		
+		
 		<div class="card mb-4-bt" id="educationInfo" style="display:none;">
 			<input type="hidden" name="educationSize" value="1" id="educationSize">
 		
 			<div id="infoDiv1" style="display:none;">
+				<input type="hidden" name="educationVOList[0].eduSeq" 
+					<c:if test="${empty list_edu[0]['EDU_SEQ']}">value="0"</c:if>
+					<c:if test="${!empty list_edu[0]['EDU_SEQ']}">value="${list_edu[0]['EDU_SEQ']}"</c:if>
+				>
+				
+				
 				<input type="hidden" name="educationVOList[0].eduType" value="1">
 				<input type="hidden" name="educationVOList[0].univType" value="0">
 				<input type="hidden" name="educationVOList[0].univScore" value="0">
 				<input type="hidden" name="educationVOList[0].univMajor" value="0">
-				
 				
 				<h4 class="hsc">고등학교 정보 입력</h4>
 				<div class="row mb-4 mt-4">
 					<div class="col-lg-4">학교이름  </div>
 					
 					<div class="col-lg-4 form-label-group mb-2">
-						<input type="text" id="eduNameHigh" name="educationVOList[0].eduName" class="form-control" placeholder="학교이름">
+						<input type="text" id="eduNameHigh" name="educationVOList[0].eduName" class="form-control" placeholder="학교이름"
+						value = "${list_edu[0]['EDU_NAME'] }">
 					</div>
 				</div>
 				
@@ -307,14 +332,22 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 					<div class="col-lg-4">재학기간  </div>
 					
 					<div class="col-lg-8 form-label-group mb-2">
-						<input type="text"  id="education_term1" name="educationVOList[0].periodStdt" class="form-control" placeholder="입학일" readonly>
+						<input type="text"  id="education_term1" name="educationVOList[0].periodStdt" class="form-control" placeholder="입학일" 
+						value = "${list_edu[0]['PERIOD_STDT']}" readonly>
+						
 						<span class="hyphen">~</span>
-						<input type="text"  id="education_term2" name="educationVOList[0].periodEndt" class="form-control" placeholder="졸업일" readonly>
+						<input type="text"  id="education_term2" name="educationVOList[0].periodEndt" class="form-control" placeholder="졸업일" 
+						value = "${list_edu[0]['PERIOD_ENDT']}"readonly>
 					</div>
 				</div>
 			</div>
 			
 			<div id="infoDiv2" style="display:none;">
+			
+				<input type="hidden" name="educationVOList[1].eduSeq" 
+					<c:if test="${empty list_edu[1]['EDU_SEQ']}">value="0"</c:if>
+					<c:if test="${!empty list_edu[1]['EDU_SEQ']}">value="${list_edu[1]['EDU_SEQ']}"</c:if>
+				>
 				<input type="hidden" name="educationVOList[1].eduType" value="2">
 								
 				<h4 class="hsc">대학교 정보 입력</h4>
@@ -323,8 +356,8 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 					<div class="col-lg-8 form-label-group mb-2">
 						<select id="univType" name="educationVOList[1].univType" class="form-control">
 							<option value="">선택</option>
-							<option value="1">2,3년제</option>
-							<option value="2">4년제</option>
+							<option value="1" <c:if test="${list_edu[1]['UNIV_TYPE'] == 1 }">selected</c:if>>2,3년제</option>
+							<option value="2" <c:if test="${list_edu[1]['UNIV_TYPE'] == 2 }">selected</c:if>>4년제</option>
 						</select>
 					</div>
 				</div>
@@ -332,35 +365,44 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 					<div class="col-lg-4">학교이름  </div>
 					
 						<div class="col-lg-8 form-label-group mb-2">
-							<input type="text" id="eduNameUniv" name="educationVOList[1].eduName" class="form-control" placeholder="학교이름">
+							<input type="text" id="eduNameUniv" 
+							value = "${list_edu[1]['EDU_NAME'] }" name="educationVOList[1].eduName" class="form-control" placeholder="학교이름">
 						</div>
 				</div>
 		        <div class="row mb-4 mt-4">
 					<div class="col-lg-4">재학기간  </div>
 					
 						<div class="col-lg-8 form-label-group mb-2">
-							<input type="text"  id="education_term3" name="educationVOList[1].periodStdt" class="form-control" placeholder="입학일"   readonly>
+							<input type="text"  id="education_term3" name="educationVOList[1].periodStdt" class="form-control" placeholder="입학일"   
+							value = "${list_edu[1]['PERIOD_STDT'] }" readonly>
 							<span class="hyphen">~</span>
-							<input type="text"  id="education_term4" name="educationVOList[1].periodEndt" class="form-control" placeholder="졸업일"   readonly>
+							<input type="text"  id="education_term4" name="educationVOList[1].periodEndt" class="form-control" placeholder="졸업일"   
+							value = "${list_edu[1]['PERIOD_ENDT'] }" readonly>
 						</div>
 				</div>
 		        <div class="row mb-4 mt-4 ">
 					<div class="col-lg-4">학점 </div>
 					
 						<div class="col-lg-8 form-label-group mb-2">
-							<input type="text" id="univScore" name="educationVOList[1].univScore" class="form-control" placeholder="학점">
+							<input type="text" id="univScore" name="educationVOList[1].univScore" class="form-control" placeholder="학점"
+							value="${list_edu[1]['UNIV_SCORE'] }">
 						</div>
 				</div>
 		        <div class="row mb-4 mt-4">
 					<div class="col-lg-4">전공  </div>
 					
 						<div class="col-lg-8 form-label-group mb-2">
-							<input type="text" id="univMajor" name="educationVOList[1].univMajor" class="form-control" placeholder="전공">
+							<input type="text" id="univMajor" name="educationVOList[1].univMajor" class="form-control" placeholder="전공"
+							value="${list_edu[1]['UNIV_MAJOR'] }">
 						</div>
 				</div>
 			</div>
 
 			<div id="infoDiv3" style="display:none;">
+					<input type="hidden" name="educationVOList[2].eduSeq" 
+						<c:if test="${empty list_edu[2]['EDU_SEQ']}">value="0"</c:if>
+						<c:if test="${!empty list_edu[2]['EDU_SEQ']}">value="${list_edu[2]['EDU_SEQ']}"</c:if>
+				>
 				<input type="hidden" name="educationVOList[2].eduType" value="3">
 				<input type="hidden" name="educationVOList[2].univScore" value="">
 				<input type="hidden" name="educationVOList[2].univMajor" value="">
@@ -371,8 +413,8 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 						<div class="col-lg-8 form-label-group mb-2">
 							<select id="univType" name="educationVOList[2].univType" class="form-control">
 								<option value="">선택</option>
-								<option value="3">대학원(석사)</option>
-								<option value="4">대학원(박사)</option>
+								<option value="3" <c:if test="${list_edu[2]['UNIV_TYPE']==3}">selected</c:if>>대학원(석사)</option>
+								<option value="4" <c:if test="${list_edu[2]['UNIV_TYPE']==4}">selected</c:if>>대학원(박사)</option>
 							</select>
 						</div>
 				</div>
@@ -380,16 +422,19 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 					<div class="col-lg-4">학교이름  </div>
 					
 						<div class="col-lg-8 form-label-group mb-2">
-							<input type="text" id="eduNameGs" name="educationVOList[2].eduName" class="form-control" placeholder="학교이름">
+							<input type="text" id="eduNameGs" 
+							value = "${list_edu[2]['EDU_NAME']}" name="educationVOList[2].eduName" class="form-control" placeholder="학교이름">
 						</div>
 				</div>
 		        <div class="row mb-4 mt-4">
 					<div class="col-lg-4">재학기간  </div>
 					
 						<div class="col-lg-8 form-label-group mb-2">
-							<input type="text"  id="education_term5" name="educationVOList[2].periodStdt" class="form-control" placeholder="입학일"   readonly>
+							<input type="text"  id="education_term5" name="educationVOList[2].periodStdt" class="form-control" placeholder="입학일"   
+							value = "${list_edu[2]['PERIOD_STDT'] }" readonly>
 							<span class="hyphen">~</span>
-							<input type="text"  id="education_term6" name="educationVOList[2].periodEndt" class="form-control" placeholder="졸업일"   readonly>
+							<input type="text"  id="education_term6" name="educationVOList[2].periodEndt" class="form-control" placeholder="졸업일"   
+							value = "${list_edu[2]['PERIOD_ENDT'] }"  readonly>
 						</div>
 				</div>
 			</div>
@@ -453,25 +498,28 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 
  
         <!-- 경력사항 -->
-        <script>
-        	function
-        </script>
+	<script>
+		function changeCareerType(careerType){
+			$("#careerType").val(careerType);
+		
+		}
+	</script>
 
         <span class="span_notice_title">경력사항</span>
         <input type="hidden" name="careerType" value="1" id="careerType">
         
         <div class="card mb-4-bt-career">
 			<ul class="nav nav-tabs" style="width:100%; text-align:center;">
-			  <li class="nav-item" style="width:50%;">
-			    <a class="nav-link active" data-toggle="tab" href="#newPerson">신입</a>
+			  <li class="nav-item" style="width:50%;" onclick="changeCareerType('1')">
+			    <a class="nav-link <c:if test="${resumeInfo['CAREER_TYPE']==1 || resumeInfo['CAREER_TYPE']!=2}">active</c:if>" data-toggle="tab" href="#newPerson">신입</a>
 			  </li>
-			  <li class="nav-item" style="width:50%;">
-			    <a class="nav-link" data-toggle="tab" href="#oldMan">경력</a>
+			  <li class="nav-item" style="width:50%;" onclick="changeCareerType('2')">
+			    <a class="nav-link <c:if test="${resumeInfo['CAREER_TYPE']==2 }">active</c:if>" data-toggle="tab" href="#oldMan">경력</a>
 			  </li>
 			</ul>
 
 			<div class="tab-content text-center">
-			  <div class="tab-pane fade show active" id="newPerson">
+			  <div class="tab-pane fade <c:if test="${resumeInfo['CAREER_TYPE']==1 || resumeInfo['CAREER_TYPE']!=2}">show active</c:if>" id="newPerson">
 			    <div class="row mb-4 mt-4">
 			  		<div class="col-lg-12">
 			  		    신입지원자 입니다.
@@ -479,7 +527,8 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 			  	</div>
 			  </div>
 
-			  <div class="tab-pane fade" id="oldMan">
+			
+			  <div class="tab-pane fade <c:if test="${resumeInfo['CAREER_TYPE']==2 }">show active</c:if>" id="oldMan">
 					<div class="row mb-4 mt-4">
 		    			<div class="col-lg-4">이전 직장 회사명</div>
 						<div class="col-lg-8 form-label-group">
@@ -506,14 +555,14 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 					<div class="row mb-4 mt-4">
 						<div class="col-lg-4">담당업무</div>
 						<div class="col-lg-8 form-label-group">
-							<input type="text" name="manageDesc" class="form-control" placeholder="담담업무"  >
+							<input type="text" value="${resumeInfo['MANAGE_DESC']}" name="manageDesc" class="form-control" placeholder="담담업무"  >
 						</div>
 					</div>						
 					
 					<div class="row mb-4 mt-4">
 						<div class="col-lg-4">퇴사사유</div>
 						<div class="col-lg-8 form-label-group">
-							<textarea class="form-control" name="retireDesc" placeholder="퇴사사유" style="resize:none; height:10em;"></textarea>
+							<textarea class="form-control" name="retireDesc" placeholder="퇴사사유" style="resize:none; height:10em;">${resumeInfo['RETIRE_DESC']}</textarea>
 						</div>
 					</div>						
 			  </div>

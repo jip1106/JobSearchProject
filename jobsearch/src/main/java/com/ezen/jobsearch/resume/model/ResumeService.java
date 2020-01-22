@@ -13,7 +13,7 @@ public interface ResumeService {
 	int resumeListDel(int resumeSeq);
 	
 	//자신 이력서 조회
-	List<ResumeVO> selectResumeList(int memberSeq);
+	List<Map<String,Object>> selectResumeListMap(int memberSeq);
 	
 	//자신 이력서 카운트
 	int selectMyResumeCount(int memberSeq);
@@ -22,5 +22,9 @@ public interface ResumeService {
 	int insertResumeTest(ResumeVO resumeVo);
 	//이력서등록정보
 	Map<String, Object> selectMyResumeInfo(String resumeSeq);
+	//이력서 업데이트
+	int updateResume(ResumeVO resumeVo);
 
+	List<ResumeVO> selectResumeList(int memberSeq);
+	int deleteResume(String resumeSeq);
 }

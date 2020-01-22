@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.ezen.jobsearch.common.FileUploadUtil;
 import com.ezen.jobsearch.company.model.CompanyService;
 import com.ezen.jobsearch.company.model.CompanyVO;
+import com.ezen.jobsearch.hopework.model.HopeworkService;
+import com.ezen.jobsearch.hopework.model.HopeworkVO;
 import com.ezen.jobsearch.member.model.MemberService;
 import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.resume.model.ResumeService;
@@ -48,6 +50,9 @@ public class MemberController {
 	
 	@Autowired
 	private ScrapService scrapService;
+	
+	@Autowired
+	private HopeworkService hopeworkService;
 	
 	@Autowired
 	private FileUploadUtil fileUtil;
@@ -665,7 +670,10 @@ public class MemberController {
 			
 			System.out.println("MemberController 로그인 회원 seq : " + memberSeq);
 			
-			List<ResumeVO> resumeList = resumeService.selectResumeList(memberSeq);
+			List<Map<String,Object>> resumeList = resumeService.selectResumeListMap(memberSeq);
+			 
+			
+					
 			int resumeCount = resumeService.selectMyResumeCount(memberSeq);
 			
 			model.addAttribute("resumeList",resumeList);

@@ -18,4 +18,10 @@ public class MycareerDAOImpl implements MycareerDAO{
 		return sqlSession.insert(namespace + "insertMycareerTest",mycareerVo) ;
 	}
 
+	@Override
+	public int updateMycareer(MycareerVO mycareerVo) {
+		// TODO Auto-generated method stub
+		return sqlSession.update(namespace + "updateMycareerTest",mycareerVo);
+	}
+
 }

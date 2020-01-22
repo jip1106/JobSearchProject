@@ -90,7 +90,7 @@ public class ResumeController {
 		logger.info(resumeSeq);
 		int count = resumeService.selectMyResumeCount(memberSeq);
 		
-		if(count<3 && resumeSeq.equals("0")) {	//등록페이지
+		if(count<50 && resumeSeq.equals("0")) {	//등록페이지
 				
 			List<Map<String, Object>> list=resumeService.selectEmp();
 			List<Map<String, Object>> list_cate=resumeService.selectCate();
@@ -108,9 +108,13 @@ public class ResumeController {
 			List<Map<String, Object>> list_loca=resumeService.selectLoca();
 			
 			Map<String, Object> resumeInfo = resumeService.selectMyResumeInfo(resumeSeq);
+			List<EducationVO> list_edu = educationService.selectEduList(resumeSeq);
+			//System.out.println("수정페이지 :: " + list_edu);
 	
 			model.addAttribute("resumeSeq", resumeSeq);
 			model.addAttribute("resumeInfo", resumeInfo);
+			model.addAttribute("list_edu",list_edu);
+			
 			
 			model.addAttribute("list", list);
 			model.addAttribute("list_cate", list_cate);
@@ -132,7 +136,7 @@ public class ResumeController {
 	//이력서 등록	박준일
 	@RequestMapping(value="/resume/resumeInsert.do")
 	public String insertResume(@ModelAttribute ResumeVO resumeVo, 
-							@ModelAttribute EducationVO eduList,
+							@ModelAttribute EducationVO educationVOList,
 							@ModelAttribute HopeworkVO hopeworkVo,
 							@ModelAttribute MycareerVO mycareerVo,		
 							@RequestParam String educationSize,
@@ -140,8 +144,6 @@ public class ResumeController {
 		
 		//이력서 데이터
 		logger.info("resumeVo :: {} ", resumeVo);
-		
-		
 		
 		//이력서 데이터 insert
 		int refMemberseq = ((MemberVO) session.getAttribute("loginMember")).getMemberSeq();
@@ -152,8 +154,8 @@ public class ResumeController {
 		
 
 		if(resumeSeq > 0 && resultCnt > 0) {
-			logger.info("eduList.getEducationVOList() :: {} " , eduList.getEducationVOList());
-			logger.info("resumeSeq :: {} ", resumeSeq);
+			//logger.info("eduList.getEducationVOList() :: {} " , educationVOList.getEducationVOList());
+			//logger.info("resumeSeq :: {} ", resumeSeq);
 			
 			//학력사항 데이터 insert
 			int ieducationSize = Integer.parseInt(educationSize);
@@ -161,17 +163,17 @@ public class ResumeController {
 			for(int i=0; i<ieducationSize;i++) {
 				System.out.println("ieducationSize :: " + ieducationSize + " /// i :: " + i );
 				
-				eduList.getEducationVOList().get(i).setRefResumeseq(resumeSeq);
+				educationVOList.getEducationVOList().get(i).setRefResumeseq(resumeSeq);
 				
 				if(i==ieducationSize-1) {
 					System.out.println("aa");
-					eduList.getEducationVOList().get(i).setLastEducation("Y");
-					System.out.println(eduList.getEducationVOList().get(i).getLastEducation());
+					educationVOList.getEducationVOList().get(i).setLastEducation("Y");
+					System.out.println(educationVOList.getEducationVOList().get(i).getLastEducation());
 				}
 				
-				logger.info("eduList.getEducationVOList() :: {} " , eduList.getEducationVOList());
+				//logger.info("eduList.getEducationVOList() :: {} " , educationVOList.getEducationVOList());
 				
-				resultCnt = educationService.insertEducation(eduList.getEducationVOList().get(i));
+				resultCnt = educationService.insertEducation(educationVOList.getEducationVOList().get(i));
 				
 
 				logger.info("학력사항 데이터 insert 결과 :: {} ", resultCnt );
@@ -192,13 +194,80 @@ public class ResumeController {
 			
 		}
 		
-
+		return "redirect:/member/mypageresumeTest.do";
+	}
+	
+	
+	//이력서 수정 박준일
+	@RequestMapping(value="/resume/resumeUpdate.do")
+	public String updateResume(@ModelAttribute ResumeVO resumeVo, 
+							   @ModelAttribute HopeworkVO hopeworkVo,
+							   @ModelAttribute MycareerVO mycareerVo,
+							   @ModelAttribute EducationVO educationVOList,
+							   @RequestParam String educationSize) {
+		
+		System.out.println(resumeVo);
+		
+		//이력서 제목, 자기소개 제목, 자기소개 내용 업데이트
+		int resumeCnt = resumeService.updateResume(resumeVo);
+		//System.out.println("hopeworkVo :: " + hopeworkVo);
+		
+		hopeworkVo.setRefResumeseq(resumeVo.getResumeSeq());
+		int hopeworkCnt = hopeworkService.updateHopework(hopeworkVo);
+		
+		//System.out.println("hopeworkCnt :: " + hopeworkCnt);
+		
+		//System.out.println(mycareerVo);
+		
+		mycareerVo.setRefResumeseq(resumeVo.getResumeSeq());
+		int mycareerCnt = mycareerService.updateMycareer(mycareerVo);
+		
+		//학력사항 등록 및 수정		
+		System.out.println("eduList ::: " + educationVOList.getEducationVOList());
+		
+		
+		//학력사항 데이터 insert
+		int ieducationSize = Integer.parseInt(educationSize);
+		int resumeSeq = resumeVo.getResumeSeq();
+		
+		int eduResult = 0;
+		
+		//학력정보수정
+		for(int i=0; i<ieducationSize;i++) {
+			System.out.println("ieducationSize :: " + ieducationSize + " /// i :: " + i );
+			
+			educationVOList.getEducationVOList().get(i).setRefResumeseq(resumeSeq);
+			
+			if(i==ieducationSize-1) {
+		
+				educationVOList.getEducationVOList().get(i).setLastEducation("Y");
+		
+			}
+			
+			
+			System.out.println("eduSeq ::: " + educationVOList.getEducationVOList().get(i).getEduSeq());
+			
+			if(educationVOList.getEducationVOList().get(i).getEduSeq() == 0) {	//등록
+				eduResult = educationService.insertEducation(educationVOList.getEducationVOList().get(i));	
+			}else {			//수정
+				eduResult = educationService.updateEducation(educationVOList.getEducationVOList().get(i));
+			}
+		}
+		
 		
 		
 		
 		return "redirect:/member/mypageresumeTest.do";
 	}
 	
+	//이력서 삭제 박준일
+	@RequestMapping(value="/resume/resumeDelete.do")
+	public String deleteResume(@RequestParam String resumeSeq) {
+		
+		int deleteCnt = resumeService.deleteResume(resumeSeq);
+		
+		return "redirect:/member/mypageresumeTest.do";
+	}
 	
 	
 
