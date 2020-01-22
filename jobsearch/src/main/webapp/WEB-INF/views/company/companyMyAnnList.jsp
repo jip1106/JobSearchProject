@@ -193,7 +193,7 @@ strong.attach_count {
 	</c:if>
 	<c:if test="${!empty list }">
 	<c:forEach var="map" items="${list}">
-	<a href="http://www.saramin.co.kr" target="_blank"/>
+	<a href="http://www.saramin.co.kr" target="_blank"/></a>
 	 	<div class="card mb-4-bt">
 	 		<div class="info_resume">               
                <strong class="tit">
@@ -221,7 +221,6 @@ strong.attach_count {
            </div>																																			
 
 		</div>
-    </a>
     </c:forEach>
     </c:if>
 	
