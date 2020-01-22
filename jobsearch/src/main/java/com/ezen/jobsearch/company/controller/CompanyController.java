@@ -231,13 +231,14 @@ public class CompanyController {//
 	@RequestMapping("/companyMyAnnList.do")
 	public void viewMyAnn(HttpSession session,Model model) {
 		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
-		int refCompanyseq=memberVo.getMemberSeq();
-		
+		int refMemberseq=memberVo.getMemberSeq();
+		int refCompanyseq=companyService.selectComSeq(refMemberseq);
 		logger.info("기업회원 내 공고글 리스트 보여주기 파라미터 refCompanyseq={}",refCompanyseq);		
 		int count=companyService.countMyAnn(refCompanyseq);
 		List<Map<String,Object>> list=companyService.viewMyAnn(refCompanyseq);
 		model.addAttribute("count",count);
-		model.addAttribute("list",list);	
+		model.addAttribute("list",list);
+		
 	}	
 	@RequestMapping("/companyDeleteMyAnn.do")
 	public String deleteMyAnn(@RequestParam(defaultValue = "0")int annSeq, Model model) {
