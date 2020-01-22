@@ -36,7 +36,7 @@ import com.ezen.jobsearch.payment.model.PaymentVO;
 
 @Controller
 @RequestMapping("/company")
-public class CompanyController {
+public class CompanyController {//
 	
 	private static final Logger logger=LoggerFactory.getLogger(CompanyController.class);
 		

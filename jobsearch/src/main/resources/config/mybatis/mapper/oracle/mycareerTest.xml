@@ -16,6 +16,22 @@
 	</insert>
 	
 	
+	<update id="updateMycareerTest" parameterType="mycareerVo">
+		update tbl_mycareer
+		set 
+			career_type = #{careerType},
+			pre_comname = #{preComname},
+			pre_stdt = #{preStdt},
+			pre_endt = #{preEndt},
+			retire_desc = #{retireDesc},
+			manage_desc = #{manageDesc}
+		where ref_resumeseq = #{refResumeseq}
+		and mycareer_seq = #{mycareerSeq} 
+		
+			
+		
+	</update>
+	 
 	
 	
 </mapper>

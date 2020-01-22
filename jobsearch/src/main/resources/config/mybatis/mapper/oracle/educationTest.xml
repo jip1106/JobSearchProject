@@ -16,5 +16,35 @@
 		(#{eduSeq}, #{eduType}, #{eduName}, #{periodStdt}, #{periodEndt}, #{univType}, #{univScore}, #{univMajor} , #{refResumeseq} , #{lastEducation})
 	</insert>
 	
+	<select id="selectEduListTest" resultType="hashmap" parameterType="string">
+		Select 
+			edu_seq, 
+			edu_type, 
+			edu_name, 
+			to_char(period_stdt,'yyyy-mm-dd') as period_stdt, 
+			to_char(period_endt, 'yyyy-mm-dd') as period_endt , 
+			univ_type, 
+			univ_score, 
+			univ_major, 
+			last_education 
+		From tbl_education
+		Where ref_resumeseq = #{resumeSeq}
+		Order by edu_seq asc
+	</select>
+	
+	<update id="updateEducationTest" parameterType="educationVo">
+		UPDATE TBL_EDUCATION
+		SET 
+			EDU_TYPE = #{eduType}, 
+			EDU_NAME = #{eduName}, 
+			PERIOD_STDT = #{periodStdt}, 
+			PERIOD_ENDT = #{periodEndt}, 
+			UNIV_TYPE = #{univType} , 
+			UNIV_SCORE = #{univScore}, 
+			UNIV_MAJOR = #{univMajor}, 
+			LAST_EDUCATION = #{lastEducation}
+		WHERE EDU_SEQ = #{eduSeq}
+	</update>
+		
 	
 </mapper>

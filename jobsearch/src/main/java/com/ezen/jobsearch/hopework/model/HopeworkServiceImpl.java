@@ -15,4 +15,10 @@ public class HopeworkServiceImpl implements HopeworkService{
 		return hopeworkDao.insertHopework(hopeworkVo);
 	}
 
+	@Override
+	public int updateHopework(HopeworkVO hopeworkVo) {
+		
+		return hopeworkDao.updateHopework(hopeworkVo);
+	}
+
 }

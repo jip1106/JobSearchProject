@@ -8,9 +8,9 @@
 <!-- 외부css -->
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
 <script type="text/javascript">
-function button_event(scrapSeq){
+function button_event(viewSeq){
 	  if (confirm("정말 삭제하시겠습니까?") == true){    //확인
-		  location.href= "<c:url value='/member/mypagebookmarkListDel.do?scrapSeq="+scrapSeq+"'/>"; 
+		 location.href= "<c:url value='/member/mypagerecentnoticeListDel.do?viewSeq="+viewSeq+"'/>"; 
 	  }else{   //취소
 	      return;
 	  }
@@ -105,8 +105,8 @@ button.btn_edit_complete {
     border-color: #5e87f1;
     padding: 12px 11px;
     position: relative;
-    left: 37.3em;
-    top: -52px;
+    left: 32.3em;
+    top: -65px;
     height: 49px;
     margin-bottom: -60px;
     font-size: 17px;
@@ -185,9 +185,9 @@ display: inline-block;
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 <c:import url="/WEB-INF/views/include/mypagenavitop.jsp" />
 <!-- section start -->
-	<div class="span_title_resume">즐겨찾기</div>
+	<div class="span_title_resume">지원현황</div>
 	<ul class="resume_notice">
-		<li>나의 즐겨찾기 입니다.</li>
+		<li>최근 내가 등록한 이력서 지원현황입니다.</li>
 		<li>공고를 누르시면 더 자세한 정보를 볼수 있습니다.</li>
 	</ul> 
 	
@@ -215,18 +215,16 @@ display: inline-block;
                <span class="career_small">${item['CAREER']}</span>|<span class="career_small2">${item['EMPLOYEE']}</span>|<span class="career_small2">${item['SALARY']}이상</span>                        
             </div>
 
-            <span class="txt_date">
+            <span class="txt_date">지원한 날짜: 
             <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd" />
             </span>
-            <button type="button" class="btn_edit_complete" onclick="annView(${item['ANNSEQ']})">지원하기</button>
-            <div class="wrap_manage_btn">
+            <button type="button" class="btn_edit_complete" onclick="#">내가 지원한 이력서</button>
+           <%-- <div class="wrap_manage_btn">
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
-            	onclick="button_event(${item.SCRAP_SEQ})">
-            	<!-- <button type="button" onclick="button_event();">삭제하기</button> -->
-            <%-- 	onclick="location.href = '<c:url value="/member/mypagerecentnoticeListDel.do?viewSeq=${item.VIEW_SEQ}"/>'"> --%>
+            	onclick="button_event(${item.VIEW_SEQ})">
             		<span class="X">X</span>
            		</button>
-            </div>
+            </div>--%> 
            </div>
 		</div>
 		</c:forEach>
@@ -239,7 +237,7 @@ display: inline-block;
 	 		<div class="info_recentnotice">
                <input type="hidden" name="res_idx" value="14137844" id="res_idx">
                <strong class="tit">
-               		즐겨찾기 공고를 추가해주세요!
+               		내 이력서를 관심기업에 지원해주세요!
                </strong>
             <div class="desc">
             </div>

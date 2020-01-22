@@ -77,6 +77,7 @@ h2.mt-4.mb-3 {
           <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypageeditcheck.do">회원정보수정</a>
           <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypageresume.do">이력서관리</a>
           <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypagebookmark.do">즐겨찾기</a> 
+          <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypageapply.do">지원현황</a> 
       	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">
       	 	<img src="<c:url value='/resources/images/mypage_banner.jpg'/>">
       	 </a>

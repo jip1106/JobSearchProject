@@ -1,6 +1,6 @@
 package com.ezen.jobsearch.member.controller;
 
-import java.text.ParseException;
+import java.text.ParseException; 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
@@ -22,9 +22,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.ezen.jobsearch.apply.model.ApplyService;
 import com.ezen.jobsearch.common.FileUploadUtil;
 import com.ezen.jobsearch.company.model.CompanyService;
 import com.ezen.jobsearch.company.model.CompanyVO;
+import com.ezen.jobsearch.hopework.model.HopeworkService;
+import com.ezen.jobsearch.hopework.model.HopeworkVO;
 import com.ezen.jobsearch.member.model.MemberService;
 import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.resume.model.ResumeService;
@@ -48,6 +51,9 @@ public class MemberController {
 	
 	@Autowired
 	private ScrapService scrapService;
+	
+	@Autowired
+	private ApplyService applyService; 
 	
 	@Autowired
 	private FileUploadUtil fileUtil;
@@ -566,10 +572,10 @@ public class MemberController {
 			
 			String msg="", url="";
 			if(cnt>0) {
-				msg=resumeSeq+"번 이력서 삭제!";
+				msg="해당 이력서 삭제!";
 				url="/member/mypageresume.do";
 			}else {
-				msg="이력서 목록 삭제 실패!";
+				msg="해당 이력서목록 삭제 실패!";
 				url="/member/mypageresume.do";
 			}
 			
@@ -603,10 +609,11 @@ public class MemberController {
 			
 			String msg="", url="";
 			if(cnt>0) {
-				msg=viewSeq+"번 최근 공고 삭제!";
+				//msg=viewSeq+"번 최근 공고 삭제!";
+				msg="해당 최근공고 삭제!";
 				url="/member/mypagerecentnotice.do";
 			}else {
-				msg="이력서 목록 삭제 실패!";
+				msg="최근공고 목록 삭제 실패!";
 				url="/member/mypagerecentnotice.do";
 			}
 			
@@ -640,10 +647,11 @@ public class MemberController {
 			
 			String msg="", url="";
 			if(cnt>0) {
-				msg=scrapSeq+"번 즐겨찾기 목록 삭제!";
+				//msg=scrapSeq+"번 즐겨찾기 목록 삭제!";
+				msg="해당 즐겨찾기 목록 삭제!";
 				url="/member/mypagebookmark.do";
 			}else {
-				msg="이력서 목록 삭제 실패!";
+				msg="즐겨찾기 목록 삭제 실패!";
 				url="/member/mypagebookmark.do";
 			}
 			
@@ -653,6 +661,20 @@ public class MemberController {
 			
 			return "common/message";
 			
+		}
+		
+		//지원현황
+		@RequestMapping("/member/mypageapply.do")
+		public String Viewapply(HttpSession session, Model model) {
+			MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
+			int memberSeq =memberVo.getMemberSeq();
+			
+			List<Map<String, Object>> list =applyService.selectmypageapplyList(memberSeq);
+			
+			model.addAttribute("list",list);
+			model.addAttribute("count",list.size());
+			
+			return "member/mypageapply";
 		}
 		
 		
@@ -665,7 +687,10 @@ public class MemberController {
 			
 			System.out.println("MemberController 로그인 회원 seq : " + memberSeq);
 			
-			List<ResumeVO> resumeList = resumeService.selectResumeList(memberSeq);
+			List<Map<String,Object>> resumeList = resumeService.selectResumeListMap(memberSeq);
+			 
+			
+					
 			int resumeCount = resumeService.selectMyResumeCount(memberSeq);
 			
 			model.addAttribute("resumeList",resumeList);

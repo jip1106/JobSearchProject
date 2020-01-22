@@ -7,11 +7,18 @@
 
 <!-- 외부css -->
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
-
+<script type="text/javascript">
+function button_event(viewSeq){
+	  if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+		 location.href= "<c:url value='/member/mypagerecentnoticeListDel.do?viewSeq="+viewSeq+"'/>"; 
+	  }else{   //취소
+	      return;
+	  }
+}
+</script>
 
 <style type="text/css">
 .span_title_resume {
-    /* text-align: center; */
     list-style: telugu;
     color: #222;
     font-size: 29px;
@@ -211,14 +218,18 @@ display: inline-block;
             <span class="txt_date">
             <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd" />
             </span>
-            <button type="button" class="btn_edit_complete" onclick="#">지원하기</button>
+            <button type="button" class="btn_edit_complete" onclick="annView(${item['ANNSEQ']})">지원하기</button>
             <div class="wrap_manage_btn">
+            	<%-- <span id=ramain_time>${item.TIME}</span> --%>
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
-            	onclick="location.href = '<c:url value="/member/mypagerecentnoticeListDel.do?viewSeq=${item.VIEW_SEQ}"/>'">
+            	onclick="button_event(${item.VIEW_SEQ})">
+            	<!-- <button type="button" onclick="button_event();">삭제하기</button> -->
+            <%-- 	onclick="location.href = '<c:url value="/member/mypagerecentnoticeListDel.do?viewSeq=${item.VIEW_SEQ}"/>'"> --%>
             		<span class="X">X</span>
            		</button>
             </div>
            </div>
+           
 		</div>
 		</c:forEach>
 		</c:if>

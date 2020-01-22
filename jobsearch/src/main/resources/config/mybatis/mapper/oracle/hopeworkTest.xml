@@ -15,5 +15,16 @@
 		(#{hopeworkSeq}, #{hopeEmptype}, #{hopeSalary} , #{refLocationseq}, #{refCategory1} , #{refResumeseq})
 	</insert>
 	
+	<update id="updateHopeworkTest" parameterType="hopeworkVo">
+		UPDATE TBL_HOPEWORK
+		SET
+			HOPE_EMPTYPE = #{hopeEmptype},
+			HOPE_SALARY = #{hopeSalary},
+			REF_LOCATIONSEQ = #{refLocationseq},
+			REF_CATEGORY1 = #{refCategory1}
+		WHERE REF_RESUMESEQ = #{refResumeseq}
+			And HOPEWORK_SEQ = #{hopeworkSeq}
+	</update>
+	
 	
 </mapper>
