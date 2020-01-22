@@ -170,30 +170,38 @@ strong.attach_count {
 		<li>공고 관리페이지입니다.</li>
 		<li>공고를 누르시면 더 자세한 정보를 볼수 있습니다.</li>
 	</ul> 
-	
-	
-	<c:forEach var="vo" items="${list}">
+	<c:if test="${empty list}">
+		<div class="card mb-4-bt">
+	 		<div class="info_resume"> 
+	 			<h3>등록된 공고가 없습니다.</h3>
+	 			<a href="<c:url value='/company/companymypageannouncement.do'/>">지금 공고를 등록해보세요</a>   
+	 		</div>
+	 	</div>
+	</c:if>
+	<c:if test="${!empty list }">
+	<c:forEach var="map" items="${list}">
 	<a href="http://www.saramin.co.kr" target="_blank"/>
 	 	<div class="card mb-4-bt">
-	 		<div class="info_resume">
-               <input type="hidden" name="res_idx" value="14137844" id="res_idx">
+	 		<div class="info_resume">               
                <strong class="tit">
                  <a href="#">
-                	 <span class="point_color">${vo.annTitle } </span>
+                	 <span class="point_color">${map['ANN_TITLE']} </span>
                 	 <span class="point_color_comp">지원현황</span>
-                	 <div class="point_color_gongchae">${vo.annTitle }</div>
+                	 <div class="point_color_gongchae">${map['ANN_TITLE']}</div>
                	 </a>
                </strong>
             <div class="desc">
-               <span class="career_small">${vo.careerType}</span>|<span class="career_small2">${vo.careerDesc}</span>|<span class="career_small2">${vo.refLocationseq1}</span>                        
+               <span class="career_small">${map['CAREER_TYPE']}</span>|<span class="career_small2">${map['CAREER_DESC']}</span>|<span class="career_small2">${map['REF_LOCATIONSEQ1']}</span>                        
             </div>
-            <span class="txt_date">${vo.annStdt }</span>
+            <span class="txt_date">${map['ANN_STDT']}</span>
+            <c:if test="${empty map['REF_ANNOUNCEMENT'] }">
             <button type="button" class="btn_edit_complete" style=" margin-left: -208px;margin-top: 12px;"
-            onclick="window.open('<c:url value="/company/companymypageorder.do?annSeq=${vo.annSeq}"/>', 'payment', 'top=100px, left=100px, height=550px, width=550px, menubar=no, toolbar=no,status=no')"
+            onclick="window.open('<c:url value="/company/companypay.do?annSeq=${map['ANN_SEQ']}"/>', 'payment', 'top=100px, left=100px, height=600px, width=600px')"
             >프리미엄으로 등록하기</button>
-            <button type="button" class="btn_edit_complete" onclick="location.href = '<c:url value="/company/companymypageannedit.do?annSeq=${vo.annSeq}"/>'">수정하기</button>
+            </c:if>
+            <button type="button" class="btn_edit_complete" onclick="location.href = '<c:url value="/company/companymypageannedit.do?annSeq=${map['ANN_SEQ']}"/>'">수정하기</button>
             <div class="wrap_manage_btn">
-            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete" onclick = "location.href = '<c:url value="/company/companyDeleteMyAnn.do?annSeq=${vo.annSeq}"/>'">
+            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete" onclick = "location.href = '<c:url value="/company/companyDeleteMyAnn.do?annSeq=${map['ANN_SEQ']}"/>'">
             		<span class="X">X</span>
            		</button>
             </div>
@@ -202,6 +210,7 @@ strong.attach_count {
 		</div>
     </a>
     </c:forEach>
+    </c:if>
 	
       
   

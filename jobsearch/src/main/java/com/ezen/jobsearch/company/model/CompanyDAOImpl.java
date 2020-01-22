@@ -1,6 +1,7 @@
 package com.ezen.jobsearch.company.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ezen.jobsearch.ann.model.AnnounceMentVO;
 import com.ezen.jobsearch.member.model.MemberVO;
+import com.ezen.jobsearch.payment.model.PaymentVO;
 
 @Repository
 public class CompanyDAOImpl implements CompanyDAO{
@@ -45,7 +47,7 @@ public class CompanyDAOImpl implements CompanyDAO{
 	}
 
 	@Override
-	public List<AnnounceMentVO> viewMyAnn(int refCompanyseq) {
+	public List<Map<String,Object>> viewMyAnn(int refCompanyseq) {
 		return sqlSession.selectList(namespace+"selectMyAnn",refCompanyseq);
 	}
 
@@ -77,6 +79,11 @@ public class CompanyDAOImpl implements CompanyDAO{
 	@Override
 	public int updateMyAnn(AnnounceMentVO annVo) {
 		return sqlSession.update(namespace+"updateMyAnn",annVo);
+	}
+
+	@Override
+	public int payMyAnn(PaymentVO paymentVo) {
+		return sqlSession.insert(namespace+"payMyAnn",paymentVo);
 	}
 
 }

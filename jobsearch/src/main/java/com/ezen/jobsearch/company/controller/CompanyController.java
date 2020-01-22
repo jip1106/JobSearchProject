@@ -125,23 +125,39 @@ public class CompanyController {
 	
 	//기업공고등록 관련 페이지
 	@RequestMapping(value = "/companymypageannouncement.do",method = RequestMethod.GET)
-	public String insertAnn_get(Model model) {
+	public String insertAnn_get(Model model,HttpSession session) {
+		MemberVO sessionVo=(MemberVO)session.getAttribute("loginMember");
+		int memberSeq=sessionVo.getMemberSeq();
+		CompanyVO comVo=companyService.selectCompany(memberSeq);
 		logger.info("기업회원 공고글등록 리스트");
 		
-		//1번지역 불러오기
-		List<LocationVO1> list1=lService.selectLocation1();	
-		//1번 카테고리 불러오기
-		List<CategoryVO1> list2=cService.selectCategory1();
-		//직종 불러오기
-		List<EmpTypeVO> list3=eService.selectEmpType();
 		
-			logger.info("list3.size={}",list3.size());
+		if(comVo.getSetupDate()==null||comVo.getComTel()==null||comVo.getEmployeeNum()==null||comVo.getComType()==null||comVo.getComSales()==null||comVo.getComField()==null||comVo.getComDesc()==null) {
+			String msg= "공고글의 정확성을 위하여 기업 추가정보를 기입해주세요";
+			String url= "/company/companyPwdChk.do";
+			model.addAttribute("msg",msg);
+			model.addAttribute("url",url);
+			return "common/message";
 			
-		model.addAttribute("locationList1",list1);
-		model.addAttribute("categoryList1",list2);
-		model.addAttribute("empTypeList",list3);
+		}else {
+						
+			//1번지역 불러오기
+			List<LocationVO1> list1=lService.selectLocation1();	
+			//1번 카테고리 불러오기
+			List<CategoryVO1> list2=cService.selectCategory1();
+			//직종 불러오기
+			List<EmpTypeVO> list3=eService.selectEmpType();
+			
+			logger.info("list3.size={}",list3.size());
+				
+			model.addAttribute("locationList1",list1);
+			model.addAttribute("categoryList1",list2);
+			model.addAttribute("empTypeList",list3);
+			
+			return "company/companymypageannouncement";
+		}
+			
 		
-		return "company/companymypageannouncement";
 	}
 	
 	@RequestMapping(value = "/companymypageannouncement.do",method = RequestMethod.POST)
@@ -219,24 +235,10 @@ public class CompanyController {
 		
 		logger.info("기업회원 내 공고글 리스트 보여주기 파라미터 refCompanyseq={}",refCompanyseq);		
 		int count=companyService.countMyAnn(refCompanyseq);
-		List<AnnounceMentVO> list=companyService.viewMyAnn(refCompanyseq);
+		List<Map<String,Object>> list=companyService.viewMyAnn(refCompanyseq);
 		model.addAttribute("count",count);
 		model.addAttribute("list",list);	
-	}
-	
-	@RequestMapping("/companymypagepayment.do")
-	public void payment(HttpSession session,Model model) {
-		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
-		int refCompanyseq=memberVo.getMemberSeq();
-		
-		logger.info("기업회원 내 결제용 공고글 리스트 보여주기 파라미터 refCompanyseq={}",refCompanyseq);		
-		
-		List<AnnounceMentVO> list=companyService.viewMyAnn(refCompanyseq);
-		int count=companyService.countMyAnn(refCompanyseq);
-		model.addAttribute("count",count);
-		model.addAttribute("list",list);
-	}
-	
+	}	
 	@RequestMapping("/companyDeleteMyAnn.do")
 	public String deleteMyAnn(@RequestParam(defaultValue = "0")int annSeq, Model model) {
 		//후에 추가 검증처리
@@ -295,8 +297,8 @@ public class CompanyController {
   		
   	}
   	
-  	@RequestMapping("/companymypageorder.do")
-  	public void companymypageorder(@RequestParam int annSeq,HttpSession session,Model model) {
+  	@RequestMapping("/companypay.do")
+  	public void companypay(@RequestParam int annSeq,HttpSession session,Model model) {
   		logger.info("결제하기 페이지 파라미터 annSeq={}",annSeq);
   		MemberVO vo=(MemberVO)session.getAttribute("loginMember");
   		String Name=vo.getMemberName();  		
@@ -310,11 +312,21 @@ public class CompanyController {
   	}
   	
   	@RequestMapping("/companypaycomplete.do")
-  	public void companypaycomplete(@RequestBody PaymentVO payVo) {
-  		
-  		logger.info("결제 완료 처리 payVo={}",payVo);
+  	public void companypaycomplete(@RequestParam String paymentCode,@RequestParam String refAnnouncement) {
+  		  		
+  		logger.info("결제 완료 처리 파라미터 paymentCode={},refAnnouncement={}",paymentCode,refAnnouncement);
+  		if(paymentCode!=null) {
+	  		PaymentVO paymentVo=new PaymentVO();
+	  		paymentVo.setPaymentCode(paymentCode);
+	  		paymentVo.setRefAnnouncement(Integer.parseInt(refAnnouncement));  		
+	  		companyService.payMyAnn(paymentVo);
+  		}  		
   		
   	}
   	
+  	@RequestMapping("/companypaycompletepage.do")
+  	public void companypaycompletepage() {
+  		logger.info("결제가 완료되었습니다.");
+  	}  
 	
 }
