@@ -448,6 +448,9 @@ span.star-border {
 			    	<a href="#" class="company_title" target="_blank">${vo.comName }</a>
 			     </div>			  	  	   	
 			        <span class="company_title2">${vo.annTitle }</span>
+			         <c:if test="${loginMember.regType != 1}">
+			          	<div id="notEnd"></div>
+			         </c:if>
 			        <c:if test="${loginMember.regType == 1}">
 				        <div id="notEnd">
 					        <c:if test="${scrapYN > 0}">
