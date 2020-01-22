@@ -18,4 +18,5 @@ public interface AnnouncementService {
 
 	int updateAnnHits(int annSeq);
 	
+	List<AnnounceMentVO> selectNewAnn();
 }

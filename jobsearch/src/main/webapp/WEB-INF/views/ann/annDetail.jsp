@@ -529,11 +529,9 @@ span.star-border {
 
 			</div>			
 			<div class="card-footer text-muted_photo">
-				 <a href="#">사진1사진2사진3</a>
+				 ${vo.annDesc }
 			</div>
-			<div class="ann_desc">
-				${vo.annDesc }
-			</div>
+			
 			<div class="card-footer text-muted">
 				<div class="jv_cont jv_howto">
 					<div class="jv_title">접수기간 및 기업정보</div>
@@ -604,9 +602,9 @@ span.star-border {
 					+ hoursRound + ":" + minutesRound + ":" + secondsRound;
 		
 			if(remainDate<0){
-				clearInterval(timerStart);
 				document.getElementById("close").innerHTML="[지원 마감]";
 				document.getElementById("timer").innerHTML="";						
+				clearInterval(timerStart);
 			}else{
 				document.getElementById("notEnd").style.display="block";
 			}

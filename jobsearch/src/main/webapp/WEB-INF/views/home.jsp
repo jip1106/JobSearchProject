@@ -4,6 +4,19 @@
 <c:import url="./include/header.jsp" />
 <c:import url="./include/headend.jsp" />
 
+<script type="text/javascript">
+	function annView(annSeq){
+		window.open("<c:url value='/ann/detail.do?annSeq='/>"+annSeq, annSeq+"번 공고 상세보기", 
+				"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	}
+</script>
+
+<style type="text/css">
+	.h-100{
+		padding: 20px;
+	}
+</style>
+
 <body>
 <c:import url="./include/navi.jsp"/>
   
@@ -49,48 +62,35 @@
   <!-- Page Content -->
   <div class="container">
 
-    <h1 class="my-4">Welcome to Modern Business</h1>
+    <h3 class="my-4">최근 올라온 공고</h3>
 
     <!-- Marketing Icons Section -->
     <div class="row">
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus commodi similique totam consectetur praesentium molestiae atque exercitationem ut consequuntur, sed eveniet, magni nostrum sint fuga.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h4 class="card-header">Card Title</h4>
-          <div class="card-body">
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente esse necessitatibus neque.</p>
-          </div>
-          <div class="card-footer">
-            <a href="#" class="btn btn-primary">Learn More</a>
-          </div>
-        </div>
-      </div>
+    	<!-- 최신 공고  -->
+    	<c:if test="${empty newAnnList }">
+    		<div class="card mb-4">
+        		<div class="card-body">
+	           		<p class="card-text">목록이 존재하지 않습니다.</p>
+	         	 </div>
+        	</div>     
+        </c:if>
+        <c:if test="${!empty newAnnList }">
+        	<c:forEach var="announceMentVo" items="${newAnnList }">
+			      <div class="col-lg-4 mb-4" onclick="annView(${announceMentVo.annSeq})" style="cursor: pointer;">
+			        <div class="card h-100">
+			          <h4 >${announceMentVo.comName }</h4>
+			          	<h5>${announceMentVo.annTitle }</h5>			        
+			        </div>
+			      </div>
+		    </c:forEach>
+		 </c:if>
+		        
+          
     </div>
     <!-- /.row -->
 
     <!-- Portfolio Section -->
-    <h2>Portfolio Heading</h2>
+    <h3>추천 공고</h3>
 
     <div class="row">
       <div class="col-lg-4 col-sm-6 portfolio-item">
