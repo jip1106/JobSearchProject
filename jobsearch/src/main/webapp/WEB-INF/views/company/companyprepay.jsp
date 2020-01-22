@@ -51,12 +51,9 @@ IMP.request_pay({
 	        //성공시 이동할 페이지	     
 	         opener.location.reload();
 	         location.href='<c:url value="/company/companypaycompletepage.do"/>';
-	    } else {
-	       var msg = '결제에 실패하였습니다.';
-	        msg += '에러내용 : ' + rsp.error_msg;
-	        //실패시 이동할 페이지
-	         location.href='<c:url value="/company/companyMyAnnList.do"/>';
-	        alert(msg);
+	    } else {	       
+	        self.close();
+	        
 	    }
 	});	
 
