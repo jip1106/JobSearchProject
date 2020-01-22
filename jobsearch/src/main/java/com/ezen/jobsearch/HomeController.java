@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ezen.jobsearch.ann.model.AnnounceMentVO;
+import com.ezen.jobsearch.ann.model.AnnouncementService;
 import com.ezen.jobsearch.category.model.CategoryService;
 import com.ezen.jobsearch.category.model.CategoryVO1;
 import com.ezen.jobsearch.location.model.LocationService;
@@ -26,8 +28,15 @@ public class HomeController {
 	@Autowired 
 	private CategoryService categoryService;
 
+	@Autowired
+	private AnnouncementService annService;
+	
 	@RequestMapping(value = {"/home.do","/index.do"})
-	public String home() {
+	public String home(Model model) {
+		
+		List<AnnounceMentVO> newAnnList = annService.selectNewAnn();
+		
+		model.addAttribute("newAnnList", newAnnList);
 		
 		return "home";
 	}

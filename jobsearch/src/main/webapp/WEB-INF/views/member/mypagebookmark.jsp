@@ -1,16 +1,24 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <c:import url="/WEB-INF/views/include/header.jsp" />
 <!-- head start -->
 
 <!-- 외부css -->
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
-
+<script type="text/javascript">
+function button_event(scrapSeq){
+	  if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+		  location.href= "<c:url value='/member/mypagebookmarkListDel.do?scrapSeq="+scrapSeq+"'/>"; 
+	  }else{   //취소
+	      return;
+	  }
+}
+</script>
 
 <style type="text/css">
 .span_title_resume {
-    /* text-align: center; */
     list-style: telugu;
     color: #222;
     font-size: 29px;
@@ -53,17 +61,15 @@ a.btn.btn-primary {
 
 }
 .info_resume .tit {
-     display: inline-block;
+    display: inline-block;
     padding-right: 5px;
-    color: #FF5722;
+    color: #222;
     font-size: 18px;
     line-height: 30px;
     vertical-align: top;
+    letter-spacing: -2px;
     box-sizing: border-box;
-    margin: 30px 0 53px 8px;
-    position: relative;
-    top: 10px;
-
+    margin: 30px 0 0 8px;
 }
 .point_color{
 	color: #4876ef;
@@ -88,16 +94,11 @@ span.career_small {
 }
 span.career_small2 {
     margin-left: 7px;
+    margin-right: 7px;
 }
 span.point_color_date {
     margin-right: 9px;
 }
-/* button.btn_edit_complete{
-    border-color: #4876ef;
-    color: #fff;
-    background: #4876ef;
-    border: none;
-} */
 button.btn_edit_complete {
     color: #ffffff;
     background-color: #5e87f1;
@@ -159,7 +160,7 @@ strong.attach_count {
     margin-top: -2px;
 }
 .info_recentnotice .tit {
-    display: inline-block;
+display: inline-block;
     padding-right: 5px;
     color: #FF5722;
     font-size: 18px;
@@ -168,7 +169,9 @@ strong.attach_count {
     box-sizing: border-box;
     margin: 30px 0 53px 8px;
 }
+
 </style>
+
 <script type="text/javascript">
 	function annView(annSeq){
 		window.open("<c:url value='/ann/detail.do?annSeq='/>"+annSeq, annSeq+"번 공고 상세보기", 
@@ -196,9 +199,8 @@ strong.attach_count {
 	if문 사용해서 뿌려리기-->
 	
 	<a href="http://www.saramin.co.kr" target="_blank"></a>
-	
 	<c:if test="${!empty list}">
-	 <c:forEach var="item" items="${list }">
+		 <c:forEach var="item" items="${list}">
 	 	<div class="card mb-4-bt">
 	 		<div class="info_resume">
                <input type="hidden" name="res_idx" value="14137844" id="res_idx">
@@ -212,26 +214,29 @@ strong.attach_count {
             <div class="desc">
                <span class="career_small">${item['CAREER']}</span>|<span class="career_small2">${item['EMPLOYEE']}</span>|<span class="career_small2">${item['SALARY']}이상</span>                        
             </div>
+
             <span class="txt_date">
-            	 <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd" />
+            <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd" />
             </span>
             <button type="button" class="btn_edit_complete" onclick="#">지원하기</button>
             <div class="wrap_manage_btn">
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
-            	onclick="location.href = '<c:url value="/member/mypagebookmarkListDel.do?scrapSeq=${item.SCRAP_SEQ}"/>'">
+            	onclick="button_event(${item.SCRAP_SEQ})">
+            	<!-- <button type="button" onclick="button_event();">삭제하기</button> -->
+            <%-- 	onclick="location.href = '<c:url value="/member/mypagerecentnoticeListDel.do?viewSeq=${item.VIEW_SEQ}"/>'"> --%>
             		<span class="X">X</span>
            		</button>
             </div>
            </div>
 		</div>
 		</c:forEach>
-	</c:if>
-   
-    <!-- 이력서 목록이 없을 때  -->
+		</c:if>
+	
+	<!-- 이력서 목록이 없을 때  -->
 	<a href="http://www.saramin.co.kr" target="_blank"></a>
 	<c:if test="${empty list }">
 	 	<div class="card mb-4-bt">
-	 		<div class="info_resume">
+	 		<div class="info_recentnotice">
                <input type="hidden" name="res_idx" value="14137844" id="res_idx">
                <strong class="tit">
                		즐겨찾기 공고를 추가해주세요!
@@ -241,7 +246,6 @@ strong.attach_count {
            </div>
 		</div>
 	</c:if>
-	
 	
       
   

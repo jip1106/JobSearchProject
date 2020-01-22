@@ -64,9 +64,10 @@
 		where ref_memberseq=#{refMemberseq}
 	</update>
 
-	<select id="selectMyAnn" parameterType="int" resultType="announceMentVo">
-		select ann_seq,ann_title,ann_desc,to_char(ann_stdt,'yyyy-mm-dd')as ann_stdt,to_char(ann_endt,'yyyy-mm-dd')as ann_endt,career_type,career_desc,employee_type,salary,age_limit,hits,reg_date,ref_cateseq1,ref_cateseq2,ref_cateseq3,ref_locationseq1,ref_locationseq2 from tbl_announcement
-		where ref_companyseq=#{refCompanyseq}
+	<select id="selectMyAnn" parameterType="int" resultType="map">
+		select A.ann_seq,A.ann_title,A.ann_desc,to_char(A.ann_stdt,'yyyy-mm-dd')as ann_stdt,to_char(A.ann_endt,'yyyy-mm-dd')as ann_endt,A.career_type,A.career_desc,A.employee_type,A.salary,A.age_limit,A.hits,A.reg_date,A.ref_cateseq1,A.ref_cateseq2,A.ref_cateseq3,A.ref_locationseq1,A.ref_locationseq2,B.ref_announcement  from (tbl_announcement)A left join (tbl_payment)B
+		on A.ann_seq=B.REF_ANNOUNCEMENT
+		where A.REF_COMPANYSEQ=#{refCompanyseq}
 	</select>
 	
 	<select id="selectComSeq" parameterType="int" resultType="int">
@@ -94,4 +95,12 @@
 		where ann_seq=#{annSeq}
 	</select>
 	
+	<insert id="payMyAnn" parameterType="paymentVo">
+		<selectKey keyProperty="paymentSeq" resultType="int" order="BEFORE">
+			select payment_seq.nextval from dual
+		</selectKey>
+		insert into tbl_payment(payment_seq,payment_code,product_name,price_date,pay_type,ref_announcement)
+		values(#{paymentSeq},#{paymentCode},'프리미엄 공고등록',sysdate,'card',#{refAnnouncement})
+	</insert>
+
 </mapper>

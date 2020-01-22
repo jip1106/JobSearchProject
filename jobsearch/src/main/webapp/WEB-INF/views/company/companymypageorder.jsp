@@ -46,7 +46,7 @@ td{
 </head>
 <body>
 	<form action="<c:url value='/company/companyprepay.do'/>" method="post">
-	<input type="hidden" name="refAnnounctment" value="${param.annSeq}">
+	<input type="hidden" name="refAnnouncement" value="${param.annSeq}">
 	<h1>결제하기</h1>
 	<table>
 		<tr>
