@@ -7,7 +7,7 @@ public class PaymentVO {
 	 private String priceDate;
 	 private String payType;
 	 private String cardAuthNum;
-	 private int refAnnounctment;
+	 private int refAnnouncement;
 	 
 	public int getPaymentSeq() {
 		return paymentSeq;
@@ -45,18 +45,18 @@ public class PaymentVO {
 	public void setCardAuthNum(String cardAuthNum) {
 		this.cardAuthNum = cardAuthNum;
 	}
-	public int getRefAnnounctment() {
-		return refAnnounctment;
+	public int getRefAnnouncement() {
+		return refAnnouncement;
 	}
-	public void setRefAnnounctment(int refAnnounctment) {
-		this.refAnnounctment = refAnnounctment;
+	public void setRefAnnouncement(int refAnnouncement) {
+		this.refAnnouncement = refAnnouncement;
 	}
 	
 	@Override
 	public String toString() {
 		return "PaymentVO [paymentSeq=" + paymentSeq + ", paymentCode=" + paymentCode + ", productName=" + productName
 				+ ", priceDate=" + priceDate + ", payType=" + payType + ", cardAuthNum=" + cardAuthNum
-				+ ", refAnnounctment=" + refAnnounctment + "]";
+				+ ", refAnnouncement=" + refAnnouncement + "]";
 	}
 	 
 	 

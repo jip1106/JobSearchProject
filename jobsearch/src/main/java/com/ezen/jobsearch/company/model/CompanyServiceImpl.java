@@ -1,12 +1,14 @@
 package com.ezen.jobsearch.company.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.jobsearch.ann.model.AnnounceMentVO;
 import com.ezen.jobsearch.member.model.MemberVO;
+import com.ezen.jobsearch.payment.model.PaymentVO;
 
 @Service
 public class CompanyServiceImpl implements CompanyService{
@@ -31,7 +33,7 @@ public class CompanyServiceImpl implements CompanyService{
 	public int updateComInfo(CompanyVO companyVo) {
 		return companyDao.updateComInfo(companyVo);
 	}
-	public List<AnnounceMentVO> viewMyAnn(int refCompanyseq){
+	public List<Map<String,Object>> viewMyAnn(int refCompanyseq){
 		return companyDao.viewMyAnn(refCompanyseq);
 	}
 	public String selectComImg(int refCompanyseq) {
@@ -51,5 +53,8 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 	public int updateMyAnn(AnnounceMentVO annVo) {
 		return companyDao.updateMyAnn(annVo);
+	}
+	public int payMyAnn(PaymentVO paymentVo) {
+		return companyDao.payMyAnn(paymentVo);
 	}
 }
