@@ -20,4 +20,7 @@ public interface ResumeService {
 
 	//등록버튼 클릭시 이력서 등록
 	int insertResumeTest(ResumeVO resumeVo);
+	//이력서등록정보
+	Map<String, Object> selectMyResumeInfo(String resumeSeq);
+
 }

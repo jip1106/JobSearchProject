@@ -75,6 +75,15 @@ public class ResumeDAOImpl implements ResumeDAO{
 		return count;
 	}
 
+	@Override
+	public Map<String, Object> selectMyResumeInfo(String resumeSeq) {
+		// TODO Auto-generated method stub
+		
+		Map<String,Object> resumeInfo = sqlSession.selectOne(namespace+"selectMyResumeInfo",resumeSeq);
+		System.out.println("DAOImpl " + resumeInfo);
+		return resumeInfo;
+	}
+
 
 	
 }

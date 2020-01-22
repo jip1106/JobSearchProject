@@ -19,5 +19,6 @@ public interface ResumeDAO {
 
 	//등록버튼 클릭시 이력서 등록
 	int insertResumeTest(ResumeVO resumeVo);
+	Map<String, Object> selectMyResumeInfo(String resumeSeq);
 
 }

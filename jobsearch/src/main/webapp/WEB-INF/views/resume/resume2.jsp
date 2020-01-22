@@ -44,8 +44,8 @@ $(document).ready(function() {
 	 $("#education_term5").datepicker({});
 	 $("#education_term6").datepicker({});
 	 
-	 $("#education_term7").datepicker({});
-	 $("#education_term8").datepicker({});
+	 $("#preStdt").datepicker({});
+	 $("#preEndt").datepicker({});
 	 
 	 
 	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
@@ -164,9 +164,16 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 <body>
 <c:import url="/WEB-INF/views/include/navi.jsp" />
   
+  
   <!-- Page Content -->
   <div class="container">
-  	<form name="frm" method="post" action="/jobsearch/resume/resumeInsert.do" onsubmit="insertResume()">
+  	<c:if test="${resumeSeq ==0 }"> 	<% //이력서 등록 %>
+  		<form name="frm" method="post" action="/jobsearch/resume/resumeInsert.do" onsubmit="insertResume()">
+  	</c:if>
+  	<c:if test="${resumeSeq !=0 }"> 	<% //이력서 수정 %>
+  		<form name="frm" method="post" action="/jobsearch/resume/resumeUpdate.do" onsubmit="insertResume()">
+  	</c:if>
+  	
 	    
     
     <div class="row">
@@ -175,7 +182,8 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
     	<!-- 이력서 제목 -->
 		<div class="row mb-4 mt-4" >
 			<div class="col">
-				<input type="text" id="resumeTitle" name="resumeTitle" class="form-control input-style" placeholder="이력서 제목을 입력하세요."  >
+				<input type="text" id="resumeTitle" name="resumeTitle" class="form-control input-style" 
+				value = "${resumeInfo['RESUME_TITLE']}"placeholder="이력서 제목을 입력하세요."  >
 			</div>
 		</div>
 
@@ -189,74 +197,71 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 		            </a>
 		    	</div>
 	        
-	        <div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-2t">이름  </div>
+	        <div class="row mb-4 mt-4">
+				<div class="col-lg-4">이름  </div>
 			
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="memberName" name="memberName" class="form-control input-style" placeholder="이름" value="${sessionScope.loginMember.memberName }"   readonly>
 				</div>
 				
 				<div style="position:absolute;width:150px; height:30px; top:230px; left:70%;">
+				
 					<select class="form-control" name="recuritStatus">
 						<option value="">구직상태선택</option>
-						<option value="1">구직준비중(재학생)</option>
-						<option value="2">구직중</option>
-						<option value="3">재직중</option>
+						<option value="1" <c:if test="${resumeInfo['RECURIT_STATUS']==1}"> selected </c:if>>구직준비중(재학생)</option>
+						<option value="2" <c:if test="${resumeInfo['RECURIT_STATUS']==2}"> selected </c:if>>구직중</option>
+						<option value="3" <c:if test="${resumeInfo['RECURIT_STATUS']==3}"> selected </c:if>>재직중</option>
 					</select>
 				</div>
 			</div>
-	        <div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">생년월일  </div>
+	        <div class="row mb-4 mt-4">
+				<div class="col-lg-4">생년월일  </div>
 				
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<fmt:parseDate value="${sessionScope.loginMember.birthday }" var="memberBirthday" pattern="yyyy-MM-dd"/>
 					<input type="text"  id="birthday" name="birthday" class="form-control" value="<fmt:formatDate value="${memberBirthday}" pattern="yyyy-MM-dd"/>" placeholder="생년월일"   readonly>
 				</div>
 			</div>
-	        <div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-3t">이메일  </div>
+	        <div class="row mb-4 mt-4">
+				<div class="col-lg-4">이메일  </div>
 				
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="memberId" name="memberId" value="${sessionScope.loginMember.memberId }" class="form-control" placeholder="이메일"   readonly>
 				</div>
 			</div>
-	        <div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">전화번호  </div>
+	        <div class="row mb-4 mt-4">
+				<div class="col-lg-4">전화번호  </div>
 				
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="Insert_text" name="phone" class="form-control" value="${sessionScope.loginMember.phone }" placeholder="전화번호"   readonly>
 				</div>
 			</div>
-	        <div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">우편번호  </div>
-				<span class="point-4t"></span>
+	        <div class="row mb-4 mt-4">
+				<div class="col-lg-4">우편번호  </div>
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="zipCode" name="zipCode" value="${sessionScope.loginMember.zipCode}" class="form-control" placeholder="우편번호"   readonly>
 				</div>
 			</div>
 			
-			<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-2t">주소 </div>
-				<span class="point-2t"></span>
+			<div class="row mb-4 mt-4">
+				<div class="col-lg-4">주소 </div>
+				
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="address" name="address" class="form-control" value="${sessionScope.loginMember.address }" placeholder="주소"   readonly>
 				</div>
 			</div>
 			
-			<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-2t">상세주소 </div>
-				<span class="point-2t"></span>
+			<div class="row mb-4 mt-4">
+				<div class="col-lg-4">상세주소 </div>
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="detailAddress" name="detailAddress" class="form-control" value="${sessionScope.loginMember.detailAddress }" placeholder="주소"   readonly>
 				</div>
 			</div>
 			
-			<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-2t">추가사항</div>
-				<span class="point-2t"></span>
+			<div class="row mb-4 mt-4">
+				<div class="col-lg-4">추가사항</div>
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="extraAddress" name="extraAddress" class="form-control" value="${sessionScope.loginMember.extraAddress }" placeholder="주소"   readonly>
-				
 				</div>
 			</div>
         </div>
@@ -290,21 +295,22 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				
 				
 				<h4 class="hsc">고등학교 정보 입력</h4>
-				<div class="row mb-4 mt-4_text">
-					<div class="col-lg-4-4t">학교이름  </div>
+				<div class="row mb-4 mt-4">
+					<div class="col-lg-4">학교이름  </div>
 					
-						<div class="col-lg-8 form-label-group mb-2">
-							<input type="text" id="eduNameHigh" name="educationVOList[0].eduName" class="form-control" placeholder="학교이름">
-						</div>
+					<div class="col-lg-4 form-label-group mb-2">
+						<input type="text" id="eduNameHigh" name="educationVOList[0].eduName" class="form-control" placeholder="학교이름">
+					</div>
 				</div>
-		        <div class="row mb-4 mt-4_text">
-					<div class="col-lg-4-4t">재학기간  </div>
+				
+		        <div class="row mb-4 mt-4">
+					<div class="col-lg-4">재학기간  </div>
 					
-						<div class="col-lg-8 form-label-group mb-2">
-							<input type="text"  id="education_term1" name="educationVOList[0].periodStdt" class="form-control" placeholder="입학일" readonly>
-							<span class="hyphen">~</span>
-							<input type="text"  id="education_term2" name="educationVOList[0].periodEndt" class="form-control" placeholder="졸업일" readonly>
-						</div>
+					<div class="col-lg-8 form-label-group mb-2">
+						<input type="text"  id="education_term1" name="educationVOList[0].periodStdt" class="form-control" placeholder="입학일" readonly>
+						<span class="hyphen">~</span>
+						<input type="text"  id="education_term2" name="educationVOList[0].periodEndt" class="form-control" placeholder="졸업일" readonly>
+					</div>
 				</div>
 			</div>
 			
@@ -312,26 +318,25 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<input type="hidden" name="educationVOList[1].eduType" value="2">
 								
 				<h4 class="hsc">대학교 정보 입력</h4>
-				<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">대학교구분  </div>
-					
-						<div class="col-lg-8 form-label-group mb-2">
-							<select id="univType" name="educationVOList[1].univType" class="form-control">
-								<option value="">선택</option>
-								<option value="1">2,3년제</option>
-								<option value="2">4년제</option>
-							</select>
-						</div>
+				<div class="row mb-4 mt-4">
+				<div class="col-lg-4">대학교구분  </div>
+					<div class="col-lg-8 form-label-group mb-2">
+						<select id="univType" name="educationVOList[1].univType" class="form-control">
+							<option value="">선택</option>
+							<option value="1">2,3년제</option>
+							<option value="2">4년제</option>
+						</select>
+					</div>
 				</div>
-				<div class="row mb-4 mt-4_text">
-					<div class="col-lg-4-4t">학교이름  </div>
+				<div class="row mb-4 mt-4">
+					<div class="col-lg-4">학교이름  </div>
 					
 						<div class="col-lg-8 form-label-group mb-2">
 							<input type="text" id="eduNameUniv" name="educationVOList[1].eduName" class="form-control" placeholder="학교이름">
 						</div>
 				</div>
-		        <div class="row mb-4 mt-4_text">
-					<div class="col-lg-4-4t">재학기간  </div>
+		        <div class="row mb-4 mt-4">
+					<div class="col-lg-4">재학기간  </div>
 					
 						<div class="col-lg-8 form-label-group mb-2">
 							<input type="text"  id="education_term3" name="educationVOList[1].periodStdt" class="form-control" placeholder="입학일"   readonly>
@@ -339,15 +344,15 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 							<input type="text"  id="education_term4" name="educationVOList[1].periodEndt" class="form-control" placeholder="졸업일"   readonly>
 						</div>
 				</div>
-		        <div class="row mb-4 mt-4_text">
-					<div class="col-lg-4-2t">학점 </div>
+		        <div class="row mb-4 mt-4 ">
+					<div class="col-lg-4">학점 </div>
 					
 						<div class="col-lg-8 form-label-group mb-2">
 							<input type="text" id="univScore" name="educationVOList[1].univScore" class="form-control" placeholder="학점">
 						</div>
 				</div>
-		        <div class="row mb-4 mt-4_text">
-					<div class="col-lg-4-2t">전공  </div>
+		        <div class="row mb-4 mt-4">
+					<div class="col-lg-4">전공  </div>
 					
 						<div class="col-lg-8 form-label-group mb-2">
 							<input type="text" id="univMajor" name="educationVOList[1].univMajor" class="form-control" placeholder="전공">
@@ -361,8 +366,8 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<input type="hidden" name="educationVOList[2].univMajor" value="">
 				
 				<h4 class="hsc">대학원 정보 입력</h4>
-				<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">대학교구분  </div>
+				<div class="row mb-4 mt-4">
+				<div class="col-lg-4">대학교구분  </div>
 						<div class="col-lg-8 form-label-group mb-2">
 							<select id="univType" name="educationVOList[2].univType" class="form-control">
 								<option value="">선택</option>
@@ -371,15 +376,15 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 							</select>
 						</div>
 				</div>
-				<div class="row mb-4 mt-4_text">
-					<div class="col-lg-4-4t">학교이름  </div>
+				<div class="row mb-4 mt-4">
+					<div class="col-lg-4">학교이름  </div>
 					
 						<div class="col-lg-8 form-label-group mb-2">
 							<input type="text" id="eduNameGs" name="educationVOList[2].eduName" class="form-control" placeholder="학교이름">
 						</div>
 				</div>
-		        <div class="row mb-4 mt-4_text">
-					<div class="col-lg-4-4t">재학기간  </div>
+		        <div class="row mb-4 mt-4">
+					<div class="col-lg-4">재학기간  </div>
 					
 						<div class="col-lg-8 form-label-group mb-2">
 							<input type="text"  id="education_term5" name="educationVOList[2].periodStdt" class="form-control" placeholder="입학일"   readonly>
@@ -392,14 +397,14 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
         <!-- 희망근무조건 -->
         <span class="span_notice_title">희망근무조건</span>
 	        <div class="card mb-4-bt">
-	        	<div class="col-lg-4-4t-condition">근무형태  </div>
+	        	<div class="col-lg-4">근무형태  </div>
 				
-					<div class="col-lg-8 form-label-group mb-2-condition">
+					<div class="col-lg-8 form-label-group mb-2">
 						<select id="Insert_text_condition" class="form-control" name="hopeEmptype">
 							<option value="">근무형태 선택</option>
 							<!-- 반복 시작 -->
-				        	<c:forEach var="map" items="${list }">
-				        		<option value="${map['EMP_TYPE']}">
+				        	<c:forEach var="map" items="${list }"> 
+				        		<option value="${map['EMP_TYPE']}" <c:if test="${ map['EMP_TYPE'] == resumeInfo['HOPE_EMPTYPE']}"> selected </c:if>>
 				        			${map['EMP_NAME']}
 				        		</option>
 				        	</c:forEach>
@@ -407,14 +412,14 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 						</select>
 				    </div>
 				    
-				    <div class="col-lg-4-4t-condition">직종  </div>
+				    <div class="col-lg-4">직종  </div>
 					
-					<div class="col-lg-8 form-label-group mb-2-condition">
+					<div class="col-lg-8 form-label-group mb-2">
 						<select id="Insert_text_condition" class="form-control" name="refCategory1">
 							<option value="">직종 선택</option>
 							<!-- 반복 시작 -->
 				        	<c:forEach var="map" items="${list_cate }">
-				        		<option value="${map['CATE_SEQ1']}">
+				        		<option value="${map['CATE_SEQ1']}" <c:if test="${ map['CATE_SEQ1'] == resumeInfo['REF_CATEGORY1']}"> selected </c:if>>
 				        			${map['CATE_NAME1']}
 				        		</option>
 				        	</c:forEach>
@@ -423,14 +428,14 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 						</select>
 				    </div>
 				    
-				    <div class="col-lg-4-4t-condition">지역  </div>
+				    <div class="col-lg-4">지역  </div>
 					
-					<div class="col-lg-8 form-label-group mb-2-condition">
+					<div class="col-lg-8 form-label-group mb-2">
 						<select id="Insert_text_condition" class="form-control" name="refLocationseq">
 							<option value="">지역 선택</option>
 							<!-- 반복 시작 -->
 				        	<c:forEach var="map" items="${list_loca }">
-				        		<option value="${map['LOCATION_SEQ1']}">
+				        		<option value="${map['LOCATION_SEQ1']}" <c:if test="${ map['LOCATION_SEQ1'] == resumeInfo['REF_LOCATIONSEQ']}"> selected </c:if>>
 				        			${map['LOCATION_NAME']}
 				        		</option>
 				        	</c:forEach>
@@ -439,54 +444,80 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 						</select>
 				    </div>
 				
-				<div class="col-lg-4-4t-condition">연봉  </div>
+				<div class="col-lg-4">연봉  </div>
 				
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text_money" name="hopeSalary" class="form-control">
+					<input type="text" id="Insert_text_money" name="hopeSalary" class="form-control" value="${resumeInfo['HOPE_SALARY'] }">
 				</div>          
        		</div>
 
  
-        
         <!-- 경력사항 -->
+        <script>
+        	function
+        </script>
+
         <span class="span_notice_title">경력사항</span>
+        <input type="hidden" name="careerType" value="1" id="careerType">
+        
         <div class="card mb-4-bt-career">
-	        <div class="tabContainer">
-	        <div class="buttonContainer">
-	        	<button type="button" onclick="showPanel(0,'#007bff')">신입</button>
-	      		<button type="button" onclick="showPanel(1,'#007bff')">경력</button>
-	        </div>
-	      	    <div class="tabPanel"><span class="newperson">"신입 지원자입니다."</span>
-	      	    	
-	      	    </div>
-	    		<div class="tabPanel">
-	    			<h4 class="career_h4">경력사항 정보 입력</h4>
-	    			<span class="col-lg-4-newcompany_7t">이전 직장 회사명</span>
-					
-					<div class="col-lg-8 form-label-group mb-2-career">
-						<input type="text" id="Insert_text_c" name="preComname" class="form-control" placeholder="이전 직장 회사명"  >
+			<ul class="nav nav-tabs" style="width:100%; text-align:center;">
+			  <li class="nav-item" style="width:50%;">
+			    <a class="nav-link active" data-toggle="tab" href="#newPerson">신입</a>
+			  </li>
+			  <li class="nav-item" style="width:50%;">
+			    <a class="nav-link" data-toggle="tab" href="#oldMan">경력</a>
+			  </li>
+			</ul>
+
+			<div class="tab-content text-center">
+			  <div class="tab-pane fade show active" id="newPerson">
+			    <div class="row mb-4 mt-4">
+			  		<div class="col-lg-12">
+			  		    신입지원자 입니다.
+			  		</div>
+			  	</div>
+			  </div>
+
+			  <div class="tab-pane fade" id="oldMan">
+					<div class="row mb-4 mt-4">
+		    			<div class="col-lg-4">이전 직장 회사명</div>
+						<div class="col-lg-8 form-label-group">
+							<input type="text" id="preComname" name="preComname" class="form-control" 
+							value="${resumeInfo['PRE_COMNAME']}" placeholder="이전 직장 회사명"  >
+						</div>
 					</div>
 					
-						<span class="col-lg-4-newcompany_4t">재직기간</span>
+					<div class="row mb-4 mt-4">
+						<div class="col-lg-4">재직기간</div>
 						
-					<div class="col-lg-8 form-label-group mb-2-career">
-							<input type="text"  id="education_term7" name="preStdt" class="form-control" placeholder="시작일"   readonly>
-							<span class="hyphen_career">~</span>
-							<input type="text"  id="education_term8" name="preEndt" class="form-control" placeholder="종료일"   readonly>
+						<div class="col-lg-8 form-label-group">
+							<div class="col-lg-4" style="display:inline-block;">
+								<input type="text"  id="preStdt" name="preStdt" class="form-control" placeholder="시작일"   
+								value = "${resumeInfo['PRE_STDT'] }" readonly>
+							</div>
+							<div class="col-lg-4" style="display:inline-block;">
+								<input type="text"  id="preEndt" name="preEndt" class="form-control" placeholder="종료일" 
+								value = "${resumeInfo['PRE_ENDT'] }"  readonly>
+							</div>
+						</div>
 					</div>
 					
-						<span class="col-lg-4-newcompany_4t_2">담당업무</span>
-						
-					<div class="col-lg-8 form-label-group mb-2-career">
-						<input type="text" id="Insert_text_c" name="manageDesc" class="form-control" placeholder="담담업무"  >
-					</div>
+					<div class="row mb-4 mt-4">
+						<div class="col-lg-4">담당업무</div>
+						<div class="col-lg-8 form-label-group">
+							<input type="text" name="manageDesc" class="form-control" placeholder="담담업무"  >
+						</div>
+					</div>						
 					
-						<span class="col-lg-4-newcompany_4t_3">퇴사사유</span>
-					<div class="col-lg-8 form-label-group mb-2-career">
-						<textarea id="textarea_career" class="form-control" name="retireDesc" placeholder="퇴사사유" style="resize:none"  ></textarea>
-					</div>
-	    		</div>
-	        </div>
+					<div class="row mb-4 mt-4">
+						<div class="col-lg-4">퇴사사유</div>
+						<div class="col-lg-8 form-label-group">
+							<textarea class="form-control" name="retireDesc" placeholder="퇴사사유" style="resize:none; height:10em;"></textarea>
+						</div>
+					</div>						
+			  </div>
+			</div>
         </div>        
         
         
@@ -496,21 +527,24 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
         <div class="card mb-4-bt">
           <!-- <div class="row mb-4 mt-4-it"> -->
 			<div class="col-lg-8 form-label-group mb-2">
-				<input type="text" id="Insert_title_it" name="introduceTitle" class="form-control" placeholder="자소서 제목"  >
+				<input type="text" id="Insert_title_it" name="introduceTitle" class="form-control" 
+				placeholder="자소서 제목"  value="${resumeInfo['INTRODUCE_TITLE']}">
 			</div>
 		 <!--  </div> -->
       	   <!-- <div class="row mb-4 mt-4-it"> -->
 			<div class="col-lg-8 form-label-group mb-2">
-				<textarea id="textarea_it" class="form-control" name="introduceDesc" placeholder="자소서 내용"  ></textarea>
+				<textarea id="textarea_it" class="form-control" name="introduceDesc" placeholder="자소서 내용">${resumeInfo['INTRODUCE_DESC']}</textarea>
 				<span class="txsub">남은 글자수 : </span>
 					<input type="text" readonly  value="1000" name="counter" id="counter" class="form-control">
  			 </div>
         </div>
         
-       
-  		<button class="btn btn-lg btn-primary btn-block text-set" type="submit">이력서 등록</button>
-     	
-	
+       	<c:if test="${resumeSeq ==0 }"> 
+  			<button class="btn btn-lg btn-primary btn-block text-set" type="submit">이력서 등록</button>
+     	</c:if>
+     	<c:if test="${resumeSeq !=0 }">
+			<button class="btn btn-lg btn-primary btn-block text-set" type="submit">이력서 수정</button>
+		</c:if>
       </div>
 
 
@@ -557,7 +591,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
   <!-- /.container -->
  
 
-<script src="<c:url value='/resources/js/myScript.js'/>"></script>
+
 <c:import url="/WEB-INF/views/include/footer.jsp" />
 
 </body>

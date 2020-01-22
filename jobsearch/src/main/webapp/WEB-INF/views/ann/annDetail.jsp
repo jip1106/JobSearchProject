@@ -421,7 +421,9 @@ span.star-border {
     margin-top: 25px;
     border: none;
 }
-}	
+#notEnd{
+	display: none;
+}
 </style>
 </head>
 <body>
@@ -447,19 +449,21 @@ span.star-border {
 			     </div>			  	  	   	
 			        <span class="company_title2">${vo.annTitle }</span>
 			        <c:if test="${loginMember.regType == 1}">
-				        <c:if test="${scrapYN > 0}">
-					        <span class="star-border">
-					        	<img id="scrap" class="scrapY" src="<c:url value='/resources/images/yellow_star.png'/>" style="cursor: pointer;">
-					        </span>
-				        </c:if>
-				        <c:if test="${scrapYN == 0 || empty scrapYN}">
-					        <span id="scarp_bt" class="star-border">
-					        	<img id="scrap" class="scrapN" src="<c:url value='/resources/images/gray_star.png'/>" style="cursor: pointer;">
-					        </span>
-				        </c:if>
-				        <button id="immediately_bt" class="sri_btn_lg for_btn_event" onclick="apply()">
-							<span class="sri_btn_immediately">즉시지원</span>
-						</button>
+				        <div id="notEnd">
+					        <c:if test="${scrapYN > 0}">
+						        <span class="star-border">
+						        	<img id="scrap" class="scrapY" src="<c:url value='/resources/images/yellow_star.png'/>" style="cursor: pointer;">
+						        </span>
+					        </c:if>
+					        <c:if test="${scrapYN == 0 || empty scrapYN}">
+						        <span class="star-border">
+						        	<img id="scrap" class="scrapN" src="<c:url value='/resources/images/gray_star.png'/>" style="cursor: pointer;">
+						        </span>
+					        </c:if>
+					        <button class="sri_btn_lg for_btn_event" onclick="apply()">
+								<span class="sri_btn_immediately">즉시지원</span>
+							</button>
+						</div>
 				
 		        		<!-- 즉시지원  modal -->
 						<div id="modal">
@@ -476,7 +480,7 @@ span.star-border {
 							    	</c:forEach>
 									<form name="frmApply" action="<c:url value='/apply.do'/>" method="post">
 										<input type="hidden" name="refAnnseq" value="${vo.annSeq }">
-										<input type="hidden" name="refResumeseq">
+										<input type="hidden" name="refResumeseq" value="">
 								    	<input type="submit" value="제출하기">						  
 							    	</form>
 							    </c:if>												 
@@ -602,16 +606,29 @@ span.star-border {
 			if(remainDate<0){
 				clearInterval(timerStart);
 				document.getElementById("close").innerHTML="[지원 마감]";
-				document.getElementById("timer").innerHTML="";		
-				document.getElementById("immediately_bt").style.display="none";
-				document.getElementById("scarp_bt").style.display="none";
-				
+				document.getElementById("timer").innerHTML="";						
+			}else{
+				document.getElementById("notEnd").style.display="block";
 			}
 		}
 		
 		$(document).ready(function(){
+			timer();
 			timerStart=setInterval('timer()', 1000);
 			
+			//지원하기
+			$("form[name=frmApply]").submit(function(){
+				var selectedResume=$("input[name='no']:checked").val();
+				$("input[name=refResumeseq]").val(selectedResume);
+				//이력서 미 선택시 알림 
+				if(selectedResume==null){
+					alert("이력서를 선택해주세요.");
+					return false;				
+				}
+			});
+			
+			
+			//즐겨찾기
 			$("#scrap").click(function(){
 				var sUrl = "";
 				

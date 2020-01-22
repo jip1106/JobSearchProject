@@ -23,8 +23,41 @@
 		
 		insert into tbl_resume (RESUME_SEQ, RESUME_TITLE, REG_DATE, RESUME_STATUS, RECURIT_STATUS, INTRODUCE_TITLE, INTRODUCE_DESC, REF_MEMBERSEQ )
 		values
-		(#{resumeSeq}, #{resumeTitle}, sysdate, #{resumeStatus}, #{recuritStatus}, #{introduceTitle}, #{introduceDesc}, #{refMemberseq})
+		(#{resumeSeq}, #{resumeTitle}, sysdate, 2, #{recuritStatus}, #{introduceTitle}, #{introduceDesc}, #{refMemberseq})
 	</insert>
+	
+	
+	<resultMap type="HashMap" id="resumeInfo">
+		<result property="INTRODUCE_DESC" column="INTRODUCE_DESC" jdbcType="CLOB" javaType="java.lang.String" />
+	</resultMap>
+	
+	<select id="selectMyResumeInfo" parameterType="string" resultType="hashmap" resultMap = "resumeInfo">
+	
+	Select 
+	    tr.resume_seq,
+	    tr.resume_title,
+	    to_char(tr.reg_date,'yyyy-mm-dd'),
+	    tr.resume_status,
+	    tr.recurit_status,
+	    tr.introduce_title,
+	    tr.introduce_desc,
+	    tc.mycareer_seq,
+	    tc.career_type,
+	    tc.pre_comname,
+	    to_char(tc.pre_stdt,'yyyy-mm-dd') as PRE_STDT,
+	    to_char(tc.pre_endt,'yyyy-mm-dd') as PRE_ENDT,
+	    tc.retire_desc,
+	    tc.manage_desc,
+	    th.hope_emptype,
+	    th.hope_salary,
+	    th.ref_locationseq,
+	    th.ref_category1
+	From tbl_resume tr
+	join tbl_mycareer tc on tr.resume_seq = tc.ref_resumeseq
+	join tbl_hopework th on tr.resume_seq = th.ref_resumeseq
+	Where resume_seq = #{resumeSeq}
+	
+	</select>
 	
 	
 </mapper>
