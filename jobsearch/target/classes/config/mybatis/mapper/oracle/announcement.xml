@@ -103,6 +103,15 @@
 			set hits=hits+1
 			where ann_seq=#{annSeq}
 	 </update>
-
+	
+	<!-- 최신 공고 조회 -->
+	<select id="selectNewAnn" resultType="announceMentVo">
+		select * from(        
+	        select c.com_name, a.ann_seq, a.ann_title, a.ann_endt
+			from tbl_company c join tbl_announcement a
+			on c.com_seq =a.ref_companyseq
+	        order by ann_seq desc)
+		where <![CDATA[rownum<=3]]>
+	</select>
 	
 </mapper>

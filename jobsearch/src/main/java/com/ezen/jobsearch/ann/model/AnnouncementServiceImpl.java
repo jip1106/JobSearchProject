@@ -47,5 +47,10 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 		return annDao.updateAnnHits(annSeq);
 	}
 
+	@Override
+	public List<AnnounceMentVO> selectNewAnn() {
+		return annDao.selectNewAnn();
+	}
+
 
 }
