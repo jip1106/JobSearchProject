@@ -16,4 +16,21 @@
 		delete from tbl_apply
 		where ref_annseq=#{refAnnseq} and ref_resumeseq=#{refResumeseq}		
 	</delete>
+	
+	<select id="selectmypageapplyList" parameterType="int" resultType="map">
+		select  
+		    tc.com_name as COMNAME, tc.com_type as COMTYPE, 
+		    tap.reg_date as REGDATE, ta.ann_title as TITLE,
+		    ta.salary as SALARY, ta.career_type as CAREER, 
+		    ta.employee_type as EMPLOYEE, tr.resume_title as RESUME,
+		    ta.ann_seq as ANNSEQ 
+		from
+		    TBL_RESUME tr join TBL_APPLY tap 
+		    on tr.resume_seq=tap.ref_resumeseq
+		    join TBL_ANNOUNCEMENT ta
+		    on tap.ref_annseq=ta.ann_seq
+		    join TBL_COMPANY tc
+		    on tc.com_seq=ta.ref_companyseq
+		where tr.ref_memberseq=#{memberSeq}
+	</select>
 </mapper>
