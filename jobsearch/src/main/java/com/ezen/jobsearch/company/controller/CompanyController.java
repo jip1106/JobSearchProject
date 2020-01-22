@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +32,7 @@ import com.ezen.jobsearch.location.model.LocationService;
 import com.ezen.jobsearch.location.model.LocationVO1;
 import com.ezen.jobsearch.member.model.MemberService;
 import com.ezen.jobsearch.member.model.MemberVO;
+import com.ezen.jobsearch.payment.model.PaymentVO;
 
 @Controller
 @RequestMapping("/company")
@@ -297,11 +299,22 @@ public class CompanyController {
   	public void companymypageorder(@RequestParam int annSeq,HttpSession session,Model model) {
   		logger.info("결제하기 페이지 파라미터 annSeq={}",annSeq);
   		MemberVO vo=(MemberVO)session.getAttribute("loginMember");
-  		String Name=vo.getMemberName();
-  		
+  		String Name=vo.getMemberName();  		
   		model.addAttribute("Name",Name);
+  	}
+  	
+  	@RequestMapping("/companyprepay.do")
+  	public void companyprepay(@ModelAttribute PaymentVO payVo,HttpSession session,Model model) {
+  		logger.info("결제창 파라미터 payVo={}",payVo);
+  		model.addAttribute("payVo",payVo);
+  	}
+  	
+  	@RequestMapping("/companypaycomplete.do")
+  	public void companypaycomplete(@RequestBody PaymentVO payVo) {
   		
+  		logger.info("결제 완료 처리 payVo={}",payVo);
   		
   	}
+  	
 	
 }

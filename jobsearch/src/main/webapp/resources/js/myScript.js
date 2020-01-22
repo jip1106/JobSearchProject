@@ -7,6 +7,13 @@ function showPanel(panelIndex,colorCode) {
         node.style.backgroundColor="";
         node.style.color="";
     });
+    
+    if(panelIndex==0){	//신입
+    	$("#careerType").val(1);
+    	
+    }else if(panelIndex==1){
+    	$("#careerType").val(2);
+    }
     tabButtons[panelIndex].style.backgroundColor=colorCode;
     tabButtons[panelIndex].style.color="white";
     tabPanels.forEach(function(node){

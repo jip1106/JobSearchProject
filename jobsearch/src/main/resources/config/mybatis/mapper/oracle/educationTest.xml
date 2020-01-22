@@ -11,9 +11,9 @@
 			select edu_seq.nextval from dual
 		</selectKey>
 		
-		insert into tbl_education (EDU_SEQ, EDU_TYPE, EDU_NAME, PERIOD_STDT, PERIOD_ENDT, UNIV_TYPE, UNIV_SCORE, UNIV_MAJOR, REF_RESUMESEQ)
+		insert into tbl_education (EDU_SEQ, EDU_TYPE, EDU_NAME, PERIOD_STDT, PERIOD_ENDT, UNIV_TYPE, UNIV_SCORE, UNIV_MAJOR, REF_RESUMESEQ, LAST_EDUCATION)
 		values
-		(#{eduSeq}, #{eduType}, #{eduName}, #{periodStdt}, #{periodEndt}, #{univType}, #{univScore}, #{univMajor} , #{refResumeseq} )
+		(#{eduSeq}, #{eduType}, #{eduName}, #{periodStdt}, #{periodEndt}, #{univType}, #{univScore}, #{univMajor} , #{refResumeseq} , #{lastEducation})
 	</insert>
 	
 	
