@@ -63,5 +63,13 @@ public class ResumeServiceImpl implements ResumeService{
 		return resumeDao.insertResumeTest(resumeVo);
 	}
 
+	@Override
+	public Map<String, Object> selectMyResumeInfo(String resumeSeq) {
+		// TODO Auto-generated method stub
+		return resumeDao.selectMyResumeInfo(resumeSeq);
+	}
+
+
+
 
 }
