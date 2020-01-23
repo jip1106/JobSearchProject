@@ -105,7 +105,7 @@
 		<c:if test="${empty premiumAnnList }">
 	    		<div class="card mb-4">
 	        		<div class="card-body">
-		           		<p class="card-text">목록이 존재하지 않습니다.</p>
+		           		<p class="card-text">목록이 존재하지 않습니다</p>
 		         	 </div>
 	        	</div>     
 	    </c:if>
