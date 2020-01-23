@@ -11,4 +11,5 @@ public interface BoardDAO {
 	BoardVO selectByBoardSeq(int boardSeq);
 	int updateBoard(BoardVO boardVo);
 	int deleteBoard(int boardSeq);
+	int updateHits(int boardSeq);
 }

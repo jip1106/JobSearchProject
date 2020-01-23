@@ -21,6 +21,8 @@ public interface AnnouncementDAO {
 	int updateAnnHits(int annSeq);
 	
 	List<AnnounceMentVO> selectNewAnn();
+	
+	List<AnnounceMentVO> selectPremiumAnn();
 }
 
 

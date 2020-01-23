@@ -83,6 +83,8 @@ public class BoardController {
 		
 		BoardVO boardVo=boardService.selectByBoardSeq(boardSeq);
 		if(boardVo!=null) {
+			int cnt=boardService.updateHits(boardSeq);
+			logger.info("공지사항 조회수 업데이트 결과, cnt={}", cnt);
 			model.addAttribute("boardVo", boardVo);
 			return "board/noticeDetail";
 		}		

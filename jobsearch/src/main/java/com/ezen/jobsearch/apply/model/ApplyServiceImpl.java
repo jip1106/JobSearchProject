@@ -26,4 +26,9 @@ public class ApplyServiceImpl implements ApplyService {
 	public int selectApplyYN(ApplyVO applyVo) {
 		return applyDao.selectApplyYN(applyVo);
 	}
+
+	@Override
+	public int deleteApply(int applySeq) {
+		return applyDao.deleteApply(applySeq);
+	}
 }

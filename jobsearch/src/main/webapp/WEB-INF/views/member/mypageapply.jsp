@@ -8,9 +8,9 @@
 <!-- 외부css -->
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
 <script type="text/javascript">
-function button_event(viewSeq){
-	  if (confirm("정말 삭제하시겠습니까?") == true){    //확인
-		 location.href= "<c:url value='/member/mypagerecentnoticeListDel.do?viewSeq="+viewSeq+"'/>"; 
+function button_event(applySeq){
+	  if (confirm("입사지원을 취소하시겠습니까?\n*기업에서 이미 이력서를 열람한 경우\n 이력서에 등록되었던 연락처로 입사 제의 연락이 갈 수 있습니다.*") == true){    //확인
+		 location.href= "<c:url value='/applyCancel.do?applySeq="+applySeq+"'/>"; 
 	  }else{   //취소
 	      return;
 	  }
@@ -236,8 +236,8 @@ span.day_span {
            <div class="wrap_manage_btn">
             <span id=remain_time>${item.TIME}</span> <span class=day_span>일</span>
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
-            	onclick="button_event(${item.VIEW_SEQ})">
-            		<span class="X">X</span>
+            	onclick="button_event(${item.APPLYSEQ})">
+            		<span class="X">지원 취소</span>
            		</button>
             </div> 
            </div>

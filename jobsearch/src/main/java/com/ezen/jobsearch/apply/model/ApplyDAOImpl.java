@@ -29,6 +29,11 @@ public class ApplyDAOImpl implements ApplyDAO {
 	public int selectApplyYN(ApplyVO applyVo) {
 		return sqlSession.selectOne(namespace+"selectApplyYN", applyVo);
 	}
+
+	@Override
+	public int deleteApply(int applySeq) {
+		return sqlSession.delete(namespace+"deleteApply", applySeq);
+	}
 	
 
 }

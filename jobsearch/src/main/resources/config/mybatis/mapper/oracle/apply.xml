@@ -10,17 +10,12 @@
 		</selectKey>
 		insert into tbl_apply(apply_seq, ref_annseq, ref_resumeseq)
 		values(#{applySeq}, #{refAnnseq}, #{refResumeseq})
-	</insert>
-	
-	<delete id="deleteApply" parameterType="applyVo">
-		delete from tbl_apply
-		where ref_annseq=#{refAnnseq} and ref_resumeseq=#{refResumeseq}		
-	</delete>
+	</insert>	
 	
 	<select id="selectmypageapplyList" parameterType="int" resultType="map">
 		select  
 		    tc.com_name as COMNAME, tc.com_type as COMTYPE, 
-		    tap.reg_date as REGDATE, ta.ann_title as TITLE,
+		    tap.apply_seq as APPLYSEQ, tap.reg_date as REGDATE, ta.ann_title as TITLE,
 		    ta.ANN_ENDT - ta.ANN_STDT as TIME, 
 		    ta.salary as SALARY, ta.career_type as CAREER, 
 		    ta.employee_type as EMPLOYEE, tr.resume_title as RESUME,
@@ -41,4 +36,10 @@
 		and ref_resumeseq in (select resume_seq from tbl_resume
                                        			 where ref_memberseq=#{refMemberseq})
 	</select>
+	
+	<delete id="deleteApply" parameterType="int">
+		delete from tbl_apply
+		where apply_seq=#{applySeq}
+	</delete>
+	
 </mapper>

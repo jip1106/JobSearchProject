@@ -45,4 +45,9 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.delete(namespace+"deleteBoard", boardSeq);
 	}
 
+	@Override
+	public int updateHits(int boardSeq) {
+		return sqlSession.update(namespace+"updateHits", boardSeq);
+	}
+
 }
