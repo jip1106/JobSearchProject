@@ -73,4 +73,10 @@
   	 <delete parameterType="int" id="deleteBoard"> 
   	 		delete from tbl_board where board_seq=#{boardSeq} 
   	 </delete>
+  	 
+  	 <update id="updateHits" parameterType="int">
+  	 	update tbl_board
+  	 	set hits=hits+1
+  	 	where board_seq=#{boardSeq}
+  	 </update>
 </mapper>

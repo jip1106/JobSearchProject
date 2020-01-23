@@ -23,6 +23,7 @@ public class AnnounceMentVO {
 	 private int refCompanyseq;//작성회사 고유시퀀스
 	 
 	 //공고상세에 필요한 필드
+	 private int comSeq;
 	 private String ceoName;
 	 private Timestamp setupDate;
 	 private String comField;
@@ -237,6 +238,12 @@ public class AnnounceMentVO {
 	}
 	public void setComRenameimage(String comRenameimage) {
 		this.comRenameimage = comRenameimage;
+	}
+	public int getComSeq() {
+		return comSeq;
+	}
+	public void setComSeq(int comSeq) {
+		this.comSeq = comSeq;
 	}
 	
 }

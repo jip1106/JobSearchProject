@@ -16,6 +16,7 @@
 				SELECT * FROM TBL_ANNOUNCEMENT ta
 					join tbl_company tc on ta.ref_companyseq = tc.com_seq
 				Where ta.ref_locationseq1 = #{locationSeq1} 
+				and ta.ann_endt>sysdate
 				and ta.ref_locationseq2 in 
 				<foreach collection="locList" item="locationSeq2" separator=","	open="(" close=")">
 					#{locationSeq2}
@@ -34,7 +35,8 @@
 	 <select id="selectAnnListCount" parameterType="hashmap" resultType="int">
 	 	SELECT count(*) FROM TBL_ANNOUNCEMENT ta
 			join tbl_company tc on ta.ref_companyseq = tc.com_seq
-		Where ta.ref_locationseq1 = #{locationSeq1} 
+		Where ta.ref_locationseq1 = #{locationSeq1}
+		and ta.ann_endt>sysdate
 		and ta.ref_locationseq2 in 
 		<foreach collection="locList" item="locationSeq2" separator=","	open="(" close=")">
 			#{locationSeq2}
@@ -55,6 +57,7 @@
 				<foreach collection="cateList" item="cateSeq3" separator=","	open="(" close=")">
 					#{cateSeq3}
 				</foreach>
+				and ta.ann_endt>sysdate
 				order by ta.ann_seq desc
 			)A
 		)B
@@ -74,13 +77,14 @@
 		<foreach collection="cateList" item="cateSeq3" separator=","	open="(" close=")">
 			#{cateSeq3}
 		</foreach>
+		and ta.ann_endt>sysdate
 	 </select>
 	 
 	<!-- 공고 상세 보기 -->
 	 <select id="selectBySeq" parameterType="int" resultType="announceMentVo">
 	 	select a.*, 
-	 			b.ceo_name, b.setup_date, b.com_field, b.com_name, b.employee_num, b.com_type,
-	 			c.address, c.detail_address, c.extra_address, 
+	 			b.com_seq, b.com_renameimage, b.ceo_name, b.setup_date, b.com_field, b.com_name, b.employee_num, b.com_type,
+	 			c.address, c.detail_address, c.extra_address,
 	 			d.location_name, 
 	 			e.location_name2,
 	 			f.emp_name
@@ -107,9 +111,10 @@
 	<!-- 최신 공고 조회 -->
 	<select id="selectNewAnn" resultType="announceMentVo">
 		select * from(        
-	        select c.com_name, a.ann_seq, a.ann_title, a.ann_endt
+	        select c.com_seq, c.com_name, a.ann_seq, a.ann_title, a.ann_endt
 			from tbl_company c join tbl_announcement a
 			on c.com_seq =a.ref_companyseq
+			where a.ann_endt>sysdate
 	        order by ann_seq desc)
 		where <![CDATA[rownum<=3]]>
 	</select>
@@ -117,10 +122,11 @@
 	<!-- 프리미엄 공고 조회 -->
 	<select id="selectPremiumAnn" resultType="announceMentVo">
 		select * from(      
-		    select c.com_name, c.com_renameimage, a.ann_seq, a.ann_title, a.ann_endt
+		    select c.com_seq, c.com_name, c.com_renameimage, a.ann_seq, a.ann_title, a.ann_endt
 		    from tbl_company c join tbl_announcement a
 		    on c.com_seq =a.ref_companyseq	        
 		    where ann_seq in(select ref_announcement from tbl_payment)
+		    and a.ann_endt>sysdate
 		order by dbms_random.value)
 		where <![CDATA[rownum<=6]]>
 	</select>

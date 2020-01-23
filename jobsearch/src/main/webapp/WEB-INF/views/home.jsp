@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
 
 <c:import url="./include/header.jsp" />
 <c:import url="./include/headend.jsp" />
@@ -9,6 +11,14 @@
 		window.open("<c:url value='/ann/detail.do?annSeq='/>"+annSeq, annSeq+"번 공고 상세보기", 
 				"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	}
+	
+	function comView(comSeq){
+		window.open("<c:url value='/company/detail.do?comSeq='/>"+comSeq, comSeq+"번 회사정보 상세보기", 
+		"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		event.stopPropagation();
+		event.preventDefault();
+	}
+	
 </script>
 
 <style type="text/css">
@@ -106,9 +116,9 @@
 			          <a href="#"><img class="card-img-top" src="../경로" alt="${announceMentVo.comName } 로고"></a>
 			          <div class="card-body">
 			            <h4 class="card-title">
-			              <a href="#">${announceMentVo.comName }</a>
+			              <a href="#" onclick="comView(${announceMentVo.comSeq})">${announceMentVo.comName }</a>
 			            </h4>
-			            <p class="card-text">${announceMentVo.annTitle }</p>
+			            <p class="card-text">${announceMentVo.annTitle }</p>			   	         
 			          </div>
 			        </div>
 			      </div>

@@ -56,5 +56,10 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return cnt;
 	}
+
+	@Override
+	public int updateHits(int boardSeq) {
+		return boardDao.updateHits(boardSeq);
+	}
 	
 }

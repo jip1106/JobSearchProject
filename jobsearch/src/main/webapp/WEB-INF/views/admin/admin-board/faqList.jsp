@@ -32,7 +32,7 @@
   				<div class="col-md-6">
   					<div class="content-box-large">
 		  				<div class="panel-heading">
-							<div class="panel-title">FAQ 목록</div>
+							<div class="panel-title">FAQ 목록(${fn:length(list) })</div>
 							
 							<div class="panel-options">
 								 <form name="frmBoardDel" method="post" action="<c:url value='/admin/board/delete.do?boardType=2'/>">
