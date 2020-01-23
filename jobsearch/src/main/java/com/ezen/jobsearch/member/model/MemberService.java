@@ -3,8 +3,6 @@ package com.ezen.jobsearch.member.model;
 import java.util.HashMap;
 import java.util.List;
 
-import com.ezen.jobsearch.common.SearchVO;
-
 public interface MemberService {
 	public static final int EDIT_PASS=1; 
 	public static final int DISAGREE_PWD=2; //비밀번호 불일치

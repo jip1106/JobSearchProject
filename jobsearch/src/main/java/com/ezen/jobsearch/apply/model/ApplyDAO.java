@@ -6,4 +6,5 @@ import java.util.Map;
 public interface ApplyDAO {
 	int insertApply(ApplyVO applyVo);
 	List<Map<String, Object>> selectmypageapplyList(int memberSeq);
+	int selectApplyYN(ApplyVO applyVo);
 }

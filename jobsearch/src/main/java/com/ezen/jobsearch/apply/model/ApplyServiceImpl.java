@@ -21,4 +21,9 @@ public class ApplyServiceImpl implements ApplyService {
 	public List<Map<String, Object>> selectmypageapplyList(int memberSeq) {
 		return applyDao.selectmypageapplyList(memberSeq);
 	}
+
+	@Override
+	public int selectApplyYN(ApplyVO applyVo) {
+		return applyDao.selectApplyYN(applyVo);
+	}
 }

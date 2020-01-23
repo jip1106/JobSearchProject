@@ -34,4 +34,11 @@
 		    on tc.com_seq=ta.ref_companyseq
 		where tr.ref_memberseq=#{memberSeq}
 	</select>
+	
+	<select id="selectApplyYN" parameterType="applyVo" resultType="int">
+		select count(*) from tbl_apply
+		where ref_annseq=#{refAnnseq} 
+		and ref_resumeseq in (select resume_seq from tbl_resume
+                                       			 where ref_memberseq=#{refMemberseq})
+	</select>
 </mapper>

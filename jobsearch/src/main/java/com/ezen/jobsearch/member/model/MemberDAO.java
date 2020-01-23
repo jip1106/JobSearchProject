@@ -3,8 +3,6 @@ package com.ezen.jobsearch.member.model;
 import java.util.HashMap;
 import java.util.List;
 
-import com.ezen.jobsearch.common.SearchVO;
-
 public interface MemberDAO {
 	//회원가입
 	int insertMember(MemberVO memberVo);

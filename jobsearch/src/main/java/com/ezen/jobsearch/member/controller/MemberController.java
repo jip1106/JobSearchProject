@@ -1,6 +1,6 @@
 package com.ezen.jobsearch.member.controller;
 
-import java.text.ParseException; 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
