@@ -135,4 +135,10 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 		return sqlSession.selectList(nameSpace+"selectNewAnn");
 	}
 
+
+	@Override
+	public List<AnnounceMentVO> selectPremiumAnn() {
+		return sqlSession.selectList(nameSpace+"selectPremiumAnn");
+	}
+
 }

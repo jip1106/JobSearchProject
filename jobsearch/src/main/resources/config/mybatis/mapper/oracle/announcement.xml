@@ -114,4 +114,15 @@
 		where <![CDATA[rownum<=3]]>
 	</select>
 	
+	<!-- 프리미엄 공고 조회 -->
+	<select id="selectPremiumAnn" resultType="announceMentVo">
+		select * from(      
+		    select c.com_name, c.com_renameimage, a.ann_seq, a.ann_title, a.ann_endt
+		    from tbl_company c join tbl_announcement a
+		    on c.com_seq =a.ref_companyseq	        
+		    where ann_seq in(select ref_announcement from tbl_payment)
+		order by dbms_random.value)
+		where <![CDATA[rownum<=6]]>
+	</select>
+	
 </mapper>

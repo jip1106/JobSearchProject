@@ -35,8 +35,10 @@ public class HomeController {
 	public String home(Model model) {
 		
 		List<AnnounceMentVO> newAnnList = annService.selectNewAnn();
+		List<AnnounceMentVO> premiumAnnList = annService.selectPremiumAnn();
 		
 		model.addAttribute("newAnnList", newAnnList);
+		model.addAttribute("premiumAnnList", premiumAnnList);
 		
 		return "home";
 	}

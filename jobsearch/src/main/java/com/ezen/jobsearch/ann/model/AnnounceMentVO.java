@@ -35,6 +35,8 @@ public class AnnounceMentVO {
 	 private String empName;
 	 private String employeeNum;
 	 private String comType;
+	 private String comRenameimage;
+
 	 
 	 
 	 
@@ -229,6 +231,12 @@ public class AnnounceMentVO {
 	}
 	public void setComType(String comType) {
 		this.comType = comType;
+	}
+	public String getComRenameimage() {
+		return comRenameimage;
+	}
+	public void setComRenameimage(String comRenameimage) {
+		this.comRenameimage = comRenameimage;
 	}
 	
 }
