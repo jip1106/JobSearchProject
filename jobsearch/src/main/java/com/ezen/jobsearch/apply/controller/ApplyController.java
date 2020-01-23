@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ezen.jobsearch.apply.model.ApplyService;
 import com.ezen.jobsearch.apply.model.ApplyVO;
@@ -38,6 +39,27 @@ public class ApplyController {
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 
+		return "common/message";
+	}
+	
+	@RequestMapping(value = "/applyCancel.do")
+	public String deleteApply(@RequestParam(defaultValue = "0") int applySeq, Model model) {
+		logger.info("지원 취소, 파라미터 applySeq={}", applySeq);
+		
+		String msg="지원 취소 중 오류 발생", url="/member/mypageapply.do";
+		if(applySeq==0) {
+			msg="잘못된 url입니다.";						
+		}else {		
+			int cnt=applyService.deleteApply(applySeq);
+			
+			if(cnt>0) {
+				msg="입사지원이 취소되었습니다.";
+			}
+		}
+			
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
 		return "common/message";
 	}
 }
