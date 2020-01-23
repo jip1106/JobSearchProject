@@ -18,6 +18,8 @@
 		    text-align: center;
 		    padding: 0.5em;
 		}
+		
+	
 	</style>
 	
 	<c:import url="/WEB-INF/views/include/headend.jsp" />

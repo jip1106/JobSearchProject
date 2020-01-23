@@ -16,20 +16,27 @@
 		    text-align: center;
 		    padding: 0.5em;
 		}
-		.form-control {
-   			 float: left;
-   			 width: 20%;
-   			 margin-left: 74.7%;
-   		}
+   		.form-control {
+		    float: left;
+		    width: 20%;
+		    margin-left: 74%;
+		    margin-right: 7px;
+		}
    		.breadcrumb {
    			clear: both;
    		}
+   		ol.breadcrumb {
+    		margin-top: 17px;
+		}
+		div#container {
+ 			height: 44em;
+		}
 	</style>
 	
 	<c:import url="/WEB-INF/views/include/headend.jsp" />
 	
 	 <!-- Page Content -->
-  <div class="container">
+  <div class="container" id="container">
 	
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">FAQ</h1>

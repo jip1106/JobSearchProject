@@ -105,7 +105,7 @@ button.btn_edit_complete {
     border-color: #5e87f1;
     padding: 12px 11px;
     position: relative;
-    left: 32.3em;
+     left: 35.5em;
     top: -65px;
     height: 49px;
     margin-bottom: -60px;
@@ -123,8 +123,8 @@ button.btn_delete {
     vertical-align: top;
     background: #f9f9f9;
     position: relative;
-    top: -13px;
-    left: 43.5em;
+    top: -21px;
+    left: 39.2em;
 }
 
 span.X {
@@ -169,7 +169,21 @@ display: inline-block;
     box-sizing: border-box;
     margin: 30px 0 53px 8px;
 }
-
+span#remain_time {
+    color: #ff521b;
+    font-size: 31px;
+    margin-top: -2px;
+    font-weight: bold;
+    position: relative;
+    left: 20.2em;
+    top: -36px;
+}
+span.day_span {
+    position: relative;
+    left: 39.2em;
+    top: -39px;
+    color: #afafaf;
+}
 </style>
 
 <script type="text/javascript">
@@ -218,13 +232,14 @@ display: inline-block;
             <span class="txt_date">지원한 날짜: 
             <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd" />
             </span>
-            <button type="button" class="btn_edit_complete" onclick="#">내가 지원한 이력서</button>
-           <%-- <div class="wrap_manage_btn">
+            <button type="button" class="btn_edit_complete" onclick="#">나의 이력서</button>
+           <div class="wrap_manage_btn">
+            <span id=remain_time>${item.TIME}</span> <span class=day_span>일</span>
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
             	onclick="button_event(${item.VIEW_SEQ})">
             		<span class="X">X</span>
            		</button>
-            </div>--%> 
+            </div> 
            </div>
 		</div>
 		</c:forEach>
