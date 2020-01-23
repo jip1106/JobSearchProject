@@ -24,8 +24,8 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
               <a class="dropdown-item" href="${pageContext.request.contextPath }/board/list.do?boardType=1">공지사항</a>
-              <a class="dropdown-item" href="#">자유게시판</a>
               <a class="dropdown-item" href="${pageContext.request.contextPath }/board/list.do?boardType=2">FAQ</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath }/board/list.do?boardType=3">자유게시판</a>
             </div>
           </li>
 

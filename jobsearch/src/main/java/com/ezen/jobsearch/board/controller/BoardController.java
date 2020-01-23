@@ -62,6 +62,8 @@ public class BoardController {
 			return "board/noticeList";
 		}else if(boardType.equals("2")) {
 			return "board/faqList";
+		}else if(boardType.contentEquals("3")) {
+			return "board/freeList";
 		}else {
 			model.addAttribute("msg", "잘못된 url입니다.");
 			model.addAttribute("url", "/home.do");
