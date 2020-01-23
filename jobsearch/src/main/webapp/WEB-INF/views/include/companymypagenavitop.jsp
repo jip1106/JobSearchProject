@@ -21,6 +21,11 @@ a.list-group-item {
     color: white;
     padding-left: 27px;
     font-weight: 500;
+    text-decoration: none;
+    
+}
+a.list-group-item:hover{
+	 background: #3454a5;
 }
 ol.breadcrumb {
     height: 57px;
@@ -58,7 +63,7 @@ h2.mt-4.mb-3 {
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h2 class="mt-4 mb-3">Mypage</h2>
+    <h2 class="mt-4 mb-3">기업 MyPage</h2>
 
     <ol class="breadcrumb">
     <span id="member_type">기업회원</span>
@@ -75,7 +80,7 @@ h2.mt-4.mb-3 {
           <a href="<c:url value='/company/companyPwdChk.do'/>" class="list-group-item">기업정보수정</a>
           <a href="<c:url value='/company/companymypageannouncement.do'/>" class="list-group-item">공고등록</a>
           <a href="<c:url value='/company/companyMyAnnList.do'/>" class="list-group-item">공고관리</a>
-          <a href="<c:url value='/company/companymypagepayment.do'/>" class="list-group-item">결제관리</a> 
+          <a href="<c:url value='/company/companymypagepayment.do'/>" class="list-group-item">결제내역</a> 
       	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">
       	 	<img src="<c:url value='/resources/images/mypage_banner.jpg'/>">
       	 </a>

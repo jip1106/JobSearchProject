@@ -19,4 +19,10 @@ public class HopeworkDAOImpl implements HopeworkDAO{
 		return resultCnt;
 	}
 
+	@Override
+	public int updateHopework(HopeworkVO hopeworkVo) {
+		int resultCnt = sqlSession.update(namespace+"updateHopeworkTest", hopeworkVo);
+		return resultCnt;
+	}
+
 }

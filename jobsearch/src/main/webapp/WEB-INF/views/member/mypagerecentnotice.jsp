@@ -123,8 +123,8 @@ button.btn_delete {
     vertical-align: top;
     background: #f9f9f9;
     position: relative;
-    top: -13px;
-    left: 43.5em;
+    top: -7px;
+    left: 39.5em;
 }
 
 span.X {
@@ -169,6 +169,23 @@ display: inline-block;
     box-sizing: border-box;
     margin: 30px 0 53px 8px;
 }
+
+span#remain_time {
+    color: #ff521b;
+    font-size: 31px;
+    margin-top: -2px;
+    font-weight: bold;
+    position: relative;
+    left: 20.5em;
+    top: -22px;
+}
+span.day_span {
+    position: relative;
+    left: 39.7em;
+    top: -25px;
+    color: #afafaf;
+}
+
 
 </style>
 
@@ -220,6 +237,7 @@ display: inline-block;
             </span>
             <button type="button" class="btn_edit_complete" onclick="annView(${item['ANNSEQ']})">지원하기</button>
             <div class="wrap_manage_btn">
+           			<span id=remain_time>${item.TIME}</span> <span class=day_span>일</span>
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
             	onclick="button_event(${item.VIEW_SEQ})">
             	<!-- <button type="button" onclick="button_event();">삭제하기</button> -->
@@ -228,6 +246,7 @@ display: inline-block;
            		</button>
             </div>
            </div>
+           
 		</div>
 		</c:forEach>
 		</c:if>

@@ -11,6 +11,19 @@
 		Where ref_memberseq = #{memberSeq}
 	</select>
 	
+	<select id="selectResumeListMap" resultType="hashmap" parameterType="int">
+		SELECT 
+			TR.resume_seq,
+            TR.resume_title,
+            TR.reg_date,
+            TH.hope_salary,
+            TC.career_type
+        From TBL_RESUME TR
+        JOIN TBL_HOPEWORK TH on TR.resume_seq = TH.ref_resumeseq
+        JOIN TBL_MYCAREER TC on TR.resume_seq = TC.ref_resumeseq
+		Where ref_memberseq = #{memberSeq}
+	</select>
+	
 	<select id="selectMyResumeCount" resultType="int" parameterType="int">
 		Select count(*) From TBL_RESUME 
 		Where ref_memberseq = #{memberSeq}
@@ -46,8 +59,10 @@
 	    tc.pre_comname,
 	    to_char(tc.pre_stdt,'yyyy-mm-dd') as PRE_STDT,
 	    to_char(tc.pre_endt,'yyyy-mm-dd') as PRE_ENDT,
+	    tc.mycareer_seq,
 	    tc.retire_desc,
 	    tc.manage_desc,
+	    th.hopework_seq,
 	    th.hope_emptype,
 	    th.hope_salary,
 	    th.ref_locationseq,
@@ -59,5 +74,20 @@
 	
 	</select>
 	
+	<update id="updateResumeInfoTest" parameterType = "resumeVo">
+		UPDATE TBL_RESUME
+		SET RESUME_TITLE = #{resumeTitle},
+			INTRODUCE_TITLE = #{introduceTitle},
+			INTRODUCE_DESC = #{introduceDesc},
+			RECURIT_STATUS = #{recuritStatus},
+			REG_DATE = sysdate
+		Where resume_seq = #{resumeSeq}
+		
+	</update>
+	
+	<delete id="deleteResumeTest" parameterType="string">
+		DELETE FROM TBL_RESUME
+		WHERE resume_seq = #{resumeSeq}
+	</delete>
 	
 </mapper>

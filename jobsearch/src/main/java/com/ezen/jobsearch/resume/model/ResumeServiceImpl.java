@@ -46,9 +46,9 @@ public class ResumeServiceImpl implements ResumeService{
 	}
 
 	@Override
-	public List<ResumeVO> selectResumeList(int memberSeq) {
+	public List<Map<String,Object>> selectResumeListMap(int memberSeq) {
 		
-		return resumeDao.selectResumeList(memberSeq);
+		return resumeDao.selectResumeListMap(memberSeq);
 	}
 
 	@Override
@@ -67,6 +67,24 @@ public class ResumeServiceImpl implements ResumeService{
 	public Map<String, Object> selectMyResumeInfo(String resumeSeq) {
 		// TODO Auto-generated method stub
 		return resumeDao.selectMyResumeInfo(resumeSeq);
+	}
+
+	@Override
+	public int updateResume(ResumeVO resumeVo) {
+		// TODO Auto-generated method stub
+		return resumeDao.updateResume(resumeVo);
+	}
+
+	@Override
+	public List<ResumeVO> selectResumeList(int memberSeq) {
+		// TODO Auto-generated method stub
+		return resumeDao.selectResumeList(memberSeq);
+	}
+
+	@Override
+	public int deleteResume(String resumeSeq) {
+		// TODO Auto-generated method stub
+		return resumeDao.deleteResume(resumeSeq);
 	}
 
 

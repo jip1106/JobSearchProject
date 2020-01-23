@@ -192,6 +192,7 @@ strong.attach_count {
 	 	</div>
 	</c:if>
 	<c:if test="${!empty list }">
+	<strong class="attach_count">총 <span class="count_span">${count }</span>건</strong>
 	<c:forEach var="map" items="${list}">
 	<a href="http://www.saramin.co.kr" target="_blank"/></a>
 	 	<div class="card mb-4-bt">
@@ -204,7 +205,7 @@ strong.attach_count {
                	 </a>
                </strong>
             <div class="desc">
-               <span class="career_small">${map['CAREER_TYPE']}</span>|<span class="career_small2">${map['CAREER_DESC']}</span>|<span class="career_small2">${map['REF_LOCATIONSEQ1']}</span>                        
+               <span class="career_small">${map['CAREER_TYPE']}</span>|<span class="career_small2">${map['CAREER_DESC']}</span>|<span class="career_small2">${map['SALARY']}</span>                        
             </div>
             <span class="txt_date">${map['ANN_STDT']}</span>
             <c:if test="${empty map['REF_ANNOUNCEMENT'] }">

@@ -153,7 +153,18 @@ span.X {
 	<script>
 		function insertResume(resumeSeq){
 			document.getElementById("frm").resumeSeq.value=resumeSeq;
+			document.getElementById("frm").action = "/jobsearch/resume/resumeView.do";
 			document.getElementById("frm").submit();
+		}
+		
+		function deleteResume(resumeSeq){
+			if(confirm("해당 이력서 정보를 삭제하시겠습니까? ")){
+				document.getElementById("frm").resumeSeq.value = resumeSeq;
+				document.getElementById("frm").action = "/jobsearch/resume/resumeDelete.do";
+				document.getElementById("frm").submit();
+			}else{
+				return false;
+			}
 		}
 	</script>
 
@@ -174,28 +185,31 @@ span.X {
 			
 	
 	<c:if test="${!empty resumeList }">	
-		<c:forEach var="resumeVo" items="${resumeList }">
+		<c:forEach var="mapData" items="${resumeList }">
 			<div class="card mb-4-bt">
 		 		<div class="info_resume">
 	               <input type="hidden" name="res_idx" value="14137844" id="res_idx">
 	               <strong class="tit">
-	                 <a href="#">
+	                 <a href="javascript:insertResume('${mapData['RESUME_SEQ']}');">
 	                	 <span class="point_color">
-	                	 	<c:if test="${resumeVo.resumeStatus==1 }">[미완성]</c:if>
-	                	 	<c:if test="${resumeVo.resumeStatus==2 }">[완성]</c:if>
+							[완성]
 	                	 </span>
 	                	 
-	                	 <span class="point_color_date">${resumeVo.regDate }</span><span class="point_color_date">날 저장된 이력서 입니다.</span>
+	                	 <span class="point_color_date">${mapData['REG_DATE']}</span><span class="point_color_date">날 저장된 이력서 입니다.</span>
 	               	 </a>
 	               </strong>
 		            <div class="desc">
-		               <span class="career_small">신입</span>|<span class="career_small2">희망연봉란</span>                        
+		               <span class="career_small">
+		               		<c:if test="${mapData['CAREER_TYPE']==1}">신입</c:if>
+		               		<c:if test="${mapData['CAREER_TYPE']==2}">경력</c:if>
+		               	</span>|
+		               	<span class="career_small2">${mapData['HOPE_SALARY'] }</span>                        
 		            </div>
-	           		<span class="txt_date">수정 2020.01.08</span>
-	         	    <button type="button" class="btn_edit_complete" onclick="insertResume('${resumeVo.resumeSeq}')">완성하기</button>
+	           		<span class="txt_date">등록일 ${mapData['REG_DATE']}</span>
+	         	    <button type="button" class="btn_edit_complete" onclick="insertResume('${mapData['RESUME_SEQ']}')">수정하기</button>
 		            <div class="wrap_manage_btn">
 		            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete">
-		            		<span class="X">X</span>
+		            		<span class="X" onclick="deleteResume('${mapData['RESUME_SEQ']}')">X</span>
 		           		</button>
 		            </div>
 	          	 </div>

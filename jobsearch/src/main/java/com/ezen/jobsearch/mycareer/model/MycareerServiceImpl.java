@@ -15,4 +15,10 @@ public class MycareerServiceImpl implements MycareerService{
 		return mycareerDao.insertMycareer(mycareerVo);
 	}
 
+	@Override
+	public int updateMycareer(MycareerVO mycareerVo) {
+		// TODO Auto-generated method stub
+		return mycareerDao.updateMycareer(mycareerVo);
+	}
+
 }
