@@ -9,6 +9,8 @@ public class ApplyVO {
 	private int refResumeseq;
 	private Timestamp regDate;
 	
+	private int refMemberseq;
+	
 	public int getApplySeq() {
 		return applySeq;
 	}
@@ -44,6 +46,12 @@ public class ApplyVO {
 	public String toString() {
 		return "ApplyVO [applySeq=" + applySeq + ", openFlag=" + openFlag + ", refAnnseq=" + refAnnseq
 				+ ", refResumeseq=" + refResumeseq + ", regDate=" + regDate + "]";
+	}
+	public int getRefMemberseq() {
+		return refMemberseq;
+	}
+	public void setRefMemberseq(int refMemberseq) {
+		this.refMemberseq = refMemberseq;
 	}
 	
 	

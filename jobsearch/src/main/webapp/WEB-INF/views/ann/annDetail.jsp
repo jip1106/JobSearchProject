@@ -440,9 +440,7 @@ span.star-border {
 
     <!-- Blog Post -->
 		<div class="card mb-4">
-			<div class="card-body">
-			<input type="hidden" id=memberSeq value="${loginMember.memberSeq }">
-			<input type="hidden" id=annSeq value="${vo.annSeq}">
+			<div class="card-body">			
 			<div class="top_title">
 				 <div class="c_title">
 			    	<a href="#" class="company_title" target="_blank">${vo.comName }</a>
@@ -479,11 +477,13 @@ span.star-border {
 								</c:if>  
 								<c:if test="${!empty resumeList }">
 					              	<c:forEach var="resumeVo" items="${resumeList }">
-							   			<input type="radio" name="no" value="${resumeVo.resumeSeq }"><span>${resumeVo.resumeTitle } <small>[수정일 : ${resumeVo.regDate }]</small></span><br>	
+							   			<input type="radio" name="no" value="${resumeVo.resumeSeq }"><span>${resumeVo.resumeTitle } <small>[수정일 :<fmt:formatDate value="${resumeVo.regDate }" 
+							pattern="yyyy-MM-dd"/>]</small></span><br>	
 							    	</c:forEach>
 									<form name="frmApply" action="<c:url value='/apply.do'/>" method="post">
 										<input type="hidden" name="refAnnseq" value="${vo.annSeq }">
 										<input type="hidden" name="refResumeseq" value="">
+										<input type="hidden" name="refMemberseq" value="${loginMember.memberSeq }">
 								    	<input type="submit" value="제출하기">						  
 							    	</form>
 							    </c:if>												 

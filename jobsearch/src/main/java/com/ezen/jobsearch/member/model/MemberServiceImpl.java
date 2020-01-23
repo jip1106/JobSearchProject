@@ -9,7 +9,6 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 import com.ezen.jobsearch.common.ProjectUtil;
-import com.ezen.jobsearch.common.SearchVO;
 
 @Service
 public class MemberServiceImpl implements MemberService{

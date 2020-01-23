@@ -24,13 +24,17 @@ public class ApplyController {
 	public String insertApply(@ModelAttribute ApplyVO applyVo, Model model) {
 		logger.info("지원하기, applyVo={}", applyVo);
 		
-		int cnt=applyService.insertApply(applyVo);
-		
 		String msg="오류가 발생했습니다.", url="/ann/detail.do?annSeq="+applyVo.getRefAnnseq();
-		if(cnt>0) {
-			msg="지원되었습니다.";
-		}
-		
+		if(applyService.selectApplyYN(applyVo)>0) {
+			msg="이미 지원한 공고입니다.";
+		}else {			
+			int cnt=applyService.insertApply(applyVo);
+			logger.info("지원 결과, cnt={}", cnt);
+			
+			if(cnt>0) {
+				msg="지원되었습니다.";
+			}
+		}	
 		model.addAttribute("msg", msg);
 		model.addAttribute("url", url);
 

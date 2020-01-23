@@ -1,6 +1,5 @@
 package com.ezen.jobsearch.category.controller;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;

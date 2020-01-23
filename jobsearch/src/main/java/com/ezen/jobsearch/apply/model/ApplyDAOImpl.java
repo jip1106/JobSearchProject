@@ -24,6 +24,11 @@ public class ApplyDAOImpl implements ApplyDAO {
 	public List<Map<String, Object>> selectmypageapplyList(int memberSeq) {
 		return sqlSession.selectList(namespace + "selectmypageapplyList", memberSeq);
 	}
+
+	@Override
+	public int selectApplyYN(ApplyVO applyVo) {
+		return sqlSession.selectOne(namespace+"selectApplyYN", applyVo);
+	}
 	
 
 }
