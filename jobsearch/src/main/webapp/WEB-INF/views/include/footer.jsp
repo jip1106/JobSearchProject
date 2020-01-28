@@ -1,12 +1,12 @@
 
 <style>
 footer#footer {
-    background-color: black;
+    background-color: #d4d4d4;
 }
 </style>
 
 <!-- Footer -->
-<footer class="py-5 bg-dark" id="footer">
+<footer class="py-5" id="footer">
   <div class="container">
     <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
   </div>
