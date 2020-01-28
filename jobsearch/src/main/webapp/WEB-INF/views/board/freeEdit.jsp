@@ -4,7 +4,19 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:import url="/WEB-INF/views/include/header.jsp" />
-	
+
+<script type=text/javascript>
+$(function(){
+	$("button.btn.btn-primary_edit").click(function(){
+		if($("#input_5").val().length<1){
+			alert("비밀번호를 입력해주세요!");
+			$("#input_5").focus();
+			event.preventDefault();
+		}
+	})
+});
+
+</script>
 <style type="text/css">
 .unfold{
 	float: right;
@@ -26,7 +38,6 @@ ol.breadcrumb {
 	margin-top: 17px;
 }
 div#container {
-	height: 44em;
 	max-width: 750px;
 }
 button.btn.btn-primary {
@@ -39,6 +50,7 @@ button.btn.btn-primary_write {
     background-color: #5e87f1;
     border-color: #5e87f1;
 }
+
 h1#list_title {
     margin-top: -12px;
     position: relative;
@@ -166,18 +178,48 @@ button.btn.btn-primary_write {
     margin-top: 0px;
     color: white;
     position: relative;
-    left: 650px;
+    left: 574px;
     width: 71px;
 }
 button.btn.btn-primary_list {
-    height: 42px;
+	height: 42px;
     background-color: #5e87f1;
     border-color: #5e87f1;
     margin-top: 0px;
     color: white;
     position: relative;
-    left: 497px;
+    left: 336px;
     width: 71px;
+}
+button.btn.btn-primary_edit {
+    height: 42px;
+    background-color: #5e87f1;
+    border-color: #5e87f1;
+    color: white;
+    position: relative;
+    left: 568px;
+    width: 71px;
+}
+button.btn_delete {
+    display: inline-block;
+    margin-left: 4px;
+    width: 23px;
+    height: 23px;
+    border: 1px solid #e8e8e8;
+    border-radius: 50%;
+    vertical-align: top;
+    background: #f9f9f9;
+    position: relative;
+    top: -29px;
+    left: 32.7em;
+}
+
+span.X {
+    position: relative;
+    top: -3px;
+    left: -0.5px;
+    font-weight: bold;
+    color: #b3b3b3;
 }
 input#input_1 {/*  */
     height: calc(1.5em + .75rem + 6px);
@@ -200,14 +242,15 @@ div.write_menu_div11 {
 }
 input#input_2 {
     height: calc(1.5em + .75rem + 6px);
-    width: 81.8%;
+    width: 81.7%;
     margin-bottom: 11px;
     border-radius: 0;
 }
 input#input_5 {
     height: calc(1.5em + .75rem + 6px);
-    width: 72%;
-    margin-bottom: 11px;
+    width: 81.7%;
+    margin-bottom: 13px;
+    border-radius: 0;
 }
 div.write_menu_div22 {
     font-size: 17px;
@@ -233,9 +276,8 @@ textarea#input_3 {
     border-radius: 0;
 }
 div.write_menu_div33 {
-    font-size: 18px;
+    font-size: 17px;
     color: white;
-    margin-top: 163px;
 }
 div.write_menu_div44 {
     font-size: 18px;
@@ -306,6 +348,9 @@ span.top_reg {
     font-weight: bold;
     color: #b9b9b9;
 }
+.button_group {
+    margin-bottom: 23px;
+}
 .FreeTitle {
     margin-bottom: 8px;
     margin-top: 120px;
@@ -346,41 +391,50 @@ hr.title_hr {
 <div class="container" id="container">
 	<div class="FreeTitle">
 	    <span class="Jobsearch">자유게시판</span>
-	    <span class="text_span1">상세보기</span>
+	    <span class="text_span1">수정</span>
     </div>
      <hr class="title_hr">
 	<span class=top_regt>등록일:</span>
 	<span class=top_reg>
 		 <fmt:formatDate value="${boardVo.regDate }" pattern="yyyy.MM.dd" />
 	</span>
-	<form name="frmSearch" method="post"
-		action="<c:url value='/board/write.do'/>">
+	<button type="button" class="btn_delete" data-action="delete" data-track_event="button_delete"
+           	onclick="location.href = '<c:url value="/board/delete.do?boardSeq=${boardVo.boardSeq}"/>'">
+  		<span class="X">X</span>
+	</button>
+	<form name="frmEdit" method="post" action="<c:url value='/board/edit.do'/>">
 		<fieldset>
 			<div class="write_menu1">
 				<div class="write_menu_div1">
 					<div class="write_menu_div11">작성자</div>
 				</div>
-				<input type="text" id="input_1" class="form-control" name="memberName" value="${boardVo.boardSeq }" readonly placeholder="작성자"> 
-				<div class="write_menu_div1">
+				<input type="text" id="input_1" class="form-control" name="memberName" value="${boardVo.boardSeq }"
+					readonly placeholder="작성자"> 
+				<div class="write_menu_div2">
 					<div class="write_menu_div22">제목</div>
 				</div>
-				<input type="text" id="input_2" class="form-control" name="boardTitle" value="${boardVo.boardTitle }" placeholder="제목" readonly>
-				<textarea style="resize: none" id="input_3" class="form-control" name="boardContents" placeholder="내용" readonly>${boardVo.boardContents }</textarea>
+				<input type="text" id="input_2" class="form-control" name="boardTitle" value="${boardVo.boardTitle }" placeholder="제목">
+				<textarea style="resize: none" id="input_3" class="form-control" name="boardContents" placeholder="내용">${boardVo.boardContents }</textarea>
+				<div class="write_menu_div3">
+					<div class="write_menu_div33">비밀번호</div>
+				</div>
+				<input type="password" id="input_5" class="form-control" name="memberPwd" placeholder="비밀번호확인">
 				<input type="hidden" id="input_3" class="form-control" name="boardType" value="3"> 
-				<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="">
+				<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="${boardVo.refMemberseq }">
+				<input type="hidden" id="input_6" class="form-control" name="boardSeq" value="${boardVo.boardSeq }">
 			</div>
 		</fieldset>
-	 	 <%-- <c:if test="${boardVo.refMemberseq}==${sessionScope.loginMember.Memberseq}" >
-		 	<button type="submit" class="btn btn-primary_write">수정</button>
-		 </c:if> --%> 
-		 	
-		 	<button type="submit" class="btn btn-primary_write">댓글</button>
-			<button class="btn btn-primary_list" onclick="location.href = '<c:url value='/board/freelist.do'/>'">목록</button>
+		<div class="button_group">
+			<button type="submit" class="btn btn-primary_edit">수정</button>
+			<button class="btn btn-primary_write">댓글</button>
+			<button class="btn btn-primary_list" onclick="<c:url value='/board/list.do?boardType=3'/>">목록</button>
+		</div>
 	</form>
+
 </div>
 
 
-<c:import url="/WEB-INF/views/include/navi.jsp" />
+	<c:import url="/WEB-INF/views/include/navi.jsp" />
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	
 </body>

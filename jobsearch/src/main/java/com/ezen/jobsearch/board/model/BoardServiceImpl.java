@@ -61,5 +61,11 @@ public class BoardServiceImpl implements BoardService {
 	public int updateHits(int boardSeq) {
 		return boardDao.updateHits(boardSeq);
 	}
+
+	@Override
+	public int deleteBoard(int boardSeq) {
+		return boardDao.deleteBoard(boardSeq);
+	}
+	
 	
 }

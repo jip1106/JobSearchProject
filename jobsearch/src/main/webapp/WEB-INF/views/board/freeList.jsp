@@ -19,11 +19,11 @@
 }
 /*새로 추가   */
 .form-control {
-	float: left;
-	width: 32%;
-	margin-left: 58%;
-	margin-right: 0;
-	height: calc(1.5em + .75rem + 9px);
+    float: left;
+    width: 200px;
+    margin-left: 58%;
+    margin-right: 0;
+    height: calc(1.5em + .75rem + 2px);
 }
 .breadcrumb {
 	clear: both;
@@ -32,18 +32,47 @@ ol.breadcrumb {
 	margin-top: 17px;
 }
 div#container {
-	height: 44em;
-	max-width: 750px;
+	max-width: 800px;
 }
+.FreeTitle {
+    margin-bottom: 8px;
+    margin-top: 120px;
+}
+span.Jobsearch {
+    font-size: 32px;
+    letter-spacing: -1px;
+    font-weight: 500;
+    color: #4876ef;
+    font-weight: bold;
+    letter-spacing: -2px;
+}
+span.text_span1 {
+    font-size: 26px;
+    margin-left: 8px;
+    color: #8e8e8e;
+    letter-spacing: -1px;
+}
+span.text_span2 {
+    font-size: 26px;
+    margin-left: 1px;
+    color: #8e8e8e;
+    letter-spacing: -1px;
+}
+span.text_span3 {
+    font-size: 26px;
+    margin-left: 1px;
+    color: #8e8e8e;
+}
+hr.title_hr {
+    border: 1px solid white;
+    margin: 0px 0 -78px 0;
+}
+
 button.btn.btn-primary {
-    height: 44px;
-    background-color: #5e87f1;
-    border-color: #5e87f1;
-}
-button.btn.btn-primary_write {
-    height: 44px;
-    background-color: #5e87f1;
-    border-color: #5e87f1;
+    width: 53px;
+    height: 38px;
+    background-color: #4876ef;
+    border-color: #4876ef;
 }
 
 h1#list_title {
@@ -64,25 +93,11 @@ h5.mb-0 {
     font-weight: 500;
     color: black;
 }
-img#searchimg {
-    resize: both;
-    height: 31px;
-}
 .card-body {
     background: #f3f3f3;
 }
 hr.hr_bottom {
     border: 1.5px solid #5e87f1;;
-}
-span.Q {
-    color: #5e87f1;
-    font-size: 21px;
-    margin-right: 11px;
-}
-span.A {
-    color: #5e87f1;
-    font-size: 21px;
-    font-weight: 500;
 }
 img.open_down {
     background-color: #5e87f1;
@@ -97,8 +112,8 @@ th {
     color: #7b7b7b;
 }
 div#freelist_part {
-	border-top: 3px solid #5e87f1;
-	border-bottom: 3px solid #5e87f1;
+	border-top: 2px solid #4876ef;
+	border-bottom: 2px solid #4876ef;
     padding: 11px 11px;
 }
 div#freelist_part2 {
@@ -129,32 +144,32 @@ span.hits {
 	font-weight: 600;
     color: #7b7a91;
 }
-span.num2 {
+td.num2 {
     font-weight: 600;
     color:#5e87f1;
     position: relative;
     left: 12px;; 
 }
-span.title2 {
+td.title2 {
     font-weight: 600;
     color: #7b7a91;
     position: relative;
     left: 62px; 
 }
-span.member2 {
+td.member2 {
     font-weight: 600;
     color: #7b7a91;
     position: relative;
     left: 285px; 
 }
-span.regdate2 {
+td.regdate2 {
     font-weight: 600;
     color: #7b7a91;
     position: relative;
     left: 365px; 
      
 }
-span.hits2 {
+td.hits2 {
 	font-weight: 600;
     color: #7b7a91;
     position: relative;
@@ -165,13 +180,37 @@ div#card-header {
     padding: 16px 0px;
 }
 button.btn.btn-primary_write {
-    height: 44px;
-    background-color: #5e87f1;
-    border-color: #5e87f1;
     margin-top: 12px;
     color: white;
     position: relative;
-    left: 647px;
+    left: 700px;
+    top: -69px;
+    background-color: #4876ef;
+    border-color: #4876ef;
+    width: 71px;
+    height: 42px;
+    letter-spacing: -1px;
+}
+h5.mb-0 {
+    font-size: 17px;
+    font-weight: 500;
+    color: #7b7a91;
+}
+ul.pagination.justify-content-center {
+    margin-top: 31px;
+}
+form#frmSearch {
+    position: relative;
+    top: -25px;
+    left: 65px;
+}
+img#searchimg {
+    resize: both;
+    height: 28px;
+    /* width: 29px; */
+    position: relative;
+    top: -3px;
+    left: -7px;
 }
 
 </style>
@@ -180,24 +219,19 @@ button.btn.btn-primary_write {
 	
 	 <!-- Page Content -->
   <div class="container" id="container">
-	
-    <!-- Page Heading/Breadcrumbs -->
-    <h1 id="list_title" >자유게시판</h1>
-	<form name="frmSearch" method="post" action="<c:url value='/board/list.do?boardType=3'/>">
-     <input type="hidden" name="searchCondition" value="2">
+	<div class="FreeTitle">
+	    <span class="Jobsearch">자유게시판</span>
+    </div>
+    <hr class="title_hr">
+	<form id="frmSearch" name="frmSearch" method="post" action="<c:url value='/board/list.do?boardType=3'/>">
+     <input type="hidden" name="searchCondition" value="3">
      <input type="text" class="form-control" name="searchKeyword" placeholder="검색">
      <button type="submit" class="btn btn-primary"><img id="searchimg"src="<c:url value='/resources/images/search.png'/>"/></button>
-    </form>		
-   
-   <%--  <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="<c:url value='/home.do'/>">Home</a>
-      </li>
-      <li class="breadcrumb-item active">FAQ</li>         
-    </ol> --%>
+    </form>	
+  
     
-    <!-- 페이징 처리 관련 form -->
-	<form action="<c:url value='/board/list.do?boardType=2'/>" 
+     <!-- 페이징 처리 관련 form -->
+	<form action="<c:url value='/board/list.do?boardType=3'/>" 
 		name="frmPage" method="post">
 		<input type="hidden" name="searchCondition" 
 			value="${param.searchCondition}">
@@ -207,7 +241,7 @@ button.btn.btn-primary_write {
 	</form>
 
     <div class="faqlist">
-    	<%-- <c:if test="${empty list }">
+    	<c:if test="${empty list }">
 	    	<div id="list_part">
 		        <div id="card-header" role="tab" id="headingOne">
 		          <h5 class="mb-0">
@@ -215,11 +249,9 @@ button.btn.btn-primary_write {
 		          </h5>
 		        </div>
 	   	 	</div>
-	    </c:if> --%>
+	    </c:if> 
 	    
 	    
-	   <%--  <c:if test="${!empty list }">
-	    	<c:forEach var="boardVo" items="${list }"> --%>
 	      <div id="freelist_part">
 		      	<span class="num">번호</span>
 		      	<span class="title">제목</span>
@@ -227,24 +259,78 @@ button.btn.btn-primary_write {
 		      	<span class="regdate">작성일</span>
 		      	<span class="hits">조회수</span>
 	      </div>
+   		<c:if test="${!empty list }">
+    	<c:forEach var="boardVo" items="${list }"> 
 	      <div id="freelist_part2">
-		      	<span class="num2">1</span>
-		      	<span class="title2">제목입니다.</span>
-		      	<span class="member2">홍길동</span>
-		      	<span class="regdate2">2020.01.01</span>
-		      	<span class="hits2">25</span>
+	      <table>
+	      <colgroup>
+			<col style="width:5%;" />
+			<col style="width:45%;" />
+			<col style="width:15%;" />
+			<col style="width:10%;" />
+			<col style="width:10%;" />		
+		  </colgroup>
+	      <thead><tr><th></th></tr></thead>
+	      <tbody>
+     		<tr>
+	      	<td class="num2"> ${boardVo.boardSeq }</td>
+	      	<td class="title2"> 
+	      		<a href="<c:url value='/board/countUpdate.do?boardSeq=${boardVo.boardSeq}'/>"> 
+				 <c:if test="${fn:length(boardVo.boardTitle)>15}">
+						${fn:substring(boardVo.boardTitle, 0, 15)}...
+	     		</c:if>
+				<c:if test="${fn:length(boardVo.boardTitle)<=15}">
+					${boardVo.boardTitle}
+					</c:if>
+					
+				</a>
+			</td>
+	      	<td class="member2"> ${boardVo.regDate }</td>
+	      	<td class="regdate2"> 
+	      		 <fmt:formatDate value="${boardVo.regDate }" pattern="yyyy.MM.dd" />
+	      	</td>
+	      	<td class="hits2"> ${boardVo.hits }</td>
+	      	</tr>
+      	  </tbody>
+	      </table>
 	      </div>
+	      </c:forEach>
+	      </c:if>
+	      </div>
+	       <!-- Pagination -->
+	       <div>
+		    <ul class="pagination justify-content-center">
+			 <c:if test="${pagingInfo.firstPage>1 }">	
+			      <li class="page-item">
+			        <a class="page-link" href="#" aria-label="Previous" onclick="pageFunc(${pagingInfo.firstPage-1})">
+			          <span aria-hidden="true">&laquo;</span>
+			          <span class="sr-only">Previous</span>
+			        </a>
+			      </li>
+		      </c:if>
+		      <c:forEach var="i" begin="${pagingInfo.firstPage }" 
+				end="${pagingInfo.lastPage }">
+				 <li class="page-item">
+			        <a class="page-link" href="#" onclick="pageFunc(${i})">${i}</a>
+			      </li>
+			   </c:forEach>
+		     <c:if test="${pagingInfo.lastPage<pagingInfo.totalPage }">
+				 <li class="page-item">
+			        <a class="page-link" href="#" aria-label="Next" onclick="pageFunc(${pagingInfo.lastPage+1})">
+			          <span aria-hidden="true">&raquo;</span>
+			          <span class="sr-only">Next</span>
+			        </a>
+			      </li>
+			 </c:if>
+		    </ul>
 	     
      <button class="btn btn-primary_write" 
-     onclick="location.href = '<c:url value='/board/write.do'/>'">글쓰기</button>
-   </div>
-   <!-- <hr class="hr_bottom"> -->
+     onclick="location.href = '<c:url value="/board/write.do?boardType=3"/>'">글쓰기</button>
+     </div>
    </div>
     
-
 	
 	<c:import url="/WEB-INF/views/include/navi.jsp" />
-
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	
 </body>
