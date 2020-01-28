@@ -57,4 +57,7 @@ public class CompanyServiceImpl implements CompanyService{
 	public int payMyAnn(PaymentVO paymentVo) {
 		return companyDao.payMyAnn(paymentVo);
 	}
+	public CompanyVO CompanyDetail(int comSeq) {
+		return companyDao.CompanyDetail(comSeq);
+	}
 }

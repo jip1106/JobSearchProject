@@ -86,4 +86,9 @@ public class CompanyDAOImpl implements CompanyDAO{
 		return sqlSession.insert(namespace+"payMyAnn",paymentVo);
 	}
 
+	@Override
+	public CompanyVO CompanyDetail(int comSeq) {
+		return sqlSession.selectOne(namespace+"CompanyDetail",comSeq);
+	}
+
 }
