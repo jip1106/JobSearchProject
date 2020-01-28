@@ -21,4 +21,5 @@ public interface CompanyDAO {
 	int selectComSeq(int memberSeq);
 	int updateMyAnn(AnnounceMentVO annVo);
 	int payMyAnn(PaymentVO paymentVo);
+	CompanyVO CompanyDetail(int comSeq);
 }

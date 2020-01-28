@@ -146,6 +146,11 @@ public class MemberDAOImpl implements MemberDAO{
 		return sqlSession.delete(nameSpace + "withdrawMember",memberId);
 	}
 
+	@Override
+	public MemberVO selectComMem(int memberSeq) {
+		return sqlSession.selectOne(nameSpace+"selectComMem",memberSeq);
+	}
+
 	
 	
 	
