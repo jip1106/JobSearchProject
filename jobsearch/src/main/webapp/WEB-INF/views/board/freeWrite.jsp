@@ -18,13 +18,7 @@
     padding: 0.5em;
 }
 /*새로 추가   */
-.form-control {
-	float: left;
-	width: 32%;
-	margin-left: 58%;
-	margin-right: 0;
-	height: calc(1.5em + .75rem + 9px);
-}
+
 .breadcrumb {
 	clear: both;
 }
@@ -53,6 +47,7 @@ h1#list_title {
     font-size: 30px;
     font-weight: bold;
     letter-spacing: -1px;
+    margin-bottom: 61px;
 }
 
 .faqlist {
@@ -73,6 +68,7 @@ img#searchimg {
 }
 hr.hr_bottom {
     border: 1.5px solid #5e87f1;;
+    margin-bottom: 32px;
 }
 span.Q {
     color: #5e87f1;
@@ -165,13 +161,99 @@ div#card-header {
     padding: 16px 0px;
 }
 button.btn.btn-primary_write {
-    height: 44px;
+    height: 45px;
     background-color: #5e87f1;
     border-color: #5e87f1;
-    margin-top: 12px;
+    margin-top: 0px;
     color: white;
     position: relative;
-    left: 647px;
+    left: 623px;
+    width: 92px;
+}
+button.btn.btn-primary_list {
+    height: 45px;
+    background-color: #5e87f1;
+    border-color: #5e87f1;
+    margin-top: 0px;
+    color: white;
+    position: relative;
+    left: 428px;
+    width: 92px;
+}
+.write_menu_div1 {
+    background-color: #5e87f1;
+    width: 183px;
+    height: 444px;
+    float: left;
+    text-align: center;
+    padding: 15px 0;
+    margin-right: 14px;
+    border-radius: 4px;
+}
+input#input_1 {
+    height: calc(1.5em + .75rem + 16px);
+    width: 72%;
+    margin-bottom: 11px;
+}
+div.write_menu_div11 {
+    font-size: 18px;
+    color: white;
+}
+.write_menu_div2 {
+    background-color: #5e87f1;
+    width: 183px;
+    height: 51px;
+    text-align: center;
+    float: left;
+    padding: 12px 0;
+    margin-right: 14px;
+}
+input#input_2 {
+    height: calc(1.5em + .75rem + 16px);
+    width: 72%;
+    margin-bottom: 11px;
+}
+div.write_menu_div22 {
+    font-size: 18px;
+    color: white;
+    margin-top: 32px;
+}
+
+.write_menu2 {
+    margin-bottom: 12px;
+}
+.write_menu_div3 {
+    background-color: #5e87f1;
+    width: 183px;
+    height: 315px;
+    text-align: center;
+    float: left;
+    padding: 136px 0;
+    margin-right: 14px;
+}
+textarea#input_3 {
+    height: calc(1.5em + .75rem + 280px);
+    width: 72%;
+    margin-bottom: 11px;
+}
+div.write_menu_div33 {
+    font-size: 18px;
+    color: white;
+    margin-top: 147px;
+}
+hr.line1 {
+    margin: 0;
+    position: relative;
+    top: 13px;
+    color: white;
+    border: 1px solid white;
+}
+hr.line2 {
+    margin: 0;
+    position: relative;
+    top: 15px;
+    color: white;
+    border: 1px solid white;
 }
 
 </style>
@@ -182,11 +264,38 @@ button.btn.btn-primary_write {
   <div class="container" id="container">
 	
     <!-- Page Heading/Breadcrumbs -->
-    <h1 id="list_title" >자유게시판</h1>
+    <h1 id="list_title" >자유게시판작성</h1>
+       <hr class="hr_bottom"> 
 	<form name="frmSearch" method="post" action="<c:url value='/board/list.do?boardType=3'/>">
-     <input type="hidden" name="searchCondition" value="2">
-     <input type="text" class="form-control" name="searchKeyword" placeholder="검색">
-     <button type="submit" class="btn btn-primary"><img id="searchimg"src="<c:url value='/resources/images/search.png'/>"/></button>
+     <!-- <input type="hidden" name="searchCondition" value="2">
+     <input type="text" class="form-control" name="searchKeyword" placeholder="검색"> -->
+   <%--   <button type="submit" class="btn btn-primary"><img id="searchimg"src="<c:url value='/resources/images/search.png'/>"/></button> --%>
+    
+    <div class="write_menu1">
+    	<div class="write_menu_div1">
+    		<!-- <span class="write_menu_span1">작성자</span>
+    		<span class="write_menu_span2">제목</span>
+    		<span class="write_menu_span3">내용</span> -->
+    		<div class="write_menu_div11">작성자</div>
+    		<hr class="line1">
+    		<div class="write_menu_div22">제목</div>
+    		<hr class="line2">
+    		<div class="write_menu_div33">내용</div>
+   		</div>
+    	 <input type="text" id="input_1" class="form-control" name="memberName" placeholder="작성자">
+   	
+    <!-- <div class="write_menu2"> -->
+    	<!-- <div class="write_menu_div2"> -->
+    		<!-- <span class="write_menu_span2">제목</span> -->
+    	 <input type="text" id="input_2" class="form-control" name="boardTitle" placeholder="제목">
+    <!-- <div class="write_menu3"> -->
+    	<!-- <div class="write_menu_div3"> -->
+    		<!-- <span class="write_menu_span3">내용</span> -->
+    	 <textarea style="resize:none" id="input_3" class="form-control" name="boardContents" placeholder="내용"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary_write">등록</button> 
+    <button class="btn btn-primary_list"
+    onclick="location.href = '<c:url value='/board/freelist.do'/>'">목록</button>
     </form>		
    
    <%--  <ol class="breadcrumb">
@@ -220,7 +329,7 @@ button.btn.btn-primary_write {
 	    
 	   <%--  <c:if test="${!empty list }">
 	    	<c:forEach var="boardVo" items="${list }"> --%>
-	      <div id="freelist_part">
+	    <!--   <div id="freelist_part">
 		      	<span class="num">번호</span>
 		      	<span class="title">제목</span>
 		      	<span class="member">작성자</span>
@@ -234,9 +343,8 @@ button.btn.btn-primary_write {
 		      	<span class="regdate2">2020.01.01</span>
 		      	<span class="hits2">25</span>
 	      </div>
-	     
-     <button class="btn btn-primary_write" 
-     onclick="location.href = '<c:url value='/board/write.do'/>'">글쓰기</button>
+	     -->
+     
    </div>
    <!-- <hr class="hr_bottom"> -->
    </div>

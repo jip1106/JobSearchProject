@@ -128,8 +128,8 @@ public class BoardController {
 				url="/admin/board/list.do?boardType=1";
 			}else if(boardVo.getBoardType().equals("2")) { //게시판 타입이 FAQ일때
 				msg="FAQ가 등록되었습니다.";
-				url="/admin/board/list.do?boardType=2";
-			}			
+				url="/admin/board/list.do?boardType=3";
+			}		
 		}
 		
 		model.addAttribute("msg", msg);
@@ -242,4 +242,31 @@ public class BoardController {
 		
 		return "common/message";
 	}
+	
+	
+	//자유게시판 글쓰기 화면
+	@RequestMapping("/board/write.do")
+	public String freeWrite(){
+		return "board/freeWrite";
+	}
+	
+	//자유게시판 insert
+	/*
+	 * @RequestMapping("/board/write.do") public String
+	 * freeWrite_post(@ModelAttribute BoardVO boardVo){ return "board/freeWrite"; }
+	 */
+	
+	
+	
+	//자유게시판 목록 화면
+	@RequestMapping("/board/freelist.do")
+	public String freelist() {
+		return "board/freeList";
+	}
+	
+	//자유게시판 수정 화면
+	/*@RequestMapping("/board/detail.do")
+	public String freeDtail(){
+		return "board/freeDtail";
+	}*/
 }
