@@ -17,7 +17,7 @@
 		<input type="hidden" name="searchKeyword" value="${param.searchKeyword}">
 		<input type="hidden" name="regType" value="${param.regType}">
 		<input type="hidden" name="delFlag" value="${param.delFlag }">
-		<input type="hidden" name="currentPage">
+		<input type="text" name="currentPage">
 	</form>
 	<!-- 페이징 처리 관련 form -->
 
@@ -133,14 +133,6 @@
 						</tbody>
 					</table>
 					
-					<form action="<c:url value='/board/list.do?boardType=1'/>" 
-						name="frmPage" method="post">
-						<input type="hidden" name="searchCondition" 
-							value="${param.searchCondition}">
-						<input type="hidden" name="searchKeyword" 
-							value="${param.searchKeyword}">
-						<input type="hidden" name="currentPage" >
-					</form>
 					
 					<!-- 페이징 처리 -->
 					<div class="row">
@@ -263,8 +255,9 @@
 		
 
 		function pageFunc(curPage){
+						
 			document.frmPage.currentPage.value=curPage;
-			
+					
 			document.frmPage.submit();
 		}
 		
