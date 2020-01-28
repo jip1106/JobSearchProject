@@ -5,37 +5,116 @@
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
 	
-	<style type="text/css">
-		.card-body {
-   			padding: 0.5rem;
-   			margin-left: 20px;
-		}
-		.text-muted{
-			padding: 0.2em;
-	    	text-align: right;
-		}
-		.pagenum {
-		    text-align: center;
-		    padding: 0.5em;
-		}
-		
-	
-	</style>
+<style type="text/css">
+.card-body {
+ 			padding: 0.5rem;
+ 			margin-left: 20px;
+}
+.text-muted{
+	padding: 0.2em;
+   	text-align: right;
+}
+.pagenum {
+    text-align: center;
+    padding: 0.5em;
+}
+
+/* 잡서치디자인추가 */
+div#noticeList_container {
+    max-width: 800px;
+}
+/* h1#list_title {
+    margin-top: 7px;
+    position: relative;
+    top: 47px;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    margin-bottom: 81px;
+} */
+form.form_search {
+    position: relative;
+    left: 32em;
+    top: 19px;
+}
+button.btn.btn-primary {
+    position: relative;
+    top: -38px;
+    left: 200px;
+}
+.input-group {
+    top: -153px;
+    margin-bottom: -69px;
+}
+.NoticeTitle {
+    margin-bottom: 8px;
+    margin-top: 120px;
+}
+span.Jobsearch {
+    font-size: 38px;
+    letter-spacing: -1px;
+    font-weight: 500;
+    color: #4876ef;
+}
+span.text_span1 {
+    font-size: 26px;
+    margin-left: 8px;
+    color: #8e8e8e;
+    letter-spacing: -1px;
+}
+span.text_span2 {
+    font-size: 26px;
+    margin-left: 1px;
+    color: #8e8e8e;
+    letter-spacing: -1px;
+}
+hr.title_hr {
+    border: 1px solid #4876ef;
+    margin: 0px 0 22px 0;
+}
+div#notice_div {
+    flex: none;
+    max-width: none;
+}
+img#searchimg {
+    resize: both;
+    height: 28px;
+    position: relative;
+    top: -3px;
+    left: -7px;
+}
+button.btn.btn-primary {
+    width: 53px;
+    height: 38px;
+    background-color: #4876ef;
+    border-color: #4876ef;
+}
+hr.margin_hr {
+    margin-bottom: 59px;
+    border-color: whilte;
+    border-color: white;
+}
+</style>
 	
 	<c:import url="/WEB-INF/views/include/headend.jsp" />
 	
 	<!-- Page Content -->
-  	<div class="container">
+  	<div class="container" id="noticeList_container">
 
-    <!-- Page Heading/Breadcrumbs -->  
-    <h1 class="mt-4 mb-3">공지사항</h1>
-
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="<c:url value='/home.do'/>">Home</a>
-      </li>
-      <li class="breadcrumb-item active">notice</li>
-    </ol>
+	 <div class="NoticeTitle">
+	    <span class="Jobsearch">Jobsearch</span>
+	    <span class="text_span1">에서</span>
+	    <span class="text_span2">알려드립니다!</span>
+    </div>
+    <hr class="title_hr">
+	 
+            <div class="input-group">
+              <form class="form_search" name="frmSearch" method="post" action="<c:url value='/board/list.do?boardType=1'/>">
+	              <input type="hidden" name="searchCondition" value="1">
+	              <input type="text" class="form-control" name="searchKeyword" placeholder="검색">
+	              <button type="submit" class="btn btn-primary"><img id="searchimg"src="<c:url value='/resources/images/search.png'/>"/></button>
+              </form>
+            </div>
 
 	<!-- 페이징 처리 관련 form -->
 	<form action="<c:url value='/board/list.do?boardType=1'/>" 
@@ -47,9 +126,11 @@
 		<input type="hidden" name="currentPage" >
 	</form>
     <div class="row">
+    
+    
 
       <!-- Post Content Column -->
-      <div class="col-lg-8">
+      <div class="col-lg-8" id="notice_div">
 
         <!-- 공지사항 목록 반복 -->
         <c:if test="${empty list }">
@@ -79,7 +160,8 @@
 		        </c:forEach>
 	        </div> 
 	    </c:if>       
-		<hr>
+		
+     
         
  		<!-- Pagination -->
 		    <ul class="pagination justify-content-center">
@@ -107,31 +189,20 @@
 			 </c:if>
 		    </ul>
       <!-- Pagination -->
-      </div>
-
-   	 <!-- Sidebar Widgets Column -->	
-      <div class="col-md-4">
-
-        <!-- 검색(전체) -->
-        <div class="card mb-4">
-          <h5 class="card-header">검색</h5>
-          <div class="card-body">
-            <div class="input-group">
-              <form name="frmSearch" method="post" action="<c:url value='/board/list.do?boardType=1'/>">
-	              <input type="hidden" name="searchCondition" value="1">
-	              <input type="text" class="form-control" name="searchKeyword" placeholder="검색">
-	              <button type="submit" class="btn btn-primary">검색</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
+ </div>
+  
     </div>
     
- 
+ 	<div class="bottom_banner">
+ 		<img src="<c:url value='/resources/images/bottom_sample1.jpg'/>">
+ 	</div>
+ 	<hr class="margin_hr">
 
   </div>
+	<%-- <c:import url="/WEB-INF/views/include/sidenavi.jsp" />  --%>
 	<c:import url="/WEB-INF/views/include/navi.jsp" />
+	
+	<%-- <c:import url="/WEB-INF/views/include/banner.jsp" /> --%>
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	

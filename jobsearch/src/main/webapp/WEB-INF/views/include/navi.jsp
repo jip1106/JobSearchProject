@@ -2,8 +2,24 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<style>
+/* 잡서치디자인추가 */
+
+.bg-dark {
+    background-color: #4876ef!important;
+} 
+
+nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark.fixed-top {
+    height: 60px;
+}
+li.nav-item {
+    font-size: 17px;
+}
+/* 잡서치디자인추가 */
+
+</style>
     <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-danger fixed-top">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" id="top_navi">
     <div class="container">
       <a class="navbar-brand" href="${pageContext.request.contextPath }/home.do">JobSearch</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

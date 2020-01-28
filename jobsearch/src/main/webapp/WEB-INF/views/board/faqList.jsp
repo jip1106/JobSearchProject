@@ -18,11 +18,11 @@
 }
 /*새로 추가   */
 .form-control {
-	float: left;
-	width: 32%;
-	margin-left: 58%;
-	margin-right: 0;
-	height: calc(1.5em + .75rem + 9px);
+    float: left;
+    width: 200px;
+    margin-left: 58%;
+    margin-right: 0;
+    height: calc(1.5em + .75rem + 2px);
 }
 .breadcrumb {
 	clear: both;
@@ -31,43 +31,61 @@ ol.breadcrumb {
 	margin-top: 17px;
 }
 div#container {
-	height: 44em;
-	max-width: 750px;
+	max-width: 800px;
 }
-button.btn.btn-primary {
-    height: 44px;
-    background-color: #5e87f1;
-    border-color: #5e87f1;
+.NoticeTitle {
+    margin-bottom: 8px;
+    margin-top: 120px;
 }
+span.Jobsearch {
+    font-size: 38px;
+    letter-spacing: -1px;
+    font-weight: 500;
+    color: #4876ef;
+}
+span.text_span1 {
+    font-size: 26px;
+    margin-left: 8px;
+    color: #8e8e8e;
+    letter-spacing: -1px;
+}
+
 h1#list_title {
     margin-top: -6px;
     position: relative;
     top: 54px;
 }
-
+hr.title_hr {
+    border: 1px solid #4876ef;
+    margin: 0px 0 -77px 0;
+}
 .faqlist {
     margin-top: 37px;
-    margin-bottom: -16px;
+    margin-bottom: -18px;
 }
 div#card-header {
-    border-top: 3px solid #5e87f1;
-    /* border-bottom: 3px solid #5e87f1; */
+    border-bottom: 2px solid #c1c1c1;
     padding: 17px 11px;
 }
+
 h5.mb-0 {
     font-size: 17px;
     font-weight: 500;
     color: black;
 }
+
 img#searchimg {
     resize: both;
-    height: 31px;
+    height: 28px;
+    position: relative;
+    top: -3px;
+    left: -7px;
 }
 .card-body {
     background: #f3f3f3;
 }
 hr.hr_bottom {
-    border: 1.5px solid #5e87f1;;
+    border: 1.5px solid #4876ef;
 }
 span.Q {
     color: #5e87f1;
@@ -80,10 +98,26 @@ span.A {
     font-weight: 500;
 }
 img.open_down {
-    background-color: #5e87f1;
+    background-color: #4876ef;
     resize: both;
     width: 16px;
     height: 15px;
+}
+form#frmSearch {
+    position: relative;
+    top: -35px;
+    left: 65px;
+}
+button.btn.btn-primary {
+    width: 53px;
+    height: 38px;
+    background-color: #4876ef;
+    border-color: #4876ef;
+
+}
+hr.hr_bottom {
+    border: 1px solid #5e87f1;
+    z-index: 100;
 }
 
 </style>
@@ -93,22 +127,19 @@ img.open_down {
 	 <!-- Page Content -->
   <div class="container" id="container">
 	
+	<div class="NoticeTitle">
+	    <span class="Jobsearch">FAQ</span>
+    </div>
+    <hr class="title_hr">
+    
     <!-- Page Heading/Breadcrumbs -->
-    <h1 id="list_title" >FAQ</h1>
-	<form name="frmSearch" method="post" action="<c:url value='/board/list.do?boardType=2'/>">
+	<form id="frmSearch" name="frmSearch" method="post" action="<c:url value='/board/list.do?boardType=2'/>">
      <input type="hidden" name="searchCondition" value="2">
      <input type="text" class="form-control" name="searchKeyword" placeholder="검색">
      <button type="submit" class="btn btn-primary"><img id="searchimg"src="<c:url value='/resources/images/search.png'/>"/></button>
     </form>		
-   <%--  <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        <a href="<c:url value='/home.do'/>">Home</a>
-      </li>
-      <li class="breadcrumb-item active">FAQ</li>         
-    </ol> --%>
-    
     <!-- 페이징 처리 관련 form -->
-	<form action="<c:url value='/board/list.do?boardType=2'/>" 
+	<form class="frm_aco" action="<c:url value='/board/list.do?boardType=2'/>" 
 		name="frmPage" method="post">
 		<input type="hidden" name="searchCondition" 
 			value="${param.searchCondition}">
@@ -185,7 +216,6 @@ img.open_down {
   <!-- /.container -->
 	
 	<c:import url="/WEB-INF/views/include/navi.jsp" />
-
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	
 	

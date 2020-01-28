@@ -11,5 +11,6 @@ public interface BoardService {
 	BoardVO selectByBoardSeq(int boardSeq);
 	int updateBoard(BoardVO boardVo);
 	int deleteBoard(List<BoardVO> list);
+	int deleteBoard(int boardSeq);
 	int updateHits(int boardSeq);
 }
