@@ -22,9 +22,19 @@
 </script>
 
 <style type="text/css">
-	.h-100{
-		padding: 20px;
-	}
+.h-100{
+	padding: 20px;
+}
+/* 잡서치 디자인 추가 */
+div#comp_card {
+    width: 300px;
+    height: 200px;
+    border-radius: 0;
+    border-top: 3.5px solid #63a3f3;
+}
+div#main_home {
+    max-width: 1200px;
+}
 </style>
 
 <body>
@@ -70,34 +80,8 @@
   </header-->
 
   <!-- Page Content -->
-  <div class="container">
+  <div class="container" id="main_home">
 
-    <h3 class="my-4">최근 올라온 공고</h3>
-
-    <!-- Marketing Icons Section -->
-    <div class="row">
-    	<!-- 최신 공고  -->
-    	<c:if test="${empty newAnnList }">
-    		<div class="card mb-4">
-        		<div class="card-body">
-	           		<p class="card-text">목록이 존재하지 않습니다.</p>
-	         	 </div>
-        	</div>     
-        </c:if>
-        <c:if test="${!empty newAnnList }">
-        	<c:forEach var="announceMentVo" items="${newAnnList }">
-			      <div class="col-lg-4 mb-4">
-			        <div class="card h-100" onclick="annView(${announceMentVo.annSeq})" style="cursor: pointer;">
-			          <h4 >${announceMentVo.comName }</h4>
-			          	<h5>${announceMentVo.annTitle }</h5>			        
-			        </div>
-			      </div>
-		    </c:forEach>
-		 </c:if>
-		        
-          
-    </div>
-    <!-- /.row -->
 
     <!-- Portfolio Section -->
     <h3>프리미엄 공고</h3>
@@ -128,18 +112,42 @@
     <!-- /.row -->
 
     <hr>
-  </div>
+    <!-- Marketing Icons Section -->
+    	 <h3 class="my-4">최근 올라온 공고</h3>
+    <div class="row">
+    	<!-- 최신 공고  -->
+    	<c:if test="${empty newAnnList }">
+    		<div class="card mb-4">
+        		<div class="card-body">
+	           		<p class="card-text">목록이 존재하지 않습니다.</p>
+	         	 </div>
+        	</div>     
+        </c:if>
+        <c:if test="${!empty newAnnList }">
+        	<c:forEach var="announceMentVo" items="${newAnnList }">
+			      <div class="col-lg-4 mb-4">
+			        <div  class="card h-100" onclick="annView(${announceMentVo.annSeq})" style="cursor: pointer;">
+			          <h4 >${announceMentVo.comName }</h4>
+			          	<h5>${announceMentVo.annTitle }</h5>			        
+			        </div>
+			      </div>
+		    </c:forEach>
+		 </c:if>
+    	
+          
+    </div>
+    <hr>
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <!-- <footer class="py-5 bg-dark">
     <div class="container">
       <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
     </div>
-    <!-- /.container -->
-  </footer>
-
-
+    /.container
+  </footer> -->
+</div>
+<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 
 </html>

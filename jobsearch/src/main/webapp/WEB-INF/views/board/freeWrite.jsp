@@ -5,6 +5,21 @@
 
 <c:import url="/WEB-INF/views/include/header.jsp" />
 	
+<script type="text/javascript">
+$(function(){
+	$("button.btn.btn-primary_write").click(function(){
+		if($("input#input_2").val().length<1){
+			alert("제목을 입력해주세요!");
+			$("input#input_2").focus();
+			event.preventDefault();
+		}else if($("textarea#input_3").val().length<1){
+			alert("내용을 입력해주세요!");
+			$("textarea#input_3").focus();
+			event.preventDefault();
+		}
+	})
+});
+</script>
 <style type="text/css">
 .unfold{
 	float: right;
@@ -170,7 +185,7 @@ button.btn.btn-primary_write {/*  */
     left: 650px;
     width: 71px;
 }
-button.btn.btn-primary_list {/*  */
+div.btn.btn-primary_list {/*  */
     height: 42px;
     background-color: #5e87f1;
     border-color: #5e87f1;
@@ -179,6 +194,7 @@ button.btn.btn-primary_list {/*  */
     position: relative;
     left: 494px;
     width: 71px;
+    padding: 8px 0px;
 }
 .write_menu_div1 {/*  */
     background-color: #5e87f1;
@@ -298,6 +314,10 @@ hr.title_hr {
     border: 1px solid #4876ef;
     margin: 0px 0 23px 0;
 }
+a.tag_a {
+    color: white;
+    text-decoration: none;
+}
 
 </style>
 	
@@ -324,11 +344,16 @@ hr.title_hr {
 				<textarea style="resize: none" id="input_3" class="form-control" name="boardContents" placeholder="내용"></textarea>
 				<input type="hidden" id="input_3" class="form-control" name="boardType" value="3"> 
 				<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="${loginMember.memberSeq }">
-				<input type="hidden" id="input_6" class="form-control" name="hits" value="0"> 
+				<input type="hidden" id="input_6" class="form-control" name="hits" value="1"> 
 			</div>
 		</fieldset>
 		<button type="submit" class="btn btn-primary_write">등록</button>
-		<button class="btn btn-primary_list" onclick="location.href = '<c:url value='/board/freelist.do'/>'">목록</button>
+		<%-- <button class="btn btn-primary_list" onclick="location.href = '<c:url value='/board/freelist.do'/>'">목록</button> --%>
+		
+		<a href="<c:url value='/board/list.do?boardType=3'/>" class="tag_a">	
+			<div class="btn btn-primary_list">목록</div>
+		</a>
+	
 	</form>
 
 </div>

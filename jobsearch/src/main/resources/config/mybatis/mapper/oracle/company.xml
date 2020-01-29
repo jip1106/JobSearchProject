@@ -103,4 +103,8 @@
 		values(#{paymentSeq},#{paymentCode},'프리미엄 공고등록',sysdate,'card',#{refAnnouncement})
 	</insert>
 
+	<select id="CompanyDetail" parameterType="int" resultType="companyVo">
+		select * from tbl_company
+		where com_seq=#{comSeq}		
+	</select>
 </mapper>

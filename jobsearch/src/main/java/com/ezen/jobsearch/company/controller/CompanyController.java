@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.RequestWrapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -327,4 +328,35 @@ public class CompanyController {//
   		logger.info("결제가 완료되었습니다.");
   	}  
 	
+  	@RequestMapping("/companymyorderlist.do")
+  	public void companymyorderlist() {
+  		logger.info("결제 확인 페이지");
+  	}
+  	@RequestMapping("/companydetail.do")
+  	public void companydetail(@RequestParam int comSeq,Model model) {
+  		
+  		logger.info("회사 상세페이지 파라미터 comSeq={}",comSeq);
+  		
+  		CompanyVO companyVo=companyService.CompanyDetail(comSeq);
+  		int refMemberseq=companyVo.getRefMemberseq();
+  		
+  		MemberVO memberVo=mService.selectComMem(refMemberseq);
+  		
+  		model.addAttribute("memberVo",memberVo);
+  		model.addAttribute("companyVo",companyVo);  	
+  		
+  	}
+  	@RequestMapping("/KakaoMap.do")
+  	public void naverMap(@RequestParam int comSeq,Model model) {
+  		logger.info("카카오지도api 파라미터 memSeq={}",comSeq);
+  		
+  		CompanyVO companyVo=companyService.CompanyDetail(comSeq);
+  		
+  		int refMemberseq=companyVo.getRefMemberseq();
+  		
+  		MemberVO memberVo=mService.selectComMem(refMemberseq);
+  		
+  		model.addAttribute("memberVo",memberVo);
+  		
+  	}
 }

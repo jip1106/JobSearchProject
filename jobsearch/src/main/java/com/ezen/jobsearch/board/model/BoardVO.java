@@ -10,8 +10,11 @@ public class BoardVO {
 	private int hits;
 	private Timestamp regDate;
 	private int refMemberseq;
-	private String memberId;	
 
+	private String memberId;
+	private String memberName;
+	private int RNUM;
+	
 	
 	public int getBoardSeq() {
 		return boardSeq;
@@ -55,16 +58,32 @@ public class BoardVO {
 	public void setRefMemberseq(int refMemberseq) {
 		this.refMemberseq = refMemberseq;
 	}
-	@Override
-	public String toString() {
-		return "BoardVO [boardSeq=" + boardSeq + ", boardType=" + boardType + ", boardTitle=" + boardTitle
-				+ ", boardContents=" + boardContents + ", hits=" + hits + ", regDate=" + regDate + ", refMemberseq="
-				+ refMemberseq + "]";
-	}
+	
 	public String getMemberId() {
 		return memberId;
 	}
 	public void setMemberId(String memberId) {
 		this.memberId = memberId;
-	}		
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+	public int getRNUM() {
+		return RNUM;
+	}
+	public void setRNUM(int rNUM) {
+		RNUM = rNUM;
+	}
+	@Override
+	public String toString() {
+		return "BoardVO [boardSeq=" + boardSeq + ", boardType=" + boardType + ", boardTitle=" + boardTitle
+				+ ", boardContents=" + boardContents + ", hits=" + hits + ", regDate=" + regDate + ", refMemberseq="
+				+ refMemberseq + ", memberId=" + memberId + ", memberName=" + memberName + ", RNUM=" + RNUM + "]";
+	}
+	
+	
+	
 }

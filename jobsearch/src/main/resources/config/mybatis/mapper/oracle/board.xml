@@ -35,7 +35,8 @@
 			            a.hits as hits, 
 			            a.reg_date as regDate, 
 			            a.ref_memberseq as refMemberseq,
-			            b.member_id as memberId
+			            b.member_id as memberId,
+			            b.member_name as memberName
 			      from 
 			         tbl_board a join tbl_member b 
 			      on 

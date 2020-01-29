@@ -50,4 +50,6 @@ public interface MemberService {
 	
 	//회원정보 탈퇴
 	public int withdrawMember(String memberId);
+	
+	MemberVO selectComMem(int memberSeq);
 }

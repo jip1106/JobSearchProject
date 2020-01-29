@@ -168,5 +168,9 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	
+	public MemberVO selectComMem(int memberSeq) {
+		return memberDao.selectComMem(memberSeq);
+	}
+	
 		
 }

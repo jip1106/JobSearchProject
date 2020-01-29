@@ -132,4 +132,10 @@
 		where MEMBER_ID=#{memberId}
 	</update>
 	
+	<!-- 회사 상세보기 페이지용 seq로 조회 -->
+	<select id="selectComMem" parameterType="int" resultType="memberVo">
+		select * from tbl_member
+		where MEMBER_SEQ=#{memberSeq}
+	</select>
+	
 </mapper>

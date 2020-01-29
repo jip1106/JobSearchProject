@@ -38,5 +38,7 @@ public interface MemberDAO {
 	
 	//회원정보 삭제
 	int withdrawMember(String memberId);
+	
+	MemberVO selectComMem(int memberSeq);
 }
 
