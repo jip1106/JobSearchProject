@@ -113,7 +113,7 @@
 	    	<c:forEach var="announceMentVo" items="${premiumAnnList }">
 			      <div class="col-lg-4 col-sm-6 portfolio-item">
 			        <div class="card h-100" onclick="annView(${announceMentVo.annSeq})" style="cursor: pointer;">
-			          <a href="#"><img class="card-img-top" src="../경로" alt="${announceMentVo.comName } 로고"></a>
+			          <a href="#"><img class="card-img-top" src="<c:url value='/resources/upload_images/${announceMentVo.comRenameimage }'/>" alt="${announceMentVo.comName } 로고"></a>
 			          <div class="card-body">
 			            <h4 class="card-title">
 			              <a href="#" onclick="comView(${announceMentVo.comSeq})">${announceMentVo.comName }</a>

@@ -2,7 +2,6 @@ package com.ezen.jobsearch.board.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -86,118 +85,48 @@ public class BoardController {
 		}
 	}
 	
-	//조회수
-	@RequestMapping("/board/countUpdate.do")
-	public String countUpdate(@RequestParam(defaultValue = "0") int boardSeq,
-			Model model) {
-		logger.info("조회수 증가, 파라미터 boardSeq={}", boardSeq);
+	//사용자 게시판 상세
+	@RequestMapping(value = "/board/detail.do")
+	public String detail(@RequestParam String boardType, 
+						 @RequestParam(defaultValue = "0") int boardSeq,
+					  HttpServletRequest request, Model model) {
+		logger.info("게시판({}) 상세조회 [1:공지사항 2:FAQ 3:자유게시판] boardSeq={}", boardType, boardSeq);
 		
-		
-		if(boardSeq==0) {
-			model.addAttribute("msg", "잘못된 url입니다.");
-			model.addAttribute("url", "home.do");
-			
-			return "common/message";
-		}
-		
-		int cnt=boardService.updateHits(boardSeq);
-		logger.info("조회수 증가 결과, cnt={}", cnt);
-		
-		return "redirect:/board/detail.do?boardSeq="+boardSeq;		
-	}
-	
-	//상세보기
-	/*@RequestMapping(value = "/board/detail.do" ,method = RequestMethod.GET)
-	public String detail(@RequestParam(defaultValue = "0") int boardSeq, 
-			HttpServletRequest request, Model model) {
-		logger.info("게시판({}) 상세조회 [1:공지사항 2:FAQ 3:자유게시판] boardSeq={}", boardSeq);
-		
-		HttpSession session = request.getSession();	
-		MemberVO memberVo = (MemberVO)session.getAttribute("loginMember");
-		int memberSeq=memberVo.getMemberSeq();
-		logger.info("로그인 memberseq = {}", memberSeq);
+		HttpSession session = request.getSession();
+						
+		String msg="잘못된 url입니다.", url="/home.do";
 		
 		BoardVO boardVo=boardService.selectByBoardSeq(boardSeq);
-		int refMemberseq=boardVo.getRefMemberseq();
-		logger.info("boardVo refMemberseq = {}", refMemberseq);
-		
-		if(boardVo.getRefMemberseq()==memberVo.getMemberSeq()) {//내가 쓴 디테일화면
+		if(boardVo!=null) {
+			int cnt=boardService.updateHits(boardSeq);
+			logger.info("게시글 조회수 업데이트 결과, cnt={}", cnt);
 			model.addAttribute("boardVo", boardVo);
-			return "/board/freeEdit";
 			
-		}else {//다른 이용자가 쓴 디테일화면
-			model.addAttribute("boardVo", boardVo);
-			return "/board/freeDetail";
-		}
-		
-	}*/
-	//사용자 공지사항 상세
-		@RequestMapping(value = "/board/detail.do")
-		public String detail(@RequestParam String boardType, 
-							 @RequestParam(defaultValue = "0") int boardSeq,
-						  HttpServletRequest request, Model model) {
-			logger.info("게시판({}) 상세조회 [1:공지사항 2:FAQ 3:자유게시판] boardSeq={}", boardType, boardSeq);
-			
-			HttpSession session = request.getSession();
-							
-			String msg="잘못된 url입니다.", url="/home.do";
-			
-			BoardVO boardVo=boardService.selectByBoardSeq(boardSeq);
-			if(boardVo!=null) {
-				int cnt=boardService.updateHits(boardSeq);
-				logger.info("공지사항 조회수 업데이트 결과, cnt={}", cnt);
-				model.addAttribute("boardVo", boardVo);
-				
-				if(boardType.equals("1")) {
-					return "board/noticeDetail";
-				}else if(boardType.equals("3")) {
-					}if(session!=null) {//로그인 한 경우
-						MemberVO memberVo = (MemberVO)session.getAttribute("loginMember");
-						if(memberVo!=null &&boardVo.getRefMemberseq()==memberVo.getMemberSeq()) {//내가 쓴 디테일화면
-							model.addAttribute("boardVo", boardVo);
-							return "/board/freeEdit";
-						}else {//다른 이용자가 쓴 디테일화면
-							model.addAttribute("boardVo", boardVo);
-							return "/board/freeDetail";
-						}
-					}else {//로그인 안한 경우 
+			if(boardType.equals("1")) {
+				return "board/noticeDetail";
+			}else if(boardType.equals("3")) {
+				}if(session!=null) {//로그인 한 경우
+					MemberVO memberVo = (MemberVO)session.getAttribute("loginMember");
+					if(memberVo!=null &&boardVo.getRefMemberseq()==memberVo.getMemberSeq()) {//내가 쓴 디테일화면
+						model.addAttribute("boardVo", boardVo);
+						return "/board/freeEdit";
+					}else {//다른 이용자가 쓴 디테일화면
 						model.addAttribute("boardVo", boardVo);
 						return "/board/freeDetail";
-				}
-					
+					}
+				}else {//로그인 안한 경우 
+					model.addAttribute("boardVo", boardVo);
+					return "/board/freeDetail";
 			}
-			
-			model.addAttribute("msg", msg);
-			model.addAttribute("url", url);
-			
-			return "common/message";
+				
 		}
 		
-			
-			
-	//사용자 공지사항 상세
-	/*	@RequestMapping(value = "/board/detail.do")
-			public String detail(@RequestParam String boardType, 
-							@RequestParam(defaultValue = "0") int boardSeq,
-							Model model) {
-				logger.info("게시판({}) 상세조회 [1:공지사항 2:FAQ 3:자유게시판] boardSeq={}", boardType, boardSeq);
-				
-				String msg="잘못된 url입니다.", url="/home.do";
-				
-				BoardVO boardVo=boardService.selectByBoardSeq(boardSeq);
-				if(boardVo!=null) {
-					int cnt=boardService.updateHits(boardSeq);
-					logger.info("공지사항 조회수 업데이트 결과, cnt={}", cnt);
-					model.addAttribute("boardVo", boardVo);
-					return "board/noticeDetail";
-				}		
-				
-				model.addAttribute("msg", msg);
-				model.addAttribute("url", url);
-				
-				return "common/message";
-			}*/
-	
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+	}
+		
 	//게시판 업데이트
 	@RequestMapping(value = "/board/edit.do", method = RequestMethod.POST)
 	public String edit_post(@ModelAttribute BoardVO boardVo, 
@@ -218,7 +147,7 @@ public class BoardController {
 			url="/board/list.do?boardType="+boardVo.getBoardType();
 		}else {
 			msg="수정 실패! 비밀번호를 다시 입력해 주세요!";
-			url="/board/detail.do?boardSeq="+boardVo.getBoardSeq();
+			url="/board/detail.do?boardType="+boardVo.getBoardType()+"&&boardSeq="+boardVo.getBoardSeq();
 		}
 		
 		model.addAttribute("msg", msg);
@@ -226,27 +155,6 @@ public class BoardController {
 		
 		return "common/message";
 	}
-	//게시판 업데이트
-	/*@RequestMapping(value = "/board/edit.do", method = RequestMethod.POST)
-	public String edit_post(@ModelAttribute BoardVO boardVo, Model model) {
-		logger.info("게시글 수정 처리, 파라미터 boardVo={}", boardVo);
-		
-		int cnt=boardService.updateBoard(boardVo);
-		
-		
-		String msg="수정 실패", url="/board/detail.do?boardSeq="+boardVo.getBoardSeq();
-		
-		if(cnt>0) {
-			msg="수정되었습니다.";
-			url="/board/list.do?boardType="+boardVo.getBoardType();
-		}
-		
-		model.addAttribute("msg", msg);
-		model.addAttribute("url", url);
-		
-		return "common/message";
-	}*/
-	
 	
 	//글삭제
 	@RequestMapping(value="/board/delete.do", method = RequestMethod.GET)
@@ -298,32 +206,6 @@ public class BoardController {
 		
 		
 	}
-	/*@RequestMapping(value="/board/delete.do", method =RequestMethod.POST)
-	public String delete_post(@ModelAttribute BoardVO boardVo, Model model) {
-		
-		int boardSeq=boardVo.getBoardSeq();
-		
-		BoardVO boardVo2=boardService.selectByBoardSeq(boardSeq);
-		String boardType=boardVo2.getBoardType();
-		
-		int cnt=boardService.deleteBoard(boardSeq);
-		
-		String msg="", url="";
-		if(cnt>0) { 
-			msg="삭제되었습니다.";
-			url="/board/list.do?boardType="+boardType; 
-		}else { 
-			msg="글 삭제 실패!";
-			url="/board/delete.do?boardSeq="+boardSeq; 
-		}
-		
-		model.addAttribute("msg",msg);
-		model.addAttribute("url",url);
-		return "common/message";
-		
-		
-	}*/
-	
 	
 	//게시판 글쓰기
 	@RequestMapping(value ="/board/write.do", method = RequestMethod.GET)
@@ -360,10 +242,6 @@ public class BoardController {
 			return "common/message";
 			
 	}	
-	
-	
-		
-	//여기서부터 관리자 -------------------------------------------------------	
 	
 	//admin(등록 화면)
 	@RequestMapping(value = "/admin/board/write.do", method = RequestMethod.GET)
