@@ -37,15 +37,14 @@
 	     <beans:property name="order" value="0" />
 	</beans:bean>
 	
-	<!-- 로그인 인터셉터 처리 
+	<!-- 로그인 인터셉터 처리--> 
 	<interceptors>
 		<interceptor>
-			<mapping path="/admin/home.do"></mapping>
-			
+			<mapping path="/admin/**"></mapping>
+			<exclude-mapping path="/admin/login.do"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>
-	-->
 	
 	
 	
