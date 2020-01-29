@@ -111,7 +111,7 @@
 	<!-- 최신 공고 조회 -->
 	<select id="selectNewAnn" resultType="announceMentVo">
 		select * from(        
-	        select c.com_seq, c.com_name, a.ann_seq, a.ann_title, a.ann_endt
+	        select c.com_seq, c.com_name, a.ann_seq, a.ann_title, a.ann_endt, (a.ann_endt-a.ann_stdt) as annDday
 			from tbl_company c join tbl_announcement a
 			on c.com_seq =a.ref_companyseq
 			where a.ann_endt>sysdate
