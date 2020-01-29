@@ -32,7 +32,7 @@ public class BoardController {
 		=LoggerFactory.getLogger(BoardController.class);
 	
 	public static final int BOARD_RECORD=10; //사용자 게시판 레코드
-	public static final int ADMIN_BOARD_RECORD=10; //관리자 게시판 레코드
+	public static final int ADMIN_BOARD_RECORD=15; //관리자 게시판 레코드
 	
 	@Autowired
 	private BoardService boardService;
@@ -112,7 +112,7 @@ public class BoardController {
 			HttpServletRequest request, Model model) {
 		logger.info("게시판({}) 상세조회 [1:공지사항 2:FAQ 3:자유게시판] boardSeq={}", boardSeq);
 		
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession();	
 		MemberVO memberVo = (MemberVO)session.getAttribute("loginMember");
 		int memberSeq=memberVo.getMemberSeq();
 		logger.info("로그인 memberseq = {}", memberSeq);

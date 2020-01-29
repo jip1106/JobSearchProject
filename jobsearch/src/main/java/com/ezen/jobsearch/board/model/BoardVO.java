@@ -10,8 +10,7 @@ public class BoardVO {
 	private int hits;
 	private Timestamp regDate;
 	private int refMemberseq;
-	private String memberId;
-	
+	private String memberId;	
 
 	
 	public int getBoardSeq() {
