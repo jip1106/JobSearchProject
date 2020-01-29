@@ -130,6 +130,7 @@ td{
 	<img id="images" alt="회사 이미지" src="<c:url value='/resources/images/company.jpg'/>" align="absmiddle">
 	<span>전화번호: ${companyVo.comTel}</span>
 </div>
+<c:if test="${!empty memberVo.address}">
 <div id="comdeMainCont" align="center">
 	<h1>회사설명</h1>
 	<span>${companyVo.comDesc}</span>
@@ -144,11 +145,12 @@ td{
 			<td class="tdDesc">${memberVo.address}</td> 
 		</tr>
 	</table>
-	<hr>
+	
+	<hr>	
 	<span>약도</span>		
 	<c:import url="/company/KakaoMap.do"/>
-
 </div>
+</c:if>
 </div>
 <!-- section end -->
 <c:import url="/WEB-INF/views/include/footer.jsp" />

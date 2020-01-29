@@ -1,7 +1,7 @@
 
 <style>
 footer#footer {
-    background-color: black;
+    background-color: #4876ef!important;
 }
 </style>
 
