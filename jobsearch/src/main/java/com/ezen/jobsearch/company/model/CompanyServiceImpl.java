@@ -60,4 +60,7 @@ public class CompanyServiceImpl implements CompanyService{
 	public CompanyVO CompanyDetail(int comSeq) {
 		return companyDao.CompanyDetail(comSeq);
 	}
+	public List<PaymentVO> CompanyPayList(int memberSeq) {
+		return companyDao.CompanyPayList(memberSeq);
+	}
 }

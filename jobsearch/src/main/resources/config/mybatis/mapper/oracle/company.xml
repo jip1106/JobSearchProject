@@ -107,4 +107,13 @@
 		select * from tbl_company
 		where com_seq=#{comSeq}		
 	</select>
+	
+	<select id="companyPayList" parameterType="int" resultType="paymentVo">
+		select payment_seq,payment_code,product_name,to_char(price_date,'yyyy-MM-dd')as price_date,pay_type,card_authnum,ref_announcement from tbl_payment
+		where ref_announcement in (select ann_seq from tbl_announcement
+		where ref_companyseq=(select com_seq from tbl_company
+		where ref_memberseq=#{memberSeq}))
+		order by price_date desc
+	</select>
+	
 </mapper>

@@ -329,8 +329,17 @@ public class CompanyController {//
   	}  
 	
   	@RequestMapping("/companymyorderlist.do")
-  	public void companymyorderlist() {
-  		logger.info("결제 확인 페이지");
+  	public void companymyorderlist(HttpSession session,Model model) {
+  		
+  		MemberVO memberVo=(MemberVO)session.getAttribute("loginMember");
+		int memberSeq=memberVo.getMemberSeq();
+  		logger.info("결제 확인 페이지 memberseq={}",memberSeq);
+  		
+  		List<PaymentVO> list=companyService.CompanyPayList(memberSeq);
+  		logger.info("list.size={}",list.size());
+  		model.addAttribute("list",list);
+  		
+  		
   	}
   	@RequestMapping("/companydetail.do")
   	public void companydetail(@RequestParam int comSeq,Model model) {

@@ -440,13 +440,9 @@ span.point-2t_age {
 	
 	<span id="sectionTitle">추가사항</span>	
 		<div class="card mb-4-bt-edit">	
-					
-			<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">내용 </div>
-				<span class="point-2t"></span>				
+				<div class="row mb-4 mt-4_text">			
 				<div class="col-lg-8 form-label-group mb-2">
 					<textarea id="Insert_text" name="annDesc" class="form-control" ></textarea>
-				<div id="idchkdiv" class="chkmessage"> </div>
 				</div>
 			</div>
 			
@@ -474,11 +470,19 @@ span.point-2t_age {
  		</div>
  		 
  </form>
-
-  
 <!-- section end -->
 <c:import url="/WEB-INF/views/include/companymypagenavibottom.jsp" />
-	<c:import url="/WEB-INF/views/include/footer.jsp" />
+<c:import url="/WEB-INF/views/include/footer.jsp" />
+<script src="<c:url value='/resources/ckeditor/ckeditor.js'/>"></script>
+<script>
+		 var ckeditor_config = {
+		  	 filebrowserImageUploadUrl : "/jobsearch/imageUpload.do",
+		  	 width :'707px'
+		  	 
+		 };
+		 
+		 CKEDITOR.replace("annDesc", ckeditor_config);
+</script>
 </body>
 
 </html>

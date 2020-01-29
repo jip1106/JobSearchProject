@@ -80,7 +80,7 @@ h2.mt-4.mb-3 {
           <a href="<c:url value='/company/companyPwdChk.do'/>" class="list-group-item">기업정보수정</a>
           <a href="<c:url value='/company/companymypageannouncement.do'/>" class="list-group-item">공고등록</a>
           <a href="<c:url value='/company/companyMyAnnList.do'/>" class="list-group-item">공고관리</a>
-          <a href="<c:url value='/company/companymypagepayment.do'/>" class="list-group-item">결제내역</a> 
+          <a href="<c:url value='/company/companymyorderlist.do'/>" class="list-group-item">결제내역</a> 
       	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">
       	 	<img src="<c:url value='/resources/images/mypage_banner.jpg'/>">
       	 </a>

@@ -22,4 +22,6 @@ public interface CompanyService {
 	int updateMyAnn(AnnounceMentVO annVo);
 	int payMyAnn(PaymentVO paymentVo);
 	CompanyVO CompanyDetail(int comSeq);
+	List<PaymentVO> CompanyPayList(int memberSeq);
+
 }
