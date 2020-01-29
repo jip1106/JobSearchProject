@@ -343,8 +343,7 @@ a.tag_a {
 				<input type="text" id="input_2" class="form-control" name="boardTitle" placeholder="제목">
 				<textarea style="resize: none" id="input_3" class="form-control" name="boardContents" placeholder="내용"></textarea>
 				<input type="hidden" id="input_3" class="form-control" name="boardType" value="3"> 
-				<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="${loginMember.memberSeq }">
-				<input type="hidden" id="input_6" class="form-control" name="hits" value="1"> 
+				<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="${loginMember.memberSeq }"> 
 			</div>
 		</fieldset>
 		<button type="submit" class="btn btn-primary_write">등록</button>
