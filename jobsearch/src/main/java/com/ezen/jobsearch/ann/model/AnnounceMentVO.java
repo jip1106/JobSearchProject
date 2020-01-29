@@ -21,6 +21,7 @@ public class AnnounceMentVO {
 	 private int refLocationseq1;//지역카테고리1
 	 private int refLocationseq2;//지역카테고리2
 	 private int refCompanyseq;//작성회사 고유시퀀스
+	 private String annDday;
 	 
 	 //공고상세에 필요한 필드
 	 private int comSeq;
@@ -150,6 +151,13 @@ public class AnnounceMentVO {
 		this.refCompanyseq = refCompanyseq;
 	}
 
+
+	public String getAnnDday() {
+		return annDday;
+	}
+	public void setAnnDday(String annDday) {
+		this.annDday = annDday;
+	}
 	@Override
 	public String toString() {
 		return "AnnounceMentVO [annSeq=" + annSeq + ", annTitle=" + annTitle + ", annDesc=" + annDesc + ", annStdt="
@@ -159,7 +167,6 @@ public class AnnounceMentVO {
 				+ ", refCateseq3=" + refCateseq3 + ", refLocationseq1=" + refLocationseq1 + ", refLocationseq2="
 				+ refLocationseq2 + ", refCompanyseq=" + refCompanyseq + "]";
 	}
-	
 	
 	public String getCeoName() {
 		return ceoName;
