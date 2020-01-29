@@ -114,32 +114,31 @@ th {
 div#freelist_part {
 	border-top: 2px solid #4876ef;
 	border-bottom: 2px solid #4876ef;
-    padding: 11px 40px;
+    padding: 11px 11px;
 }
 div#freelist_part2 {
     border-bottom: 1.3px solid #d0d0d0;
-    padding: 12px 48px;
+    padding: 19px 11px;
 }
 span.num {
-    margin-right: 165px;
+    margin-right: 35px;
     font-weight: 600;
     color: #7b7a91;
 }
 span.title {
-    margin-right: 157px;
+    margin-right: 277px;
     font-weight: 600;
     color: #7b7a91;
 }
 span.member {
-    margin-right: 75px;
+    margin-right: 88px;
     font-weight: 600;
     color: #7b7a91;
 }
 span.regdate {
-    margin-right: 64px;
+    margin-right: 52px;
     font-weight: 600;
     color: #7b7a91;
-    
 }
 span.hits {
 	font-weight: 600;
@@ -149,36 +148,32 @@ td.num2 {
     font-weight: 600;
     color:#5e87f1;
     position: relative;
-    text-align: center;
-    /* left: 12px; */ 
+    left: 12px;; 
 }
 td.title2 {
     font-weight: 600;
     color: #7b7a91;
     position: relative;
-    left: 89px; 
+    left: 62px; 
 }
 td.member2 {
     font-weight: 600;
     color: #7b7a91;
     position: relative;
-    left: 145px;
-    text-align: center;
+    left: 285px; 
 }
 td.regdate2 {
     font-weight: 600;
     color: #7b7a91;
     position: relative;
-    left: 206px;
-    text-align: center;
+    left: 365px; 
      
 }
 td.hits2 {
 	font-weight: 600;
     color: #7b7a91;
     position: relative;
-    left: 272px;
-    text-align: center;
+    left: 416px;
 }
 div#card-header {
     border-bottom: 0.5px solid #bdbdbd;
@@ -270,27 +265,27 @@ img#searchimg {
 	      <table>
 	      <colgroup>
 			<col style="width:5%;" />
-			<col style="width:55%;" />
+			<col style="width:45%;" />
 			<col style="width:15%;" />
-			<col style="width:20%;" />
-			<col style="width:5%;" />		
+			<col style="width:10%;" />
+			<col style="width:10%;" />		
 		  </colgroup>
 	      <thead><tr><th></th></tr></thead>
 	      <tbody>
      		<tr>
-	      	<td class="num2"> ${boardVo.RNUM }</td>
+	      	<td class="num2"> ${boardVo.boardSeq }</td>
 	      	<td class="title2"> 
-	      		<a href="<c:url value='/board/detail.do?boardType=3&boardSeq=${boardVo.boardSeq}'/>"> 
-				 <c:if test="${fn:length(boardVo.boardTitle)>12}">
-						${fn:substring(boardVo.boardTitle, 0, 12)}...
+	      		<a href="<c:url value='/board/countUpdate.do?boardSeq=${boardVo.boardSeq}'/>"> 
+				 <c:if test="${fn:length(boardVo.boardTitle)>15}">
+						${fn:substring(boardVo.boardTitle, 0, 15)}...
 	     		</c:if>
-				<c:if test="${fn:length(boardVo.boardTitle)<=12}">
+				<c:if test="${fn:length(boardVo.boardTitle)<=15}">
 					${boardVo.boardTitle}
 					</c:if>
 					
 				</a>
 			</td>
-	      	<td class="member2"> ${boardVo.memberName }</td>
+	      	<td class="member2"> ${boardVo.regDate }</td>
 	      	<td class="regdate2"> 
 	      		 <fmt:formatDate value="${boardVo.regDate }" pattern="yyyy.MM.dd" />
 	      	</td>
@@ -337,13 +332,7 @@ img#searchimg {
 	
 	<c:import url="/WEB-INF/views/include/navi.jsp" />
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
-	<script type="text/javascript">
-		function pageFunc(curPage){
-			document.frmPage.currentPage.value=curPage;
-			
-			document.frmPage.submit();
-		}
-	</script>
+	
 </body>
 
 </html>

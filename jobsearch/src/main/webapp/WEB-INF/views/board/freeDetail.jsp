@@ -169,7 +169,7 @@ button.btn.btn-primary_write {
     left: 650px;
     width: 71px;
 }
-div.btn.btn-primary_list {
+button.btn.btn-primary_list {
     height: 42px;
     background-color: #5e87f1;
     border-color: #5e87f1;
@@ -178,7 +178,6 @@ div.btn.btn-primary_list {
     position: relative;
     left: 497px;
     width: 71px;
-    padding: 8px 0px;
 }
 input#input_1 {/*  */
     height: calc(1.5em + .75rem + 6px);
@@ -340,10 +339,6 @@ hr.title_hr {
     border: 1px solid #4876ef;
     margin: 0px 0 -3px 0;
 }
-a.tag_a {
-    color: white;
-    text-decoration: none;
-}
 </style>
 	
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -379,15 +374,13 @@ a.tag_a {
 		 	<button type="submit" class="btn btn-primary_write">수정</button>
 		 </c:if> --%> 
 		 	
-	 	<button type="submit" class="btn btn-primary_write">댓글</button>
- 		<a href="<c:url value='/board/list.do?boardType=3'/>" class="tag_a">	
-			<div class="btn btn-primary_list">목록</div>
-		</a>
+		 	<button type="submit" class="btn btn-primary_write">댓글</button>
+			<button class="btn btn-primary_list" onclick="location.href = '<c:url value='/board/freelist.do'/>'">목록</button>
 	</form>
 </div>
 
 
-	<c:import url="/WEB-INF/views/include/navi.jsp" />
+<c:import url="/WEB-INF/views/include/navi.jsp" />
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	
 </body>
