@@ -9,6 +9,7 @@
 
 
 <style type="text/css">
+
 .span_title_resume {
     /* text-align: center; */
     list-style: telugu;
@@ -165,8 +166,10 @@ strong.attach_count {
 		  } else {
 		   alert("취소되었습니다");
 		  }
-			
-
+	}
+	function annView(annSeq){
+		window.open("<c:url value='/ann/detail.do?annSeq='/>"+annSeq, annSeq+"번 공고 상세보기", 
+				"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	}
 </script>
 
@@ -198,7 +201,7 @@ strong.attach_count {
 	 	<div class="card mb-4-bt">
 	 		<div class="info_resume">               
                <strong class="tit">
-                 <a href="#">
+                 <a href="#" onclick="annView(${map['ANN_SEQ']})" style="text-decoration: none;">
                 	 <span class="point_color">${map['ANN_TITLE']} </span>
                 	 <span class="point_color_comp">지원현황</span>
                 	 <div class="point_color_gongchae">${map['ANN_TITLE']}</div>

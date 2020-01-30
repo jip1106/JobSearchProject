@@ -234,10 +234,10 @@ input#upfile{
 .comImg_photo {
     position: absolute;
     top: 141px;
-    right: 64px;
+    right: 24px;
     padding: 9px;
-    width: 150px;
-    height: 160px;
+    width: 220px;
+    height: 116px;
     border: 1px solid #e9e9e9;
     box-sizing: border-box;
     text-align: center;
@@ -257,8 +257,11 @@ input#upfile{
 	    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 	    margin-top: 34px;
     	margin-right: -2px;
-	    position: relative;
-	    width: 100px;
+	    position: absolute;
+    	width: 100px;
+   		z-index: 3;
+    	top: 113px;
+   		right: 59px;
 }
 
 
@@ -325,10 +328,10 @@ function getThumbnailPrivew(html, $target) {
        <div class="comImgPre">
       	<c:choose>
       	<c:when test="${empty vo.comRenameimage}" >
-	       	<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/images/logo_default.gif'/>" style="width:130px; height:140">
+	       	<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/images/logo_default.gif'/>" style="max-width:190px; max-height:95px;">
 	       	<input type="file" name="upfile" id="upfile" accept="image/*" onchange="getThumbnailPrivew()"></c:when>
        	<c:when test="${!empty vo.comRenameimage}">
-       		<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/upload_images/${vo.comRenameimage}'/>" style="width:130px; height:140"></c:when>       	
+       		<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/upload_images/${vo.comRenameimage}'/>" style="max-width:190px; max-height:95px;"></c:when>       	
        		
        	</c:choose>
        	
