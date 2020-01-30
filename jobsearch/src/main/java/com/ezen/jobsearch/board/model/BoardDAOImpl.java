@@ -50,4 +50,10 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.update(namespace+"updateHits", boardSeq);
 	}
 
+	@Override
+	public List<BoardVO> selectMainBoard(BoardVO boardVo) {
+		return sqlSession.selectList(namespace+"selectMainBoard", boardVo);
+	}
+
+	
 }
