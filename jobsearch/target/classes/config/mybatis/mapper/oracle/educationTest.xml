@@ -23,8 +23,8 @@
 			edu_name, 
 			to_char(period_stdt,'yyyy-mm-dd') as period_stdt, 
 			to_char(period_endt, 'yyyy-mm-dd') as period_endt , 
-			univ_type, 
-			univ_score, 
+			univ_score,
+			univ_type,
 			univ_major, 
 			last_education 
 		From tbl_education
