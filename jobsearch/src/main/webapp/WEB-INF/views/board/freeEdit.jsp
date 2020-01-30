@@ -389,6 +389,12 @@ a.tag_a {
     color: white;
     text-decoration: none;
 }
+img.menu {
+    resize: both;
+    height: 28px;
+    position: relative;
+    top: -1px;
+</style>
 </style>
 	
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -433,8 +439,10 @@ a.tag_a {
 			<button type="submit" class="btn btn-primary_edit">수정</button>
 			<button class="btn btn-primary_write">댓글</button>
 			<a href="<c:url value='/board/list.do?boardType=3'/>" class="tag_a">	
-				<div class="btn btn-primary_list">목록</div>
-			</a>
+				<div class="btn btn-primary_list">
+					<img class="menu" src="<c:url value='/resources/images/menu.png'/>">
+				</div>
+	</a>
 		</div>
 	</form>
 

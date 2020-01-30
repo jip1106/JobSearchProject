@@ -12,18 +12,6 @@
                      -->
                     <li><a href="${pageContext.request.contextPath }/admin/board/list.do?boardType=1"><i class="glyphicon glyphicon-info-sign"></i>공지사항 관리</a></li>
                     <li><a href="${pageContext.request.contextPath }/admin/board/list.do?boardType=2"><i class="glyphicon glyphicon-question-sign"></i>FAQ 관리</a></li>
-                    <li class="submenu">
-                         <a href="#">
-                            <i class="glyphicon glyphicon-list"></i> Pages
-                            <span class="caret pull-right"></span>
-                         </a>
-                         <!-- Sub menu -->
-                         <ul>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="signup.html">Signup</a></li>
-                            <li><a herf="sss">aa</a></li>
-                        </ul>
-                    </li>
                 </ul>
              </div>
 		  </div>

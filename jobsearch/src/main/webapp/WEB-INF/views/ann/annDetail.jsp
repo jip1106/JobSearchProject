@@ -425,6 +425,7 @@ span.star-border {
 	display: none;
 }
 </style>
+
 </head>
 <body>
 
@@ -443,7 +444,7 @@ span.star-border {
 			<div class="card-body">			
 			<div class="top_title">
 				 <div class="c_title">
-			    	<a href="#" class="company_title" target="_blank">${vo.comName }</a>
+			    	<a href="#" class="company_title" onclick="comView(${vo.comSeq})" target="_blank">${vo.comName }</a>
 			     </div>			  	  	   	
 			        <span class="company_title2">${vo.annTitle }</span>
 			         <c:if test="${loginMember.regType != 1}">
@@ -685,7 +686,11 @@ span.star-border {
         function resumeWrite(){
         	window.open("<c:url value='/resume/resumeTest.do'/>")
         }
-       
+       	
+        function comView(comSeq){
+    		window.open("<c:url value='/company/companydetail.do?comSeq='/>"+comSeq, comSeq+" 회사 상세보기", 
+    				"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+    	}
 
 	</script> 
  

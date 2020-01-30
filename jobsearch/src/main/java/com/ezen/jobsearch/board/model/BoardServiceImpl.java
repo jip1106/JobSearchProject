@@ -66,6 +66,11 @@ public class BoardServiceImpl implements BoardService {
 	public int deleteBoard(int boardSeq) {
 		return boardDao.deleteBoard(boardSeq);
 	}
+
+	@Override
+	public List<BoardVO> selectMainBoard(BoardVO boardVo) {
+		return boardDao.selectMainBoard(boardVo);
+	}
 	
 	
 }
