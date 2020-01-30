@@ -80,6 +80,8 @@ function idEmailChk(email){
   	}else{	//ajax id 중복검사 추가
   	  
   		var requestData = $("#memberId").val();
+  	
+  		
 		
 		$.ajax({ 
 			type:"POST", 
@@ -113,7 +115,7 @@ function idEmailChk(email){
 //인증번호 메일발송
 function certificationEmail(){
 	var inputMail=$("#memberId").val();
-	
+		
 	$.ajax({ 
 		type:"POST", 
 		url: '/jobsearch/member/certiNumber.do', 

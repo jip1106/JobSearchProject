@@ -70,7 +70,7 @@
 	From tbl_resume tr
 	join tbl_mycareer tc on tr.resume_seq = tc.ref_resumeseq
 	join tbl_hopework th on tr.resume_seq = th.ref_resumeseq
-	Where resume_seq = #{resumeSeq}
+	Where tr.resume_seq = #{resumeSeq}
 	
 	</select>
 	
@@ -89,5 +89,122 @@
 		DELETE FROM TBL_RESUME
 		WHERE resume_seq = #{resumeSeq}
 	</delete>
+	
+	<select id="selectResumeByresumeSeq" resultType="hashmap" resultMap = "resumeInfo" parameterType ="string">
+		Select 
+		TR.RESUME_SEQ,
+		TR.RESUME_TITLE,
+		to_char(tr.reg_date, 'yyyy-mm-dd') as RESUMEREGDATE,
+		    Case When TR.RECURIT_STATUS = 1 Then '구직준비중(재학생)'
+		    When TR.RECURIT_STATUS = 2 Then '구직중'
+		    When TR.RECURIT_STATUS = 3 Then '재직중'
+		    ELSE '입력안함'
+		    End as recurit_status,
+		TR.INTRODUCE_TITLE,
+		TR.INTRODUCE_DESC,
+		TM.MEMBER_ID,
+		TM.MEMBER_NAME,
+		CASE WHEN TM.GENDER_TYPE = 'M' Then '남자'
+			WHEN TM.GENDER_TYPE ='W' THEN '여자'
+			ELSE '잘못된 값'
+		END as GENDER_TYPE,
+		TE.EDU_NAME,
+		CASE WHEN TE.EDU_TYPE = '1' Then '고졸'
+			WHEN TE.EDU_TYPE = '2' Then '대졸'
+			WHEN TE.EDU_TYPE = '3' THEN '대학원'
+			ELSE '잘못된 값'
+		End as EDU_TYPE ,
+		CASE WHEN TCR.CAREER_TYPE = 1 Then '신입'
+		    WHEN TCR.CAREER_TYPE = 2 Then '경력'
+		    ELSE '잘못된값'
+		End as career_type,
+		CASE WHEN HW.HOPE_EMPTYPE = 1 Then '정규직'
+		    WHEN HW.HOPE_EMPTYPE = 2 Then '교육생'
+		    WHEN HW.HOPE_EMPTYPE = 3 Then '아르바이트'
+		    WHEN HW.HOPE_EMPTYPE = 4 Then '병역특례'
+		    WHEN HW.HOPE_EMPTYPE = 5 Then '인턴'
+		    WHEN HW.HOPE_EMPTYPE = 6 Then '계약직'
+		    WHEN HW.HOPE_EMPTYPE = 7 Then '프리랜서'
+		    ELSE '잘못된값'
+		End as hope_emptype,
+		HW.HOPE_SALARY,
+		TL.LOCATION_NAME,
+		TC.CATE_NAME1
+		From
+		TBL_RESUME TR 
+		JOIN TBL_MEMBER TM ON TR.REF_MEMBERSEQ = TM.MEMBER_SEQ
+		JOIN TBL_EDUCATION TE ON TR.RESUME_SEQ = TE.REF_RESUMESEQ 
+		JOIN TBL_MYCAREER TCR ON TR.RESUME_SEQ = TCR.REF_RESUMESEQ
+		JOIN TBL_HOPEWORK HW ON TR.RESUME_SEQ = HW.REF_RESUMESEQ
+		JOIN TBL_LOCATION1 TL ON HW.REF_LOCATIONSEQ = TL.LOCATION_SEQ1
+		JOIN TBL_CATEGORY1 TC ON HW.REF_CATEGORY1= TC.CATE_SEQ1
+		Where 1=1 and TE.LAST_EDUCATION = 'Y' and TR.RESUME_TITLE is not null and TR.RESUME_SEQ = #{resumeSeq}
+	</select>
+	
+	
+	
+	<select id="searchAllResume" resultType = "hashmap" resultMap="resumeInfo" parameterType="resumesearchvo">
+		Select 
+		TR.RESUME_SEQ,
+		TR.RESUME_TITLE,
+		to_char(tr.reg_date, 'yyyy-mm-dd') as RESUMEREGDATE,
+		    Case When TR.RECURIT_STATUS = 1 Then '구직준비중(재학생)'
+		    When TR.RECURIT_STATUS = 2 Then '구직중'
+		    When TR.RECURIT_STATUS = 3 Then '재직중'
+		    ELSE '입력안함'
+		    End as recurit_status,
+		TR.INTRODUCE_TITLE,
+		TR.INTRODUCE_DESC,
+		TM.MEMBER_ID,
+		TM.MEMBER_NAME,
+		TM.GENDER_TYPE,
+		TE.EDU_NAME,
+		TE.EDU_TYPE,
+		CASE WHEN TCR.CAREER_TYPE = 1 Then '신입'
+		    WHEN TCR.CAREER_TYPE = 2 Then '경력'
+		    ELSE '잘못된값'
+		End as career_type,
+		CASE WHEN HW.HOPE_EMPTYPE = 1 Then '정규직'
+		    WHEN HW.HOPE_EMPTYPE = 2 Then '교육생'
+		    WHEN HW.HOPE_EMPTYPE = 3 Then '아르바이트'
+		    WHEN HW.HOPE_EMPTYPE = 4 Then '병역특례'
+		    WHEN HW.HOPE_EMPTYPE = 5 Then '인턴'
+		    WHEN HW.HOPE_EMPTYPE = 6 Then '계약직'
+		    WHEN HW.HOPE_EMPTYPE = 7 Then '프리랜서'
+		    ELSE '잘못된값'
+		End as hope_emptype,
+		HW.HOPE_SALARY,
+		TL.LOCATION_NAME,
+		TC.CATE_NAME1
+		From
+		TBL_RESUME TR 
+		JOIN TBL_MEMBER TM ON TR.REF_MEMBERSEQ = TM.MEMBER_SEQ
+		JOIN TBL_EDUCATION TE ON TR.RESUME_SEQ = TE.REF_RESUMESEQ 
+		JOIN TBL_MYCAREER TCR ON TR.RESUME_SEQ = TCR.REF_RESUMESEQ
+		JOIN TBL_HOPEWORK HW ON TR.RESUME_SEQ = HW.REF_RESUMESEQ
+		JOIN TBL_LOCATION1 TL ON HW.REF_LOCATIONSEQ = TL.LOCATION_SEQ1
+		JOIN TBL_CATEGORY1 TC ON HW.REF_CATEGORY1= TC.CATE_SEQ1
+		Where 1=1 and TE.LAST_EDUCATION = 'Y' and TR.RESUME_TITLE is not null
+		 <if test="genderType != null and !genderType.equals('')">
+		 	and TM.GENDER_TYPE = #{genderType}
+		 </if>
+		 <if test="eduType !=null and !eduType.equals('')">
+		 	and TE.EDU_TYPE = #{eduType}
+		 </if>
+		 <if test="careerType !=null and !careerType.equals('')">
+		 	and TCR.CAREER_TYPE = #{careerType}
+		 </if>
+		 <if test="empType !=null and !empType.equals('')">
+		 	and HW.HOPE_EMPTYPE = #{empType}
+		 </if>		 
+		 <if test="locationSeq1 != null and !locationSeq1.equals('')">
+		 	and HW.REF_LOCATIONSEQ = #{locationSeq1}
+		 </if>
+		 <if test="cateSeq1 != null and !cateSeq1.equals('')">
+		 	and HW.REF_CATEGORY1 = #{cateSeq1}
+		 </if>
+		 
+		 Order by TR.REG_DATE DESC
+	</select>
 	
 </mapper>

@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import com.ezen.jobsearch.ann.model.AnnounceMentVO;
+import com.ezen.jobsearch.apply.model.ApplyVO;
 import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.payment.model.PaymentVO;
+import com.ezen.jobsearch.resume.model.ResumeVO;
 
 public interface CompanyDAO {
 	int insertCompany(CompanyVO companyVo);
@@ -23,4 +25,5 @@ public interface CompanyDAO {
 	int payMyAnn(PaymentVO paymentVo);
 	CompanyVO CompanyDetail(int comSeq);
 	List<PaymentVO> CompanyPayList(int memberSeq);
+	List<ResumeVO> selectMyAnnApply(int annSeq);
 }

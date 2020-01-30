@@ -70,6 +70,13 @@
 		where A.REF_COMPANYSEQ=#{refCompanyseq}
 	</select>
 	
+	<select id="selectMyAnnApply" parameterType="int" resultType="resumeVo">
+		select * from tbl_resume
+		where resume_seq in(select ref_resumeseq from tbl_apply
+		where ref_annseq=#{annSeq})
+		
+	</select>
+	
 	<select id="selectComSeq" parameterType="int" resultType="int">
 		select com_seq from tbl_company
 		where ref_memberseq=#{memberSeq}

@@ -87,6 +87,18 @@ public class ResumeServiceImpl implements ResumeService{
 		return resumeDao.deleteResume(resumeSeq);
 	}
 
+	@Override
+	public List<Map<String, Object>> selectAllResume(ResumeSearchVO resumeSearchVo) {
+		// TODO Auto-generated method stub
+		return resumeDao.selectAllResume(resumeSearchVo);
+	}
+
+	@Override
+	public Map<String, Object> selectResumeByresumeSeq(String resumeSeq) {
+		// TODO Auto-generated method stub
+		return resumeDao.selectResumeByresumeSeq(resumeSeq);
+	}
+
 
 
 

@@ -27,4 +27,10 @@ public interface ResumeService {
 
 	List<ResumeVO> selectResumeList(int memberSeq);
 	int deleteResume(String resumeSeq);
+	
+	//회원 이력서
+	List<Map<String, Object>> selectAllResume(ResumeSearchVO resumeSearchVo);
+	
+	//회원 이력서 디테일
+	Map<String, Object> selectResumeByresumeSeq(String resumeSeq);
 }
