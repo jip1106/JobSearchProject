@@ -67,6 +67,7 @@ a.btn.btn-primary {
 .point_color{
 	color: #4876ef;
 	margin-right: 9px;
+	z-index: 3;
 }
 
 .point_color_comp{
@@ -171,6 +172,10 @@ strong.attach_count {
 		window.open("<c:url value='/ann/detail.do?annSeq='/>"+annSeq, annSeq+"번 공고 상세보기", 
 				"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	}
+	function applyView(annSeq){
+		window.open("<c:url value='/company/companyMyAnnApply.do?annSeq='/>"+annSeq, annSeq+"번 공고 지원자 확인하기", 
+				"width=600, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	}
 </script>
 
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -203,9 +208,10 @@ strong.attach_count {
                <strong class="tit">
                  <a href="#" onclick="annView(${map['ANN_SEQ']})" style="text-decoration: none;">
                 	 <span class="point_color">${map['ANN_TITLE']} </span>
-                	 <span class="point_color_comp">지원현황</span>
-                	 <div class="point_color_gongchae">${map['ANN_TITLE']}</div>
-               	 </a>
+                 </a>
+                	<a href="#" onclick="applyView(${map['ANN_SEQ']})"><span class="point_color_comp">지원현황</span></a>
+                	 <div class="point_color_gongchae">마감일 ${map['ANN_ENDT']}</div>
+               	
                </strong>
             <div class="desc">
                <span class="career_small">${map['CAREER_TYPE']}</span>|<span class="career_small2">${map['CAREER_DESC']}</span>|<span class="career_small2">${map['SALARY']}</span>                        

@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ezen.jobsearch.ann.model.AnnounceMentVO;
+import com.ezen.jobsearch.apply.model.ApplyVO;
 import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.payment.model.PaymentVO;
+import com.ezen.jobsearch.resume.model.ResumeVO;
 
 @Repository
 public class CompanyDAOImpl implements CompanyDAO{
@@ -94,6 +96,10 @@ public class CompanyDAOImpl implements CompanyDAO{
 	@Override
 	public List<PaymentVO> CompanyPayList(int memberSeq) {
 		return sqlSession.selectList(namespace+"companyPayList",memberSeq);
+	}
+	@Override
+	public List<ResumeVO> selectMyAnnApply(int annSeq){
+		return sqlSession.selectList(namespace+"selectMyAnnApply",annSeq);
 	}
 
 }

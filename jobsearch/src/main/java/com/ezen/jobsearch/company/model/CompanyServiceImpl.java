@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ezen.jobsearch.ann.model.AnnounceMentVO;
+import com.ezen.jobsearch.apply.model.ApplyVO;
 import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.payment.model.PaymentVO;
+import com.ezen.jobsearch.resume.model.ResumeVO;
 
 @Service
 public class CompanyServiceImpl implements CompanyService{
@@ -62,5 +64,8 @@ public class CompanyServiceImpl implements CompanyService{
 	}
 	public List<PaymentVO> CompanyPayList(int memberSeq) {
 		return companyDao.CompanyPayList(memberSeq);
+	}
+	public List<ResumeVO> selectMyAnnApply(int annSeq){
+		return companyDao.selectMyAnnApply(annSeq);
 	}
 }
