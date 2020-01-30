@@ -4,7 +4,17 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
-	
+	<style type="text/css">
+		.col-lg-8{
+			max-width: none;
+			flex: none;
+		}
+		
+		#noticeContents{
+			height: 500px;
+ 		    overflow: scroll;
+		}
+	</style>
 	<c:import url="/WEB-INF/views/include/headend.jsp" />
 
 <style type="text/css">
@@ -127,7 +137,6 @@ img.menu {
 		<c:if test="${fn:length(boardVo.boardTitle)<=30}">
 			${boardVo.boardTitle}
 		</c:if>
-	 </span>
     </div>
   	<div class="content">
   		 <span class="content_span">${boardVo.boardContents }</span>

@@ -12,10 +12,10 @@
 		window.open("<c:url value='/ann/detail.do?annSeq='/>"+annSeq, annSeq+"번 공고 상세보기", 
 				"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	}
-	
+		
 	function comView(comSeq){
-		window.open("<c:url value='/company/detail.do?comSeq='/>"+comSeq, comSeq+"번 회사정보 상세보기", 
-		"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+		window.open("<c:url value='/company/companydetail.do?comSeq='/>"+comSeq, comSeq+" 회사 상세보기", 
+				"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 		event.stopPropagation();
 		event.preventDefault();
 	}

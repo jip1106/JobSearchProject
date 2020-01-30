@@ -15,8 +15,6 @@
 	<sql id="searchWhere">
 		<if test="searchKeyword!=null and searchKeyword != ''">
 			and
-			board_contents like '%' || #{searchKeyword} || '%'
-			or
 			board_title like '%' || #{searchKeyword} || '%'
 		</if>
 	</sql>
