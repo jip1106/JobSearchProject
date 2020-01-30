@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ezen.jobsearch.ann.model.AnnounceMentVO;
 import com.ezen.jobsearch.ann.model.AnnouncementService;
+import com.ezen.jobsearch.board.model.BoardService;
+import com.ezen.jobsearch.board.model.BoardVO;
 import com.ezen.jobsearch.category.model.CategoryService;
 import com.ezen.jobsearch.category.model.CategoryVO1;
 import com.ezen.jobsearch.location.model.LocationService;
@@ -31,12 +34,20 @@ public class HomeController {
 	@Autowired
 	private AnnouncementService annService;
 	
+	@Autowired
+	private BoardService boardService;
+	
 	@RequestMapping(value = {"/home.do","/index.do"})
-	public String home(Model model) {
+	public String home(@ModelAttribute BoardVO boardVo, Model model) {
+		
+		String boardType="1";
+		boardVo.setBoardType(boardType);
 		
 		List<AnnounceMentVO> newAnnList = annService.selectNewAnn();
 		List<AnnounceMentVO> premiumAnnList = annService.selectPremiumAnn();
+		List<BoardVO> boardList = boardService.selectMainBoard(boardVo);
 		
+		model.addAttribute("boardList", boardList);
 		model.addAttribute("newAnnList", newAnnList);
 		model.addAttribute("premiumAnnList", premiumAnnList);
 		

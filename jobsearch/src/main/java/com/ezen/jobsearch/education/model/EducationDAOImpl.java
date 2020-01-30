@@ -25,7 +25,6 @@ public class EducationDAOImpl implements EducationDAO{
 	public List<EducationVO> selectEduList(String resumeSeq) {
 		// TODO Auto-generated method stub
 		List<EducationVO> eduList = sqlSession.selectList(nameSpace+"selectEduListTest", resumeSeq);
-		System.out.println("DAOImpl : 학력정보 " + eduList);
 		return eduList;
 	}
 

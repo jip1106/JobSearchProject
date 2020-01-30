@@ -17,7 +17,7 @@
 		<input type="hidden" name="searchKeyword" value="${param.searchKeyword}">
 		<input type="hidden" name="regType" value="${param.regType}">
 		<input type="hidden" name="delFlag" value="${param.delFlag }">
-		<input type="text" name="currentPage">
+		<input type="hidden" name="currentPage">
 	</form>
 	<!-- 페이징 처리 관련 form -->
 

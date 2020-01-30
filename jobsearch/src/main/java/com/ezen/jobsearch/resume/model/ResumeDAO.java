@@ -26,5 +26,11 @@ public interface ResumeDAO {
 	int updateResume(ResumeVO resumeVo);
 	//이력서 삭제
 	int deleteResume(String resumeSeq);
+	
+	//회원 이력서 리스트
+	List<Map<String, Object>> selectAllResume(ResumeSearchVO resumeSearchVo);
+	
+	//이력서 상세보기
+	Map<String, Object> selectResumeByresumeSeq(String resumeSeq);
 
 }

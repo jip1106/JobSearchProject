@@ -10,7 +10,7 @@
 	           <div class="col-md-12">
 	              <!-- Logo -->
 	              <div class="logo">
-	                 <h1><a href="index.html">Bootstrap Admin Theme</a></h1>
+	                 <h1 style="color: white;">JobSearch Admin Login</h1>
 	              </div>
 	           </div>
 	        </div>

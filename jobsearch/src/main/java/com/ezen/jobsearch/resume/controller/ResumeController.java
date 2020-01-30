@@ -24,6 +24,7 @@ import com.ezen.jobsearch.hopework.model.HopeworkVO;
 import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.mycareer.model.MycareerService;
 import com.ezen.jobsearch.mycareer.model.MycareerVO;
+import com.ezen.jobsearch.resume.model.ResumeSearchVO;
 import com.ezen.jobsearch.resume.model.ResumeService;
 import com.ezen.jobsearch.resume.model.ResumeVO;
 
@@ -72,9 +73,36 @@ public class ResumeController {
 	
 	//인재검색
 	@RequestMapping(value="/resume/searchResume.do")
-	public String searchResume() {
+	public String searchResume(Model model,ResumeSearchVO resumeSearchVo) {
+		
+		List<Map<String, Object>> emp_list = resumeService.selectEmp();
+		List<Map<String,Object>> loca_list = resumeService.selectLoca();
+		List<Map<String,Object>> cate_list = resumeService.selectCate();
+		
+		List<Map<String,Object>> resume_list = resumeService.selectAllResume(resumeSearchVo);
+		
+		//System.out.println("resumeSearchVO : " + resumeSearchVo);
+		model.addAttribute("emp_list",emp_list);	//근무형태
+		model.addAttribute("loca_list",loca_list);	//지역
+		model.addAttribute("cate_list",cate_list);	//직종
+		model.addAttribute("resume_list",resume_list);	//이력서 리스트
+		
 		return "resume/searchResume";
 	}
+	
+	@RequestMapping(value="/resume/detailResume.do")
+	public String detailResume(@RequestParam String resumeSeq,Model model) {
+		
+		Map<String, Object> myResume = resumeService.selectResumeByresumeSeq(resumeSeq);
+		List<EducationVO> eduInfo = educationService.selectEduList(resumeSeq);
+		
+		model.addAttribute("myResume", myResume);
+		model.addAttribute("eduInfo",eduInfo);
+		
+		
+		return "resume/resumeDetail";
+	}
+	
 	
 	
 	//이력서 상세 등록 페이지 이동 박준일
@@ -161,14 +189,14 @@ public class ResumeController {
 			int ieducationSize = Integer.parseInt(educationSize);
 			
 			for(int i=0; i<ieducationSize;i++) {
-				System.out.println("ieducationSize :: " + ieducationSize + " /// i :: " + i );
+				//System.out.println("ieducationSize :: " + ieducationSize + " /// i :: " + i );
 				
 				educationVOList.getEducationVOList().get(i).setRefResumeseq(resumeSeq);
 				
 				if(i==ieducationSize-1) {
-					System.out.println("aa");
+					//System.out.println("aa");
 					educationVOList.getEducationVOList().get(i).setLastEducation("Y");
-					System.out.println(educationVOList.getEducationVOList().get(i).getLastEducation());
+					//System.out.println(educationVOList.getEducationVOList().get(i).getLastEducation());
 				}
 				
 				//logger.info("eduList.getEducationVOList() :: {} " , educationVOList.getEducationVOList());
@@ -206,7 +234,7 @@ public class ResumeController {
 							   @ModelAttribute EducationVO educationVOList,
 							   @RequestParam String educationSize) {
 		
-		System.out.println(resumeVo);
+		//System.out.println(resumeVo);
 		
 		//이력서 제목, 자기소개 제목, 자기소개 내용 업데이트
 		int resumeCnt = resumeService.updateResume(resumeVo);
@@ -223,7 +251,7 @@ public class ResumeController {
 		int mycareerCnt = mycareerService.updateMycareer(mycareerVo);
 		
 		//학력사항 등록 및 수정		
-		System.out.println("eduList ::: " + educationVOList.getEducationVOList());
+		//System.out.println("eduList ::: " + educationVOList.getEducationVOList());
 		
 		
 		//학력사항 데이터 insert
@@ -234,7 +262,6 @@ public class ResumeController {
 		
 		//학력정보수정
 		for(int i=0; i<ieducationSize;i++) {
-			System.out.println("ieducationSize :: " + ieducationSize + " /// i :: " + i );
 			
 			educationVOList.getEducationVOList().get(i).setRefResumeseq(resumeSeq);
 			
@@ -242,10 +269,9 @@ public class ResumeController {
 		
 				educationVOList.getEducationVOList().get(i).setLastEducation("Y");
 		
+			}else {
+				educationVOList.getEducationVOList().get(i).setLastEducation("N");
 			}
-			
-			
-			System.out.println("eduSeq ::: " + educationVOList.getEducationVOList().get(i).getEduSeq());
 			
 			if(educationVOList.getEducationVOList().get(i).getEduSeq() == 0) {	//등록
 				eduResult = educationService.insertEducation(educationVOList.getEducationVOList().get(i));	
@@ -253,7 +279,6 @@ public class ResumeController {
 				eduResult = educationService.updateEducation(educationVOList.getEducationVOList().get(i));
 			}
 		}
-		
 		
 		
 		

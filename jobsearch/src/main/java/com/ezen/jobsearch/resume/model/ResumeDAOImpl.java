@@ -107,6 +107,24 @@ public class ResumeDAOImpl implements ResumeDAO{
 		return cnt;
 	}
 
+	@Override
+	public List<Map<String, Object>> selectAllResume(ResumeSearchVO resumeSearchVo) {
+		// TODO Auto-generated method stub
+		List<Map<String,Object>> resumeList = sqlSession.selectList(namespace+"searchAllResume",resumeSearchVo);
+		
+	//	System.out.println("dao resumeList : " + resumeList);
+		return resumeList;
+		
+	}
+
+	@Override
+	public Map<String, Object> selectResumeByresumeSeq(String resumeSeq) {
+		//이력서 현황
+		Map<String,Object> resumeInfo = sqlSession.selectOne(namespace+"selectResumeByresumeSeq",resumeSeq);
+	//	System.out.println("resumeInfo :: " + resumeInfo);
+		return resumeInfo;
+	}
+
 
 	
 }

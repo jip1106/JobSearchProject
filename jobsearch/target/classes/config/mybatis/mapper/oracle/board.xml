@@ -15,8 +15,6 @@
 	<sql id="searchWhere">
 		<if test="searchKeyword!=null and searchKeyword != ''">
 			and
-			board_contents like '%' || #{searchKeyword} || '%'
-			or
 			board_title like '%' || #{searchKeyword} || '%'
 		</if>
 	</sql>
@@ -63,6 +61,14 @@
 	 <select id="selectByBoardSeq" parameterType="int" resultType="boardVo">
 	 	select * from tbl_board
 		where board_seq=#{boardSeq}
+	 </select>
+	 
+	 <select id="selectMainBoard" parameterType="boardVo" resultType="boardVo">
+	 	select * 
+		from
+		(select * from tbl_board where board_type=#{boardType}
+			order by board_seq desc)
+		where <![CDATA[rownum<=5]]>
 	 </select>
 	 
 	 <update id="updateBoard" parameterType="boardVo"> 
