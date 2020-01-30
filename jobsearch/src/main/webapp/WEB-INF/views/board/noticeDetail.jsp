@@ -4,7 +4,17 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 	<c:import url="/WEB-INF/views/include/header.jsp" />
-	
+	<style type="text/css">
+		.col-lg-8{
+			max-width: none;
+			flex: none;
+		}
+		
+		#noticeContents{
+			height: 500px;
+ 		    overflow: scroll;
+		}
+	</style>
 	<c:import url="/WEB-INF/views/include/headend.jsp" />
 
 <body>
@@ -44,8 +54,9 @@
         <hr>
 
         <!-- Post Content -->
-       
-        <p>${boardVo.boardContents }</p>
+       	<div id="noticeContents">
+        	<p>${boardVo.boardContents }</p>
+        </div>
         <hr>
     	<div class="card-footer">
             <a href="<c:url value='/board/list.do?boardType=1'/>" class="btn btn-primary">목록으로</a>

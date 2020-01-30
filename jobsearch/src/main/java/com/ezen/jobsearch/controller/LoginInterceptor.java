@@ -27,24 +27,28 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession();
 		MemberVO memberVo = (MemberVO)session.getAttribute("loginMember");
 		
-		
-		if(memberVo == null) {
-			System.out.println("request.getPathInfo()"+request.getPathInfo());
-			System.out.println("request.getRequestURI()" + request.getRequestURI());
-			System.out.println("request.getRequestURL()" + request.getRequestURL());
-			
-			String requestUri = request.getRequestURI();
-			String loginPath = "/member/login.do";
-			
-			if(requestUri.indexOf("admin") > 0 ) {
+		String loginPath="";
+		PrintWriter out = response.getWriter();
+		if(memberVo == null) {			
+			loginPath = "/member/login.do";			
+			if(request.getRequestURI().indexOf("admin") > 0 ) {
 				loginPath = "/admin/login.do";
 			}
-
 			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out = response.getWriter();
 			
 			out.print("<script type='text/javascript'>");
 			out.print("alert('로그인이 필요한 서비스 입니다.');");
+			out.print("location.href='" + request.getContextPath() + loginPath +"';");
+			out.print("</script>");
+						
+			return false;
+		}else if(memberVo!=null && !memberVo.getRegType().equals("0")) {
+			loginPath = "/admin/login.do";
+			
+			response.setContentType("text/html;charset=utf-8");
+			
+			out.print("<script type='text/javascript'>");
+			out.print("alert('관리자만 접근 가능합니다.');");
 			out.print("location.href='" + request.getContextPath() + loginPath +"';");
 			out.print("</script>");
 			
