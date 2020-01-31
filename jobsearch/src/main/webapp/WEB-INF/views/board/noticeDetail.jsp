@@ -143,7 +143,7 @@ img.menu {
   	<div class="content">
   		 <span class="content_span">${boardVo.boardContents }</span>
   	</div>
-  	<a href="<c:url value='/board/list.do?boardType=3'/>" class="tag_a">	
+  	<a href="<c:url value='/board/list.do?boardType=1'/>" class="tag_a">	
 				<div class="btn btn-primary_list">
 					<img class="menu" src="<c:url value='/resources/images/menu.png'/>">
 				</div>

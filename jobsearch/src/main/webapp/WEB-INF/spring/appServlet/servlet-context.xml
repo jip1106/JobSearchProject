@@ -41,7 +41,26 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/admin/**"></mapping>
+			<mapping path="/company/**"></mapping>
+			<mapping path="/member/mypageeditcheck.do"></mapping>
+			<mapping path="/member/mypageeditcheck.do"></mapping>
+			<mapping path="/member/mypageedit.do"></mapping>
+			<mapping path="/member/mypagerecentnotice.do"></mapping>
+			<mapping path="/member/mypagerecentnoticeListDel.do"></mapping>
+			<mapping path="/member/mypagebookmark.do"></mapping>			
+			<mapping path="/member/mypagebookmarkListDel.do"></mapping>			
+			<mapping path="/member/mypageresumeTest.do"></mapping>
+			<mapping path="/resume/**"></mapping>			
+			<mapping path="/apply/**"></mapping>			
+			<mapping path="/addScrap.do"></mapping>			
+			<mapping path="/delScrap.do"></mapping>			
+			<mapping path="/board/write.do"></mapping>			
+			
 			<exclude-mapping path="/admin/login.do"/>
+			<exclude-mapping path="/company/companydetail.do"/>
+			<exclude-mapping path="/company/KakaoMap.do"/>
+			<exclude-mapping path="/resume/searchResume.do"/>
+			<exclude-mapping path="/resume/detailResume.do"/>
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>

@@ -502,52 +502,7 @@ public class MemberController {
   		
 			return "common/message";
   		}
-		
-  		/*
-  		@RequestMapping(value="/member/mypageedit.do", method = RequestMethod.POST)
-  		public String mypageedit_post(@ModelAttribute MemberVO vo, 
-  				HttpSession session,
-  				@RequestParam String memberPwd, 
-  				@RequestParam String memberPwd2, Model model) {
-  			
-  			MemberVO memberVo=(MemberVO) session.getAttribute("loginMember");
-  			MemberVO memberVo2 = memberService.selectMember(memberVo.getMemberId(), memberVo.getRegType());
-  			
-  			String memberId = memberVo.getMemberId();	
-  			//String genderType = memberVo.getGenderType();	
-  			
-  			vo.setMemberId(memberId);
-  			//vo.setGenderType(genderType);
-  			
-  			
-  			logger.info("회원수정처리 vo={}",vo);
-  			int cnt = 0;
-  			if(StringUtils.isEmpty(memberPwd)) {
-  				vo.setMemberPwd(memberVo2.getMemberPwd());
-  				cnt = memberService.updateMember(vo);
-  			} else if (StringUtils.equals(memberPwd, memberPwd2)){
-  				String Password = passwordEncoder.encode(memberPwd);
-  				memberVo.setMemberPwd(Password);
-  				cnt = memberService.updateMember(vo);
-  			}
-  			
-  			String msg="", url="";
-  			
-  			if(cnt>0) {
-  				msg="회원정보 수정되었습니다.";
-  				url="/member/mypagerecentnotice.do";
-  			}else {	
-  				msg="회원정보 수정 실패!";
-  				url="/member/mypageedit.do";
-  			}	
-  			
-  			model.addAttribute("msg", msg);
-  			model.addAttribute("url", url);
-  			
-  			return "common/message";
-  		}*/
-		
-		
+		  			
 		//마이페이지 - 이력서
 		@RequestMapping("/member/mypageresume.do")
 		public String mypageresume_get(HttpSession session, HttpServletRequest request, Model model) {
