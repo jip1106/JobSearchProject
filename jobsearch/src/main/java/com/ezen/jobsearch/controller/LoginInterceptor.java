@@ -27,10 +27,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session = request.getSession();
 		MemberVO memberVo = (MemberVO)session.getAttribute("loginMember");
 		
-		String loginPath="";
+		String loginPath="/member/login.do";
 		PrintWriter out = response.getWriter();
-		if(memberVo == null) {			
-			loginPath = "/member/login.do";			
+		
+		//로그인 안했을 때
+		if(memberVo==null) {
 			if(request.getRequestURI().indexOf("admin") > 0 ) {
 				loginPath = "/admin/login.do";
 			}
@@ -42,16 +43,46 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			out.print("</script>");
 						
 			return false;
-		}else if(memberVo!=null && !memberVo.getRegType().equals("0")) {
-			loginPath = "/admin/login.do";
 			
+		//로그인은 했지만 관리자가 아니면서 요청이 관리자일때
+		}else if(request.getRequestURI().indexOf("admin") > 0 && !memberVo.getRegType().equals("0")) {
+			loginPath = "/admin/login.do";
+		
 			response.setContentType("text/html;charset=utf-8");
 			
 			out.print("<script type='text/javascript'>");
 			out.print("alert('관리자만 접근 가능합니다.');");
 			out.print("location.href='" + request.getContextPath() + loginPath +"';");
 			out.print("</script>");
+		
+			return false;
+		
+		//로그인은 했지만 일반회원이 아니면서 요청이 개인회원용일때	
+		}else if(!memberVo.getRegType().equals("1") 
+				&& request.getRequestURI().indexOf("mypage") > 0 
+				|| request.getRequestURI().indexOf("Scrap") > 0
+				|| request.getRequestURI().indexOf("resume") > 0
+				|| request.getRequestURI().indexOf("apply") > 0) {
 			
+			response.setContentType("text/html;charset=utf-8");
+			
+			out.print("<script type='text/javascript'>");
+			out.print("alert('일반회원으로  로그인하세요.');");
+			out.print("location.href='" + request.getContextPath() + loginPath +"';");
+			out.print("</script>");
+			
+			return false;
+		
+		//로그인은 했지만 기업회원이 아니면서 요청이 company일때
+		}else if(!memberVo.getRegType().equals("2") && request.getRequestURI().indexOf("company") > 0) {
+						
+			response.setContentType("text/html;charset=utf-8");
+			
+			out.print("<script type='text/javascript'>");
+			out.print("alert('기업회원으로  로그인하세요.');");
+			out.print("location.href='" + request.getContextPath() + loginPath +"';");
+			out.print("</script>");
+		
 			return false;
 		}
 		

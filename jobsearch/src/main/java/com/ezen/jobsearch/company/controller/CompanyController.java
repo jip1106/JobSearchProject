@@ -359,15 +359,17 @@ public class CompanyController {//
   		
   	}
   	@RequestMapping("/companydetail.do")
-  	public void companydetail(@RequestParam int comSeq,Model model) {
+  	public void companydetail(@RequestParam(defaultValue = "0") int comSeq, Model model) {
   		
   		logger.info("회사 상세페이지 파라미터 comSeq={}",comSeq);
-  		
+  		if(comSeq==0) {
+  			return;
+  		}
   		CompanyVO companyVo=companyService.CompanyDetail(comSeq);
   		int refMemberseq=companyVo.getRefMemberseq();
   		
   		MemberVO memberVo=mService.selectComMem(refMemberseq);
-  		
+ 		
   		model.addAttribute("memberVo",memberVo);
   		model.addAttribute("companyVo",companyVo);  	
   		
