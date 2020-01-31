@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -52,12 +52,18 @@ td{
 	padding-left: 15px;
 }
 #td1{
-	width: 80%;
+	width: 75%;
 }
 #td2{
-	width: 19%;
+	width: 24%;
 }
 </style>
+<script type="text/javascript">
+	function resumeView(resumeSeq){
+		window.open("<c:url value='/resume/detailResume.do?resumeSeq='/>"+resumeSeq, resumeSeq+"번 이력서 상세보기", 
+				"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
+	}
+</script>
 
 </head>
 <body>
@@ -80,9 +86,9 @@ td{
 		<c:forEach var="vo" items="${list}">
 			<tr>
 				<td id="td1">
-					${vo.resumeTitle}
+					<a href="#" onclick="resumeView(${vo.resumeSeq})">${vo.resumeTitle}</a>
 				</td id="td2">
-				<td>${vo.regDate}</td>
+				<td><fmt:formatDate value="${vo.regDate}" pattern="yyyy-MM-dd"/> </td>
 			</tr>
 		</c:forEach>
 	</table>
