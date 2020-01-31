@@ -292,20 +292,7 @@ public class ResumeController {
 		int deleteCnt = resumeService.deleteResume(resumeSeq);
 		
 		return "redirect:/member/mypageresumeTest.do";
-	}
-	
-	//회사에서 이력서 확인 주우진
-	@RequestMapping("/resume/comResumeDetail.do")
-	public void comResumeDetail(@RequestParam String resumeSeq,Model model) {
-		logger.info("지원자 이력서 확인페이지 resumeSeq={}",resumeSeq);
-		
-		Map<String, Object> myResume = resumeService.selectResumeByresumeSeq(resumeSeq);
-		List<EducationVO> eduInfo = educationService.selectEduList(resumeSeq);
-		
-		model.addAttribute("myResume", myResume);
-		model.addAttribute("eduInfo",eduInfo);		
 	}	
-	
 	
 	
 	
