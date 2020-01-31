@@ -55,6 +55,8 @@
 			<mapping path="/addScrap.do"></mapping>			
 			<mapping path="/delScrap.do"></mapping>			
 			<mapping path="/board/write.do"></mapping>			
+			<mapping path="/board/edit.do"></mapping>			
+			<mapping path="/board/delete.do"></mapping>			
 			
 			<exclude-mapping path="/admin/login.do"/>
 			<exclude-mapping path="/company/companydetail.do"/>
