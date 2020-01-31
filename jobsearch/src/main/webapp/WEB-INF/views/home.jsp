@@ -364,7 +364,7 @@ img.card-img-top {
 			          <div class="img_test"> 
 			         	 	<img class="card-img-top" src="<c:url value='/resources/upload_images/${announceMentVo.comRenameimage }'/>" alt="${announceMentVo.comName } 로고">
 			          </div>	
-			            <div class="comName">${announceMentVo.comName }</div>
+			            <div class="comName"><a onclick="comView(${announceMentVo.comSeq })">${announceMentVo.comName }</a></div>
 		            	<div class="annTitle">
 			          		<c:if test="${fn:length(announceMentVo.annTitle)>17}">
 								${fn:substring(announceMentVo.annTitle, 0, 17)}...
@@ -474,9 +474,7 @@ img.card-img-top {
 					 <div class="img_test"> 
 			         	 	<img class="card-img-top" src="<c:url value='/resources/upload_images/${announceMentVo.comRenameimage }'/>" alt="${announceMentVo.comName } 로고">
 			          </div>		
-			            <div class="comName">
-					            ${announceMentVo.comName }
-			            </div>
+			            <div class="comName"><a onclick="comView(${announceMentVo.comSeq })">${announceMentVo.comName }</a></div>
 			          	<div class="annTitle">
 				          		<c:if test="${fn:length(announceMentVo.annTitle)>17}">
 									${fn:substring(announceMentVo.annTitle, 0, 17)}...
