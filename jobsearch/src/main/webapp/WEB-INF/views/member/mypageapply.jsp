@@ -113,7 +113,7 @@ button.btn_edit_complete {
     border: none;
     border-radius: 5px;
 }
-button.btn_delete {
+/* button.btn_delete {
     display: inline-block;
     margin-left: 4px;
     width: 21px;
@@ -125,6 +125,18 @@ button.btn_delete {
     position: relative;
     top: -21px;
     left: 39.2em;
+} */
+button.btn_delete {
+    width: 101px;
+    height: 27px;
+    border: 1px solid #ffffff;
+    background: #e8e8e8;
+    position: relative;
+    top: -17px;
+    left: 494px;
+    padding: 4px 0;
+    border-radius: 5px;
+    z-index: 10;
 }
 
 span.X {
@@ -233,12 +245,12 @@ span.day_span {
             <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd" />
             </span>
             <button type="button" class="btn_edit_complete" onclick="#">나의 이력서</button>
-           <div class="wrap_manage_btn">
-            <span id=remain_time>${item.TIME}</span> <span class=day_span>일</span>
             	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
             	onclick="button_event(${item.APPLYSEQ})">
             		<span class="X">지원 취소</span>
            		</button>
+           <div class="wrap_manage_btn">
+            <span id=remain_time>${item.TIME}</span> <span class=day_span>일</span>
             </div> 
            </div>
 		</div>

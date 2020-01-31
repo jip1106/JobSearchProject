@@ -153,14 +153,12 @@ hr.bottom_hr {
     padding: 10px 21px;
 } 
 
-
-
 .img_test {
-    margin: auto;
     width: 230px;
     height: 70px;
-    margin-bottom: 18px;
-    margin-top: 6px;
+    margin-bottom: 24px;
+    margin-top: -1px;
+    text-align: center;
 }
 .comName {
     font-size: 17px;
@@ -178,7 +176,7 @@ span.annDday {
     color: #FF5722;
     text-align: right;
     position: relative;
-    left: 174px;
+    left: 166px;
     top: -21px;
 }
 .annTitle {
@@ -281,9 +279,10 @@ img.img-join {
 img.best_img {
     resize: both;
     height: 65px;
+    width: 53px;
     position: relative;
-    top: -12px;
-    left: 177px;
+    top: -10px;
+    left: 171px;
     z-index: 10;
 }
 span.more {
@@ -329,6 +328,10 @@ span.jobsearch {
     font-size: 15px;
     color: #8a8a8a;
 }
+img.card-img-top {
+    max-width: 190px;
+    max-height: 95px;
+}
 /* 190X95 */
 </style>
 
@@ -339,8 +342,7 @@ span.jobsearch {
   <!-- Page Content -->
   <div class="container" id="main_home">
 
-
-    <!-- Portfolio Section -->
+	<!-- 프리미엄 -->
     <div class="left_premium">
      <div class="text_div_p">
 
@@ -360,7 +362,7 @@ span.jobsearch {
 			        <div class="card_layout_p" onclick="annView(${announceMentVo.annSeq})" style="cursor: pointer;">
 		          <div class="card_inner_p">
 			          <div class="img_test"> 
-			         	 <a href="#"><img class="card-img-top" src="<c:url value='/resources/upload_images/${announceMentVo.comRenameimage }'/>" alt="${announceMentVo.comName } 로고"></a>
+			         	 	<img class="card-img-top" src="<c:url value='/resources/upload_images/${announceMentVo.comRenameimage }'/>" alt="${announceMentVo.comName } 로고">
 			          </div>	
 			            <div class="comName">${announceMentVo.comName }</div>
 		            	<div class="annTitle">
@@ -371,13 +373,19 @@ span.jobsearch {
 			          			${announceMentVo.annTitle }
 							</c:if>	
 			          	</div>		
-			          	<span class="annDday">D-${announceMentVo.annDday }</span>				   	         
+			          	<span class="annDday">
+			          	<c:if test="${fn:length(announceMentVo.annDday)>0 }">
+ 				          	D-${fn:substring(announceMentVo.annDday,0,5)}
+			          	</c:if>
+			            </span>			   	         
 			          	<img class="best_img" src="<c:url value='/resources/images/best.png'/>">
 		          </div>
 			        </div>
      		</c:forEach>
 		 </c:if>  
 		 </div>
+		 
+		 <!-- 로그인, 회원가입 버튼 -->
 		 <div class="box_outer">
 		 <c:if test="${empty sessionScope.loginMember }">
 		 	<div id="login">
@@ -413,6 +421,7 @@ span.jobsearch {
 		 			</a>
 		 		</div>
 		 
+		 <!-- 공지사항 -->
 	 		<div class="ann_cont_div">
 		 		<c:if test="${empty boardList }">
 		 			<div class="board_span">목록이 존재하지 않습니다.</div>
@@ -442,16 +451,15 @@ span.jobsearch {
 		 </div>
     </div>
 
-    <!-- /.row -->
 
     <hr id="line_hr">
     
+    	<!-- 최신 공고  -->
     <div class="text_div">
    		 <span class="text_title2">최근 올라온</span>
    		 <span class="text_title3">공고입니다!</span>
   	</div>
     <div class="row">
-    	<!-- 최신 공고  -->
     	<c:if test="${empty newAnnList }">
     		<div class="card mb-4">
         		<div class="card-body">
@@ -463,9 +471,9 @@ span.jobsearch {
         	<c:forEach var="announceMentVo" items="${newAnnList }">
 			      <div class="card_layout">
 			        <div  class="card_inner" onclick="annView(${announceMentVo.annSeq})" style="cursor: pointer;">
-					<div class="img_test"> 
-						<a href="#"><img class="card-img-top" src="<c:url value='/resources/upload_images/${announceMentVo.comRenameimage }'/>" alt="${announceMentVo.comName } 로고"></a>
-					</div> 	
+					 <div class="img_test"> 
+			         	 	<img class="card-img-top" src="<c:url value='/resources/upload_images/${announceMentVo.comRenameimage }'/>" alt="${announceMentVo.comName } 로고">
+			          </div>		
 			            <div class="comName">
 					            ${announceMentVo.comName }
 			            </div>
@@ -477,7 +485,11 @@ span.jobsearch {
 				          			${announceMentVo.annTitle }
 								</c:if>	
 			          	</div>			
-			          	<div class="annDday">D-${announceMentVo.annDday }</div>			
+			          	<div class="annDday">
+			          	<c:if test="${fn:length(announceMentVo.annDday)>0 }">
+ 				          	 	D-${fn:substring(announceMentVo.annDday,0,5)}
+			          	</c:if>
+			            </div>			
 			          	        
 			        </div>
 			      </div>

@@ -110,7 +110,9 @@ img.menu {
     resize: both;
     height: 28px;
     position: relative;
-    top: -1px;
+    top: -2px;
+    width: 45px;
+}
 </style>
 <body>
 

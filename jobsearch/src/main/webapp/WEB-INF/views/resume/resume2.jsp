@@ -208,10 +208,8 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 	       	<span class="span_notice_title">기본정보 </span>
 	        <div class="card mb-4-bt">
 	        
-		        <div class="resume_photo2" >
-		            <a href="#" class="box_photo2" data-api_type="layer" data-api_id="basic_photo">
-		               +<br><span>사진추가</span>  
-		            </a>
+		        <div class="resume_photo2">
+		        	<img class="img-photo" src="<c:url value='/resources/upload_images/${sessionScope.loginMember.profileRenameimg }'/>" alt="${sessionScope.loginMember.memberName } 로고">
 		    	</div>
 	        
 	        <div class="row mb-4 mt-4">
