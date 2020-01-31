@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ezen.jobsearch.board.model.BoardService;
 import com.ezen.jobsearch.board.model.BoardVO;
+import com.ezen.jobsearch.comment.model.CommentService;
+import com.ezen.jobsearch.comment.model.CommentVO;
 import com.ezen.jobsearch.common.PaginationInfo;
 import com.ezen.jobsearch.common.ProjectUtil;
 import com.ezen.jobsearch.common.SearchVO;
@@ -41,6 +43,9 @@ public class BoardController {
 	
 	@Autowired
     private BCryptPasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private CommentService commentService; 
 	
 	//사용자(공지사항, FAQ 목록, 자유게시판 목록)
 	@RequestMapping(value = "/board/list.do")
@@ -223,7 +228,7 @@ public class BoardController {
 		
 	}
 	
-	//글 쓰기
+	
 	@RequestMapping(value ="/board/write.do", method = RequestMethod.POST)
 	public String freeWrite_post(@ModelAttribute BoardVO boardVo, Model model) {
 		logger.info("게시판({}) 등록 처리 [1:공지사항 2:FAQ 3:자유게시판]", boardVo.getBoardType());
@@ -242,6 +247,42 @@ public class BoardController {
 			return "common/message";
 			
 	}	
+	
+	//댓글달기
+	@RequestMapping(value ="/board/replyWrite.do", method = RequestMethod.GET)
+	public String reply_get(@RequestParam String boardSeq, 
+			@RequestParam String boardType, Model model) {
+		
+		String msg="잘못된 url입니다.", url="/home.do";
+		if(boardType.equals("3")) {
+			return "board/replyWrite";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+		
+		return "common/message";
+			
+	}
+	//댓글달기
+	@RequestMapping(value ="/board/replyWrite.do", method = RequestMethod.POST)
+	public String reply_post(@ModelAttribute CommentVO commentVo, 
+			@ModelAttribute BoardVO boardVo, Model model) {
+		logger.info("댓글내용", commentVo.getCommentDesc());
+		int cnt=commentService.insertComment(commentVo);
+		
+		String msg="등록 실패", url="/admin/home.do";
+		if(cnt>0) {
+			if(boardVo.getBoardType().equals("3")) { 
+				msg="댓글이 등록되었습니다.";
+				url="/board/list.do?boardType=3";
+			}
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+			
+			return "common/message";
+		
+	}
 	
 	//admin(등록 화면)
 	@RequestMapping(value = "/admin/board/write.do", method = RequestMethod.GET)

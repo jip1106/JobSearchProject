@@ -176,7 +176,7 @@ span.annDday {
     color: #FF5722;
     text-align: right;
     position: relative;
-    left: 174px;
+    left: 166px;
     top: -21px;
 }
 .annTitle {
@@ -279,10 +279,10 @@ img.img-join {
 img.best_img {
     resize: both;
     height: 65px;
-   	width:53px;
+    width: 53px;
     position: relative;
-    top: -12px;
-    left: 177px;
+    top: -10px;
+    left: 171px;
     z-index: 10;
 }
 span.more {
@@ -373,7 +373,11 @@ img.card-img-top {
 			          			${announceMentVo.annTitle }
 							</c:if>	
 			          	</div>		
-			          	<span class="annDday">D-${announceMentVo.annDday }</span>				   	         
+			          	<span class="annDday">
+			          	<c:if test="${fn:length(announceMentVo.annDday)>0 }">
+ 				          	D-${fn:substring(announceMentVo.annDday,0,5)}
+			          	</c:if>
+			            </span>			   	         
 			          	<img class="best_img" src="<c:url value='/resources/images/best.png'/>">
 		          </div>
 			        </div>
@@ -481,7 +485,11 @@ img.card-img-top {
 				          			${announceMentVo.annTitle }
 								</c:if>	
 			          	</div>			
-			          	<div class="annDday">D-${announceMentVo.annDday }</div>			
+			          	<div class="annDday">
+			          	<c:if test="${fn:length(announceMentVo.annDday)>0 }">
+ 				          	 	D-${fn:substring(announceMentVo.annDday,0,5)}
+			          	</c:if>
+			            </div>			
 			          	        
 			        </div>
 			      </div>

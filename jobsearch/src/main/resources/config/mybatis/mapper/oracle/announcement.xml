@@ -111,7 +111,8 @@
 	<!-- 최신 공고 조회 -->
 	<select id="selectNewAnn" resultType="announceMentVo">
 		select * from(        
-	        select c.com_seq, c.com_name, a.ann_seq, a.ann_title, a.ann_endt, (a.ann_endt-a.ann_stdt) as annDday
+	        select c.com_seq, c.com_name, c.com_renameimage, a.ann_seq, a.ann_title, a.ann_endt, 
+	        trunc(to_char(ann_endt-sysdate),0) as annDday
 			from tbl_company c join tbl_announcement a
 			on c.com_seq =a.ref_companyseq
 			where a.ann_endt>sysdate
@@ -122,7 +123,8 @@
 	<!-- 프리미엄 공고 조회 -->
 	<select id="selectPremiumAnn" resultType="announceMentVo">
 		select * from(      
-		    select c.com_seq, c.com_name, c.com_renameimage, a.ann_seq, a.ann_title, a.ann_endt, (a.ann_endt-a.ann_stdt) as annDday
+		    select c.com_seq, c.com_name, c.com_renameimage, a.ann_seq, a.ann_title, a.ann_endt, 
+		    trunc(to_char(ann_endt-sysdate),0) as annDday
 		    from tbl_company c join tbl_announcement a
 		    on c.com_seq =a.ref_companyseq	        
 		    where ann_seq in(select ref_announcement from tbl_payment)

@@ -5,6 +5,17 @@
 
 <c:import url="/WEB-INF/views/include/header.jsp" />
 	
+<script type="text/javascript">
+$(function(){
+	$("button.btn.btn-primary_write").click(function(){
+		if($("textarea#input_3").val().length<1){
+			alert("내용을 입력해주세요!");
+			$("textarea#input_3").focus();
+			event.preventDefault();
+		}
+	})
+});
+</script>
 <style type="text/css">
 .unfold{
 	float: right;
@@ -17,8 +28,8 @@
     text-align: center;
     padding: 0.5em;
 }
-
 /*새로 추가   */
+
 .breadcrumb {
 	clear: both;
 }
@@ -39,8 +50,9 @@ button.btn.btn-primary_write {
     background-color: #5e87f1;
     border-color: #5e87f1;
 }
+
 h1#list_title {
-    margin-top: -12px;
+    margin-top: 7px;
     position: relative;
     top: 47px;
     font-size: 30px;
@@ -159,7 +171,7 @@ div#card-header {
     border-bottom: 0.5px solid #bdbdbd;
     padding: 16px 0px;
 }
-button.btn.btn-primary_write {
+button.btn.btn-primary_write {/*  */
     height: 42px;
     background-color: #5e87f1;
     border-color: #5e87f1;
@@ -169,27 +181,25 @@ button.btn.btn-primary_write {
     left: 650px;
     width: 71px;
 }
-div.btn.btn-primary_list {
+div.btn.btn-primary_list {/*  */
     height: 42px;
     background-color: #5e87f1;
     border-color: #5e87f1;
     margin-top: 0px;
     color: white;
     position: relative;
-    left: 497px;
+    left: 494px;
     width: 71px;
     padding: 8px 0px;
 }
-div.btn.btn-primary_reply {
-    height: 42px;
+.write_menu_div1 {/*  */
     background-color: #5e87f1;
-    border-color: #5e87f1;
-    margin-top: 0px;
-    color: white;
-    position: relative;
-    left: 497px;
-    width: 71px;
-    padding: 8px 0px;
+    width: 124px;
+    height: 42px;
+    float: left;
+    text-align: center;
+    padding: 9px 0;
+    margin-right: 7px;
 }
 input#input_1 {/*  */
     height: calc(1.5em + .75rem + 6px);
@@ -197,32 +207,18 @@ input#input_1 {/*  */
     margin-bottom: 7px;
     border-radius: 0;
 }
-div.write_menu_div11 {
-    font-size: 17px;
+div.write_menu_div11 {/*  */
+    font-size: 16px;
     color: white;
 }
-.write_menu_div2 {
-    background-color: #5e87f1;
-    width: 183px;
-    height: 51px;
-    text-align: center;
-    float: left;
-    padding: 12px 0;
-    margin-right: 14px;
-}
-input#input_2 {
+input#input_2 {/*  */
     height: calc(1.5em + .75rem + 6px);
     width: 81.8%;
-    margin-bottom: 11px;
+    margin-bottom: 7px;
     border-radius: 0;
 }
-input#input_5 {
-    height: calc(1.5em + .75rem + 6px);
-    width: 72%;
-    margin-bottom: 11px;
-}
-div.write_menu_div22 {
-    font-size: 17px;
+div.write_menu_div22 {/*  */
+    font-size: 16px;
     color: white;
 }
 
@@ -238,7 +234,7 @@ div.write_menu_div22 {
     padding: 136px 0;
     margin-right: 14px;
 }
-textarea#input_3 {
+textarea#input_3 {/*  */
     height: calc(1.5em + .75rem + 280px);
     width: 100%;
     margin-bottom: 11px;
@@ -247,12 +243,7 @@ textarea#input_3 {
 div.write_menu_div33 {
     font-size: 18px;
     color: white;
-    margin-top: 163px;
-}
-div.write_menu_div44 {
-    font-size: 18px;
-    color: white;
-    margin-top: 168px;
+    margin-top: 147px;
 }
 hr.line1 {
     margin: 0;
@@ -267,56 +258,6 @@ hr.line2 {
     top: 15px;
     color: white;
     border: 1px solid white;
-}
-hr.line3 {
-    margin: 0;
-    position: relative;
-    top: 152px;
-    color: white;
-    border: 1px solid white;
-}
-.write_menu_div1 {/*  */
-    background-color: #5e87f1;
-    width: 124px;
-    height: 42px;
-    float: left;
-    text-align: center;
-    padding: 9px 0;
-    margin-right: 7px;
-}
-.write_menu_div2 {/*  */
-    background-color: #5e87f1;
-    width: 124px;
-    height: 42px;
-    float: left;
-    text-align: center;
-    padding: 9px 0;
-    margin-right: 7px;
-}
-.write_menu_div3 {/*  */
-    background-color: #5e87f1;
-    width: 124px;
-    height: 42px;
-    float: left;
-    text-align: center;
-    padding: 9px 0;
-    margin-right: 7px;
-}
-span.top_regt {
-    position: relative;
-    left: 30.4em;
-    top: -1.8em;
-    font-size: 17px;
-    color: #5e87f1;
-    font-weight: bold;
-}
-span.top_reg {
-    position: relative;
-    left: 29em;
-    top: -1.75em;
-    font-size: 18px;
-    font-weight: bold;
-    color: #b9b9b9;
 }
 .FreeTitle {
     margin-bottom: 8px;
@@ -349,7 +290,7 @@ span.text_span3 {
 }
 hr.title_hr {
     border: 1px solid #4876ef;
-    margin: 0px 0 -3px 0;
+    margin: 0px 0 23px 0;
 }
 a.tag_a {
     color: white;
@@ -362,6 +303,7 @@ img.menu {
     top: -2px;
     width: 45px;
 }
+
 </style>
 	
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -369,49 +311,38 @@ img.menu {
 <div class="container" id="container">
 	<div class="FreeTitle">
 	    <span class="Jobsearch">자유게시판</span>
-	    <span class="text_span1">상세보기</span>
+	    <span class="text_span1">댓글</span>
     </div>
      <hr class="title_hr">
-	<span class=top_regt>등록일:</span>
-	<span class=top_reg>
-		 <fmt:formatDate value="${boardVo.regDate }" pattern="yyyy.MM.dd" />
-	</span>
 	<form name="frmSearch" method="post"
-		action="<c:url value='/board/write.do'/>">
+		action="<c:url value='/board/replyWrite.do'/>">
 		<fieldset>
 			<div class="write_menu1">
 				<div class="write_menu_div1">
 					<div class="write_menu_div11">작성자</div>
 				</div>
-				<input type="text" id="input_1" class="form-control" name="memberName" value="${boardVo.boardSeq }" readonly placeholder="작성자"> 
-				<div class="write_menu_div1">
-					<div class="write_menu_div22">제목</div>
-				</div>
-				<input type="text" id="input_2" class="form-control" name="boardTitle" value="${boardVo.boardTitle }" placeholder="제목" readonly>
-				<textarea style="resize: none" id="input_3" class="form-control" name="boardContents" placeholder="내용" readonly>${boardVo.boardContents }</textarea>
+				<input type="text" id="input_1" class="form-control" name="memberName" value="${sessionScope.loginMember.memberName}" readonly placeholder="작성자"> 
+				<textarea style="resize: none" id="input_3" class="form-control" name="boardContents" placeholder="내용"></textarea>
 				<input type="hidden" id="input_3" class="form-control" name="boardType" value="3"> 
-				<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="">
+				<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="${loginMember.memberSeq }">
+				<input type="hidden" id="input_6" class="form-control" name="hits" value="1"> 
 			</div>
 		</fieldset>
-	 	 <%-- <c:if test="${boardVo.refMemberseq}==${sessionScope.loginMember.Memberseq}" >
-		 	<button type="submit" class="btn btn-primary_write">수정</button>
-		 </c:if> --%> 
-		 	
- 		<a href="<c:url value='/board/list.do?boardType=3'/>" class="tag_a">	
+		<button type="submit" class="btn btn-primary_write">등록</button>
+		<%-- <button class="btn btn-primary_list" onclick="location.href = '<c:url value='/board/freelist.do'/>'">목록</button> --%>
+		
+		<a href="<c:url value='/board/list.do?boardType=3'/>" class="tag_a">	
 				<div class="btn btn-primary_list">
 					<img class="menu" src="<c:url value='/resources/images/menu.png'/>">
 				</div>
 		</a>
- 		<a href="<c:url value='/board/replyWrite.do?boardType=3&boardSeq=${boardVo.boardSeq }'/>" class="tag_a_reply">	
-				<div class="btn btn-primary_reply">
-					댓글
-				</div>
-		</a>
+	
 	</form>
+
 </div>
 
 
-	<c:import url="/WEB-INF/views/include/navi.jsp" />
+<c:import url="/WEB-INF/views/include/navi.jsp" />
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	
 </body>
