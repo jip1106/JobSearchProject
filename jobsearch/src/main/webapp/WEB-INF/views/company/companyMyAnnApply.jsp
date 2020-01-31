@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -30,6 +31,9 @@
 	font-weight:bold;
 	font-size : 40px;
 	color: white;
+}
+table{
+	width: 500px;
 }
 table tr td{
 	border: .25px solid grey;
@@ -78,7 +82,7 @@ td{
 				<td id="td1">
 					${vo.resumeTitle}
 				</td id="td2">
-				<td>${vo.regdate}</td>
+				<td>${vo.regDate}</td>
 			</tr>
 		</c:forEach>
 	</table>
