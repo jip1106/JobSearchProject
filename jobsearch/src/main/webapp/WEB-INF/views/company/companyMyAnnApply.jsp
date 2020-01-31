@@ -23,34 +23,66 @@
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
 <style type="text/css">
+#headB{
+	background: #5e87f1;
+}
+#Title{
+	font-weight:bold;
+	font-size : 40px;
+	color: white;
+}
+table tr td{
+	border: .25px solid grey;
+	width: 200px;
+}
+tr{
+	height: 30px;
 
+}
+#tr1{
+	background: #1b00ff1f;
+	font-weight: bold;
+	color: #000000a3;	
+}
+td{
+	padding-left: 15px;
+}
+#td1{
+	width: 80%;
+}
+#td2{
+	width: 19%;
+}
 </style>
 
 </head>
 <body>
-	<h1>지원자 리스트</h1>
+<div id="applyList" align="center">
+	<div id="headB">		
+		<h2 id="Title">지원자 리스트</h2>
+	</div>
 	<table>
-		<tr>
-			<td>이력서 제목</td>
-			<td>지원날짜</td>
-			<td></td>
+		<tr id="tr1">
+			<td id="td1">이력서 제목</td>			
+			<td id="td2">지원 날짜</td>
 		</tr>
 		<c:if test="${empty list}">
 		<tr>
-			<td colspan="2">
+			<td colspan="2" align="center">
 			 	아직 아무도 지원하지않았어요..
 			</td>
 		</tr>		
 		</c:if>
 		<c:forEach var="vo" items="${list}">
 			<tr>
-				<td>
+				<td id="td1">
 					${vo.resumeTitle}
-				</td>
-				<td>${vo.introduceTitle }</td>
+				</td id="td2">
+				<td>${vo.regdate}</td>
 			</tr>
 		</c:forEach>
 	</table>
+</div>
 </body>
 
 </html>
