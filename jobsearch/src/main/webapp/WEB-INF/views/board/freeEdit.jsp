@@ -394,8 +394,20 @@ img.menu {
     height: 28px;
     position: relative;
     top: -1px;
+}
+div.btn.btn-primary_reply {
+    height: 42px;
+    background-color: #5e87f1;
+    border-color: #5e87f1;
+    margin-top: 0px;
+    color: white;
+    position: relative;
+    left: 576px;
+    width: 71px;
+    padding: 8px 0px;
+}
 </style>
-</style>
+
 	
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 
@@ -437,7 +449,11 @@ img.menu {
 		</fieldset>
 		<div class="button_group">
 			<button type="submit" class="btn btn-primary_edit">수정</button>
-			<button class="btn btn-primary_write">댓글</button>
+			<a href="<c:url value='/board/replyWrite.do?boardType=3&boardSeq=${boardVo.boardSeq }'/>" class="tag_a_reply">	
+				<div class="btn btn-primary_reply">
+					댓글
+				</div>
+			</a>
 			<a href="<c:url value='/board/list.do?boardType=3'/>" class="tag_a">	
 				<div class="btn btn-primary_list">
 					<img class="menu" src="<c:url value='/resources/images/menu.png'/>">
