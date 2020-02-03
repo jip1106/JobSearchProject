@@ -261,6 +261,7 @@ public class MemberController {
 	public @ResponseBody int sendPwdMail(@RequestParam(value="memberId") String memberId) {
 		
 		String randomPwd = memberService.sendRandomPassword(memberId);
+		logger.info("randomPwd :: {} ",randomPwd);
 		
 		
 		int updateCnt = 0;
@@ -482,7 +483,8 @@ public class MemberController {
   	  			cnt = memberService.updateMember(vo);
   			} else if (StringUtils.equals(memberPwd, memberPwd2)){
 	  			String Password = passwordEncoder.encode(memberPwd);
-  	  			memberVo.setMemberPwd(Password);
+  	  			vo.setMemberPwd(Password);
+  	  			//박준일 수정
   	  			cnt = memberService.updateMember(vo);
   			}
 	  	  			

@@ -41,6 +41,9 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			out.print("alert('로그인이 필요한 서비스 입니다.');");
 			out.print("location.href='" + request.getContextPath() + loginPath +"';");
 			out.print("</script>");
+			
+			out.flush();
+			out.close();
 						
 			return false;
 			
