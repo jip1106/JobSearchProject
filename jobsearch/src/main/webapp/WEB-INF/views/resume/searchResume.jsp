@@ -100,8 +100,12 @@ td.empty_resu {
 	}
 	
 	function resumeDetail(resumeSeq){
-		window.open("<c:url value='/resume/detailResume.do?resumeSeq='/>"+resumeSeq, resumeSeq+"번 공고 상세보기", 
-		"width=1050, height=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no");
+		if(${sessionScope.loginMember.regType == '2' || sessionScope.loginMember.regType == '0'}){
+			window.open("<c:url value='/resume/detailResume.do?resumeSeq='/>"+resumeSeq, resumeSeq+"번 공고 상세보기", 
+			"width=1050, height=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no");
+		}else{
+			alert('기업회원 사용자만 볼 수 있습니다.');
+		}
 		event.stopPropagation();
 		event.preventDefault();
 		
