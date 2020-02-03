@@ -51,19 +51,25 @@ span#name_text {
 }
 h2.mt-4.mb-3 {
     font-size: 41px;
+    color:#222;
+    text-decoration: none;
 }
 
 .card.mb-4-bt-edit {
     padding: 26px 29px 16px 29px;
     margin-bottom: 5px;
 }
+#companymypageMain:hover{
+	text-decoration: none;
+}
+
 </style>
     
    <!-- Page Content -->
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h2 class="mt-4 mb-3">기업 MyPage</h2>
+    <a id="companymypageMain" href="<c:url value='/company/companyMyAnnList.do'/>"><h2 class="mt-4 mb-3">기업 MyPage</h2></a>
 
     <ol class="breadcrumb">
     <span id="member_type">기업회원</span>

@@ -23,12 +23,16 @@
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
 <style type="text/css">
-
+h1{
+	background: #5e87f1;
+	color:white;
+}
 </style>
-
 </head>
 <body>
+	<div align="center">
 	<h1>결제가 완료 되었습니다.</h1>
+	</div>
 </body>
 
 </html>

@@ -447,15 +447,14 @@ span.point-2t_age {
 		
 	
 	<span id="sectionTitle">추가사항</span>	
-		<div class="card mb-4-bt-edit">						
-			<div class="row mb-4 mt-4_text">									
+		<div class="card mb-4-bt-edit">	
+				<div class="row mb-4 mt-4_text">			
 				<div class="col-lg-8 form-label-group mb-2">
 					<textarea id="Insert_text" name="annDesc" class="form-control" >${annVo.annDesc}</textarea>
-				
 				</div>
-			</div>			
- 		</div>		
- 		
+			</div>
+			
+ 		</div>
  		
  		
  	<span id="sectionTitle">공고 게시기간</span>
