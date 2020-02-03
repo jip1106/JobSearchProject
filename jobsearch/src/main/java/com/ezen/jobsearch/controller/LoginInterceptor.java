@@ -54,12 +54,11 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			out.print("alert('관리자만 접근 가능합니다.');");
 			out.print("location.href='" + request.getContextPath() + loginPath +"';");
 			out.print("</script>");
-		
+
 			return false;
 		
 		//로그인은 했지만 일반회원이 아니면서 요청이 개인회원용일때	
 		}else if(!memberVo.getRegType().equals("1") && (request.getRequestURI().indexOf("mypage") > 0 && request.getRequestURI().indexOf("com") == 0 
-				|| request.getRequestURI().indexOf("Scrap") > 0
 				|| request.getRequestURI().indexOf("resume") > 0
 				|| request.getRequestURI().indexOf("apply") > 0) ) {
 			
@@ -69,7 +68,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			out.print("alert('일반회원으로  로그인하세요.');");
 			out.print("location.href='" + request.getContextPath() + loginPath +"';");
 			out.print("</script>");
-									
+
 			return false;
 		
 		//로그인은 했지만 기업회원이 아니면서 요청이 company일때
