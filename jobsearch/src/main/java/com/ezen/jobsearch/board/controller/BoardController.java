@@ -94,7 +94,7 @@ public class BoardController {
 	//사용자 게시판 상세
 	@RequestMapping(value = "/board/detail.do")
 	public String detail(@RequestParam String boardType, 
-						 @RequestParam(defaultValue = "0") int boardSeq,
+						 @RequestParam(defaultValue = "0") int boardSeq,  @ModelAttribute SearchVO searchVo,
 					  HttpServletRequest request, Model model) {
 		logger.info("게시판({}) 상세조회 [1:공지사항 2:FAQ 3:자유게시판] boardSeq={}", boardType, boardSeq);
 		
@@ -102,6 +102,20 @@ public class BoardController {
 						
 		String msg="잘못된 url입니다.", url="/home.do";
 		
+		PaginationInfo pagingInfo=new PaginationInfo();
+		pagingInfo.setBlockSize(ProjectUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(BOARD_RECORD);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setRecordCountPerPage(BOARD_RECORD);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		if(searchVo.getSearchCondition()==null || searchVo.getSearchCondition().isEmpty()) {
+			searchVo.setSearchCondition(Integer.toString(boardSeq));
+		}
+		
+		
+		List<Map<String,Object>> list=commentService.selectComment(searchVo);
 		BoardVO boardVo=boardService.selectByBoardSeq(boardSeq);
 		if(boardVo!=null) {
 			int cnt=boardService.updateHits(boardSeq);
@@ -114,9 +128,11 @@ public class BoardController {
 				}if(session!=null) {//로그인 한 경우
 					MemberVO memberVo = (MemberVO)session.getAttribute("loginMember");
 					if(memberVo!=null &&boardVo.getRefMemberseq()==memberVo.getMemberSeq()) {//내가 쓴 디테일화면
+						model.addAttribute("list",list);
 						model.addAttribute("boardVo", boardVo);
 						return "/board/freeEdit";
 					}else {//다른 이용자가 쓴 디테일화면
+						model.addAttribute("list",list);
 						model.addAttribute("boardVo", boardVo);
 						return "/board/freeDetail";
 					}
@@ -293,6 +309,7 @@ public class BoardController {
 			return "common/message";
 			
 		}
+		
 		
 		
 		@RequestMapping(value ="/board/replyWrite.do", method = RequestMethod.POST)

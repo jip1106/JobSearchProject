@@ -286,7 +286,7 @@ img#searchimg {
 	     		</c:if>
 				<c:if test="${fn:length(boardVo.boardTitle)<=12}">
 					${boardVo.boardTitle}
-					</c:if>
+				</c:if>
 					
 				</a>
 			</td>

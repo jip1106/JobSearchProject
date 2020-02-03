@@ -73,7 +73,7 @@ span.notice_title {
 .content {
     position: relative;
     top: -24px;
-    background-color: #f1f1f1;
+    background-color: #ffffff;
     height: 300px;
     border-bottom: 2px solid #adadad;
     padding: 16px 24px;
@@ -139,6 +139,7 @@ img.menu {
 		<c:if test="${fn:length(boardVo.boardTitle)<=30}">
 			${boardVo.boardTitle}
 		</c:if>
+	</span>
     </div>
   	<div class="content">
   		 <span class="content_span">${boardVo.boardContents }</span>
