@@ -51,10 +51,9 @@
 			<mapping path="/member/mypagebookmarkListDel.do"></mapping>			
 			<mapping path="/member/mypageresumeTest.do"></mapping>
 			<mapping path="/resume/**"></mapping>			
-			<mapping path="/apply/**"></mapping>			
-			<mapping path="/addScrap.do"></mapping>			
-			<mapping path="/delScrap.do"></mapping>			
+			<mapping path="/apply/**"></mapping>							
 			<mapping path="/board/write.do"></mapping>			
+			<mapping path="/board/replyWrite.do"></mapping>			
 			<mapping path="/board/edit.do"></mapping>			
 			<mapping path="/board/delete.do"></mapping>			
 			

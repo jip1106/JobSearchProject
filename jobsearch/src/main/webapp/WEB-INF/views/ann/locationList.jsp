@@ -206,7 +206,7 @@ div#row_result {
     top: -67px;
     left: 5px;
     position: relative;
-    width: 100%;
+    width: 80%;
     font-size: 16px;
     color: #fb4c4c;
     margin: auto;
@@ -337,7 +337,7 @@ div#row_result {
 	
 	
 	<c:if test="${searchCount == 0 }">
-		<div class="row" id="row_result" style="text-align:center;height:100px;">
+		<div class="row" id="row_result" style="text-align:left;height:100px;">
 			[
 			${searchLocName }   			
    			<c:if test="${!empty searchLocNameList }">

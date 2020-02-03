@@ -72,6 +72,7 @@ a.btn.btn-primary {
 
 .point_color_comp{
 	color: black;
+	z-index: 3;
 }
 .list_manage_resume .info_resume .desc {
     padding-top: 7px;

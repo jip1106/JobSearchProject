@@ -22,6 +22,24 @@
 	
 </script>
 <script>
+$(function(){
+	$("#login").mouseover(function() {
+	     $("#span-login").attr("style","visibility:visible");
+	     $(".img-login").attr("style","visibility:hidden");
+	});
+	$("#login").mouseout(function() {
+		 $("#span-login").attr("style","visibility:hidden");
+		 $(".img-login").attr("style","visibility:visible");
+	});
+	$("#join").mouseover(function() {
+	     $("#span-join").attr("style","visibility:visible");
+	     $(".img-join").attr("style","visibility:hidden");
+	});
+	$("#join").mouseout(function() {
+		 $("#span-join").attr("style","visibility:hidden");
+		 $(".img-join").attr("style","visibility:visible");
+	});
+});
 
 function printClock() {
     
@@ -57,7 +75,6 @@ function addZeros(num, digit) { // 자릿수 맞춰주기
 	  }
 	  return zero + num;
 }
-
 
 /* 출처: https://bbaksae.tistory.com/23 [QRD] */
 </script>
@@ -374,6 +391,24 @@ div#clock {
     margin-bottom: 13px;
     padding: 6px 0;
 }
+#span-login{
+	position: absolute;
+    color: white;
+    font-size: 32px;
+    top: 19px;
+    left: 19px;
+    visibility: hidden;
+
+}
+#span-join{
+	position: absolute;
+    color: white;
+    font-size: 32px;
+    left: 149px;
+    top: 19px;
+    visibility: hidden;
+}
+
 /* 190X95 */
 </style>
 
@@ -432,11 +467,13 @@ div#clock {
 		 <c:if test="${empty sessionScope.loginMember }">
 		 	<div id="login">
 		 		<a href="${pageContext.request.contextPath }/member/login.do">
+		 		<span id="span-login">로그인</span>
 		 			<img class="img-login" title="로그인" src="<c:url value='/resources/images/login.png'/>">
 	 			</a>
 		 	</div>
 		 	<div id="join">
 		 		<a href="${pageContext.request.contextPath }/member/register.do">
+		 		<span id="span-join">회원가입</span>
 		 			<img class="img-join" title="회원가입" src="<c:url value='/resources/images/join.png'/>">
 	 			</a>
 		 	</div>

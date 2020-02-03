@@ -14,12 +14,14 @@ body{
 #comdeHeadDetail{
 	display:inline-block;	
 }
-
-
 #logos{
 	float:left;
 	margin-right: 40px;
 }
+#img-logos{
+	border: 3px double #3f51b575;
+}
+
 #comNamePlate{
 	
 }
@@ -84,11 +86,14 @@ td{
 
 <body>
 <!-- section start -->
-<h1>${companyVo.comName} 기업상세보기</h1>
+<h1 align="center" style="font-weight: bold;">${companyVo.comName} 기업상세</h1>
+<br><br><br>
+<hr>
+<br><br>
 <div id="comdeHead">
 	<div id="comdeHeadDetail">
 		<div id="logos">
-		<img alt="로고이미지" src="<c:url value='/resources/upload_images/${companyVo.comRenameimage}'/>" style="width: 200px;height: 200px;">
+		<img id="img-logos" alt="로고이미지" src="<c:url value='/resources/upload_images/${companyVo.comRenameimage}'/>" style="max-width: 300px;max-height: 150px;">
 		</div>
 		<table id="comNamePlate">
 			<tr>
@@ -99,7 +104,6 @@ td{
 		</table>
 	</div>	
 </div>
-<hr>
 <div id="details">
 	<div id="detailst">
 		<div id="detail1" class="comde">
@@ -125,16 +129,10 @@ td{
 		</div>
 	</div>
 </div>
-<div id="comdeMain">
-<div id="comdeMainIndex">
-	<img id="images" alt="회사 이미지" src="<c:url value='/resources/images/company.jpg'/>" align="absmiddle">
-	<span>전화번호: ${companyVo.comTel}</span>
-</div>
-<c:if test="${!empty memberVo.address}">
+<br><br><br>
 <div id="comdeMainCont" align="center">
-	<h1>회사설명</h1>
+	<h1 style="font-size: 30px;font-weight: bold;">기업 세부정보</h1>
 	<span>${companyVo.comDesc}</span>
-	<hr>
 	<table style="text-align: center">
 		<tr>
 			<td class="tdTitle">업종</td>
@@ -144,10 +142,17 @@ td{
 			<td  class="tdTitle">회사 위치 </td>
 			<td class="tdDesc">${memberVo.address}</td> 
 		</tr>
-	</table>
-	
-	<hr>	
-	<span>약도</span>		
+	</table>	
+</div>
+<div id="comdeMain">
+<div id="comdeMainIndex">
+	<img id="images" alt="회사 이미지" src="<c:url value='/resources/images/company.jpg'/>" align="absmiddle">
+	<span>전화번호: ${companyVo.comTel}</span>
+</div>
+<c:if test="${!empty memberVo.address}">
+<div id="comdeMainCont" align="center">	
+	<br><br>
+	<h1 style="font-size: 30px;font-weight: bold;">약도</h1>	
 	<c:import url="/company/KakaoMap.do"/>
 </div>
 </c:if>
