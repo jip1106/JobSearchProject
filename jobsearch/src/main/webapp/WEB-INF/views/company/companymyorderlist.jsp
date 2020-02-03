@@ -11,12 +11,17 @@ table tr td{
 	border: .5px solid;
 }
 tr td{
-	height:50px;
+	height:40px;
 	text-align: center;
 }
 .content{
 	width: 100%;
 }
+h2{
+	font-size:26px;
+	font-weight: bold;
+}
+
 </style>
 <script type="text/javascript">
 	
@@ -28,6 +33,7 @@ tr td{
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 <c:import url="/WEB-INF/views/include/companymypagenavitop.jsp" />
 <!-- section start -->
+<div align="center">
 <h2>결제내역</h2>
 <hr>
 	<div class="row mb-4 mt-4_text"> 
@@ -57,7 +63,7 @@ tr td{
 		</c:forEach>
 		</div> 							
 	</div>			
-				
+</div>				
  
  <script>
 </script>
