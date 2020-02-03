@@ -4,9 +4,93 @@
 <c:import url="/WEB-INF/views/include/header.jsp" />
 <!-- head start -->
 <style>
-	.resumeInfo{
-		display:block;
-	}
+.resumeInfo{
+	display:block;
+}
+div#searchResume_container {
+    width: 960px;
+ 	margin-top: 86px;
+	margin-bottom: 51px;
+}
+.CateTitle {
+    margin-bottom: 8px;
+}
+span.Jobsearch {
+    font-size: 38px;
+    letter-spacing: -1px;
+    font-weight: 500;
+    color: #4876ef;
+}
+span.text_span1 {
+    font-size: 26px;
+    margin-left: 8px;
+    color: #8e8e8e;
+    letter-spacing: -1px;
+}
+span.text_span2 {
+    font-size: 26px;
+    margin-left: 1px;
+    color: #8e8e8e;
+    letter-spacing: -1px;
+}
+span.text_span3 {
+    font-size: 26px;
+    margin-left: 1px;
+    color: #8e8e8e;
+    letter-spacing: -1px;
+}
+hr.title_hr {
+    border: 1px solid #4876ef;
+    margin: 0 0 32px 0;
+}
+hr.bottom_hr {
+    border: 1px solid #4876ef;
+    margin: 32px 0 32px 0;
+}
+div#selectResu {
+    width: 100%;
+   /*  padding: 0 31px; */
+}
+input.btn.btn-primary {
+    width: 71px;
+    height: 42px;
+    position: relative;
+    left: 861px;
+    background-color: #4876ef;
+    border-color: #4876ef;
+}
+select.form-control {
+    width: 133%;
+    height: calc(1.5em + .75rem + 14px);
+}
+.col-md-3 {
+    margin-bottom: 19px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+div#resumeFind {
+    padding: 0 16px;
+    margin-top: 25px;
+}
+thead.thead_resu {
+    background-color: whitesmoke;
+}
+tbody.tbody_resu {
+    border-bottom: 1px solid #dee2e6;
+}
+td.name_td {
+    padding: 23px 12px;
+}
+td.regdate_td {
+    padding: 23px 12px;
+}
+td.career_td {
+    padding: 11px 12px;
+}
+td.empty_resu {
+    padding: 26px 0;
+}
+	
 </style>
 
 <script>
@@ -31,19 +115,21 @@
 
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 
-	<div class="container">
-	    <!-- Page Heading/Breadcrumbs -->
-	    <h1 class="mt-4 mb-3">인재검색</h1>
+	<div class="container" id="searchResume_container">
+    <div class="CateTitle">
+	    <span class="Jobsearch">Jobsearch</span>
+	    <span class="text_span1">인재</span>
+	    <span class="text_span2">검색창</span>
+	    <span class="text_span3">입니다!</span>
+    </div>
+    <hr class="title_hr">
 	
-	    <ol class="breadcrumb">
-	      <li class="breadcrumb-item">
-	        	인재검색
-	      </li>
-	    </ol>
+	   
 	    <form id="frmSearch" name="frmSearch" method="post" action="/jobsearch/resume/searchResume.do">
 	    <div class="row">
 			<!-- 성별, 학력사항, 경력, 근무형태-->
-			<div class="col-md-8">
+<!-- 			<div class="col-md-8" id="selectResu"> -->
+			<div id="selectResu">
 				<div class="row">
 					<div class="col-md-3">
 						<select class="form-control" name="genderType">
@@ -80,8 +166,6 @@
 
 						</select>
 					</div>	
-				</div>
-				<div class="row mt-4">
 					<div class="col-md-3">
 						<select class="form-control" name="cateSeq1">
 							<option value="">직종</option>
@@ -106,28 +190,27 @@
 				</div>				
 			</div>
 			
-			<div class="col-md-4">
-				<input type="button" value="검색" onclick="searchResume();" class="btn btn-primary">
-			</div>
+			<input type="button" value="검색" onclick="searchResume();" class="btn btn-primary">
 						
 	    </div>
 	    </form>
+	    <!-- <hr class="bottom_hr"> -->
 	    
-		<div class="row" style="margin-top:5%; margin-bottom:5%;">
+		<div class="row" id="resumeFind">
 			<table class="table table-hover text-center">
-				<thead>
+				<thead class="thead_resu">
 					<tr>
 						<th>이름</th>
 						<th>이력서요약</th>
 						<th>등록일</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody class="tbody_resu">
 					<c:if test="${resume_list.size() != 0 }">
 						<c:forEach var="map" items="${resume_list }">
 							<tr>
-								<td>${map['MEMBER_NAME'] }</td>
-								<td>
+								<td class="name_td">${map['MEMBER_NAME'] }</td>
+								<td class="career_td">
 									<span>경력여부 : ${map['CAREER_TYPE']}</span>
 									<span class="resumeInfo">이력서제목 : <strong><a href="#" onclick="resumeDetail('${map['RESUME_SEQ']}')">[${map['RESUME_TITLE'] }]</a></strong></span>
 									<!--  
@@ -140,13 +223,13 @@
 									<span>고용형태 : ${map['HOPE_EMPTYPE'] }</span>
 									-->
 								</td>
-								<td>${map['RESUMEREGDATE'] }</td>
+								<td class="regdate_td">${map['RESUMEREGDATE'] }</td>
 							</tr>
 						</c:forEach>
 					</c:if>
 					<c:if test="${resume_list.size() == 0 }">
 						<tr>
-							<td colspan="3">해당 조건으로 검색된 이력서가 존재하지 않습니다.</td>
+							<td class="empty_resu" colspan="3">해당 조건으로 검색된 이력서가 존재하지 않습니다.</td>
 						</tr>
 					</c:if>
 				</tbody>

@@ -176,7 +176,7 @@ div.btn.btn-primary_list {
     margin-top: 0px;
     color: white;
     position: relative;
-    left: 497px;
+    left: 569px;
     width: 71px;
     padding: 8px 0px;
 }
@@ -187,7 +187,7 @@ div.btn.btn-primary_reply {
     margin-top: 0px;
     color: white;
     position: relative;
-    left: 497px;
+    left: 576px;
     width: 71px;
     padding: 8px 0px;
 }
@@ -362,6 +362,7 @@ img.menu {
     top: -2px;
     width: 45px;
 }
+
 </style>
 	
 <c:import url="/WEB-INF/views/include/headend.jsp" />

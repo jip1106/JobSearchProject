@@ -286,17 +286,6 @@ dd.date {
     font-weight: normal;
     letter-spacing: -1px;
 }
-/* .jv_howto .status_left {
-    display: table-cell;
-    position: relative;
-    z-index: 2;
-    padding: 30px 0 20px;
-    width: 269px;
-    box-sizing: border-box;
-    text-align: center;
-    vertical-align: middle;
-    background: #efefef;
-} */
 .jv_howto .status_left {
     display: table-cell;
     position: relative;
@@ -427,17 +416,11 @@ span.star-border {
 </head>
 <body>
 
-  <!-- Page Content -->
   <div class="container">
-
-    <!-- Page Heading/Breadcrumbs -->
-
-    <ol class="breadcrumb" id="breadcrumb_id"></ol>
-
-    <!-- Blog Post -->
 		<div class="card mb-4">
 			<div class="card-body">			
 			<div class="top_title">
+				
 				 <div class="c_title">
 			    	<span class="company_title">${myResume['MEMBER_NAME']}님의 이력서 입니다.</span>
 			     </div>			  	  	   	

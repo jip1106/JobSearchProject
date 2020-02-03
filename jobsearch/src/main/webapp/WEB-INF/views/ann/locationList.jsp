@@ -220,14 +220,6 @@ div#row_result {
 
   <!-- Page Content -->
   <div class="container" id="Location_container">
-  <!--   <h1 class="mt-4 mb-3">지역별
-      <small>검색지역을 선택해주세요</small>
-    </h1>
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-        	지역별 공고 리스트
-      </li>
-    </ol> -->
     <div class="CateTitle">
 	    <span class="Jobsearch">Jobsearch</span>
 	    <span class="text_span1">지역별</span>
