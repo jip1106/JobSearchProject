@@ -62,6 +62,19 @@ li.nav-item {
 		            
 			</c:if>
 			
+			<%//관리자 %>
+			<c:if test="${!empty sessionScope.loginMember && sessionScope.loginMember.regType == 0}">
+		  		<a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		        	${sessionScope.loginMember.memberName}님
+		        </a>
+		        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+		        	<a class="dropdown-item" href="${pageContext.request.contextPath }/member/logout.do">로그아웃</a>
+		            <a class="dropdown-item" href="${pageContext.request.contextPath }/admin/home.do">관리자페이지</a>
+				</div>
+		            
+			</c:if>
+			
+			
 			<%//일반회원 %>
 	      	<c:if test="${!empty sessionScope.loginMember && sessionScope.loginMember.regType == 1}">
 		  		<a class="nav-link dropdown-toggle" href="#" id="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -83,7 +96,8 @@ li.nav-item {
 		            <a class="dropdown-item" href="${pageContext.request.contextPath }/company/companyMyAnnList.do">기업페이지</a>
 				</div>
 		            
-			</c:if>			
+			</c:if>		
+				
 						
 	      </li>
 

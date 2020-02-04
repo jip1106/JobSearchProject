@@ -26,12 +26,6 @@
  
 
 <style type="text/css">
-ol#breadcrumb_id {
-    padding: 17px 19px;
-    background-color: #007bff;
-    height: 57px;
-    margin-bottom: 0px;
-}
 body {
     padding: 42px;
 }
@@ -46,13 +40,8 @@ body {
     font-size: 18px;
     vertical-align: middle;
 }
-ol.breadcrumb {
-    padding: 17px 19px;
-    background-color: #ffffff;
-}
-.c_title {
-    width: 100%;
-}
+
+
 .company_title2 {
     margin-top: 4px;
     font-size: 26px;
@@ -125,31 +114,10 @@ ol.breadcrumb {
     padding-top: 13px;
     
 }
-.card-footer.text-muted_photo {
-    width: 100%;
-    height: 19em;
-}
-.card-footer.text-muted {
-    background-color: white;
-}
-.apply_term {
-    margin-bottom: 14px;
-    color: #222;
-    font-size: 20px;
-    font-weight: bold;
-    letter-spacing: -1px;
-    line-height: 22px;
-}
-.info_timer {
-    font-size: 21px;
-    font-weight: bold;
-    margin-bottom: 22px;
-}
-dt.day {
-    font-size: 18px;
-}
+
 dd.date {
     font-size: 19px;
+    margin: auto;
 }
 .cont box {
     padding: 29px 29px 0;
@@ -164,9 +132,9 @@ dd.date {
     padding-bottom: 28px;
 }
 .jv_title {
-    margin-bottom: 14px;
+    margin-bottom: 8px;
     color: #222;
-    font-size: 20px;
+    font-size: 23px;
     font-weight: bold;
     letter-spacing: -1px;
     line-height: 22px;
@@ -290,16 +258,12 @@ dd.date {
     display: table-cell;
     position: relative;
     z-index: 2;
-    padding: 30px 0 20px;
-    width: 269px;
-    box-sizing: border-box;
+    width: 268px;
     text-align: center;
-    vertical-align: middle;
-    border-right: 1px solid #bbbbbb;
 }
 span.cn {
-    margin-right: 24px;
-    font-size: 15px;
+    margin-right: 13px;
+    font-size: 17px;
     font-weight: bold;
 }
 span.cn2 {
@@ -308,7 +272,7 @@ span.cn2 {
     font-weight: bold;
 }
 span.cna {
-    font-size: 15px;
+    font-size: 17px;
 }
 .comn {
     margin-bottom: 14px;
@@ -320,10 +284,8 @@ span.cna {
 .info_company_left {
     display: table-cell;
     position: relative;
-    z-index: 2;
-    padding: 30px 0px 29px 31px;
-    box-sizing: border-box;
-    vertical-align: middle;
+    padding: 9px 14px;
+    border-left: 1px solid #cccccc;
 }
 .ci-right {
     position: relative;
@@ -412,6 +374,125 @@ span.star-border {
 #notEnd{
 	display: none;
 }
+/* 이력서 수정 */
+.member_info {
+    width: 100%;
+    display: flex;
+}
+span.resume_title {
+    font-size: 27px;
+    font-weight: bold;
+}
+hr.titl_hr {
+    margin-top: 6px;
+}
+span.memberName {
+    font-size: 23px;
+    font-weight: bold;
+    margin-right: 7px;
+}
+img.emptyphoto {
+    margin-right: 14px;
+    border: 1px solid #e5e5e5;
+}
+img.photoname {
+    margin-right: 14px;
+}
+span.base_info_span {
+    font-size: 17px;
+}
+.email {
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+.phone {
+    margin-bottom: 5px;
+}
+.address_div {
+    font-size: 17px;
+}
+img.icon {
+    opacity: 0.7;
+}
+span.email_span {
+    margin-left: 8px;
+}
+span.phone_span {
+    margin-left: 8px;
+}
+span.address {
+    margin-left: 4px;
+}
+.base_info {
+    margin-bottom: 11px;
+}
+.photo_div {
+    margin-right: 6px;
+}
+.info2 {
+    border: 1px solid #ececec;;
+    display: flex;
+    padding: 21px 24px;
+    text-align: center;
+    margin-bottom: 37px;
+}
+.if {
+    width: 145px;
+    border-right: 1px solid gainsboro;
+}
+div#if_end {
+    border-right: none;
+}
+.if_title {
+    margin-bottom: 12px;
+    font-weight: bold;
+}
+.school_name {
+    width: 269px;
+    border-right: 1px solid #cccccc;
+    text-align: center;
+    font-size: 18px;
+    height: 43px;
+    padding: 8px 0;
+}
+.school_cont {
+    width: 65%;
+    text-align: center;
+    font-size: 18px;
+    height: 43px;
+    padding: 8px 0;
+}
+.table_title {
+    display: flex;
+    border: 1px solid #cccccc;
+    background: #f1f1f1;
+}
+.cont.box {
+    border-top: none;
+    border-bottom: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+}
+.comn {
+    margin-bottom: 2px;
+}
+span.sc_name {
+    font-size: 18px;
+    font-weight: 700;
+}
+.introduce {
+    margin-top: 32px;
+}
+.introduce_box {
+    border: 1px solid #cccccc;
+    padding: 9px 13px;
+}
+.intro_title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
 </style>
 </head>
 <body>
@@ -420,9 +501,43 @@ span.star-border {
 		<div class="card mb-4">
 			<div class="card-body">			
 			<div class="top_title">
-				
-				 <div class="c_title">
-			    	<span class="company_title">${myResume['MEMBER_NAME']}님의 이력서 입니다.</span>
+				 <span class="resume_title">${myResume['RESUMETITLE']}</span>
+				 <hr class="titl_hr">
+				 <div class="member_info">
+					<div class="photo_div">
+						<c:if test="${empty myResume['PROFILE'] }">
+				        	<img class="emptyphoto" src="<c:url value="/resources/images/emptyphoto.png"/>" alt="등록된 사진이 없습니다.">
+		        	    </c:if>
+						<c:if test="${!empty myResume['PROFILE'] }">
+				        	<img class="photoname" src="<c:url value="/resources/upload_images/${myResume['PROFILE']}"/>" alt="${myResume['PROFILE']} 로고">
+		        	    </c:if>
+			        </div>
+			        <div class="info_div">
+			        	<div class="base_info">
+					    	<span class="memberName">${myResume['MEMBER_NAME']}</span>
+					    	<span class="base_info_span">
+						    	<span class="birthday">
+							    	<fmt:formatDate value="${myResume['BIRTHDAY']}" pattern="yyyy.MM.dd" />&nbsp;|&nbsp;
+				    	    	</span>
+						    	<span class="age">(${myResume['AGE']}세)&nbsp;|</span>
+						    	<span class="gender">${myResume['GENDER_TYPE']}</span>
+					    	</span>
+				    	</div>
+				    	<div class="email">
+				    		<img class="icon" src="<c:url value='/resources/images/email.png'/>">
+				    		<span class="email_span">${myResume['EMAIL']}</span>
+				    	</div>
+				    	
+				    	<div class="phone">
+				    		<img class="icon" src="<c:url value='/resources/images/phone.png'/>">
+				    		<span class="phone_span">${myResume['PHONE']}</span> 
+				    	</div>
+				    	<div class="address_div">
+				    		<img class="icon" src="<c:url value='/resources/images/address.png'/>">
+				    		<span class="address">${myResume['ADDRESS']}</span>
+				    		<span class="daddress">${myResume['DADDRESS']}</span>
+				    	</div>
+			    	</div>
 			     </div>			  	  	   	
 			        <span class="company_title2">${myResume['RESUME_TITLE']}</span>
 
@@ -447,65 +562,45 @@ span.star-border {
 					</c:if>
 		    </div>
 		    
-				<div class="cont">
-					<div class="col">
-						<dl>
-							<dt>경력여부</dt>
-							<dd>
-								<strong>${myResume['CAREER_TYPE']}</strong>
-							</dd>
-						</dl>
-						<dl>
-							<dt>성별 / 최종학력 </dt>
-							<dd>
-								<strong>
-									${myResume['GENDER_TYPE']} / ${myResume['EDU_TYPE'] }
-								</strong>
-							</dd>
-						</dl>
-					</div>
-					<div class="col">
-						<dl>
-							<dt>희망급여</dt>
-							<dd><strong>${myResume['HOPE_SALARY']}</strong></dd>
-						</dl>
-						<dl>
-							<dt>희망근무형태</dt>
-							<dd>
-								<strong>${myResume['HOPE_EMPTYPE']}</strong>
-							</dd>
-						</dl>
-						<dl>
-							<dt>희망근무지역</dt>
-							<dd><strong>${myResume['LOCATION_NAME']}</strong></dd>
-						</dl>
-					</div>
-				</div>
+		    <div class="info2">
+		    	<div class=if>
+		    		<div class=if_title>경력여부</div>
+		    		<div class=if_cont>${myResume['CAREER_TYPE']}</div>
+		    	</div>
+		    	<div class=if>
+		    		<div class=if_title>최종학력</div>
+		    		<div class=if_cont>${myResume['EDU_TYPE'] }</div>
+		    	</div>
+		    	<div class=if>
+		    		<div class=if_title>희망급여</div>
+		    		<div class=if_cont>${myResume['HOPE_SALARY']}</div>
+		    	</div>
+		    	<div class=if>
+		    		<div class=if_title>희망근무형태</div>
+		    		<div class=if_cont>${myResume['HOPE_EMPTYPE']}</div>
+		    	</div>
+		    	<div class=if id="if_end">
+		    		<div class=if_title>희망근무지역</div>
+		    		<div class=if_cont>${myResume['LOCATION_NAME']}</div>
+		    	</div>
+		    	
+		    </div>
 
-			</div>			
-			<div class="card-footer text-muted_photo">
-				 <div>자기소개서</div>
-				 <div>${myResume['INTRODUCE_TITLE'] }</div> 
-				 <div>${myResume['INTRODUCE_DESC'] }</div>
-			</div>
-			
-			<div class="card-footer text-muted">
+			<!-- <div class="card-footer text-muted"> -->
 				<div class="jv_cont jv_howto">
-					<div class="jv_title">학력사항(상세)</div>
-					
+					<div class="jv_title">학력사항</div>
+					<div class="table_title">
+						<div class="school_name">학교명</div>
+						<div class="school_cont">상세내용</div>
+					</div>					
 					<c:forEach var="eduVo" items="${eduInfo}">
 						<div class="cont box">
 							<div class="status_left">
-								<dl class="info_period">
-										<dd class="date">${eduVo['EDU_NAME']}</dd>
-								</dl> 
+										<span class="sc_name">${eduVo['EDU_NAME']}</span>
 							</div>
 							
 							<div class="info_company_left">
-								<div class="info_company">
-									<span class="txt">${vo.comName }</span> 
-								</div>
-								<div class="comn"><span class="cn">재학기간</span><span class="cna">${eduVo['PERIOD_STDT']} ~ ${eduVo['PERIOD_ENDT']}</span></div>							
+								<div class="comn"><span class="cn">재학기간:</span><span class="cna">${eduVo['PERIOD_STDT']} ~ ${eduVo['PERIOD_ENDT']}</span></div>							
 								<!-- 대학교인 경우 -->
 								<c:if test = "${eduVo['EDU_TYPE'] == '2' }">
 									<div class="comn">
@@ -523,7 +618,7 @@ span.star-border {
 										</span>
 									</div>
 									<div class="comn"><span class="cn">전공 : </span><span class="cna">${eduVo['UNIV_MAJOR'] }</span></div>
-									<div class="comn"><span class="cn">학점 : </span><span class="cna">${eduVo['UNIV_SCORE'] }</span></div>
+									<div class="comn"><span class="cn">학점 : </span><span class="cna">${eduVo['UNIV_SCORE'] } /4.5</span></div>
 								</c:if>
 								<c:if test="${eduVo['EDU_TYPE'] == '3'}">
 																		<div class="comn">
@@ -545,12 +640,21 @@ span.star-border {
 						</div>
 					</c:forEach>
 					
+			<div class="introduce">
+			 	 <div class="jv_title">자기소개</div>
+			 	 <div class="introduce_box">
+				 	<div class="intro_title">[${myResume['INTRODUCE_TITLE'] }]</div> 
+				 	<div class="intro_cont">${myResume['INTRODUCE_DESC'] }</div>
+				 </div>
+			</div>
+			
 					
 				</div>
-			</div>
+		<!-- 	</div> -->
 			
 		</div>
 
+	</div>
 	</div>
   <!-- /.container -->
 

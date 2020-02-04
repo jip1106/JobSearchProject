@@ -441,7 +441,9 @@ span.star-border {
 
     <!-- Blog Post -->
 		<div class="card mb-4">
-			<div class="card-body">			
+			<div class="card-body">
+				<input type="hidden" id=memberSeq value="${loginMember.memberSeq }">
+				<input type="hidden" id=annSeq value="${vo.annSeq}">			
 			<div class="top_title">
 				 <div class="c_title">
 			    	<a href="#" class="company_title" onclick="comView(${vo.comSeq})" target="_blank">${vo.comName }</a>
@@ -660,7 +662,7 @@ span.star-border {
 						}
 					},
 					error:function(xhr, status, error){
-						alert("로그인을 해주세요");
+						alert("즐겨찾기 오류");
 					}
 				});
 			});

@@ -93,7 +93,7 @@
 	<select id="selectResumeByresumeSeq" resultType="hashmap" resultMap = "resumeInfo" parameterType ="string">
 		Select 
 		TR.RESUME_SEQ,
-		TR.RESUME_TITLE,
+		TR.RESUME_TITLE as RESUMETITLE,
 		to_char(tr.reg_date, 'yyyy-mm-dd') as RESUMEREGDATE,
 		    Case When TR.RECURIT_STATUS = 1 Then '구직준비중(재학생)'
 		    When TR.RECURIT_STATUS = 2 Then '구직중'
@@ -102,7 +102,13 @@
 		    End as recurit_status,
 		TR.INTRODUCE_TITLE,
 		TR.INTRODUCE_DESC,
-		TM.MEMBER_ID,
+		TM.PROFILE_RENAMEIMG as PROFILE,
+		TM.ADDRESS as ADDRESS,
+		TM.BIRTHDAY as BIRTHDAY,
+		TM.PHONE as PHONE,
+		TRUNC((SYSDATE-BIRTHDAY)/365) as AGE,
+		TM.DETAIL_ADDRESS as DADDRESS,
+		TM.MEMBER_ID as EMAIL,
 		TM.MEMBER_NAME,
 		CASE WHEN TM.GENDER_TYPE = 'M' Then '남자'
 			WHEN TM.GENDER_TYPE ='W' THEN '여자'

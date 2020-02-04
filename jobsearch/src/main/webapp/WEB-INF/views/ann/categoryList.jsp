@@ -172,6 +172,7 @@
 	}
 	
 	.resultArea{
+		width:70%;
 		margin-top:5%;
 		margin-bottom:5%;
 	}
