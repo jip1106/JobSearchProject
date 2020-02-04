@@ -95,8 +95,14 @@ td.empty_resu {
 
 <script>
 	function searchResume(){
-		var obj = document.getElementById("frmSearch");
-		obj.submit();
+		if(${sessionScope.loginMember.regType == '2' || sessionScope.loginMember.regType == '0'}){
+			var obj = document.getElementById("frmSearch");
+			obj.submit();			
+		
+		}else{
+			alert('기업회원 사용자만 이용할 수 있습니다.');
+			return false;
+		}
 	}
 	
 	function resumeDetail(resumeSeq){

@@ -46,7 +46,7 @@ span#member_type {
 span#name_text {
     font-size: 18px;
     color: #46a556;
-    font-weight: 530;
+    font-weight: bold;
     margin-right: 3px;
 }
 h2.mt-4.mb-3 {
@@ -62,14 +62,17 @@ h2.mt-4.mb-3 {
 #companymypageMain:hover{
 	text-decoration: none;
 }
-
+#last-list{
+	border-bottom-left-radius: .25em;
+	border-bottom-right-radius: .25em;
+}
 </style>
     
    <!-- Page Content -->
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <a id="companymypageMain" href="<c:url value='/company/companyMyAnnList.do'/>"><h2 class="mt-4 mb-3">기업 MyPage</h2></a>
+    <a id="companymypageMain" href="<c:url value='/company/companyMyAnnList.do'/>"><h2 class="mt-4 mb-3" style="font-weight: bold">기업 MyPage</h2></a>
 
     <ol class="breadcrumb">
     <span id="member_type">기업회원</span>
@@ -86,7 +89,7 @@ h2.mt-4.mb-3 {
           <a href="<c:url value='/company/companyPwdChk.do'/>" class="list-group-item">기업정보수정</a>
           <a href="<c:url value='/company/companymypageannouncement.do'/>" class="list-group-item">공고등록</a>
           <a href="<c:url value='/company/companyMyAnnList.do'/>" class="list-group-item">공고관리</a>
-          <a href="<c:url value='/company/companymyorderlist.do'/>" class="list-group-item">결제내역</a> 
+          <a id="last-list" href="<c:url value='/company/companymyorderlist.do'/>" class="list-group-item">결제내역</a> 
       	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">
       	 	<img src="<c:url value='/resources/images/mypage_banner.jpg'/>">
       	 </a>
