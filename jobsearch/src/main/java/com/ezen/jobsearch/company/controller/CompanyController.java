@@ -250,7 +250,7 @@ public class CompanyController {//
 		logger.info("지원자 확인하기 int annSeq={}",annSeq);
 		
 		List<ResumeVO> list=companyService.selectMyAnnApply(annSeq);
-		
+		logger.info("list.size()={}",list.size());
 		model.addAttribute("list",list);
 		
 	}

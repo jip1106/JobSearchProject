@@ -88,7 +88,7 @@ td{
 				<td id="td1">
 					<a href="#" onclick="resumeView(${vo.resumeSeq})">${vo.resumeTitle}</a>
 				</td id="td2">
-				<td><fmt:formatDate value="${vo.regDate}" pattern="yyyy-MM-dd"/> </td>
+				<td><fmt:formatDate value="${vo.applyRegdate}" pattern="yyyy-MM-dd"/> </td>
 			</tr>
 		</c:forEach>
 	</table>
