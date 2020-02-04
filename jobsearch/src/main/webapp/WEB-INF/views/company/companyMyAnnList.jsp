@@ -223,7 +223,7 @@ strong.attach_count {
             <span class="txt_date">${map['ANN_STDT']}</span>
             <c:if test="${empty map['REF_ANNOUNCEMENT'] }">
             <button type="button" class="btn_edit_complete" style=" margin-left: -208px;margin-top: 12px;"
-            onclick="window.open('<c:url value="/company/companypay.do?annSeq=${map['ANN_SEQ']}"/>', 'payment', 'top=100px, left=100px, height=625px, width=520px')"
+            onclick="window.open('<c:url value="/company/companypay.do?annSeq=${map['ANN_SEQ']}"/>', 'payment', 'top=100px, left=100px, height=665px, width=885px')"
             >프리미엄으로 등록하기</button>
             </c:if>
             <button type="button" class="btn_edit_complete" onclick="location.href = '<c:url value="/company/companymypageannedit.do?annSeq=${map['ANN_SEQ']}"/>'">수정하기</button>

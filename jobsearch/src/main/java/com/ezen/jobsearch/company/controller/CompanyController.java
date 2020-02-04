@@ -317,24 +317,36 @@ public class CompanyController {//
   	public void companypay(@RequestParam int annSeq,HttpSession session,Model model) {
   		logger.info("결제하기 페이지 파라미터 annSeq={}",annSeq);
   		MemberVO vo=(MemberVO)session.getAttribute("loginMember");
-  		String Name=vo.getMemberName();  		
+  		String Name=vo.getMemberName();
   		model.addAttribute("Name",Name);
   	}
   	
   	@RequestMapping("/companyprepay.do")
   	public void companyprepay(@ModelAttribute PaymentVO payVo,HttpSession session,Model model) {
   		logger.info("결제창 파라미터 payVo={}",payVo);
+  		String select=payVo.getPayType();
+  		String payType="";
+  		if(select.equals("inicis")) {
+  			payType="imp51698490";
+  		}else if(select.equals("danal")) {
+  			payType="imp29627073";
+  		}else if(select.equals("LG")) {
+  			payType="imp63300841";
+  		}
+  		payVo.setPayType(payType);
   		model.addAttribute("payVo",payVo);
   	}
   	
   	@RequestMapping("/companypaycomplete.do")
-  	public void companypaycomplete(@RequestParam String paymentCode,@RequestParam String refAnnouncement) {
+  	public void companypaycomplete(@RequestParam String paymentCode,@RequestParam String refAnnouncement,@RequestParam String cardAuthNum) {
   		  		
   		logger.info("결제 완료 처리 파라미터 paymentCode={},refAnnouncement={}",paymentCode,refAnnouncement);
+  		logger.info("카드승인번호 cardAuthNum={}",cardAuthNum);
   		if(paymentCode!=null) {
 	  		PaymentVO paymentVo=new PaymentVO();
 	  		paymentVo.setPaymentCode(paymentCode);
-	  		paymentVo.setRefAnnouncement(Integer.parseInt(refAnnouncement));  		
+	  		paymentVo.setRefAnnouncement(Integer.parseInt(refAnnouncement)); 
+	  		paymentVo.setCardAuthNum(cardAuthNum);
 	  		companyService.payMyAnn(paymentVo);
   		}  		
   		
@@ -342,7 +354,7 @@ public class CompanyController {//
   	
   	@RequestMapping("/companypaycompletepage.do")
   	public void companypaycompletepage() {
-  		logger.info("결제가 완료되었습니다.");
+  		logger.info("결제성공");
   	}  
 	
   	@RequestMapping("/companymyorderlist.do")

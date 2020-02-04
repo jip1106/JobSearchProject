@@ -25,7 +25,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
 <style type="text/css">
 body{
-	margin-left:50px;
+	margin-left:234px;
 	width: 400px;
 }
 
@@ -62,11 +62,11 @@ h1{
 	 background: #3454a5;
 }
 
-
 </style>
 
 </head>
 <body>
+	<div id="payDiv">
 	<form action="<c:url value='/company/companyprepay.do'/>" method="post">
 	<input type="hidden" name="refAnnouncement" value="${param.annSeq}">
 	<div id="TitleB">
@@ -102,11 +102,11 @@ h1{
   	<tr>
   		<td>구매방식</td>
   		<td>
-	  		<select id="purchase" name="payType">
+	  		<select id="purchase" name="payType" style="width: 197px">
 	  			<option value="">선택하세요</option>
-	  			<option value="카드">카드</option>
-	  			<option value="핸드폰">핸드폰</option>
-	  			<option value="카카오페이">카카오페이</option>
+	  			<option value="inicis">이니시스</option>
+	  			<option value="danal">다날</option>
+	  			<option value="LG">LG U+</option>
 	  		</select>
   		</td>
   	</tr>
@@ -119,6 +119,7 @@ h1{
 <script>
   document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
 </script>
+</div>
 </body>
 
 </html>

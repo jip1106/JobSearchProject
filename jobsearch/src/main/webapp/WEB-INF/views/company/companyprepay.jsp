@@ -16,10 +16,10 @@ var IMP = window.IMP;
 var memberEmail = '${loginMember.memberId}';
 var memberName ='${loginMember.memberName}';
 var refAnnouncement ='${payVo.refAnnouncement}';
-IMP.init('imp51698490');
+var payType='${payVo.payType}';
+IMP.init(payType);
 var msg;
-IMP.request_pay({
-	pg : 'kakaopay',
+IMP.request_pay({	
     pay_method : 'card',
 	merchant_uid : 'premium_' + new Date().getTime(),
 	name : '프리미엄 공고글 등록상품',
@@ -36,7 +36,8 @@ IMP.request_pay({
 	            data: {
 	                "paymentCode" : rsp.merchant_uid,
 	                "productName" : "프리미엄 공고글 등록상품",
-	                "refAnnouncement" : refAnnouncement
+	                "refAnnouncement" : refAnnouncement,
+	                "cardAuthNum" : rsp.apply_num
 	                //기타 필요한 데이터가 있으면 추가 전달
 	            }
 	        }).done(function(data) {
