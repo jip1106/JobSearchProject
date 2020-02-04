@@ -31,4 +31,9 @@ public class ApplyServiceImpl implements ApplyService {
 	public int deleteApply(int applySeq) {
 		return applyDao.deleteApply(applySeq);
 	}
+
+	@Override
+	public int updateFlag(ApplyVO applyVo) {
+		return applyDao.updateFlag(applyVo);
+	}
 }
