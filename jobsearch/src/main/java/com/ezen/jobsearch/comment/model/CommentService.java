@@ -8,6 +8,6 @@ import com.ezen.jobsearch.common.SearchVO;
 public interface CommentService {
 	int insertComment(CommentVO commentVo);
 	List<Map<String,Object>> selectComment(SearchVO searchVo);
-
+	int deleteComment(int commentSeq);
 
 }

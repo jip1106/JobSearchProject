@@ -17,7 +17,19 @@ $(function(){
 });
 </script>
 <script type="text/javascript">
-/* 자기소개서: 남은 글자 수 
+$(document).ready(function(){
+	$('.select_action').on('change',function(){
+		if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+			var commentSeq=$(this).find("option").eq(1).val();
+			location.href= "<c:url value='/board/delete_reply.do?commentSeq="+commentSeq+"'/>";
+		  }else{   //취소
+		      return;
+		  }
+	});
+});
+</script>
+<script type="text/javascript">
+/*글자수 제한 
  https://gahyun-web-diary.tistory.com/26*/
 $( document ).ready(function() {
 	$("#input_3").keyup(function (e){
@@ -420,6 +432,40 @@ a.delete_a {
     text-decoration: none;
     color: #b1b1b1;
 }
+a.tag_a_reply {
+	text-decoration: none;
+}
+
+.empty_dbt {
+	height: 18px;
+}
+
+.select_box {
+    position: relative;
+    left: 18em;
+    top: -12px;
+    margin-bottom: -30px;
+    height: 31px;
+    border: none;
+    opacity: 0.3;
+	background: url("${pageContext.request.contextPath}/resources/images/selectbox.png") center no-repeat;
+}
+
+.select_box select {
+    position: absolute;
+    left: 266px;
+    top: -1px;
+    width: 74px;
+    height: 28px;
+    font-size: 15px;
+    color: #7b7b7b;
+    text-align: center;
+    background: #fff;
+    opacity: 0;
+    border: 1px solid black;
+}
+	/* url("${pageContext.request.contextPath}/resources/images/phone.png")  */
+
 </style>
 	
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -504,42 +550,50 @@ a.delete_a {
 	</div>
 </form>
 <c:if test="${empty list }">
-	<div class="reply_layout">
-		<span class="empty_reply">댓글이 존재하지 않습니다.</span>
-	</div>
-</c:if>
-<c:if test="${!empty list }">
-   	<c:forEach var="item" items="${list }">
-		<div class="reply_menu">
-			<div class="photo">
-				<img class="photo_hole" src="<c:url value='/resources/images/photo_hole.png'/>">
-				<c:if test="${!empty item.PHOTO }">
-					<img class="photoname" src="<c:url value='/resources/upload_images/${item.PHOTO }'/>" alt="${item.PHOTO } 로고">
-				</c:if>
-				<c:if test="${empty item.PHOTO }">
-					<img class="base_photo" src="<c:url value='/resources/images/base.png'/>">
-				</c:if>
-			</div>
-			<div class="inner">
-				<a href="<c:url value='/board/delete_reply.do'/>" class="delete_a">	
-					<div class="delete">
-						<span class="delete_span">X</span>
-					</div>
-				</a>
-				<div class="re_writer">
-					<c:if test="${fn:length(item.MEMBERNAME)>0}">
-						${fn:substring(item.MEMBERNAME, 0, 1)}**
-              		</c:if> 
-				</div>
-				<div class="re_cont">${item.COMMENTDESC}</div>
-				<div class="re_reg">
-					<fmt:formatDate value="${item.REGDATE}" pattern="yyyy.MM.dd hh:mm:ss" />&nbsp;작성
-				</div>
-			</div>
+		<div class="reply_layout">
+			<span class="empty_reply">댓글이 존재하지 않습니다.</span>
 		</div>
-    </c:forEach>
-</c:if>
-<hr id="bottom_line">
+	</c:if>
+	<c:if test="${!empty list }">
+	   	<c:forEach var="item" items="${list }">
+			<div class="reply_menu">
+				<div class="photo">
+					<img class="photo_hole" src="<c:url value='/resources/images/photo_hole.png'/>">
+					<c:if test="${!empty item.PHOTO }">
+						<img class="photoname" src="<c:url value='/resources/upload_images/${item.PHOTO }'/>" alt="${item.PHOTO } 로고">
+					</c:if>
+					<c:if test="${empty item.PHOTO }">
+						<img class="base_photo" src="<c:url value='/resources/images/base.png'/>">
+					</c:if>
+				</div>
+				<div class="inner">
+					<c:if test="${sessionScope.loginMember.memberSeq!=item.MEMBERSEQ }">
+						<div class="empty_dbt"></div>
+					</c:if>
+					<c:if test="${sessionScope.loginMember.memberSeq==item.MEMBERSEQ }">
+						<div id="wrap">
+							<div class="select_box">
+								<select name="select_reply" class="select_action">
+									<option value="re_edit">댓글수정</option>
+									<option value="${item.COMMENTSEQ}">댓글삭제</option>
+								</select>
+							</div>
+						</div>
+					</c:if>
+					<div class="re_writer">
+						<c:if test="${fn:length(item.MEMBERNAME)>0}">
+							${fn:substring(item.MEMBERNAME, 0, 1)}**
+	              		</c:if> 
+					</div>
+					<div class="re_cont">${item.COMMENTDESC}</div>
+					<div class="re_reg">
+						<fmt:formatDate value="${item.REGDATE}" pattern="yyyy.MM.dd hh:mm:ss" />&nbsp;작성
+					</div>
+				</div>
+			</div>
+	    </c:forEach>
+	</c:if>
+	<hr id="bottom_line">
 </div>
 
 <c:import url="/WEB-INF/views/include/navi.jsp" />

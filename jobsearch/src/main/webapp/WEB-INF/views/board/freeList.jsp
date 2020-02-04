@@ -162,14 +162,14 @@ td.member2 {
     font-weight: 600;
     color: #7b7a91;
     position: relative;
-    left: 145px;
+    left: 134px;
     text-align: center;
 }
 td.regdate2 {
     font-weight: 600;
     color: #7b7a91;
     position: relative;
-    left: 206px;
+    left: 192px;
     text-align: center;
      
 }
@@ -177,7 +177,7 @@ td.hits2 {
 	font-weight: 600;
     color: #7b7a91;
     position: relative;
-    left: 272px;
+    left: 257px;
     text-align: center;
 }
 div#card-header {
@@ -280,7 +280,7 @@ img#searchimg {
      		<tr>
 	      	<td class="num2"> ${boardVo.RNUM }</td>
 	      	<td class="title2"> 
-	      		<a href="<c:url value='/board/detail.do?boardType=3&boardSeq=${boardVo.boardSeq}'/>"> 
+	      		<a href="<c:url value='detail.do?boardType=3&boardSeq=${boardVo.boardSeq }'/>"> 
 				 <c:if test="${fn:length(boardVo.boardTitle)>12}">
 						${fn:substring(boardVo.boardTitle, 0, 12)}...
 	     		</c:if>

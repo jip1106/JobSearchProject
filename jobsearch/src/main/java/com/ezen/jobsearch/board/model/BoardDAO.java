@@ -1,6 +1,7 @@
 package com.ezen.jobsearch.board.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.ezen.jobsearch.common.SearchVO;
 
@@ -13,4 +14,6 @@ public interface BoardDAO {
 	int deleteBoard(int boardSeq);
 	int updateHits(int boardSeq);
 	List<BoardVO> selectMainBoard(BoardVO boardVo);
+	BoardVO selectMemberName(int boardSeq);
+	BoardVO selectByrowNum(int boardSeq);
 }

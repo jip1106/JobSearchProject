@@ -63,6 +63,23 @@
 		where board_seq=#{boardSeq}
 	 </select>
 	 
+	 <select id="selectMemberName" parameterType="int" resultType="boardVo">
+	 	select tb.board_seq, tm.member_name as memberName from 
+		tbl_board tb join tbl_member tm 
+		on tb.REF_MEMBERSEQ = tm.MEMBER_SEQ where board_seq=#{boardSeq}
+	 </select>
+	 
+	 <select id="selectByrowNum" parameterType="int" resultType="boardVo">
+	 	select  B."ROWNUM" as RNUM, B.REG_DATE as regDate  
+        from(
+			select A.BOARD_SEQ, rownum, A.REG_DATE 
+			from(
+				select * from tbl_board order by board_seq desc
+			)A where rownum >0
+		)B where B.BOARD_SEQ=#{boardSeq}
+	 </select>
+	 
+	 
 	 <select id="selectMainBoard" parameterType="boardVo" resultType="boardVo">
 	 	select * 
 		from
@@ -103,10 +120,12 @@
 			    from
 			    (
 			      select 
-			        TO_CHAR(SUBSTR(cm.COMMENT_DESC, 1, 300)) as COMMENTDESC, 
+			        TO_CHAR(SUBSTR(cm.COMMENT_DESC, 1, 300)) as COMMENTDESC,
+			        cm.COMMENT_SEQ as COMMENTSEQ, 
 					cm.REG_DATE as REGDATE,
 					m.MEMBER_NAME as MEMBERNAME,
-					m.PROFILE_RENAMEIMG as PHOTO
+					m.PROFILE_RENAMEIMG as PHOTO,
+					m.MEMBER_SEQ as MEMBERSEQ
 					from 
 					tbl_comment cm join tbl_member m
 					on cm.REF_MEMBERSEQ = m.MEMBER_SEQ 
@@ -120,4 +139,8 @@
 			and RNUM<= #{firstRecordIndex} + #{recordCountPerPage}
 			]]>			    
   	 </select>  	 
+  	 
+  	 <delete parameterType="int" id="deleteComment"> 
+  	 	delete from tbl_comment where comment_seq=#{commentSeq}
+  	 </delete>
 </mapper>

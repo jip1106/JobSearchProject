@@ -28,6 +28,18 @@ $(document).ready(function() {
 
 });
 </script>	
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.select_action').on('change',function(){
+		if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+			var commentSeq=$(this).find("option").eq(1).val();
+			location.href= "<c:url value='/board/delete_reply.do?commentSeq="+commentSeq+"'/>";
+		  }else{   //취소
+		      return;
+		  }
+	});
+});
+</script>
 <style type="text/css">
 .unfold{
 	float: right;
@@ -42,14 +54,7 @@ $(document).ready(function() {
 }
 
 /*새로 추가   */
-.breadcrumb {
-	clear: both;
-}
-ol.breadcrumb {
-	margin-top: 17px;
-}
 div#container {
-	height: 44em;
 	max-width: 750px;
 }
 button.btn.btn-primary {
@@ -264,7 +269,7 @@ div.write_menu_div22 {
 textarea#input_3 {
     height: calc(1.5em + .75rem + 280px);
     width: 100%;
-    margin-bottom: 11px;
+    margin-bottom: 4px;
     border-radius: 0;
 }
 div.write_menu_div33 {
@@ -393,7 +398,7 @@ img.menu {
     display: flex;
 }
 .detail_title {
-    width: 36em;
+    width: 34em;
 }
 .detail_writer {
     margin-left: 12px;
@@ -571,6 +576,46 @@ a.delete_a {
     position: relative;
     top: 9px;
 }
+.photo {
+    height: 47px;
+    width: 93px;
+    margin-right: -7px;
+    text-align: center;
+    position: relative;
+    top: -6px;
+}
+a.tag_a_reply {
+    text-decoration: none;
+}
+.empty_dbt {
+	height: 18px;
+}
+
+.select_box {
+    position: relative;
+    left: 18em;
+    top: -12px;
+    margin-bottom: -30px;
+    height: 31px;
+    border: none;
+    opacity: 0.3;
+	background: url("${pageContext.request.contextPath}/resources/images/selectbox.png") center no-repeat;
+}
+
+.select_box select {
+    position: absolute;
+    left: 266px;
+    top: -1px;
+    width: 74px;
+    height: 28px;
+    font-size: 15px;
+    color: #7b7b7b;
+    text-align: center;
+    background: #fff;
+    opacity: 0;
+    border: 1px solid black;
+}
+	/* url("${pageContext.request.contextPath}/resources/images/phone.png")  */
 </style>
 	
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -593,77 +638,92 @@ a.delete_a {
 			</div>
 			<div class="detail_writer">
 				<span class="detail_writer_span">작성자:</span>
-				${boardVo.boardSeq }
+				${boardVo2.memberName}
 			</div>
 		</div>
-
-
- 	<div class="write_menu1">
-				
-		<%--<div class="write_menu_div1">
-					<div class="write_menu_div11">작성자</div>
+	 	<div class="write_menu1">
+					<textarea style="resize: none; background-color:white" id="input_3" class="form-control" name="boardContents" placeholder="내용" readonly>${boardVo.boardContents }</textarea>
+					<input type="hidden" id="input_3" class="form-control" name="boardType" value="3"> 
+					<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="">
 				</div>
-				<input type="text" id="input_1" class="form-control" name="memberName" value="${boardVo.boardSeq }" readonly placeholder="작성자"> 
-				<div class="write_menu_div1">
-					<div class="write_menu_div22">제목</div>
-				</div> 
-				<input type="text" id="input_2" class="form-control" name="boardTitle" value="${boardVo.boardTitle }" placeholder="제목" readonly>--%>
-				<textarea style="resize: none; background-color:white" id="input_3" class="form-control" name="boardContents" placeholder="내용" readonly>${boardVo.boardContents }</textarea>
-				<input type="hidden" id="input_3" class="form-control" name="boardType" value="3"> 
-				<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="">
-			</div>
-	 	 <%-- <c:if test="${boardVo.refMemberseq}==${sessionScope.loginMember.Memberseq}" >
-		 	<button type="submit" class="btn btn-primary_write">수정</button>
-		 </c:if> --%> 
-		 	
- 		<%-- <a href="<c:url value='/board/list.do?boardType=3'/>" class="tag_a">	
-				<div class="btn btn-primary_list">
+			<div id="floatMenu">
+		<div class=nav_div>
+			<a href="#" class="tag_a">	
+				<div class="btn_top">
+					<img class="Totop" src="<c:url value='/resources/images/Totop.png'/>"> 
+				</div>
+			</a>
+		</div>
+		<div class=nav_div>
+			<a href="<c:url value='/board/replyWrite.do?boardType=3&boardSeq=${boardVo.boardSeq }'/>" class="tag_a_reply">	
+					<div class="btn_reply">
+						댓글
+					</div>
+			</a>
+		</div>
+		<div class=nav_div>
+			<a href="<c:url value='/board/list.do?boardType=3'/>" class="tag_a">	
+				<div class="btn_list">
 					<img class="menu" src="<c:url value='/resources/images/menu.png'/>">
 				</div>
-		</a>
- 		<a href="<c:url value='/board/replyWrite.do?boardType=3&boardSeq=${boardVo.boardSeq }'/>" class="tag_a_reply">	
-				<div class="btn btn-primary_reply">
-					댓글
+			</a>
+		</div>
+		<div class=nav_div>
+			<a href="#bottom_line" class="tag_a">	
+				<div class="btn_bottom">
+					<img class="Tobottom" src="<c:url value='/resources/images/Tobottom.png'/>">
 				</div>
-		</a> --%>
-		<div id="floatMenu">
-	<div class=nav_div>
-		<a href="#" class="tag_a">	
-			<div class="btn_top">
-				<img class="Totop" src="<c:url value='/resources/images/Totop.png'/>"> 
-			</div>
-		</a>
-	</div>
-	<div class=nav_div>
-		<a href="<c:url value='/board/replyWrite.do?boardType=3&boardSeq=${boardVo.boardSeq }'/>" class="tag_a_reply">	
-				<div class="btn_reply">
-					댓글
+			</a>
+		</div>
+		</div>
+		</form>
+		<c:if test="${empty list }">
+		<div class="reply_layout">
+			<span class="empty_reply">댓글이 존재하지 않습니다.</span>
+		</div>
+	</c:if>
+	<c:if test="${!empty list }">
+	   	<c:forEach var="item" items="${list }">
+			<div class="reply_menu">
+				<div class="photo">
+					<img class="photo_hole" src="<c:url value='/resources/images/photo_hole.png'/>">
+					<c:if test="${!empty item.PHOTO }">
+						<img class="photoname" src="<c:url value='/resources/upload_images/${item.PHOTO }'/>" alt="${item.PHOTO } 로고">
+					</c:if>
+					<c:if test="${empty item.PHOTO }">
+						<img class="base_photo" src="<c:url value='/resources/images/base.png'/>">
+					</c:if>
 				</div>
-		</a>
-	</div>
-	<div class=nav_div>
-		<a href="<c:url value='/board/list.do?boardType=3'/>" class="tag_a">	
-			<div class="btn_list">
-				<img class="menu" src="<c:url value='/resources/images/menu.png'/>">
+				<div class="inner">
+					<c:if test="${sessionScope.loginMember.memberSeq!=item.MEMBERSEQ }">
+						<div class="empty_dbt"></div>
+					</c:if>
+					<c:if test="${sessionScope.loginMember.memberSeq==item.MEMBERSEQ }">
+							<div id="wrap">
+							<div class="select_box">
+								<select name="select_reply" class="select_action">
+									<option value="re_edit">댓글수정</option>
+									<option value="${item.COMMENTSEQ}">댓글삭제</option>
+								</select>
+							</div>
+						</div>
+					</c:if>
+					<div class="re_writer">
+						<c:if test="${fn:length(item.MEMBERNAME)>0}">
+							${fn:substring(item.MEMBERNAME, 0, 1)}**
+	              		</c:if> 
+					</div>
+					<div class="re_cont">${item.COMMENTDESC}</div>
+					<div class="re_reg">
+						<fmt:formatDate value="${item.REGDATE}" pattern="yyyy.MM.dd hh:mm:ss" />&nbsp;작성
+					</div>
+				</div>
 			</div>
-		</a>
-	</div>
-	<div class=nav_div>
-		<a href="#bottom_line" class="tag_a">	
-			<div class="btn_bottom">
-				<img class="Tobottom" src="<c:url value='/resources/images/Tobottom.png'/>">
-			</div>
-		</a>
-	</div>
-	</div>
-	</form>
+	    </c:forEach>
+	</c:if>
 	<hr id="bottom_line">
 </div>
-
-
 	<c:import url="/WEB-INF/views/include/navi.jsp" />
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
-	
 </body>
-
 </html>

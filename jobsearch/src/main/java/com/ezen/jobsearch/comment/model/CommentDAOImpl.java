@@ -27,5 +27,12 @@ public class CommentDAOImpl implements CommentDAO{
 	public List<Map<String,Object>> selectComment(SearchVO searchVo) {
 		return sqlSession.selectList(namespace+"selectComment", searchVo);
 	}
+
+	@Override
+	public int deleteComment(int commentSeq) {
+		return sqlSession.delete(namespace+"deleteComment", commentSeq);
+	}
+	
+	
 	
 }

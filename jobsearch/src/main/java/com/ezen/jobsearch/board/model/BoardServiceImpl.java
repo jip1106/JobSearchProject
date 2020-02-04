@@ -1,6 +1,7 @@
 package com.ezen.jobsearch.board.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,6 +72,17 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardVO> selectMainBoard(BoardVO boardVo) {
 		return boardDao.selectMainBoard(boardVo);
 	}
+
+	@Override
+	public BoardVO selectMemberName(int boardSeq) {
+		return boardDao.selectMemberName(boardSeq);
+	}
+
+	@Override
+	public BoardVO selectByrowNum(int boardSeq) {
+		return boardDao.selectByrowNum(boardSeq);
+	}
+	
 	
 	
 }
