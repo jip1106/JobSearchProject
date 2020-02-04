@@ -25,7 +25,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
 <style type="text/css">
 body{
-	margin-left:50px;
+	margin-left:234px;
 	width: 400px;
 }
 
@@ -41,13 +41,37 @@ td{
 	width:200px;
 	border: 1px solid #444444;
 }
+#TitleB{
+	background: #5e87f1
+}
+h1{
+	color:white;
+	font-size: 29px;
+}
+#bt-submit{
+	width: 110px;
+    height: 41px;
+    border-radius: .25em;
+    background: #5e87f1;
+    color: white;
+    font-size: 20px;
+    border: none;
+
+}
+#bt-submit:hover{
+	 background: #3454a5;
+}
+
 </style>
 
 </head>
 <body>
+	<div id="payDiv">
 	<form action="<c:url value='/company/companyprepay.do'/>" method="post">
 	<input type="hidden" name="refAnnouncement" value="${param.annSeq}">
-	<h1>결제하기</h1>
+	<div id="TitleB">
+		<h1>프리미엄 결제</h1>
+	</div>
 	<table>
 		<tr>
 			<td>주문자</td>
@@ -55,7 +79,7 @@ td{
 		</tr>
 		<tr>
 			<td>상품명</td>
-			<td><input type="text" value="프리미엄 공고글 등록" name="productName"></td>
+			<td><input type="text" value="프리미엄 공고글 등록" name="productName" readonly="readonly"></td>
 		</tr>
 		<tr>
 			<td>상품가격</td>
@@ -78,20 +102,24 @@ td{
   	<tr>
   		<td>구매방식</td>
   		<td>
-	  		<select id="purchase" name="payType">
+	  		<select id="purchase" name="payType" style="width: 197px">
 	  			<option value="">선택하세요</option>
-	  			<option value="카드">카드</option>
-	  			<option value="핸드폰">핸드폰</option>
-	  			<option value="카카오페이">카카오페이</option>
+	  			<option value="inicis">이니시스</option>
+	  			<option value="danal">다날</option>
+	  			<option value="LG">LG U+</option>
 	  		</select>
   		</td>
   	</tr>
   </table>
-  <input type="submit" value="결제하기" >
+  <br>
+  <div align="center">
+  <input id="bt-submit" type="submit" value="결제하기" >
+  </div>
   </form>
 <script>
   document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
 </script>
+</div>
 </body>
 
 </html>

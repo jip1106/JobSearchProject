@@ -244,8 +244,11 @@ span.day_span {
             <span class="txt_date">지원한 날짜: 
             <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd" />
             </span>
+            <c:if test="${item.OPENFLAG eq 'Y'}">
+            	<span class="openFlag">열람</span>
+            </c:if>
             <button type="button" class="btn_edit_complete" onclick="#">나의 이력서</button>
-            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
+			<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
             	onclick="button_event(${item.APPLYSEQ})">
             		<span class="X">지원 취소</span>
            		</button>

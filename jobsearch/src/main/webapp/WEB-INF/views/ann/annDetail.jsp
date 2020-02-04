@@ -128,6 +128,8 @@ ol.breadcrumb {
 .card-footer.text-muted_photo {
     width: 100%;
     height: 19em;
+    overflow-y:scroll;
+    min-height:19em;
 }
 .card-footer.text-muted {
     background-color: white;

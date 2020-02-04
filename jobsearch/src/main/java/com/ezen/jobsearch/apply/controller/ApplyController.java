@@ -62,4 +62,5 @@ public class ApplyController {
 		
 		return "common/message";
 	}
+	
 }

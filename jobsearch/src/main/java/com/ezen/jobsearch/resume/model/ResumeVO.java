@@ -11,6 +11,8 @@ public class ResumeVO {
 	private String introduceTitle; 
 	private String introduceDesc;          
 	private int refMemberseq;
+	private Timestamp applyRegdate;
+	
 	public int getResumeSeq() {
 		return resumeSeq;
 	}
@@ -58,12 +60,20 @@ public class ResumeVO {
 	}
 	public void setRefMemberseq(int refMemberseq) {
 		this.refMemberseq = refMemberseq;
+	}	
+	public Timestamp getApplyRegdate() {
+		return applyRegdate;
+	}
+	public void setApplyRegdate(Timestamp applyRegdate) {
+		this.applyRegdate = applyRegdate;
 	}
 	@Override
 	public String toString() {
 		return "ResumeVO [resumeSeq=" + resumeSeq + ", resumeTitle=" + resumeTitle + ", regDate=" + regDate
 				+ ", resumeStatus=" + resumeStatus + ", recuritStatus=" + recuritStatus + ", introduceTitle="
-				+ introduceTitle + ", introduceDesc=" + introduceDesc + ", refMemberseq=" + refMemberseq + "]";
-	}        
+				+ introduceTitle + ", introduceDesc=" + introduceDesc + ", refMemberseq=" + refMemberseq
+				+ ", applyRegdate=" + applyRegdate + "]";
+	}
+	    
 	
 }

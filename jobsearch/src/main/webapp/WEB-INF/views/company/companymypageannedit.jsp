@@ -31,13 +31,17 @@ textarea.form-control {
 }
 .btn-company-ann {
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #5e87f1;
+    border:none;
     height: 3em;
     width: 8em;
     border-radius: .25em;
     margin-left: 305px;
 }
+.btn-company-ann:hover{
+	 background: #3454a5;
+}
+
 .com-cat-sel{
 	width:50%;
 }
@@ -445,6 +449,7 @@ span.point-2t_age {
 			
 		</div>			
 		
+			
 	
 	<span id="sectionTitle">추가사항</span>	
 		<div class="card mb-4-bt-edit">	
