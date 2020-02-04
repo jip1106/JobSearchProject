@@ -34,8 +34,7 @@ IMP.request_pay({
 	            type: 'POST',
 	            dataType: 'json',
 	            data: {
-	                "paymentCode" : rsp.merchant_uid,
-	                "productName" : "프리미엄 공고글 등록상품",
+	                "paymentCode" : rsp.merchant_uid,	               
 	                "refAnnouncement" : refAnnouncement,
 	                "cardAuthNum" : rsp.apply_num
 	                //기타 필요한 데이터가 있으면 추가 전달
