@@ -21,6 +21,9 @@ h2{
 	font-size:26px;
 	font-weight: bold;
 }
+#ListTitle{
+	background: #8080802e;
+}
 
 </style>
 <script type="text/javascript">
