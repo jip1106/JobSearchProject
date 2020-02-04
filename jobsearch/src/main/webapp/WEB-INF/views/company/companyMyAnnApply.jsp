@@ -59,8 +59,8 @@ td{
 }
 </style>
 <script type="text/javascript">
-	function resumeView(resumeSeq){
-		window.open("<c:url value='/resume/detailResume.do?resumeSeq='/>"+resumeSeq, resumeSeq+"번 이력서 상세보기", 
+	function resumeView(resumeSeq, annSeq){
+		window.open("<c:url value='/resume/detailResume.do?resumeSeq='/>"+resumeSeq +"&annSeq="+annSeq, resumeSeq+"번 이력서 상세보기", 
 				"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	}
 </script>
@@ -86,7 +86,7 @@ td{
 		<c:forEach var="vo" items="${list}">
 			<tr>
 				<td id="td1">
-					<a href="#" onclick="resumeView(${vo.resumeSeq})">${vo.resumeTitle}</a>
+					<a href="#" onclick="resumeView(${vo.resumeSeq}, ${param.annSeq })">${vo.resumeTitle}</a>
 				</td id="td2">
 				<td><fmt:formatDate value="${vo.regDate}" pattern="yyyy-MM-dd"/> </td>
 			</tr>

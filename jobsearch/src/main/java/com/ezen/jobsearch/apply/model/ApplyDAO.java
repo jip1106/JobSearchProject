@@ -8,4 +8,5 @@ public interface ApplyDAO {
 	List<Map<String, Object>> selectmypageapplyList(int memberSeq);
 	int selectApplyYN(ApplyVO applyVo);
 	int deleteApply(int applySeq);
+	int updateFlag(ApplyVO applyVo);
 }

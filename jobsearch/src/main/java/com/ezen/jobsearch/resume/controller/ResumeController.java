@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.ezen.jobsearch.apply.model.ApplyService;
+import com.ezen.jobsearch.apply.model.ApplyVO;
 import com.ezen.jobsearch.education.model.EducationService;
 import com.ezen.jobsearch.education.model.EducationVO;
 import com.ezen.jobsearch.hopework.model.HopeworkService;
@@ -46,6 +48,8 @@ public class ResumeController {
 	@Autowired
 	private MycareerService mycareerService;
 	
+	@Autowired
+	private ApplyService applyService;
 
 	@RequestMapping(value="/resume/resume.do", method=RequestMethod.GET)
 	public String resume_get(HttpSession session, Model model) throws ParseException {
@@ -91,10 +95,20 @@ public class ResumeController {
 	}
 	
 	@RequestMapping(value="/resume/detailResume.do")
-	public String detailResume(@RequestParam String resumeSeq,Model model) {
+	public String detailResume(@RequestParam String resumeSeq, @RequestParam(required = false) String annSeq , Model model) {
 		
 		Map<String, Object> myResume = resumeService.selectResumeByresumeSeq(resumeSeq);
 		List<EducationVO> eduInfo = educationService.selectEduList(resumeSeq);
+		
+		if(annSeq!=null) {
+			ApplyVO applyVo=new ApplyVO();
+			applyVo.setRefResumeseq(Integer.parseInt(resumeSeq));
+			applyVo.setRefAnnseq(Integer.parseInt(annSeq));
+			logger.info("이력서 열람 여부 업데이트, 파라미터 applyVO={}", applyVo);
+			
+			int cnt=applyService.updateFlag(applyVo);
+			logger.info("이력서 열람 여부 업데이트 결과, cnt={}", cnt);
+		}
 		
 		model.addAttribute("myResume", myResume);
 		model.addAttribute("eduInfo",eduInfo);

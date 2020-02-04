@@ -34,6 +34,11 @@ public class ApplyDAOImpl implements ApplyDAO {
 	public int deleteApply(int applySeq) {
 		return sqlSession.delete(namespace+"deleteApply", applySeq);
 	}
+
+	@Override
+	public int updateFlag(ApplyVO applyVo) {
+		return sqlSession.update(namespace+"updateFlag", applyVo);
+	}
 	
 
 }
