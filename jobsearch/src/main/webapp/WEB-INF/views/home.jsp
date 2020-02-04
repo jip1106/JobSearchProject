@@ -443,10 +443,10 @@ div#clock {
 			          </div>	
 			            <div class="comName"><a onclick="comView(${announceMentVo.comSeq })">${announceMentVo.comName }</a></div>
 		            	<div class="annTitle">
-			          		<c:if test="${fn:length(announceMentVo.annTitle)>17}">
-								${fn:substring(announceMentVo.annTitle, 0, 17)}...
+			          		<c:if test="${fn:length(announceMentVo.annTitle)>14}">
+								${fn:substring(announceMentVo.annTitle, 0, 14)}...
 			     			</c:if>
-							<c:if test="${fn:length(announceMentVo.annTitle)<=17}">
+							<c:if test="${fn:length(announceMentVo.annTitle)<=14}">
 			          			${announceMentVo.annTitle }
 							</c:if>	
 			          	</div>		
@@ -554,10 +554,10 @@ div#clock {
 			          </div>		
 			            <div class="comName"><a onclick="comView(${announceMentVo.comSeq })">${announceMentVo.comName }</a></div>
 			          	<div class="annTitle">
-				          		<c:if test="${fn:length(announceMentVo.annTitle)>17}">
-									${fn:substring(announceMentVo.annTitle, 0, 17)}...
+				          		<c:if test="${fn:length(announceMentVo.annTitle)>14}">
+									${fn:substring(announceMentVo.annTitle, 0, 14)}...
 				     			</c:if>
-								<c:if test="${fn:length(announceMentVo.annTitle)<=17}">
+								<c:if test="${fn:length(announceMentVo.annTitle)<=14}">
 				          			${announceMentVo.annTitle }
 								</c:if>	
 			          	</div>			

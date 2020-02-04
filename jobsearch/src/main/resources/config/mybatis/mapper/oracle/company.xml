@@ -108,7 +108,7 @@
 			select payment_seq.nextval from dual
 		</selectKey>
 		insert into tbl_payment(payment_seq,payment_code,product_name,price_date,pay_type,ref_announcement)
-		values(#{paymentSeq},#{paymentCode},'프리미엄 공고등록',sysdate,'card',#{refAnnouncement})
+		values(#{paymentSeq},#{paymentCode},'프리미엄 공고등록',sysdate,#{payType},#{refAnnouncement})
 	</insert>
 
 	<select id="CompanyDetail" parameterType="int" resultType="companyVo">

@@ -57,7 +57,7 @@ h2{
 					<td id="ListDesc">10,000원</td>									
 				</tr>
 				<tr>
-					<td id="ListTitle">결제방식</td>
+					<td id="ListTitle">결제 방식</td>
 					<td id="ListDesc">${vo.payType}</td>									
 				</tr>									
 			</table>

@@ -325,6 +325,8 @@ public class CompanyController {//
   	public void companyprepay(@ModelAttribute PaymentVO payVo,HttpSession session,Model model) {
   		logger.info("결제창 파라미터 payVo={}",payVo);
   		String select=payVo.getPayType();
+  		payVo.setPayCom(select);
+  		logger.info("결제창 파라미터 payVo={}",payVo);
   		String payType="";
   		if(select.equals("inicis")) {
   			payType="imp51698490";
@@ -338,15 +340,17 @@ public class CompanyController {//
   	}
   	
   	@RequestMapping("/companypaycomplete.do")
-  	public void companypaycomplete(@RequestParam String paymentCode,@RequestParam String refAnnouncement,@RequestParam String cardAuthNum) {
+  	public void companypaycomplete(@RequestParam String paymentCode,@RequestParam String refAnnouncement,
+  			@RequestParam String cardAuthNum,@RequestParam String payType) {
   		  		
   		logger.info("결제 완료 처리 파라미터 paymentCode={},refAnnouncement={}",paymentCode,refAnnouncement);
-  		logger.info("카드승인번호 cardAuthNum={}",cardAuthNum);
+  		logger.info("결제완료 처리 추가 파라미터 cardAuthNum={},payType={}",cardAuthNum,payType);
   		if(paymentCode!=null) {
 	  		PaymentVO paymentVo=new PaymentVO();
 	  		paymentVo.setPaymentCode(paymentCode);
 	  		paymentVo.setRefAnnouncement(Integer.parseInt(refAnnouncement)); 
 	  		paymentVo.setCardAuthNum(cardAuthNum);
+	  		paymentVo.setPayType(payType);
 	  		companyService.payMyAnn(paymentVo);
   		}  		
   		

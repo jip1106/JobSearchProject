@@ -17,6 +17,7 @@ var memberEmail = '${loginMember.memberId}';
 var memberName ='${loginMember.memberName}';
 var refAnnouncement ='${payVo.refAnnouncement}';
 var payType='${payVo.payType}';
+var payCom='${payVo.payCom}';
 IMP.init(payType);
 var msg;
 IMP.request_pay({	
@@ -36,7 +37,8 @@ IMP.request_pay({
 	            data: {
 	                "paymentCode" : rsp.merchant_uid,	               
 	                "refAnnouncement" : refAnnouncement,
-	                "cardAuthNum" : rsp.apply_num
+	                "cardAuthNum" : rsp.apply_num,
+	                "payType" : rsp.pay_method
 	                //기타 필요한 데이터가 있으면 추가 전달
 	            }
 	        }).done(function(data) {
