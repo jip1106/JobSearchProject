@@ -143,4 +143,21 @@
   	 <delete parameterType="int" id="deleteComment"> 
   	 	delete from tbl_comment where comment_seq=#{commentSeq}
   	 </delete>
+  	 
+  	 <select id="selectByCommentSeq" parameterType="int" resultType="map">
+	 	select TO_CHAR(tb.COMMENT_DESC) as COMMENTDESC,
+		tb.REG_DATE as REGDATE, tb.REF_BOARDSEQ as BOARDSEQ,
+		tb.COMMENT_SEQ as COMMENTSEQ,
+		tm.PROFILE_RENAMEIMG as PHOTO
+		from tbl_comment tb join tbl_member tm
+		on tb.REF_MEMBERSEQ=tm.MEMBER_SEQ 
+		where comment_seq=#{commentSeq}
+	 </select>
+	 
+	 <update id="updateComment" parameterType="commentVo">
+  	 	update tbl_comment
+		set comment_desc=#{commentDesc}, reg_date=sysdate
+		where comment_seq=#{commentSeq}
+  	 </update>
+  	 
 </mapper>

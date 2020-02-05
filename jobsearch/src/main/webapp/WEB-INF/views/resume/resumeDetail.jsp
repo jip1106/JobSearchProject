@@ -452,14 +452,14 @@ div#if_end {
     border-right: 1px solid #cccccc;
     text-align: center;
     font-size: 18px;
-    height: 43px;
+    height: 40px;
     padding: 8px 0;
 }
 .school_cont {
     width: 65%;
     text-align: center;
     font-size: 18px;
-    height: 43px;
+    height: 40px;
     padding: 8px 0;
 }
 .table_title {
@@ -488,9 +488,15 @@ span.sc_name {
     padding: 9px 13px;
 }
 .intro_title {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: bold;
-    margin-bottom: 3px;
+    margin-bottom: 0px;
+    border-top: 1px solid #cccccc;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    height: 40px;
+    background-color: #f1f1f1;
+    padding: 6px 14px;
 }
 
 </style>
@@ -642,8 +648,8 @@ span.sc_name {
 					
 			<div class="introduce">
 			 	 <div class="jv_title">자기소개</div>
+				 	<div class="intro_title">${myResume['INTRODUCE_TITLE'] }</div> 
 			 	 <div class="introduce_box">
-				 	<div class="intro_title">[${myResume['INTRODUCE_TITLE'] }]</div> 
 				 	<div class="intro_cont">${myResume['INTRODUCE_DESC'] }</div>
 				 </div>
 			</div>

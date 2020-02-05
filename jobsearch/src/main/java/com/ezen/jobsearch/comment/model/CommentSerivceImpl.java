@@ -27,9 +27,16 @@ public class CommentSerivceImpl implements CommentService{
 	public int deleteComment(int commentSeq) {
 		return commentDao.deleteComment(commentSeq);
 	}
-	
-	
 
+	@Override
+	public Map<String,Object> selectByCommentSeq(int commentSeq) {
+		return commentDao.selectByCommentSeq(commentSeq);
+	}
+
+	@Override
+	public int updateComment(CommentVO commentVo) {
+		return commentDao.updateComment(commentVo);
+	}
 
 	
 }

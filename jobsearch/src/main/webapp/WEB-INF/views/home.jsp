@@ -391,21 +391,20 @@ div#clock {
     margin-bottom: 13px;
     padding: 6px 0;
 }
-#span-login{
-	position: absolute;
+#span-login {
+    position: absolute;
     color: white;
-    font-size: 32px;
-    top: 19px;
-    left: 19px;
+    font-size: 28px;
+    top: 24px;
+    left: 25px;
     visibility: hidden;
-
 }
-#span-join{
-	position: absolute;
+#span-join {
+    position: absolute;
     color: white;
-    font-size: 32px;
-    left: 149px;
-    top: 19px;
+    font-size: 28px;
+    top: 24px;
+    left: 156px;
     visibility: hidden;
 }
 

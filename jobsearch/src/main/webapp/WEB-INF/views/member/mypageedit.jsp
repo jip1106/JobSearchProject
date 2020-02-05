@@ -269,9 +269,16 @@ input#upfile{
     text-align: center;
     background-color: #fff;
 }
+
+/* label.btn_Com_Info_sub {
+    position: relative;
+    top: -190px;
+} */
 label.btn_Com_Info_sub {
     position: relative;
-    top: 2px;
+    top: 1px;
+    z-index: 100;
+    color: blue;
 }
 </style> 
 

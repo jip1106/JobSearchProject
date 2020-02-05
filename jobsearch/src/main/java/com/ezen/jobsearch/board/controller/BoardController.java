@@ -33,7 +33,7 @@ public class BoardController {
 	private final Logger logger
 		=LoggerFactory.getLogger(BoardController.class);
 	
-	public static final int BOARD_RECORD=7; //사용자 게시판 레코드
+	public static final int BOARD_RECORD=10; //사용자 게시판 레코드
 	public static final int ADMIN_BOARD_RECORD=10; //관리자 게시판 레코드
 	
 	@Autowired
@@ -331,6 +331,33 @@ public class BoardController {
 			
 		return "common/message";
 		
+	}
+	//댓글 수정하기 
+	@RequestMapping(value ="/board/edit_reply.do", method = RequestMethod.GET)
+	public String edit_reply_get(@RequestParam (defaultValue = "0") int commentSeq, Model model) {
+		
+		Map<String,Object> list= commentService.selectByCommentSeq(commentSeq);
+		
+		model.addAttribute("list", list);
+		return "board/replyEdit"; 
+	}
+	
+	@RequestMapping(value ="/board/edit_reply.do", method = RequestMethod.POST)
+	public String edit_reply_post(@ModelAttribute CommentVO commentVo, Model model) {
+		logger.info("게시글 수정 처리, 파라미터 boardVo={}", commentVo);
+		
+		
+		int cnt=commentService.updateComment(commentVo);
+		
+		String msg="수정 실패", url="/admin/home.do";
+		if(cnt>0) {
+				msg="댓글이 수정되었습니다.";
+				url="/board/detail.do?boardType=3&boardSeq="+commentVo.getRefBoardseq();
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
+			
+		return "common/message";
 	}
 		
 	//댓글 삭제하기

@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ezen.jobsearch.comment.model.CommentVO;
 import com.ezen.jobsearch.common.SearchVO;
 
 @Repository
@@ -65,6 +66,5 @@ public class BoardDAOImpl implements BoardDAO {
 	public BoardVO selectByrowNum(int boardSeq) {
 		return sqlSession.selectOne(namespace+"selectByrowNum", boardSeq);
 	}
-
 	
 }

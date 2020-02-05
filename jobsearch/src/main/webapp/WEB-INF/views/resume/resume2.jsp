@@ -71,10 +71,10 @@ $(document).ready(function() {
 	 https://gahyun-web-diary.tistory.com/26*/
 	$("#textarea_it").keyup(function (e){
 		var content = $(this).val();       
-		$('#counter').val(1000-content.length);
+		$('#counter').val(500-content.length);
 
-        if(content.length > 1000) {
-          $(this).val($(this).val().substring(0, 1000));
+        if(content.length > 500) {
+          $(this).val($(this).val().substring(0, 500));
         }
 	});	
 	
@@ -113,6 +113,7 @@ function showDiv(index){
 
 
 <style type="text/css">
+
 div#floatMenu_parent {
     padding-top: 127px;
 }        
@@ -157,6 +158,432 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
     flaot: left;
     margin-bottom: 34px;
     margin-top: -22px;
+}
+input#resumeTitle {
+    height: calc(1.5em + .75rem + 18px);
+    font-size: 21px;
+    font-weight: bold;
+    padding: 0 17px;
+}
+.card.mb-4-bt {
+    padding: 28px 0px 16px 47px;
+    margin-bottom: 57px;
+}
+input#memberName {
+    width: 274px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-left: -93px;
+    margin-bottom: -34px;
+    position: relative;
+    top: -10px;
+    left: 12px;
+}
+input#birthday {
+    width: 274px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-left: -93px;
+    margin-bottom: -34px;
+    position: relative;
+    top: -10px;
+    left: 12px;
+}
+input#address {
+    width: 450px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-left: -93px;
+    margin-bottom: -34px;
+    position: relative;
+    top: -10px;
+    left: 12px;
+}
+input#memberId {
+    width: 274px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-left: -93px;
+    margin-bottom: -34px;
+    position: relative;
+    top: -10px;
+    left: 12px;
+}
+input#Insert_text {
+    width: 274px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-left: -93px;
+    margin-bottom: -34px;
+    position: relative;
+    top: -10px;
+    left: 12px;
+}
+input#zipCode {
+    width: 274px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-left: -93px;
+    margin-bottom: -34px;
+    position: relative;
+    top: -10px;
+    left: 12px;
+}
+input#detailAddress {
+    width: 450px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-left: -93px;
+    margin-bottom: -34px;
+    position: relative;
+    top: -10px;
+    left: 12px;
+}
+input#extraAddress {
+    width: 450px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-left: -69px;
+    margin-bottom: -16px;
+    position: relative;
+    top: -10px;
+    left: 12px;
+}
+input#eduNameHigh {
+    width: 304px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-left: -69px;
+    margin-bottom: -16px;
+    position: relative;
+    top: -10px;
+    left: -1px;
+}
+#univType {
+    width: 304px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-bottom: -16px;
+    position: relative;
+    top: -10px;
+    left: -1px;
+}
+
+select#Insert_text_condition {
+    width: 68%;
+    height: calc(1.5em + .75rem + 15px);
+    position: relative;
+    left: 15.7em;
+    top: -2em;
+    margin-bottom: -29px;
+    z-index:100;
+}
+input#preComname {
+    width: 85%;
+    height: calc(1.5em + .75rem + 15px);
+    position: relative;
+    margin-bottom: -22px;
+    margin-top: 16px;
+}
+input#preJob {
+    width: 85%;
+    height: calc(1.5em + .75rem + 15px);
+    position: relative;
+    margin-bottom: 20px;
+}
+input#preStdt {
+    width: 160px;
+    height: calc(1.5em + .75rem + 15px);
+    text-align: center;
+    float: left;
+    position: relative;
+    left: -100px;
+}
+input#preEndt {
+    width: 160px;
+    height: calc(1.5em + .75rem + 15px);
+    text-align: center;
+    float: left;
+    position: relative;
+    left: -18px;
+}
+textarea.form-control {
+    width: 404px;
+}
+Input#Insert_text_money {
+    width: 68%;
+    height: calc(1.5em + .75rem + 15px);
+    position: relative;
+    left: 15.7em;
+    top: -2em;
+    margin-bottom: -17px;
+    z-index:100;
+}
+input#eduNameUniv {
+    width: 304px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-bottom: -16px;
+    position: relative;
+    top: -10px;
+    left: -1px;
+}
+input#univScore {
+    width: 304px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-bottom: -16px;
+    position: relative;
+    top: -10px;
+    left: -1px;
+}
+input#univMajor {
+    width: 304px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-bottom: -16px;
+    position: relative;
+    top: -10px;
+    left: -1px;
+}
+input#eduNameGs {
+    width: 304px;
+    height: calc(1.5em + .75rem + 15px);
+    margin-bottom: -16px;
+    position: relative;
+    top: -10px;
+    left: -1px;
+}
+span.ab_info_2t {
+    z-index: 10;
+    position: relative;
+    left: -183px;
+    font-size: 12px;
+    color: red;
+    top: 5px;
+}
+span.ab_info_2t_hope {
+    z-index: 10;
+    position: relative;
+    left: 52px;
+    font-size: 12px;
+    color: red;
+    top: 5px;
+}
+span.ab_info_3t {
+    z-index: 10;
+    position: relative;
+    left: -168px;
+    font-size: 12px;
+    color: red;
+    top: 5px;
+}
+
+span.ab_info_4t{
+    z-index: 10;
+    position: relative;
+    left: -151px;
+    font-size: 12px;
+    color: red;
+    top: 5px;
+}
+span.ab_info_4t_hope {
+    z-index: 10;
+    position: relative;
+    left: 87px;
+    font-size: 12px;
+    color: red;
+    top: 5px;
+}
+span.ab_info_5t {
+    z-index: 10;
+    position: relative;
+    left: -134px;
+    font-size: 12px;
+    color: red;
+    top: 5px;
+}
+
+.col-lg-4 {
+    font-size: 17px;
+}
+.span_notice_title_info {
+    color: #222;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: -2px;
+    line-height: 34px;
+    position: relative;
+    top: -8px;
+}
+.resume_photo2 {
+    position: absolute;
+    top: 42px;
+    left: 75%;
+    width: 120px;
+    height: 160px;
+    border: 1px solid #eaeaea;
+    box-sizing: border-box;
+    text-align: center;
+    background-color: #fff;
+    padding: 0;
+}
+select.form-control {
+    width: 145px;
+    height: calc(1.5em + .75rem + 16px);
+    position: relative;
+    left: 27px;
+}
+div#school_bt {
+    position: relative;
+    top: -50px;
+    left: 450px;
+    margin-bottom: -38px;
+}
+div#educationInfo {
+    margin-top: -14px;
+}
+button.btn.btn-primary {
+    width: 90px;
+    height: 42px;
+    background-color: #4876ef;
+    border-color: #4876ef;
+}
+
+.hsc {
+    color: #222;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 28px;
+    margin-bottom: 0px;
+    margin-left: 0;
+}
+.hsc_h {
+    color: #222;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 28px;
+    margin-bottom: 0px;
+    margin-left: 0;
+    margin-top: 9px;
+}
+.col-lg-8.form-label-group.mb-2 {
+    margin-left: -70px;
+}
+.school_notice {
+    top: -33px;
+    left: 110px;
+    font-size: 14px;
+    letter-spacing: -1px;
+    line-height: 28px;
+    margin-left: 6px;
+}
+div#hope_cate {
+    position: relative;
+    top: 26px;
+}
+div#career_layout {
+    padding: 0;
+}
+span.hyphen_career {
+    float: left;
+    margin: 0 28px;
+    font-size: 28px;
+    position: relative;
+    left: 193px;
+    top: 1px;
+}
+div#career_term {
+    position: relative;
+    left: -29px;
+    margin-top: 22px;
+    margin-bottom: -7px;
+}
+textarea#textarea_career {
+    width: 405px;
+    height: 230px;
+    position: relative;
+    margin-left: 0;
+    left: 0;
+}
+div#career_layout {
+    height: 574px;
+}
+div#career_cate1 {
+    position: relative;
+    top: 30px;
+    left: 18px;
+}
+div#career_cate2 {
+    position: relative;
+    top: 39px;
+    left: -8px;
+}
+div#career_cate3 {
+    position: relative;
+    top: 18px;
+    left: -8px;
+}
+div#career_cate4 {
+    position: relative;
+    top: -8px;
+    left: -8px;
+}
+a#career_tab_a {
+    height: 57px;
+    padding: 15px 0;
+    font-size: 17px;
+}
+span.rookie {
+    font-size: 27px;
+    position: relative;
+    top: 189px;
+    color: #4876ef;
+}
+input#Insert_title_it {
+    width: 152%;
+    height: calc(1.5em + .75rem + 16px);
+    position: relative;
+    left: 49px;
+}
+textarea#textarea_it {
+    width: 645px;
+    height: 23em;
+    margin-top: 11px;
+    position: relative;
+    left: 49px;
+    resize:none;
+}
+input#counter {
+    background: white;
+    width: 14%;
+    position: relative;
+    top: -10px;
+    left: 589px;
+    border: none;
+    margin: 0;
+    color: #cccccc;
+    text-align: right;
+}
+textarea#textarea_it {
+    width: 645px;
+    height: 23em;
+    margin-top: 11px;
+    position: relative;
+    left: 49px;
+    resize: none;
+    margin-bottom: -56px;
+}
+span.text500 {
+    position: relative;
+    left: 640px;
+    top: 21px;
+    color: #cccccc;
+    z-index: 100;
+}
+div#floatMenu {
+    width: 13em;
+    top: -10px;
+}
+h5#floatMenu_title {
+    background-color: #4876ef;
+    text-align: center;
+    color: white;
+}
+div#floatMenu_box {
+    height: 241px;
+}
+li.side_li {
+    margin-bottom: 17px;
+    font-size: 18px;
+    font-weight: 550;
 }
 </style>
 
@@ -205,7 +632,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 		</div>
 
         <!-- 기본정보 -->
-	       	<span class="span_notice_title">기본정보 </span>
+	       	<span class="span_notice_title_info" id="first_position">기본정보 </span>
 	        <div class="card mb-4-bt">
 	        
 		        <div class="resume_photo2">
@@ -213,10 +640,10 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 		    	</div>
 	        
 	        <div class="row mb-4 mt-4">
-				<div class="col-lg-4">이름  </div>
+				<div class="col-lg-4">이름  </div><span class="ab_info_2t">필수</span>
 			
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
-					<input type="text" id="memberName" name="memberName" class="form-control input-style" placeholder="이름" value="${sessionScope.loginMember.memberName }"   readonly>
+					<input type="text" id="memberName" name="memberName" class="form-control input-style" placeholder="이름" value="${sessionScope.loginMember.memberName }" readonly>
 				</div>
 				
 				<div style="position:absolute;width:150px; height:30px; top:230px; left:70%;">
@@ -230,7 +657,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				</div>
 			</div>
 	        <div class="row mb-4 mt-4">
-				<div class="col-lg-4">생년월일  </div>
+				<div class="col-lg-4">생년월일  </div><span class="ab_info_4t">필수</span>
 				
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<fmt:parseDate value="${sessionScope.loginMember.birthday }" var="memberBirthday" pattern="yyyy-MM-dd"/>
@@ -238,28 +665,28 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				</div>
 			</div>
 	        <div class="row mb-4 mt-4">
-				<div class="col-lg-4">이메일  </div>
+				<div class="col-lg-4">이메일  </div><span class="ab_info_3t">필수</span>
 				
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="memberId" name="memberId" value="${sessionScope.loginMember.memberId }" class="form-control" placeholder="이메일"   readonly>
 				</div>
 			</div>
 	        <div class="row mb-4 mt-4">
-				<div class="col-lg-4">전화번호  </div>
+				<div class="col-lg-4">전화번호  </div><span class="ab_info_4t">필수</span>
 				
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="Insert_text" name="phone" class="form-control" value="${sessionScope.loginMember.phone }" placeholder="전화번호"   readonly>
 				</div>
 			</div>
 	        <div class="row mb-4 mt-4">
-				<div class="col-lg-4">우편번호  </div>
+				<div class="col-lg-4">우편번호  </div><span class="ab_info_4t">필수</span>
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="zipCode" name="zipCode" value="${sessionScope.loginMember.zipCode}" class="form-control" placeholder="우편번호"   readonly>
 				</div>
 			</div>
 			
 			<div class="row mb-4 mt-4">
-				<div class="col-lg-4">주소 </div>
+				<div class="col-lg-4">주소 </div><span class="ab_info_2t">필수</span>
 				
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="address" name="address" class="form-control" value="${sessionScope.loginMember.address }" placeholder="주소"   readonly>
@@ -267,7 +694,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 			</div>
 			
 			<div class="row mb-4 mt-4">
-				<div class="col-lg-4">상세주소 </div>
+				<div class="col-lg-4">상세주소 </div><span class="ab_info_4t">필수</span>
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="detailAddress" name="detailAddress" class="form-control" value="${sessionScope.loginMember.detailAddress }" placeholder="주소"   readonly>
 				</div>
@@ -285,13 +712,13 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
         <!-- 학력사항 -->
         <div class="row">
         	<div class="col-lg-8">
-		        <span class="span_notice_title">학력사항</span>
+		        <span class="span_notice_title" id="second_position">학력사항</span>
 		        <span class="school_notice">최종학력 선택 후 학력사항을 입력하세요.</span>
 	        </div>
 				        
 		</div>
 		<div class="row mt-2 mb-2">
-			<div class="col-lg-8" style="float:left;">
+			<div class="col-lg-8" id="school_bt" style="float:left;">
 				<button type="button" class="btn btn-primary" onclick="showDiv('1')">고등학교</button>
 				<button type="button" class="btn btn-primary" onclick="showDiv('2')">대학교</button>
 				<button type="button" class="btn btn-primary" onclick="showDiv('3')">대학원</button>
@@ -316,9 +743,9 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<input type="hidden" name="educationVOList[0].univScore" value="0">
 				<input type="hidden" name="educationVOList[0].univMajor" value="0">
 				
-				<h4 class="hsc">고등학교 정보 입력</h4>
+				<h4 class="hsc_h">[고등학교 정보 입력]</h4>
 				<div class="row mb-4 mt-4">
-					<div class="col-lg-4">학교이름  </div>
+					<div class="col-lg-4">학교이름  </div><span class="ab_info_4t">필수</span>
 					
 					<div class="col-lg-4 form-label-group mb-2">
 						<input type="text" id="eduNameHigh" name="educationVOList[0].eduName" class="form-control" placeholder="학교이름"
@@ -327,7 +754,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				</div>
 				
 		        <div class="row mb-4 mt-4">
-					<div class="col-lg-4">재학기간  </div>
+					<div class="col-lg-4">재학기간  </div><span class="ab_info_4t">필수</span>
 					
 					<div class="col-lg-8 form-label-group mb-2">
 						<input type="text"  id="education_term1" name="educationVOList[0].periodStdt" class="form-control" placeholder="입학일" 
@@ -348,9 +775,9 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				>
 				<input type="hidden" name="educationVOList[1].eduType" value="2">
 								
-				<h4 class="hsc">대학교 정보 입력</h4>
+				<h4 class="hsc">[대학교 정보 입력]</h4>
 				<div class="row mb-4 mt-4">
-				<div class="col-lg-4">대학교구분  </div>
+				<div class="col-lg-4">대학교구분  </div><span class="ab_info_5t">필수</span>
 					<div class="col-lg-8 form-label-group mb-2">
 						<select id="univType" name="educationVOList[1].univType" class="form-control">
 							<option value="">선택</option>
@@ -360,7 +787,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 					</div>
 				</div>
 				<div class="row mb-4 mt-4">
-					<div class="col-lg-4">학교이름  </div>
+					<div class="col-lg-4">학교이름  </div><span class="ab_info_4t">필수</span>
 					
 						<div class="col-lg-8 form-label-group mb-2">
 							<input type="text" id="eduNameUniv" 
@@ -368,7 +795,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 						</div>
 				</div>
 		        <div class="row mb-4 mt-4">
-					<div class="col-lg-4">재학기간  </div>
+					<div class="col-lg-4">재학기간  </div><span class="ab_info_4t">필수</span>
 					
 						<div class="col-lg-8 form-label-group mb-2">
 							<input type="text"  id="education_term3" name="educationVOList[1].periodStdt" class="form-control" placeholder="입학일"   
@@ -379,7 +806,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 						</div>
 				</div>
 		        <div class="row mb-4 mt-4 ">
-					<div class="col-lg-4">학점 </div>
+					<div class="col-lg-4">학점 </div><span class="ab_info_2t">필수</span>
 					
 						<div class="col-lg-8 form-label-group mb-2">
 							<input type="text" id="univScore" name="educationVOList[1].univScore" class="form-control" placeholder="학점"
@@ -387,7 +814,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 						</div>
 				</div>
 		        <div class="row mb-4 mt-4">
-					<div class="col-lg-4">전공  </div>
+					<div class="col-lg-4">전공  </div><span class="ab_info_2t">필수</span>
 					
 						<div class="col-lg-8 form-label-group mb-2">
 							<input type="text" id="univMajor" name="educationVOList[1].univMajor" class="form-control" placeholder="전공"
@@ -405,9 +832,9 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 				<input type="hidden" name="educationVOList[2].univScore" value="">
 				<input type="hidden" name="educationVOList[2].univMajor" value="">
 				
-				<h4 class="hsc">대학원 정보 입력</h4>
+				<h4 class="hsc">[대학원 정보 입력]</h4>
 				<div class="row mb-4 mt-4">
-				<div class="col-lg-4">대학교구분  </div>
+				<div class="col-lg-4">대학교구분  </div><span class="ab_info_5t">필수</span>
 						<div class="col-lg-8 form-label-group mb-2">
 							<select id="univType" name="educationVOList[2].univType" class="form-control">
 								<option value="">선택</option>
@@ -417,7 +844,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 						</div>
 				</div>
 				<div class="row mb-4 mt-4">
-					<div class="col-lg-4">학교이름  </div>
+					<div class="col-lg-4">학교이름  </div><span class="ab_info_4t">필수</span>
 					
 						<div class="col-lg-8 form-label-group mb-2">
 							<input type="text" id="eduNameGs" 
@@ -425,7 +852,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 						</div>
 				</div>
 		        <div class="row mb-4 mt-4">
-					<div class="col-lg-4">재학기간  </div>
+					<div class="col-lg-4">재학기간  </div><span class="ab_info_4t">필수</span>
 					
 						<div class="col-lg-8 form-label-group mb-2">
 							<input type="text"  id="education_term5" name="educationVOList[2].periodStdt" class="form-control" placeholder="입학일"   
@@ -438,9 +865,9 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 			</div>
 		</div>
         <!-- 희망근무조건 -->
-        <span class="span_notice_title">희망근무조건</span>
+        <span class="span_notice_title_info" id="third_position">희망근무조건</span>
 	        <div class="card mb-4-bt">
-	        	<div class="col-lg-4">근무형태  </div>
+	        	<div class="col-lg-4" id="hope_cate">근무형태  </div><span class="ab_info_4t_hope">필수</span>
 				
 					<div class="col-lg-8 form-label-group mb-2">
 						<select id="Insert_text_condition" class="form-control" name="hopeEmptype">
@@ -455,7 +882,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 						</select>
 				    </div>
 				    
-				    <div class="col-lg-4">직종  </div>
+				    <div class="col-lg-4" id="hope_cate">직종</div><span class="ab_info_2t_hope">필수</span>
 					
 					<div class="col-lg-8 form-label-group mb-2">
 						<select id="Insert_text_condition" class="form-control" name="refCategory1">
@@ -471,7 +898,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 						</select>
 				    </div>
 				    
-				    <div class="col-lg-4">지역  </div>
+				    <div class="col-lg-4" id="hope_cate">지역  </div><span class="ab_info_2t_hope">필수</span>
 					
 					<div class="col-lg-8 form-label-group mb-2">
 						<select id="Insert_text_condition" class="form-control" name="refLocationseq">
@@ -487,10 +914,10 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 						</select>
 				    </div>
 				
-				<div class="col-lg-4">연봉  </div>
+				<div class="col-lg-4" id="hope_cate">연봉  </div><span class="ab_info_2t_hope">필수</span>
 				
 				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text_money" name="hopeSalary" class="form-control" value="${resumeInfo['HOPE_SALARY'] }">
+					<input type="text" id="Insert_text_money" name="hopeSalary" class="form-control" value="${resumeInfo['HOPE_SALARY'] }" placeholder="예)2400"   >
 				</div>          
        		</div>
 
@@ -503,16 +930,16 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 		}
 	</script>
 
-        <span class="span_notice_title">경력사항</span>
+        <span class="span_notice_title_info" id="fourth_position">경력사항</span>
         <input type="hidden" name="careerType" value="1" id="careerType">
         
-        <div class="card mb-4-bt-career">
+        <div class="card mb-4-bt-career" id="career_layout">
 			<ul class="nav nav-tabs" style="width:100%; text-align:center;">
-			  <li class="nav-item" style="width:50%;" onclick="changeCareerType('1')">
-			    <a class="nav-link <c:if test="${resumeInfo['CAREER_TYPE']==1 || resumeInfo['CAREER_TYPE']!=2}">active</c:if>" data-toggle="tab" href="#newPerson">신입</a>
+			  <li id="career_tab" class="nav-item" style="width:50%;" onclick="changeCareerType('1')">
+			    <a id="career_tab_a" class="nav-link <c:if test="${resumeInfo['CAREER_TYPE']==1 || resumeInfo['CAREER_TYPE']!=2}">active</c:if>" data-toggle="tab" href="#newPerson">신입</a>
 			  </li>
-			  <li class="nav-item" style="width:50%;" onclick="changeCareerType('2')">
-			    <a class="nav-link <c:if test="${resumeInfo['CAREER_TYPE']==2 }">active</c:if>" data-toggle="tab" href="#oldMan">경력</a>
+			  <li id="career_tab" class="nav-item" style="width:50%;" onclick="changeCareerType('2')">
+			    <a id="career_tab_a" class="nav-link <c:if test="${resumeInfo['CAREER_TYPE']==2 }">active</c:if>" data-toggle="tab" href="#oldMan">경력</a>
 			  </li>
 			</ul>
 
@@ -520,7 +947,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 			  <div class="tab-pane fade <c:if test="${resumeInfo['CAREER_TYPE']==1 || resumeInfo['CAREER_TYPE']!=2}">show active</c:if>" id="newPerson">
 			    <div class="row mb-4 mt-4">
 			  		<div class="col-lg-12">
-			  		    신입지원자 입니다.
+			  		    <span class="rookie">신입지원자 입니다.</span>
 			  		</div>
 			  	</div>
 			  </div>
@@ -528,7 +955,7 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 			
 			  <div class="tab-pane fade <c:if test="${resumeInfo['CAREER_TYPE']==2 }">show active</c:if>" id="oldMan">
 					<div class="row mb-4 mt-4">
-		    			<div class="col-lg-4">이전 직장 회사명</div>
+		    			<div class="col-lg-4" id="career_cate1">이전 직장 회사명</div>
 						<div class="col-lg-8 form-label-group">
 							<input type="text" id="preComname" name="preComname" class="form-control" 
 							value="${resumeInfo['PRE_COMNAME']}" placeholder="이전 직장 회사명"  >
@@ -536,13 +963,14 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 					</div>
 					
 					<div class="row mb-4 mt-4">
-						<div class="col-lg-4">재직기간</div>
+						<div class="col-lg-4" id="career_cate2">재직기간</div>
 						
-						<div class="col-lg-8 form-label-group">
+						<div class="col-lg-8 form-label-group" id="career_term">
 							<div class="col-lg-4" style="display:inline-block;">
 								<input type="text"  id="preStdt" name="preStdt" class="form-control" placeholder="시작일"   
 								value = "${resumeInfo['PRE_STDT'] }" readonly>
 							</div>
+							<span class="hyphen_career">~</span>
 							<div class="col-lg-4" style="display:inline-block;">
 								<input type="text"  id="preEndt" name="preEndt" class="form-control" placeholder="종료일" 
 								value = "${resumeInfo['PRE_ENDT'] }"  readonly>
@@ -551,16 +979,16 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 					</div>
 					
 					<div class="row mb-4 mt-4">
-						<div class="col-lg-4">담당업무</div>
+						<div class="col-lg-4" id="career_cate3">담당업무</div>
 						<div class="col-lg-8 form-label-group">
-							<input type="text" value="${resumeInfo['MANAGE_DESC']}" name="manageDesc" class="form-control" placeholder="담담업무"  >
+							<input type="text" id="preJob" value="${resumeInfo['MANAGE_DESC']}" name="manageDesc" class="form-control" placeholder="담당업무"  >
 						</div>
 					</div>						
 					
 					<div class="row mb-4 mt-4">
-						<div class="col-lg-4">퇴사사유</div>
+						<div class="col-lg-4" id="career_cate4">퇴사사유</div>
 						<div class="col-lg-8 form-label-group">
-							<textarea class="form-control" name="retireDesc" placeholder="퇴사사유" style="resize:none; height:10em;">${resumeInfo['RETIRE_DESC']}</textarea>
+							<textarea id="textarea_career" class="form-control" name="retireDesc" placeholder="퇴사사유" style="resize:none;">${resumeInfo['RETIRE_DESC']}</textarea>
 						</div>
 					</div>						
 			  </div>
@@ -569,8 +997,8 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
         
         
         <!-- 자기소개서 -->
-        <span class="span_notice_title">자기소개서</span>
-        <span class="school_notice">각 항목명은 변경할 수 있으며 글자수는 최대 1000자로 제한 됩니다.</span>
+        <span class="span_notice_title" id="fifth_position">자기소개서</span>
+        <span class="school_notice">각 항목명은 변경할 수 있으며 글자수는 최대 500자로 제한 됩니다.</span>
         <div class="card mb-4-bt">
           <!-- <div class="row mb-4 mt-4-it"> -->
 			<div class="col-lg-8 form-label-group mb-2">
@@ -581,8 +1009,8 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
       	   <!-- <div class="row mb-4 mt-4-it"> -->
 			<div class="col-lg-8 form-label-group mb-2">
 				<textarea id="textarea_it" class="form-control" name="introduceDesc" placeholder="자소서 내용">${resumeInfo['INTRODUCE_DESC']}</textarea>
-				<span class="txsub">남은 글자수 : </span>
-					<input type="text" readonly  value="1000" name="counter" id="counter" class="form-control">
+					<span class="text500">/500</span>
+					<input type="text" readonly  value="500" name="counter" id="counter" class="form-control">
  			 </div>
         </div>
         
@@ -600,25 +1028,25 @@ button.btn.btn-lg.btn-primary.btn-block.text-set {
 
 
         <div class="card my-4" id="floatMenu">
-          <h5 class="card-header">이력서 항목</h5>
-          <div class="card-body">
+          <h5 class="card-header" id="floatMenu_title">이력서 항목</h5>
+          <div class="card-body" id="floatMenu_box">
             <div class="row">
               <div class="col-lg-6">
                 <ul class="list-unstyled mb-0">
                   <li class="side_li">
-                    <a href="#span_notice_title">기본정보</a>
+                    <a href="#">기본정보</a>
                   </li>
                   <li class="side_li">
-                    <a href="#">학력사항</a>
+                    <a href="#second_position">학력사항</a>
                   </li>
                   <li class="side_li">
-                    <a href="#">희망근무조건</a>
+                    <a href="#third_position">희망근무조건</a>
                   </li>
                   <li class="side_li">
-                    <a href="#">경력사항</a>
+                    <a href="#fourth_position">경력사항</a>
                   </li>
                   <li class="side_li">
-                    <a href="#">자기소개서</a>
+                    <a href="#fifth_position">자기소개서</a>
                   </li>
                 </ul>
               </div>

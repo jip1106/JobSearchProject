@@ -94,6 +94,84 @@ hr.margin_hr {
     border-color: whilte;
     border-color: white;
 }
+.noiceList_title {
+    background-color: #4876ef;
+    height: 44px;
+    display: flex;
+    padding: 9px 29px;
+}
+.noiceList_contents {
+    height: 48px;
+    display: flex;
+    padding: 12px 29px;
+    border-bottom: 0.2px solid #cecece;
+    border-right: 0.2px solid #cecece;
+    border-left: 0.2px solid #cecece;
+}
+.ti1 {
+    width: 51px;
+    font-size: 17px;
+    color: white;
+    text-align: center;
+}
+.ti2 {
+    width: 428px;
+    font-size: 17px;
+    color: white;
+    text-align: center;
+    margin-left: 28px;
+}
+.ti3 {
+    width: 121px;
+    font-size: 17px;
+    color: white;
+    text-align: center;
+}
+.ti4 {
+    width: 138px;
+    font-size: 17px;
+    color: white;
+    text-align: center;
+}
+.ti1_c {
+    width: 51px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #4876ef;
+}
+.ti2_c {
+    width: 428px;
+    font-size: 16px;
+    margin-left: 28px;
+    padding: 0px 14px;
+    font-weight: 600;
+    color: #4876ef;
+}
+.ti3_c {
+    width: 121px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #9e9e9e;
+}
+.ti4_c {
+    width: 138px;
+    font-size: 16px;
+    text-align: center;
+    font-weight: 600;
+    color: #9e9e9e;
+}
+hr.bottom_line {
+    border: white;
+    margin-bottom: 21px;
+}
+img.notice_img {
+    margin-right: 14px;
+    resize: both;
+    height: 24px;
+}
+
 </style>
 	
 	<c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -131,6 +209,12 @@ hr.margin_hr {
 
       <!-- Post Content Column -->
       <div class="col-lg-8" id="notice_div">
+      <div class="noiceList_title">
+      	<div class="ti1">번호</div>
+      	<div class="ti2">제목</div>
+      	<div class="ti3">작성자</div>
+      	<div class="ti4">등록일</div>
+      </div>
 
         <!-- 공지사항 목록 반복 -->
         <c:if test="${empty list }">
@@ -141,27 +225,32 @@ hr.margin_hr {
         	</div>     
         </c:if>
         <c:if test="${!empty list }">
-	        <div class="card mb-4">
-	        	<c:forEach var="boardVo" items="${list }">
-		          <div class="card-body">
-		            <p class="card-text"><a href="<c:url value='/board/detail.do?boardType=1&boardSeq=${boardVo.boardSeq }'/>"><b>
-						<c:if test="${fn:length(boardVo.boardTitle)>30}">
-							${fn:substring(boardVo.boardTitle, 0, 30)}...
-						</c:if>
-						<c:if test="${fn:length(boardVo.boardTitle)<=30}">
-							${boardVo.boardTitle}
-						</c:if>
-					</b></a></p>
-		          </div>
-		          <div class="card-footer text-muted">
-		            <small><fmt:formatDate value="${boardVo.regDate }" 
-							pattern="yyyy-MM-dd"/></small>
-		          </div>
-		        </c:forEach>
-	        </div> 
-	    </c:if>       
-		
-     
+        	<c:forEach var="boardVo" items="${list }">
+		       	<div class="noiceList_contents">
+		     		<div class="ti1_c">
+		     			${boardVo.RNUM }
+		     		</div>
+		      		<div class="ti2_c">
+		      		<img class="notice_img" src="<c:url value='/resources/images/notice2.gif'/>">
+		      			<a href="<c:url value='/board/detail.do?boardType=1&boardSeq=${boardVo.boardSeq }'/>">
+							<c:if test="${fn:length(boardVo.boardTitle)>30}">
+								${fn:substring(boardVo.boardTitle, 0, 30)}...
+							</c:if>
+							<c:if test="${fn:length(boardVo.boardTitle)<=30}">
+								${boardVo.boardTitle}
+							</c:if>
+						</a>
+		      		</div>
+		      		<div class="ti3_c">
+	      				${boardVo.memberName }
+		      		</div>
+		      		<div class="ti4_c">
+		      			<fmt:formatDate value="${boardVo.regDate }" pattern="yyyy-MM-dd"/>
+		      		</div>
+		      	</div>
+	      	</c:forEach>
+        </c:if>
+        <hr class="bottom_line">
         
  		<!-- Pagination -->
 		    <ul class="pagination justify-content-center">
