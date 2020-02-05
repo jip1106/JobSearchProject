@@ -129,17 +129,20 @@ public class BoardController {
 					MemberVO memberVo = (MemberVO)session.getAttribute("loginMember");
 					if(memberVo!=null &&boardVo.getRefMemberseq()==memberVo.getMemberSeq()) {//내가 쓴 디테일화면
 						model.addAttribute("list",list);
+						model.addAttribute("count",list.size());
 						model.addAttribute("boardVo", boardVo);
 						model.addAttribute("boardVo2", boardVo2);
 						return "/board/freeEdit";
 					}else {//다른 이용자가 쓴 디테일화면
 						model.addAttribute("list",list);
+						model.addAttribute("count",list.size());
 						model.addAttribute("boardVo", boardVo);
 						model.addAttribute("boardVo2", boardVo2);
 						return "/board/freeDetail";
 					}
 				}else {//로그인 안한 경우 
 					model.addAttribute("list",list);
+					model.addAttribute("count",list.size());
 					model.addAttribute("boardVo", boardVo);
 					model.addAttribute("boardVo2", boardVo2);
 					return "/board/freeDetail";
@@ -301,6 +304,7 @@ public class BoardController {
 		String msg="잘못된 url입니다.", url="/home.do";
 		if(boardType.equals("3")) {
 			model.addAttribute("list", list);
+			model.addAttribute("count", list.size());
 			model.addAttribute("pagingInfo", pagingInfo);
 			model.addAttribute("boardVo",boardVo);
 			return "board/replyWrite";

@@ -584,7 +584,9 @@ span.re_span {
 	</c:if>
 	<c:if test="${!empty list }">
 	<div class="reply_count">
-		<span class="re_span">댓글 500개</span> 
+		<span class="re_span">댓글</span> 
+		<span class="re_count">${count }</span> 
+		<span class="re_span2">개</span> 
 		<img class="reply_bar_img" src="<c:url value='/resources/images/reply_bar.png'/>">
 	</div>
 	   	<c:forEach var="item" items="${list }">
