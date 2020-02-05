@@ -604,7 +604,7 @@ a.tag_a_reply {
 
 .select_box select {
     position: absolute;
-    left: 266px;
+    left: 298px;
     top: -1px;
     width: 74px;
     height: 28px;
