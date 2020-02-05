@@ -1,6 +1,7 @@
 package com.ezen.jobsearch.board.model;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,16 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardVO> selectMainBoard(BoardVO boardVo) {
 		return sqlSession.selectList(namespace+"selectMainBoard", boardVo);
+	}
+
+	@Override
+	public BoardVO selectMemberName(int boardSeq) {
+		return sqlSession.selectOne(namespace+"selectMemberName", boardSeq);
+	}
+
+	@Override
+	public BoardVO selectByrowNum(int boardSeq) {
+		return sqlSession.selectOne(namespace+"selectByrowNum", boardSeq);
 	}
 
 	

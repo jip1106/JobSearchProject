@@ -23,6 +23,13 @@ public class CommentSerivceImpl implements CommentService{
 		return commentDao.selectComment(searchVo);
 	}
 
+	@Override
+	public int deleteComment(int commentSeq) {
+		return commentDao.deleteComment(commentSeq);
+	}
+	
+	
+
 
 	
 }

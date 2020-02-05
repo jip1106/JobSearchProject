@@ -20,6 +20,26 @@ $(function(){
 	})
 });
 </script>
+<script type="text/javascript">
+/*글자수 제한 
+ https://gahyun-web-diary.tistory.com/26*/
+$( document ).ready(function() {
+	$("#input_2").keyup(function (e){
+    	 var content = $(this).val();       
+    	 /* $('#counter').val(30-content.length); */
+
+         if(content.length > 30) {
+           $(this).val($(this).val().substring(0,30));
+         }
+	});
+});
+
+$(document).ready(function(){
+	function sample1_execDaumPostcode(){
+		$("#divdivdiv").show();		
+	}
+});
+</script>
 <style type="text/css">
 .unfold{
 	float: right;
@@ -347,7 +367,7 @@ img.menu {
 				<div id="write_menu_div2">
 					<div class="write_menu_div22">제목</div>
 				</div>
-				<input type="text" id="input_2" class="form-control" name="boardTitle" placeholder="제목">
+				<input type="text" id="input_2" class="form-control" name="boardTitle" placeholder="제목은 30자로 제한 됩니다.">
 				<textarea style="resize: none" id="input_3" class="form-control" name="boardContents" placeholder="내용"></textarea>
 				<input type="hidden" id="input_3" class="form-control" name="boardType" value="3"> 
 				<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="${loginMember.memberSeq }">

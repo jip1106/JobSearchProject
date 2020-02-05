@@ -280,7 +280,7 @@ hr.line3 {
     padding: 15px -16px;
     border-radius: 4px;
     margin: 0 auto;
-    border: 3px solid #5e87f1;
+    /* border: 3px solid #5e87f1; */
     height: 358px;
     padding: 26px 0;
     width:437px
@@ -317,9 +317,6 @@ h1#list_delete {
 .write_menu1 {
     text-align: center;
 }
-form {
-    margin: 64px 0;
-}
 span.write_menu_div11 {
     font-size: 25px;
     font-weight: bold;
@@ -351,6 +348,10 @@ span.text_span1 {
 hr.title_hr {
     border: 1px solid #4876ef;
     margin: 0px 0 -3px 0;
+}
+hr.bottom_hr {
+    border: 1px solid #4876ef;
+    margin: 0px 0 122px 0;
 }
 span.top_regt {
     position: relative;
@@ -386,7 +387,7 @@ span.top_reg {
 			<div class="write_menu1">
 				<div class="write_menu_div1">
 					<h1 id="list_title">글 삭제</h1>
-					<span class="write_menu_div11">${boardVo.boardSeq }</span><span class="text_span">번 글을 삭제하시겠습니까?</span>
+					<span class="write_menu_div11">${boardVo.RNUM }</span><span class="text_span">번 글을 삭제하시겠습니까?</span>
 					<input type="password" id="input_1" class="form-control" name="memberPwd" placeholder="비밀번호"> 
 					<input type="hidden" id="input_2" class="form-control" name="boardSeq" value="${boardVo.boardSeq }"> 
 		<div class="button_group">
@@ -398,7 +399,7 @@ span.top_reg {
 			</div>
 	
 	</form>
-
+	 <hr class="bottom_hr">
 </div>
 
 

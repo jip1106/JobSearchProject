@@ -8,5 +8,5 @@ import com.ezen.jobsearch.common.SearchVO;
 public interface CommentDAO {
 	int insertComment(CommentVO commentVo);
 	List<Map<String,Object>> selectComment(SearchVO searchVo);
-
+	int deleteComment(int commentSeq);
 }

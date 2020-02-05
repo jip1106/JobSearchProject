@@ -114,9 +114,9 @@ public class BoardController {
 			searchVo.setSearchCondition(Integer.toString(boardSeq));
 		}
 		
-		
 		List<Map<String,Object>> list=commentService.selectComment(searchVo);
 		BoardVO boardVo=boardService.selectByBoardSeq(boardSeq);
+		BoardVO boardVo2=boardService.selectMemberName(boardSeq);
 		if(boardVo!=null) {
 			int cnt=boardService.updateHits(boardSeq);
 			logger.info("게시글 조회수 업데이트 결과, cnt={}", cnt);
@@ -130,14 +130,18 @@ public class BoardController {
 					if(memberVo!=null &&boardVo.getRefMemberseq()==memberVo.getMemberSeq()) {//내가 쓴 디테일화면
 						model.addAttribute("list",list);
 						model.addAttribute("boardVo", boardVo);
+						model.addAttribute("boardVo2", boardVo2);
 						return "/board/freeEdit";
 					}else {//다른 이용자가 쓴 디테일화면
 						model.addAttribute("list",list);
 						model.addAttribute("boardVo", boardVo);
+						model.addAttribute("boardVo2", boardVo2);
 						return "/board/freeDetail";
 					}
 				}else {//로그인 안한 경우 
+					model.addAttribute("list",list);
 					model.addAttribute("boardVo", boardVo);
+					model.addAttribute("boardVo2", boardVo2);
 					return "/board/freeDetail";
 			}
 				
@@ -178,12 +182,12 @@ public class BoardController {
 		return "common/message";
 	}
 	
-	//글삭제
+	//게시판 글삭제
 	@RequestMapping(value="/board/delete.do", method = RequestMethod.GET)
 	public String delete_get(@RequestParam(defaultValue = "0") int boardSeq, Model model){
 		logger.info("글 삭제 화면, 파라미터 no={}", boardSeq);
 		
-		BoardVO boardVo=boardService.selectByBoardSeq(boardSeq);
+		BoardVO boardVo=boardService.selectByrowNum(boardSeq);
 		
 		if(boardSeq==0) { model.addAttribute("msg","잘못된 url입니다.");
 		model.addAttribute("url","/board/freeList.do");
@@ -266,80 +270,85 @@ public class BoardController {
 	}	
 	
 	//댓글달기
-		@RequestMapping(value ="/board/replyWrite.do", method = RequestMethod.GET)
-		public String reply_get(@RequestParam (defaultValue = "0") int boardSeq, @RequestParam String boardType,
-				  @ModelAttribute SearchVO searchVo,Model model) {
-			logger.info("게시판({}) 상세조회 [1:공지사항 2:FAQ 3:자유게시판] boardSeq={}", boardType, boardSeq);
-			
-			PaginationInfo pagingInfo=new PaginationInfo();
-			pagingInfo.setBlockSize(ProjectUtil.BLOCK_SIZE);
-			pagingInfo.setRecordCountPerPage(BOARD_RECORD);
-			pagingInfo.setCurrentPage(searchVo.getCurrentPage());
-			
-			searchVo.setRecordCountPerPage(BOARD_RECORD);
-			searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
-			
-			if(searchVo.getSearchCondition()==null || searchVo.getSearchCondition().isEmpty()) {
-				searchVo.setSearchCondition(Integer.toString(boardSeq));
-			}
-			
-			
-			List<Map<String,Object>> list=commentService.selectComment(searchVo);
-			logger.info("list.size={}", list.size());
-			
-			int totalRecord=boardService.selectTotalRecord(searchVo);
-			logger.info("totalRecord={}", totalRecord);
-			
-			pagingInfo.setTotalRecord(totalRecord);
-			
-			
-			
-			BoardVO boardVo=boardService.selectByBoardSeq(boardSeq);
-			
-			String msg="잘못된 url입니다.", url="/home.do";
-			if(boardType.equals("3")) {
-				model.addAttribute("list", list);
-				model.addAttribute("pagingInfo", pagingInfo);
-				model.addAttribute("boardVo",boardVo);
-				return "board/replyWrite";
-			}
-			model.addAttribute("msg", msg);
-			model.addAttribute("url", url);
-			
-			return "common/message";
-			
+	@RequestMapping(value ="/board/replyWrite.do", method = RequestMethod.GET)
+	public String reply_get(@RequestParam (defaultValue = "0") int boardSeq, @RequestParam String boardType,
+			  @ModelAttribute SearchVO searchVo, Model model) {
+		logger.info("게시판({}) 상세조회 [1:공지사항 2:FAQ 3:자유게시판] boardSeq={}", boardType, boardSeq);
+		
+		PaginationInfo pagingInfo=new PaginationInfo();
+		pagingInfo.setBlockSize(ProjectUtil.BLOCK_SIZE);
+		pagingInfo.setRecordCountPerPage(BOARD_RECORD);
+		pagingInfo.setCurrentPage(searchVo.getCurrentPage());
+		
+		searchVo.setRecordCountPerPage(BOARD_RECORD);
+		searchVo.setFirstRecordIndex(pagingInfo.getFirstRecordIndex());
+		
+		if(searchVo.getSearchCondition()==null || searchVo.getSearchCondition().isEmpty()) {
+			searchVo.setSearchCondition(Integer.toString(boardSeq));
 		}
 		
 		
+		List<Map<String,Object>> list=commentService.selectComment(searchVo);
+		logger.info("list.size={}", list.size());
 		
-		@RequestMapping(value ="/board/replyWrite.do", method = RequestMethod.POST)
-		public String reply_post(@ModelAttribute CommentVO commentVo, 
-				@ModelAttribute BoardVO boardVo, Model model) {
-			
-			int cnt=commentService.insertComment(commentVo);
-			
-			String msg="등록 실패", url="/admin/home.do";
-			if(cnt>0) {
-				if(boardVo.getBoardType().equals("3")) { 
-					msg="댓글이 등록되었습니다.";
-					url="/board/list.do?boardType=3";
-				}
-			}
-			model.addAttribute("msg", msg);
-			model.addAttribute("url", url);
-				
-				return "common/message";
-			
+		int totalRecord=boardService.selectTotalRecord(searchVo);
+		logger.info("totalRecord={}", totalRecord);
+		
+		pagingInfo.setTotalRecord(totalRecord);
+		
+		BoardVO boardVo=boardService.selectByBoardSeq(boardSeq);
+		
+		String msg="잘못된 url입니다.", url="/home.do";
+		if(boardType.equals("3")) {
+			model.addAttribute("list", list);
+			model.addAttribute("pagingInfo", pagingInfo);
+			model.addAttribute("boardVo",boardVo);
+			return "board/replyWrite";
 		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 		
-		//댓글 삭제하기
-		/*@RequestMapping(value ="/board/delete_reply.do", method = RequestMethod.GET)
-		public String delete_reply() {
+		return "common/message";
+		
+	}
+	
+	@RequestMapping(value ="/board/replyWrite.do", method = RequestMethod.POST)
+	public String reply_post(@RequestParam (defaultValue = "0") int boardSeq,
+			@ModelAttribute CommentVO commentVo, @ModelAttribute BoardVO boardVo, Model model) {
+		
+		int cnt=commentService.insertComment(commentVo);
+		int BoardSeq=commentVo.getRefBoardseq();
+		
+		String msg="등록 실패", url="/admin/home.do";
+		if(cnt>0) {
+			if(boardVo.getBoardType().equals("3")) { 
+				msg="댓글이 등록되었습니다.";
+				url="/board/detail.do?boardType=3&boardSeq="+BoardSeq;
+			}
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 			
-			int cnt=commentService.deleteComment();
+		return "common/message";
+		
+	}
+		
+	//댓글 삭제하기
+	@RequestMapping("/board/delete_reply.do")
+	public String delete_reply(@RequestParam (defaultValue = "0") int commentSeq, Model model) {
+		
+		int cnt= commentService.deleteComment(commentSeq);
+		
+		String msg="삭제 실패", url="/admin/home.do";
+		if(cnt>0) {
+				msg="해당 댓글이 삭제되었습니다.";
+				url="/board/list.do?boardType=3";
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("url", url);
 			
-			return ;
-		}*/
+		return "common/message";
+	}
 	
 	//admin(등록 화면)
 	@RequestMapping(value = "/admin/board/write.do", method = RequestMethod.GET)
