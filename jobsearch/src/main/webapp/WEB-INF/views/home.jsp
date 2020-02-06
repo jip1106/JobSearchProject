@@ -7,6 +7,8 @@
 <c:import url="./include/header.jsp" />
 <c:import url="./include/headend.jsp" />
 <script type="text/javascript" src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
+
+
 <script type="text/javascript">
 	function annView(annSeq){
 		window.open("<c:url value='/ann/detail.do?annSeq='/>"+annSeq, annSeq+"번 공고 상세보기", 
@@ -347,10 +349,12 @@ a.boardTitle_a {
 }
 img.mark_img {
     resize: both;
-    height: 17px;
-    width: 16px;
-    margin-right: 7px;
+    height: 22px;
+    width: 22px;
+    margin-right: 3px;
     opacity: 0.85;
+    position: relative;
+    top: 1px;
 }
 .name_text {
     text-align: center;
@@ -506,7 +510,7 @@ div#clock {
 		 		<c:if test="${!empty boardList }">
 		 			<c:forEach var="boardVo" items="${boardList }">
 		 				<div class="board_title">
-		 				<img class="mark_img" src="<c:url value='/resources/images/notice_mark.png'/>">
+		 				<img class="mark_img" src="<c:url value='/resources/images/notice2.gif'/>">
 		 				<span class="boardTitle">
 		 					<a class="boardTitle_a" href="<c:url value='/board/detail.do?boardType=1&boardSeq=${boardVo.boardSeq }'/>">
 			 					<c:if test="${fn:length(boardVo.boardTitle)>15}">

@@ -48,12 +48,6 @@ textarea.form-control {
 .com-loc-sel{
 	width:70%;
 }
-div#caution {
-    font-size: 11px;
-    margin-top: 18px;
-    color: #da4d4d;
-    font-weight: bold;
-}
 .com-ann-period {
     margin-left: 165px;
 }
@@ -89,7 +83,7 @@ select#ca3_select{
 }
 .card_select {
     padding: 26px 29px 16px 29px;
-    margin-bottom: 5px;
+    margin-bottom: 31px;
     position: relative;
     display: -ms-flexbox;
     display: flex;
@@ -98,21 +92,16 @@ select#ca3_select{
     min-width: 0;
     word-wrap: break-word;
     background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem;
+    /* border: 1px solid rgba(0,0,0,.125); */
+    /* border-radius: .25rem; */
 
 }
 td#select_subject {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 17px;
+    /* font-weight: bold; */
     color: #3a3e30;
 }
 
-span#sectionTitle{
-	align-self: center;
-	font-size:26px;
-	font-weight:bold;
-}
 input#annStdt {
     width: 140px;
 }
@@ -126,6 +115,24 @@ span.point-2t_age {
     top: 18px;
     left: 40px;
     margin-right: 104px;
+}
+span#sectionTitle {
+    align-self: center;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 31px;
+    margin-top: 39px;
+}
+hr.middle_line {
+    margin: 10px 0;
+    border: white;
+}
+div#caution {
+    font-size: 11px;
+    margin-top: 31px;
+    color: #da4d4d;
+    font-weight: bold;
+    text-align: right;
 }
 
 </style>
@@ -314,7 +321,7 @@ span.point-2t_age {
   <div class="card_select">
   	 <table>
   	 	<tr>
-  	 		<td width="145px" id="select_subject">지역  : </td>
+  	 		<td width="145px" id="select_subject">지역</td>
   	 		<td>
 	  	 		<select id="lc_select" class="form-control" onchange="selectSecondLocation(this)">
 	    			<option value="">선택</option>
@@ -330,11 +337,11 @@ span.point-2t_age {
   	 		</td>  	 	
   	 	</tr>  	 	
      </table>
-     <hr> 
+     <hr class="middle_line"> 
 <!-- 카테고리선택 -->		
 	<table>
 		<tr>
-			<td width="145px" id="select_subject">카테고리 : </td>
+			<td width="145px" id="select_subject">카테고리</td>
 			<td>
 				<select class="form-control" id="cateList" onchange="sCateList2(this)">
 					<option value="">선택</option>
@@ -363,7 +370,7 @@ span.point-2t_age {
 	</table>
 </div>
 
-
+<hr>
 <!-- form 시작 -->
 <form action="<c:url value='/company/companymypageannouncement.do'/>" method="post" id="annForm" name="annForm" >
 	<span id="sectionTitle">필수 입력</span>	

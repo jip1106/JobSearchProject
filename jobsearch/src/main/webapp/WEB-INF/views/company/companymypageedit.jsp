@@ -220,13 +220,13 @@ hr.companyAdd {
 }
 .col-lg-8.form-label-group.mb-2-companycont {
     position: relative;
-    top: -200px;
+    top: -217px;
     left: 88px;
 }
 textarea#textarea_companycont {
     width: 39.3em;
     height: 16em;
-    margin-bottom: -183px;
+    margin-bottom: -243px;
 }
 input#upfile{
 	visibility: hidden;
@@ -245,17 +245,17 @@ input#upfile{
 }
 .btn_Com_Info_sub{
 		color: #fff;
-	    background-color: #007bff;
-	    border-color: #007bff;
-	    padding: .375rem .75rem;
-	    height: calc(1.5em + .75rem + 2px);
+	    background-color: #4876ef;
+   		border-color: #4876ef;
+	    padding: 12px 0;
+    	height: calc(1.5em + .75rem + 14px);
 	    font-size: 1rem;
 	    font-weight: 400;	  
 	    background-clip: padding-box;
 	    border: 1px solid #ced4da;
 	    border-radius: .25rem;
 	    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-	    margin-top: 34px;
+	    margin-top: 26px;
     	margin-right: -2px;
 	    position: absolute;
     	width: 100px;
@@ -263,7 +263,13 @@ input#upfile{
     	top: 113px;
    		right: 59px;
 }
-
+.add_comInfo {
+    font-size: 29px;
+    padding: 0 22px;
+    font-weight: 600;
+    margin-bottom: 59px;
+    text-align: center;
+}
 
 </style>
  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -376,6 +382,23 @@ function getThumbnailPrivew(html, $target) {
 			</div>
 			
 			<div class="row mb-4 mt-4_text">
+				<div class="col-lg-4-4t">담당자명  </div>
+				<span class="point-4t">필수</span>
+				<div class="col-lg-8 form-label-group mb-2">
+					<input type="text" id="Insert_text" name="memberName" value="${loginMember.memberName}" class="form-control" placeholder="담당자명" required autofocus>
+				<div id="idchkdiv" class="chkmessage"> </div>
+				</div>
+			</div>
+			
+		     <div class="row mb-4 mt-4_text">
+				<div class="col-lg-4-7t">담당자전화번호  </div>
+				<span class="point-7t">필수</span>
+				<div class="col-lg-8 form-label-group mb-2">
+					<input type="text" id="Insert_text" name="phone" class="form-control" value="${loginMember.phone}" placeholder="담당자전화번호" required autofocus>
+				<div id="idchkdiv" class="chkmessage"> </div>
+				</div>
+			</div>
+			<div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-4t">우편번호  </div>
 				<span class="point-4t">필수</span>
 				<div class="col-lg-8 form-label-group mb-2">
@@ -411,44 +434,9 @@ function getThumbnailPrivew(html, $target) {
 					style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 			  </div>
 			
-			<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">담당자명  </div>
-				<span class="point-4t">필수</span>
-				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="memberName" value="${loginMember.memberName}" class="form-control" placeholder="담당자명" required autofocus>
-				<div id="idchkdiv" class="chkmessage"> </div>
-				</div>
-			</div>
-			
-		     <div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-7t">담당자전화번호  </div>
-				<span class="point-7t">필수</span>
-				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="phone" class="form-control" value="${loginMember.phone}" placeholder="담당자전화번호" required autofocus>
-				<div id="idchkdiv" class="chkmessage"> </div>
-				</div>
-			</div>
-			
- 			<%--
-	        <div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">비밀번호  </div>
-				<span class="point-4t">필수</span>
-				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="memberPwd" class="form-control" value="#{loginMember.memberPwd}" placeholder="비밀번호" required autofocus>
-				<div id="idchkdiv" class="chkmessage"></div>
-				</div>
-			</div>
-	        <div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-6t">비밀번호확인  </div>
-				<span class="point-6t">필수</span>
-				<div class="col-lg-8 form-label-group mb-2">
-					<input type="text" id="Insert_text" name="memberPwd" class="form-control" placeholder="비밀번호확인" required autofocus>
-				<div id="idchkdiv" class="chkmessage"> </div>
-				</div>
-			</div> --%> 
 			
 	     <hr class="companyAdd">
-	     	<h3>추가 기입사항</h3>
+	     	<div class="add_comInfo">추가 기입사항</div>
 	     			<c:if test=""></c:if>
 	        <div class="row mb-4 mt-4_text">
 				<div class="col-lg-4-3t-ca">설립일  </div>
