@@ -137,8 +137,9 @@ ol.breadcrumb {
 .card-footer.text-muted_photo {
     width: 100%;
     height: 19em;
-    overflow-y:scroll;
-    min-height:19em;
+    overflow-y: scroll;
+    min-height: 19em;
+    background-color: white;
 }
 .card-footer.text-muted {
     background-color: white;
@@ -607,9 +608,9 @@ span.resume_name {
 			<div class="employment_img">
 				<img src="<c:url value='/resources/images/employment.jpg'/>">
 			</div>	
-			<%-- <div class="card-footer text-muted_photo">
+			<div class="card-footer text-muted_photo">
 				 ${vo.annDesc }
-			</div> --%>
+			</div> 
 			
 			<div class="card-footer text-muted">
 				<div class="jv_cont jv_howto">
