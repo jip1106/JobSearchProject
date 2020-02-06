@@ -26,14 +26,18 @@
  
 
 <style type="text/css">
-ol#breadcrumb_id {
-    padding: 17px 19px;
-    background-color: #007bff;
+div#breadcrumb_id {
+    padding: 11px 32px;
+    background-color: #4876ef;
     height: 57px;
     margin-bottom: 0px;
+    border-radius: 0;
+    width: 850px;
+    margin: auto;
 }
 body {
     padding: 42px;
+    background-color: #f1f3f9;
 }
 .container {
     max-width: 880px;
@@ -52,6 +56,8 @@ ol.breadcrumb {
 }
 .c_title {
     width: 100%;
+    margin-left: 8px;
+    margin-bottom: 5px;
 }
 .company_title2 {
     margin-top: 4px;
@@ -59,14 +65,14 @@ ol.breadcrumb {
     font-weight: bold;
     letter-spacing: -1.5px;
     line-height: 34px;
+    margin-left: 6px;
 }
 .cont .col {
     float: left;
-    padding: 25px 0 3px;
+    padding: 14px 24px;
     width: 368px;
     border-top: 1px solid #e5e6eb;
     font-size: 14px;
-    letter-spacing: -0.5px;
 }
 .cont .col+.col {
     margin-left: 37px;
@@ -75,26 +81,27 @@ ol.breadcrumb {
     display: block;
     position: relative;
     margin-top: 5px;
-    padding-left: 109px;
+    padding-left: 102px;
     min-height: 22px;
 }
 .cont .col>dl>dt {
     position: absolute;
     top: 0;
     left: 0;
-    color: #888;
+    color: #a2a2a2;
     line-height: 23px;
-    font-size: 17px;
+    font-size: 16px;
+    font-weight: 500;
 }
 .cont .col>dl>dd {
-    color: #444;
+    color: #777;
     line-height: 23px;
-    font-size: 17px;
+    font-size: 16px;
 }
 .cont .col>dl>dd strong {
-    color: #4c78ea;
+    color: #4876ef;
     font-weight: normal;
-    font-size: 17px;
+    font-size: 16px;
 }
 .cont .meta {
     clear: both;
@@ -117,12 +124,14 @@ ol.breadcrumb {
     letter-spacing: 0;
 }
 .top_title {
-    margin-bottom: 26px;
+    margin-top: -1px;
+    margin-bottom: 14px;
 }
 .card-body {
     padding-right:2.3em;
     padding-left:2.3em;
     padding-top: 13px;
+    padding-bottom: 4px;
     
 }
 .card-footer.text-muted_photo {
@@ -147,6 +156,12 @@ ol.breadcrumb {
     font-weight: bold;
     margin-bottom: 22px;
 }
+span#timer {
+    color: #4876ef;
+}
+span#reamin_term {
+    color: #4876ef;
+}
 dt.day {
     font-size: 18px;
 }
@@ -166,20 +181,22 @@ dd.date {
     padding-bottom: 28px;
 }
 .jv_title {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
     color: #222;
     font-size: 20px;
     font-weight: bold;
     letter-spacing: -1px;
     line-height: 22px;
+    margin-top: 4px;
+    margin-left: 7px;
 }
 .jv_howto .cont.box {
     padding: 0;
 }
 .jv_cont>.box {
     padding: 29px 29px 0;
-    border: 1px solid #ebebeb;
-    border-top-color: #999;
+    border: 1px solid #dadada;
+    margin-bottom: 10px;
 }
 .jv_howto .status {
     display: table-cell;
@@ -236,9 +253,9 @@ dd.date {
 }
 .jv_howto .noti {
     position: absolute;
-    bottom: -28px;
+    bottom: -13px;
     left: 0;
-    padding-left: 20px;
+    padding-left: 5px;
     color: #888;
     font-size: 13px;
     line-height: 28px;
@@ -288,53 +305,63 @@ dd.date {
     font-weight: normal;
     letter-spacing: -1px;
 }
-/* .jv_howto .status_left {
-    display: table-cell;
-    position: relative;
-    z-index: 2;
-    padding: 30px 0 20px;
-    width: 269px;
-    box-sizing: border-box;
-    text-align: center;
-    vertical-align: middle;
-    background: #efefef;
-} */
 .jv_howto .status_left {
     display: table-cell;
     position: relative;
     z-index: 2;
-    padding: 30px 0 20px;
+    padding: 22px 0 12px;
     width: 269px;
     box-sizing: border-box;
     text-align: center;
     vertical-align: middle;
-    border-right: 1px solid #bbbbbb;
+    border-right: 1px solid #dadada;
+    background-color: #f7f7f7;
 }
 span.cn {
     margin-right: 24px;
-    font-size: 17px;
-    font-weight: bold;
+    font-size: 16px;
+    color: #a2a2a2;
 }
 span.cn2 {
     margin-right: 42px;
-    font-size: 17px;
-    font-weight: bold;
+     font-size: 16px;
+    color: #a2a2a2;
+}
+span.cn3 {
+    margin-right: 59px;
+    font-size: 16px;
+    color: #a2a2a2;
 }
 span.cna {
-    font-size: 17px;
+    font-size: 16px;
 }
 .comn {
     margin-bottom: 14px;
 }
+span.txt_comName {
+    font-size: 21px;
+    font-weight: 600;
+}
 .info_company {
     font-size: 18px;
     margin-bottom: 13px;
+    position: relative;
+    top: -4px;
 }
 .info_company_left {
     display: table-cell;
     position: relative;
     z-index: 2;
-    padding: 30px 0px 29px 31px;
+    padding: 11px 0px 29px 44px;
+    width: 269px;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+.info_company_right {
+    display: table-cell;
+    position: relative;
+    z-index: 2;
+    padding: 8px 0px 29px 36px;
     width: 269px;
     box-sizing: border-box;
     vertical-align: middle;
@@ -344,11 +371,13 @@ span.cna {
     top: 21px;
 }
 .sri_btn_lg span.sri_btn_immediately {
-    border:0;
-    outline:0;
+    border: 0;
+    outline: 0;
     color: #fff;
     background: #ff8d5a;
-    
+    height: 51px;
+    position: relative;
+    top: -1px;
 }
 .sri_btn_lg span {
     display: inline-block;
@@ -369,8 +398,9 @@ button.sri_btn_lg.for_btn_event {
     outline: 0;
     background-color: #ff8d59;
     position: absolute;
-    left: 42em;
-    top: 16px;
+    left: 663px;
+    top: 20px;
+    height: -20px;
 }
 .cont .meta {
     clear: both;
@@ -394,9 +424,9 @@ img.scrapN {
 
 span.star-border {
     position: absolute;
-    top: 21px;
-    left: 38.2em;
-    border: 1px solid #d2d2d2;
+    top: 20px;
+    left: 600px;
+    border: 1px solid #e4e4e4;
     padding: 10px 10px;
 }
 #modal{
@@ -426,6 +456,38 @@ span.star-border {
 #notEnd{
 	display: none;
 }
+span.Jobsearch {
+    font-size: 23px;
+    color: white;
+}
+div#layout {
+    border-radius: 0;
+}
+.address_div {
+    position: absolute;
+    width: 442px;
+}
+a.txt_comName {
+    color: #6c757d;
+    text-decoration: none;
+}
+.employment_img {
+    margin: auto;
+    /* padding: 39px 0; */
+    padding-top: 0px;
+    padding-bottom: 31px;
+}
+form#formApply {
+    text-align: right;
+}
+span.resume_name {
+    margin-left: 8px;
+    position: relative;
+    top: -2px;
+}
+.repeat_resume {
+    margin-bottom: 4px;
+}
 </style>
 
 </head>
@@ -436,13 +498,12 @@ span.star-border {
 
     <!-- Page Heading/Breadcrumbs -->
 
-    <ol class="breadcrumb" id="breadcrumb_id">
-   
-    
-    </ol>
+    <div class="breadcrumb" id="breadcrumb_id">
+   		<span class="Jobsearch">Jobsearch</span>
+    </div>
 
     <!-- Blog Post -->
-		<div class="card mb-4">
+		<div class="card mb-4" id="layout">
 			<div class="card-body">
 				<input type="hidden" id=memberSeq value="${loginMember.memberSeq }">
 				<input type="hidden" id=annSeq value="${vo.annSeq}">			
@@ -482,14 +543,16 @@ span.star-border {
 								</c:if>  
 								<c:if test="${!empty resumeList }">
 					              	<c:forEach var="resumeVo" items="${resumeList }">
-							   			<input type="radio" name="no" value="${resumeVo.resumeSeq }"><span>${resumeVo.resumeTitle } <small>[수정일 :<fmt:formatDate value="${resumeVo.regDate }" 
-							pattern="yyyy-MM-dd"/>]</small></span><br>	
+					              	<div class="repeat_resume">
+							   			<input type="radio" name="no" value="${resumeVo.resumeSeq }"><span class="resume_name">${resumeVo.resumeTitle } 
+							   			<small>[수정일 :<fmt:formatDate value="${resumeVo.regDate }" pattern="yyyy-MM-dd"/>]</small></span><br>
+									</div>	
 							    	</c:forEach>
-									<form name="frmApply" action="<c:url value='/apply.do'/>" method="post">
+									<form id="formApply" name="frmApply" action="<c:url value='/apply.do'/>" method="post">
 										<input type="hidden" name="refAnnseq" value="${vo.annSeq }">
 										<input type="hidden" name="refResumeseq" value="">
 										<input type="hidden" name="refMemberseq" value="${loginMember.memberSeq }">
-								    	<input type="submit" value="제출하기">						  
+								    	<input id="ann_apply" type="submit" value="제출하기">						  
 							    	</form>
 							    </c:if>												 
 							</div>
@@ -507,26 +570,31 @@ span.star-border {
 							</dd>
 						</dl>
 						<dl>
-							<dt>연령제한</dt>
-							<dd>
-								<strong>${vo.ageLimit }</strong>
-							</dd>
-						</dl>
-					</div>
-					<div class="col">
-						<dl>
-							<dt>급여</dt>
-							<dd>${vo.salary }</dd>
-						</dl>
-						<dl>
 							<dt>근무형태</dt>
 							<dd>
 								<strong>${vo.empName }</strong>
 							</dd>
 						</dl>
 						<dl>
+							<dt>연령제한</dt>
+							<dd>
+								<strong>${vo.ageLimit }세 이상</strong>
+							</dd>
+						</dl>
+					</div>
+					<div class="col">
+						<dl>
+							<dt>급여</dt>
+							<dd>
+								<strong>${vo.salary }</strong>
+							</dd>
+						</dl>
+						
+						<dl>
 							<dt>근무지역</dt>
-							<dd>${vo.locationName } ${vo.locationName2 }</dd>
+							<dd>
+								<strong>${vo.locationName } ${vo.locationName2 }</strong>
+							</dd>
 						</dl>
 					</div>
 					<ul class="meta">
@@ -535,10 +603,13 @@ span.star-border {
 					
 				</div>
 
-			</div>			
-			<div class="card-footer text-muted_photo">
+			</div>		
+			<div class="employment_img">
+				<img src="<c:url value='/resources/images/employment.jpg'/>">
+			</div>	
+			<%-- <div class="card-footer text-muted_photo">
 				 ${vo.annDesc }
-			</div>
+			</div> --%>
 			
 			<div class="card-footer text-muted">
 				<div class="jv_cont jv_howto">
@@ -547,41 +618,52 @@ span.star-border {
 					<div class="cont box">
 						<div class="status_left">
 							<div class="info_timer" data-remain-time="2442726">
-								<span id="close" class="txt">남은 기간</span><br> <span id="timer"></span> <span
+								<span id="reamin_term" class="txt">남은 기간</span><br> <span id="timer"></span> <span
 									class="txt_day"></span><!--  <span class="time">06:30:43</span> -->
 							</div>
 								<dl class="info_period">
 								<dt class="day">시작일</dt>
-								<dd class="date">${vo.annStdt }</dd>
+								<dd class="date">
+								${vo.annStdt }
+									<%-- <fmt:formatDate value="${vo.annStdt }" pattern="yyyy-MM-dd"/> --%>
+								</dd>
 								<dt class="day">마감일</dt>
-								<dd class="date"><span id="endt">${vo.annEndt }</span></dd>
+								<dd class="date">
+									<span id="endt">
+									${vo.annEndt }
+										<%-- <fmt:formatDate value="${vo.annEndt }" pattern="yyyy-MM-dd"/> --%>
+									</span>
+								</dd>
 							</dl> 
 							
 						</div>
 						
 						<div class="info_company_left">
 							<div class="info_company" data-remain-time="2442726">
-								<span class="txt">${vo.comName }</span> 
+								<span class="txt_comName">
+									<a href="#" class="txt_comName" onclick="comView(${vo.comSeq})" target="_blank">${vo.comName }</a>
+								</span> 
 							</div>
 							<div class="comn"><span class="cn">기업형태</span><span class="cna">${vo.comType }</span></div>							
 							<div class="comn"><span class="cn2">설립일</span><span class="cna"><fmt:formatDate value="${vo.setupDate }" pattern="yyyy-MM-dd"/></span></div>							
-							<div class="comn"><span class="cn">업종</span><span class="cna">${vo.comField }</span></div>							
+							<div class="comn"><span class="cn3">업종</span><span class="cna">${vo.comField }</span></div>							
+							<div class="address_div"><span class="cn3">주소</span><span class="cna">${vo.address } ${vo.detailAddress } ${vo.extraAddress }</span></div>
 						</div>
 						
-						<div class="info_company_left">
+						<div class="info_company_right">
 							<!-- <div class="info_company" data-remain-time="2442726">
 								<span class="txt">삼성반도체</span>  
 							</div> -->
 							<div class="ci-right">
 							<div class="comn"><span class="cn">대표자명</span><span class="cna">${vo.ceoName }</span></div>							
 							<div class="comn"><span class="cn2">사원수</span><span class="cna">${vo.employeeNum }명</span></div>							
-							<div class="comn"><span class="cn">주소</span><span class="cna">${vo.address } ${vo.detailAddress } ${vo.extraAddress }</span></div>
+							<div class="comn"><span class="cn2">매출</span><span class="cna">${vo.comSales }</span></div>							
 							</div>							
 							
 						</div>
 					
 					
-						<p class="noti">마감일은 기업의 사정, 조기마감 등으로 변경될 수 있습니다.</p>
+						<p class="noti">*마감일은 기업의 사정, 조기마감 등으로 변경될 수 있습니다.</p>
 					</div>
 				</div>
 			</div>

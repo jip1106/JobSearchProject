@@ -8,23 +8,10 @@
 body{
 	width: 1200px;
 }
-#comdeHead{
-	text-align: center;
-}
-#comdeHeadDetail{
-	display:inline-block;	
-}
-#logos{
-	float:left;
-	margin-right: 40px;
-}
-#img-logos{
-	border: 3px double #3f51b575;
+#img-logos {
+    border: 1px solid #e0e0e0;
 }
 
-#comNamePlate{
-	
-}
 #details{
 	 clear: both;	
 	 text-align: center;
@@ -33,13 +20,13 @@ body{
 #detailst{
 	display: inline-block;
 }
-.comde{
-	float:left;
-	border: .25px solid;
-	width: 200px;
-	height:200px;
-	margin: 10px;
-	padding-top: 70px;
+.comde {
+    float: left;
+    /* border: .25px solid; */
+    width: 200px;
+    height: 200px;
+    margin: 10px;
+    background-color: white;
 }
 .comde:hover{
 	background:#343a40;
@@ -47,8 +34,9 @@ body{
 }
 
 .in_detail {
-    font-size: 35px;
+    font-size: 26px;
     font-weight: bold;
+    text-align: center;
 }
 
 #comdeMain{
@@ -59,100 +47,143 @@ body{
 	background: #343a40;
 	color:white;
 }
-#comdeMainCont{
-		
-}
 #images{
 	height: 400px;
     width: auto;
     margin-left: 282px;
 }
-tr{
-	height: 50px;
+body {
+    padding: 0;
 }
-td{
-	padding:10px;
+.comdetailCont {
+    margin-left: 22px;
 }
-.tdTitle{
-	font-weight: bold;
-	font-size: 20px;
+span.cont1_span {
+    font-size: 30px;
+    font-weight: 700;
 }
-.tdDesc{
-	font-weight: bold;
+.cont2 {
+    margin-top: 6px;
 }
-
+.cont3 {
+    margin-top: 6px;
+}
+span.cont2_span {
+    font-size: 18px;
+    letter-spacing: 4px;
+}
+span.cont2_span2 {
+    font-size: 18px;
+}
+span.cont3_span {
+    font-size: 18px;
+    letter-spacing: 4px;
+}
+span.cont3_span2 {
+    font-size: 18px;
+}
+#details {
+    clear: both;
+    text-align: center;
+    margin-top: 0;
+    padding: 50px 0;
+    height: 320px;
+    background: url(/jobsearch/resources/images/building_sky.jpg) center no-repeat;
+}
+span.phone {
+    font-size: 17px;
+    margin-left: 30px;
+}
+.comName_div {
+    background-color: #4876ef;
+    height: 120px;
+    padding: 23px 0;
+    font-size: 45px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    text-shadow: 4px 4px 2px black;
+}
+img.com-img1 {
+    resize: both;
+    height: 104px;
+    margin-top: 14px;
+}
+span.location {
+    font-size: 30px;
+    font-weight: 700;
+    position: relative;
+    top: 28px;
+}
+div#comdeHeadDetail {
+    display: flex;
+    margin: 50px 300px 50px 300px;
+}
 </style>
 
 
 <body>
 <!-- section start -->
-<h1 align="center" style="font-weight: bold;">${companyVo.comName} 기업상세</h1>
-<br><br><br>
-<hr>
-<br><br>
+<div class="comName_div">${companyVo.comName} 기업상세</div>
 <div id="comdeHead">
 	<div id="comdeHeadDetail">
 		<div id="logos">
-		<img id="img-logos" alt="로고이미지" src="<c:url value='/resources/upload_images/${companyVo.comRenameimage}'/>" style="max-width: 300px;max-height: 150px;">
+			<img id="img-logos" alt="로고이미지" src="<c:url value='/resources/upload_images/${companyVo.comRenameimage}'/>" style="max-width: 300px;max-height: 150px;">
 		</div>
-		<table id="comNamePlate">
-			<tr>
-				<td>
-					${companyVo.comName}|기업상세
-				</td>				
-			</tr>	
-		</table>
+		<div class="comdetailCont">
+			<div class="cont1">
+				<span class="cont1_span">${companyVo.comName}</span>
+			</div>
+			<div class="cont2">
+				<span class="cont2_span">업종:</span>
+				<span class="cont2_span2">${companyVo.comField}</span>
+			</div>
+			<div class="cont3">
+				<span class="cont3_span">위치:</span>
+				<span class="cont3_span2">${memberVo.address}</span>
+			</div>
+		</div>
 	</div>	
 </div>
 <div id="details">
 	<div id="detailst">
 		<div id="detail1" class="comde">
+			<img class="com-img1" src="<c:url value='/resources/images/comestablish.png'/>">
 			<fmt:parseDate value='${companyVo.setupDate}' var='setupDate' pattern="yyyy-MM-dd"/>
-			<h1 class="in_detail"><fmt:formatDate value='${setupDate}' pattern="yyyy-MM-dd"/></h1>
+			<div class="in_detail"><fmt:formatDate value='${setupDate}' pattern="yyyy-MM-dd"/></div>
 			<p>설립일</p>
 		</div>
 		<div id="detail2" class="comde">
-			<h1 class="in_detail">${companyVo.comType} </h1>
+			<img class="com-img1" src="<c:url value='/resources/images/comtype.png'/>">
+			<div class="in_detail">${companyVo.comType} </div>
 			<p>기업형태</p>
 		</div>
 		<div id="detail3" class="comde">
-			<h1 class="in_detail">${companyVo.ceoName}</h1>
+			<img class="com-img1" src="<c:url value='/resources/images/comCEO.png'/>">
+			<div class="in_detail">${companyVo.ceoName}</div>
 			<p>CEO이름</p>
 		</div>
 		<div id="detail4" class="comde">
-			<h1 class="in_detail">${companyVo.comSales}</h1>
+			<img class="com-img1" src="<c:url value='/resources/images/commoney.png'/>">
+			<div class="in_detail">${companyVo.comSales}</div>
 			<p>매출액</p>
 		</div>
 		<div id="detail5" class="comde">
-			<h1 class="in_detail">${companyVo.employeeNum}</h1>
+			<img class="com-img1" src="<c:url value='/resources/images/comemployee.png'/>">
+			<div class="in_detail">${companyVo.employeeNum}</div>
 			<p>사원수</p>
 		</div>
 	</div>
 </div>
-<br><br><br>
-<div id="comdeMainCont" align="center">
-	<h1 style="font-size: 30px;font-weight: bold;">기업 세부정보</h1>
-	<span>${companyVo.comDesc}</span>
-	<table style="text-align: center">
-		<tr>
-			<td class="tdTitle">업종</td>
-			<td class="tdDesc">${companyVo.comField}</td>
-		</tr>
-		<tr>
-			<td  class="tdTitle">회사 위치 </td>
-			<td class="tdDesc">${memberVo.address}</td> 
-		</tr>
-	</table>	
-</div>
+
 <div id="comdeMain">
 <div id="comdeMainIndex">
 	<img id="images" alt="회사 이미지" src="<c:url value='/resources/images/company.jpg'/>" align="absmiddle">
-	<span>전화번호: ${companyVo.comTel}</span>
+	<span class="phone">전화번호: ${companyVo.comTel}</span>
 </div>
 <c:if test="${!empty memberVo.address}">
 <div id="comdeMainCont" align="center">	
-	<br><br>
-	<h1 style="font-size: 30px;font-weight: bold;">약도</h1>	
+	<span class="location" >위치</span>	
 	<c:import url="/company/KakaoMap.do"/>
 </div>
 </c:if>

@@ -478,12 +478,6 @@ a.tag_a_reply {
     font-size: 17px;
     margin-top: 14px;
 }
-/* textarea#input_3 {
-    height: calc(1.5em + .75rem + 280px);
-    width: 100%;
-    margin-bottom: 13px;
-    border-radius: 0;
-} */
 img.reply_bar_img {
     resize: both;
     width: 24px;

@@ -14,7 +14,7 @@ a.list-group-item-ad {
     margin-bottom: 13px;
 }
 a.list-group-item {
-    height: 55px;
+    height: 52px;
     padding-top: 14px;
     font-size: 17px;
     background: #5e87f1;
@@ -66,13 +66,51 @@ h2.mt-4.mb-3 {
 	border-bottom-left-radius: .25em;
 	border-bottom-right-radius: .25em;
 }
+.CateTitle {
+    margin-bottom: 8px;
+    margin-top: 80px;
+}
+span.Jobsearch {
+    font-size: 35px;
+    letter-spacing: -1px;
+    font-weight: 500;
+    color: #4876ef;
+}
+span.text_span1 {
+    font-size: 42px;
+    font-weight: 500;
+    margin-left: 10px;
+    color: black;
+    letter-spacing: -1px;
+}
+span.text_span2 {
+    font-size: 26px;
+    margin-left: 1px;
+    color: #8e8e8e;
+    letter-spacing: -1px;
+}
+span.text_span3 {
+    font-size: 24px;
+    margin-left: 3px;
+    color: #8e8e8e;
+    letter-spacing: -1px;
+}
+a#list_final {
+    border-radius: 0 0 4px 4px;
+}
 </style>
     
    <!-- Page Content -->
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <a id="companymypageMain" href="<c:url value='/company/companyMyAnnList.do'/>"><h2 class="mt-4 mb-3" style="font-weight: bold">기업 MyPage</h2></a>
+    <%-- <a id="companymypageMain" href="<c:url value='/company/companyMyAnnList.do'/>"><h2 class="mt-4 mb-3" style="font-weight: bold">기업 MyPage</h2></a> --%>
+    <div class="CateTitle">
+	    <span class="Jobsearch">Jobsearch</span>
+	    <span class="text_span1">Mypage</span>
+	   <!--  <span class="text_span2">검색창</span> -->
+	    <span class="text_span3">입니다!</span>
+    </div>
 
     <ol class="breadcrumb">
     <span id="member_type">기업회원</span>

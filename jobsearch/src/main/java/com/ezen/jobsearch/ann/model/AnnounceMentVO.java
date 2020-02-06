@@ -38,10 +38,17 @@ public class AnnounceMentVO {
 	 private String employeeNum;
 	 private String comType;
 	 private String comRenameimage;
+	 private String comSales;
 
 	 
 	 
 	 
+	public String getComSales() {
+		return comSales;
+	}
+	public void setComSales(String comSales) {
+		this.comSales = comSales;
+	}
 	public int getAnnSeq() {
 		return annSeq;
 	}
@@ -161,11 +168,16 @@ public class AnnounceMentVO {
 	@Override
 	public String toString() {
 		return "AnnounceMentVO [annSeq=" + annSeq + ", annTitle=" + annTitle + ", annDesc=" + annDesc + ", annStdt="
-				+ annStdt + ", annEddt=" + annEndt + ", careerType=" + careerType + ", careerDesc=" + careerDesc
+				+ annStdt + ", annEndt=" + annEndt + ", careerType=" + careerType + ", careerDesc=" + careerDesc
 				+ ", employeeType=" + employeeType + ", salary=" + salary + ", ageLimit=" + ageLimit + ", hits=" + hits
 				+ ", regDate=" + regDate + ", refCateseq1=" + refCateseq1 + ", refCateseq2=" + refCateseq2
 				+ ", refCateseq3=" + refCateseq3 + ", refLocationseq1=" + refLocationseq1 + ", refLocationseq2="
-				+ refLocationseq2 + ", refCompanyseq=" + refCompanyseq + "]";
+				+ refLocationseq2 + ", refCompanyseq=" + refCompanyseq + ", annDday=" + annDday + ", comSeq=" + comSeq
+				+ ", ceoName=" + ceoName + ", setupDate=" + setupDate + ", comField=" + comField + ", address="
+				+ address + ", detailAddress=" + detailAddress + ", extraAddress=" + extraAddress + ", locationName="
+				+ locationName + ", locationName2=" + locationName2 + ", comName=" + comName + ", empName=" + empName
+				+ ", employeeNum=" + employeeNum + ", comType=" + comType + ", comRenameimage=" + comRenameimage
+				+ ", comSales=" + comSales + "]";
 	}
 	
 	public String getCeoName() {

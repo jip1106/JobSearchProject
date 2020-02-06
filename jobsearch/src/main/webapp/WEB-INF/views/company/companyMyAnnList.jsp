@@ -62,7 +62,7 @@ a.btn.btn-primary {
     vertical-align: top;
     letter-spacing: -2px;
     box-sizing: border-box;
-    margin: 30px 0 0 8px;
+    margin: 30px 0 0 19px;
 }
 .point_color{
 	color: #4876ef;
@@ -89,6 +89,7 @@ span.career_small {
 }
 span.career_small2 {
     margin-left: 7px;
+    margin-right:7px;
 }
 span.point_color_date {
     margin-right: 9px;
