@@ -218,7 +218,7 @@ strong.attach_count {
                	
                </strong>
             <div class="desc">
-               <span class="career_small">${map['CAREER_TYPE']}</span>|<span class="career_small2">${map['CAREER_DESC']}</span>|<span class="career_small2">${map['SALARY']}</span>                        
+               <span class="career_small">${map['CAREER_TYPE']}</span>|<span class="career_small2">${map['AGE_LIMIT']}</span>|<span class="career_small2">${map['SALARY']}</span>                        
             </div>
             <span class="txt_date">${map['ANN_STDT']}</span>
             <c:if test="${empty map['REF_ANNOUNCEMENT'] }">
