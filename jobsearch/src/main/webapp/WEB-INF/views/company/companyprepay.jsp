@@ -51,7 +51,9 @@ IMP.request_pay({
 	            }
 	        });
 	        //성공시 이동할 페이지	     
-	         opener.location.reload();
+	         opener.locati
+	         
+	         on.reload();
 	         location.href='<c:url value="/company/companypaycompletepage.do"/>';
 	    } else {	       
 	        self.close();
