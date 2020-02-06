@@ -32,7 +32,16 @@ public class CommentDAOImpl implements CommentDAO{
 	public int deleteComment(int commentSeq) {
 		return sqlSession.delete(namespace+"deleteComment", commentSeq);
 	}
-	
-	
+
+	@Override
+	public Map<String,Object> selectByCommentSeq(int commentSeq) {
+		return sqlSession.selectOne(namespace+"selectByCommentSeq", commentSeq);
+	}
+
+	@Override
+	public int updateComment(CommentVO commentVo) {
+		return sqlSession.update(namespace+"updateComment", commentVo);
+	}
+
 	
 }

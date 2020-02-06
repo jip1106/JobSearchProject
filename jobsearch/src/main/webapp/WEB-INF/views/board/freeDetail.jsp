@@ -31,12 +31,21 @@ $(document).ready(function() {
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.select_action').on('change',function(){
-		if (confirm("정말 삭제하시겠습니까?") == true){    //확인
-			var commentSeq=$(this).find("option").eq(1).val();
-			location.href= "<c:url value='/board/delete_reply.do?commentSeq="+commentSeq+"'/>";
-		  }else{   //취소
-		      return;
-		  }
+			if($(".select_action option:eq(1)").prop("selected")==true){
+				if (confirm("댓글을 수정하시겠습니까?") == true){    
+					var commentSeqEdit=$(this).find("option").eq(1).val();
+					location.href= "<c:url value='/board/edit_reply.do?commentSeq="+commentSeqEdit+"'/>";
+				}else{
+					return;
+				}
+			}else if($(".select_action option:eq(2)").prop("selected")==true){ 
+			    if (confirm("정말 삭제하시겠습니까?") == true){    
+					var commentSeqDel=$(this).find("option").eq(2).val();
+					location.href= "<c:url value='/board/delete_reply.do?commentSeq="+commentSeqDel+"'/>";
+			    }else{   //취소
+			    	return;
+			    }
+			}
 	});
 });
 </script>
@@ -265,12 +274,6 @@ div.write_menu_div22 {
     float: left;
     padding: 136px 0;
     margin-right: 14px;
-}
-textarea#input_3 {
-    height: calc(1.5em + .75rem + 280px);
-    width: 100%;
-    margin-bottom: 4px;
-    border-radius: 0;
 }
 div.write_menu_div33 {
     font-size: 18px;
@@ -615,7 +618,26 @@ a.tag_a_reply {
     opacity: 0;
     border: 1px solid black;
 }
-	/* url("${pageContext.request.contextPath}/resources/images/phone.png")  */
+/* 댓글 */
+.reply_count {
+    font-size: 17px;
+}
+textarea#input_3 {
+    height: calc(1.5em + .75rem + 280px);
+    width: 100%;
+    margin-bottom: 13px;
+    border-radius: 0;
+}
+img.reply_bar_img {
+    resize: both;
+    width: 24px;
+    position: relative;
+    top: -2px;
+    margin-left: 3px;
+}
+span.re_span {
+    margin-left: 7px;
+}
 </style>
 	
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -683,6 +705,12 @@ a.tag_a_reply {
 		</div>
 	</c:if>
 	<c:if test="${!empty list }">
+	<div class="reply_count">
+		<span class="re_span">댓글</span> 
+		<span class="re_count">${count }</span> 
+		<span class="re_span2">개</span> 
+		<img class="reply_bar_img" src="<c:url value='/resources/images/reply_bar.png'/>">
+	</div>
 	   	<c:forEach var="item" items="${list }">
 			<div class="reply_menu">
 				<div class="photo">
@@ -699,10 +727,11 @@ a.tag_a_reply {
 						<div class="empty_dbt"></div>
 					</c:if>
 					<c:if test="${sessionScope.loginMember.memberSeq==item.MEMBERSEQ }">
-							<div id="wrap">
+						<div id="wrap">
 							<div class="select_box">
 								<select name="select_reply" class="select_action">
-									<option value="re_edit">댓글수정</option>
+									<option key="default-empty" hidden></option>
+									<option value="${item.COMMENTSEQ}">댓글수정</option>
 									<option value="${item.COMMENTSEQ}">댓글삭제</option>
 								</select>
 							</div>

@@ -16,4 +16,5 @@ public interface BoardDAO {
 	List<BoardVO> selectMainBoard(BoardVO boardVo);
 	BoardVO selectMemberName(int boardSeq);
 	BoardVO selectByrowNum(int boardSeq);
+	
 }

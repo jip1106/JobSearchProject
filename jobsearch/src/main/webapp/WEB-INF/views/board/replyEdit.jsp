@@ -19,21 +19,12 @@ $(function(){
 <script type="text/javascript">
 $(document).ready(function(){
 	$('.select_action').on('change',function(){
-			if($(".select_action option:eq(1)").prop("selected")==true){
-				if (confirm("댓글을 수정하시겠습니까?") == true){    
-					var commentSeqEdit=$(this).find("option").eq(1).val();
-					location.href= "<c:url value='/board/edit_reply.do?commentSeq="+commentSeqEdit+"'/>";
-				}else{
-					return;
-				}
-			}else if($(".select_action option:eq(2)").prop("selected")==true){ 
-			    if (confirm("정말 삭제하시겠습니까?") == true){    
-					var commentSeqDel=$(this).find("option").eq(2).val();
-					location.href= "<c:url value='/board/delete_reply.do?commentSeq="+commentSeqDel+"'/>";
-			    }else{   //취소
-			    	return;
-			    }
-			}
+		if (confirm("정말 삭제하시겠습니까?") == true){    //확인
+			var commentSeq=$(this).find("option").eq(1).val();
+			location.href= "<c:url value='/board/delete_reply.do?commentSeq="+commentSeq+"'/>";
+		  }else{   //취소
+		      return;
+		  }
 	});
 });
 </script>
@@ -55,30 +46,6 @@ $(document).ready(function(){
 	function sample1_execDaumPostcode(){
 		$("#divdivdiv").show();		
 	}
-});
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-
-	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
-	var floatPosition = parseInt($("div#floatMenu").css('top'));
-	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
-
-	$(window).scroll(function() {
-		// 현재 스크롤 위치를 가져온다.
-		var scrollTop = $(window).scrollTop();
-		var newPosition = scrollTop + floatPosition + "px";
-
-		// 애니메이션 없이 바로 따라감
-		 $("div#floatMenu").css('top', newPosition);
-		 
-
-		$("div#floatMenu").stop().animate({
-			"top" : newPosition
-		}, 500);
-
-	}).scroll();
-
 });
 </script>
 <style type="text/css">
@@ -139,25 +106,29 @@ div#card-header {
     border-bottom: 0.5px solid #bdbdbd;
     padding: 16px 0px;
 }
-button.btn_write {/* 네비게이션 */
+button.btn_write {
     background-color: #4876ef;
     border-color: #5e87f1;
     color: white;
     border: 1px solid #dadada;
-    width: 75px;
+    width: 71px;
     text-align: center;
-    height: 36px;
+    height: 42px;
     padding: 5px 0;
+    border-radius: 5px;
 }
 div.btn_list {
     background-color: #4876ef;
     border-color: #5e87f1;
     color: white;
     border: 1px solid #dadada;
-    width: 75px;
+    width: 71px;
     text-align: center;
-    height: 36px;
+    height: 42px;
     padding: 5px 0;
+    border-radius: -49;
+    border-radius: 5px;
+    margin-right: 5px;
 }
 div.btn_top {
     background-color: #4876ef;
@@ -205,11 +176,6 @@ span.reply {/*  */
     color: black;
     font-weight: bold;
 }
-span.writer {/*  */
-    font-size: 17px;
-    color: black;
-    font-weight: bold;
-}
 input#input_2 {/*  */
     height: calc(1.5em + .75rem + 6px);
     width: 81.8%;
@@ -233,11 +199,13 @@ div.write_menu_div22 {/*  */
     padding: 136px 0;
     margin-right: 14px;
 }
-textarea#input_3 {/*  */
+textarea#input_3 {
     height: calc(1.5em + .75rem + 150px);
     width: 100%;
     margin-bottom: -10px;
     border-radius: 0;
+    position: relative;
+    top: 2px;
 }
 textarea#input_BoardSeq {/*  */
    /*  height: calc(1.5em + .75rem + 280px); */
@@ -298,10 +266,10 @@ img.photoname {
 }
 img.menu {
     resize: both;
-    height: 22px;
+    height: 26px;
     position: relative;
-    top: -2px;
-    width: 40px;
+    top: 1px;
+    width: 47px;
 }
 img.Totop {
     resize: both;
@@ -319,10 +287,10 @@ img.Tobottom {
 }
 img.write {
     resize: both;
-    height: 29px;
+    height: 31px;
     position: relative;
     top: -2px;
-    width: 48px;
+    width: 51px;
 }
 .reply_menu {
     border-bottom: 1px solid #dadada;
@@ -390,10 +358,8 @@ span.text_reg {/*  */
     margin-left: 8px;
 }
 .reply_write {
-    background-color: #f7f7f7;
     margin-top: -13px;
     padding: 9px 26px;
-    border-bottom: 1px solid #dadada;
 }
 input#counter {/*  */
     background-color: #ffffff;
@@ -473,26 +439,55 @@ a.tag_a_reply {
     opacity: 0;
     border: 1px solid black;
 }
-/* 댓글 */
-.reply_count {
-    font-size: 17px;
-    margin-top: 14px;
-}
-/* textarea#input_3 {
-    height: calc(1.5em + .75rem + 280px);
-    width: 100%;
-    margin-bottom: 13px;
-    border-radius: 0;
-} */
-img.reply_bar_img {
-    resize: both;
-    width: 24px;
+	/* url("${pageContext.request.contextPath}/resources/images/phone.png")  */
+.photo {
+    height: 47px;
+    width: 93px;
+    text-align: center;
     position: relative;
-    top: -2px;
-    margin-left: 3px;
+    top: -6px;
+    left: -26px;
+    margin-bottom: -13px;
 }
-span.re_span {
-    margin-left: 7px;
+img.photo_hole {
+    resize: both;
+    height: 70px;
+}
+img.photoname {
+    resize: both;
+    height: 70px;
+    position: relative;
+    top: -70px;
+    z-index: -1;
+}
+img.base_photo {
+    resize: both;
+    height: 54px;
+    position: relative;
+    top: -63px;
+    left: -1.95px;
+    z-index: -1;
+}
+span.write_regdate {
+    position: relative;
+    left: 413px;
+    top: -1px;
+    color: #a5a5a5;
+    font-size: 15px;
+}
+span.writer {
+    font-size: 17px;
+    color: black;
+    font-weight: bold;
+    position: relative;
+    top: -29px;
+    left: 54px;
+}
+.button_div {
+    display: flex;
+    position: relative;
+    left: 548px;
+    top: -13px;
 }
 </style>
 	
@@ -501,66 +496,42 @@ span.re_span {
 <div class="container" id="container">
 	<div class="FreeTitle">
 	    <span class="Jobsearch">자유게시판</span>
-	    <span class="text_span1">댓글</span>
+	    <span class="text_span1">댓글수정</span>
     </div>
      <hr class="title_hr">
-
-	<div class="faqlist">
-		<div id="list_part">
-			<div id="card-header" role="tab" id="headingOne">
-				<h5 class="mb-0">
-					<span class="text_title"> <c:if
-							test="${fn:length(boardVo.boardTitle)>30}">
-							${fn:substring(boardVo.boardTitle, 0, 30)}...
-						</c:if> <c:if test="${fn:length(boardVo.boardTitle)<=30}">
-							${boardVo.boardTitle}
-						</c:if>
-					</span> <span class="text_reg"> <fmt:formatDate
-							value="${boardVo.regDate }" pattern="yyyy.MM.dd" />
-					</span> <span class="unfold"><img class="open_down" alt="펼치기"
-						src="<c:url value='/resources/images/open_down.png'/>"></span>
-				</h5>
-			</div>
-
-			<div class="answer">
-				<div class="card-body">
-					<span class="text_cont"> ${boardVo.boardContents } </span>
-				</div>
-			</div>
-		</div>
-	</div>
 	
-<form name="frmSearch" method="post" action="<c:url value='/board/replyWrite.do'/>">
+<form name="frmSearch" method="post" action="<c:url value='/board/edit_reply.do'/>">
 	<div class="reply_write">
 		<div class="reply_parts">
+			<div class="photo">
+					<img class="photo_hole" src="<c:url value='/resources/images/photo_hole.png'/>">
+					<c:if test="${!empty list['PHOTO'] }">
+						<img class="photoname" src="<c:url value='/resources/upload_images/${list["PHOTO"]}'/>">
+					</c:if>
+					<c:if test="${empty list['PHOTO'] }">
+						<img class="base_photo" src="<c:url value='/resources/images/base.png'/>">
+					</c:if>
+			</div>
 			<span class="writer">
 			  <c:if test="${fn:length(sessionScope.loginMember.memberName)>0}">
 					${fn:substring(sessionScope.loginMember.memberName, 0, 1)}**
               </c:if> 님
 			</span>
+			<span class="write_regdate">작성일: 
+				<fmt:formatDate value="${list['REGDATE']}" pattern="yyyy.MM.dd hh:mm:ss" />
+			</span>
 		</div>
-		<textarea style="resize: none" id="input_3" class="form-control" name="commentDesc" placeholder="댓글을 작성해주세요."></textarea>
+		<textarea style="resize: none" id="input_3" class="form-control" name="commentDesc" placeholder="댓글을 수정해주세요.">${list['COMMENTDESC'] }</textarea>
 		<div class="counter">
 			<input type="text" readonly  value="150" name="counter" id="counter" class="form-control">
 			<span id="txsub">/150 </span>
         </div>
         <input type="hidden" id="input_3" class="form-control" name="boardType" value="3"> 
-		<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="${loginMember.memberSeq }">
-		<input type="hidden" id="input_6" class="form-control" name="refBoardseq" value="${param.boardSeq}">
+		<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="${loginMember.memberSeq }"> 
+		<input type="hidden" id="input_6" class="form-control" name="refBoardseq" value="${list['BOARDSEQ']}"> 
+		<input type="hidden" id="input_7" class="form-control" name="commentSeq" value="${list['COMMENTSEQ']}"> 
 	</div>
-	<div id="floatMenu">
-	<div class=nav_div>
-		<a href="#" class="tag_a">	
-			<div class="btn_top">
-				<img class="Totop" src="<c:url value='/resources/images/Totop.png'/>"> 
-			</div>
-		</a>
-	</div>
-	<div class=nav_div>
-		<button type="submit" class="btn_write">
-			<img class="write" src="<c:url value='/resources/images/write.png'/>">
-		</button>
-	</div>
+	<div class="button_div">
 	<div class=nav_div>
 		<a href="<c:url value='/board/list.do?boardType=3'/>" class="tag_a">	
 			<div class="btn_list">
@@ -569,65 +540,13 @@ span.re_span {
 		</a>
 	</div>
 	<div class=nav_div>
-		<a href="#bottom_line" class="tag_a">	
-			<div class="btn_bottom">
-				<img class="Tobottom" src="<c:url value='/resources/images/Tobottom.png'/>">
-			</div>
-		</a>
+		<button type="submit" class="btn_write">
+			<img class="write" src="<c:url value='/resources/images/write.png'/>">
+		</button>
 	</div>
 	</div>
 </form>
-<c:if test="${empty list }">
-		<div class="reply_layout">
-			<span class="empty_reply">댓글이 존재하지 않습니다.</span>
-		</div>
-	</c:if>
-	<c:if test="${!empty list }">
-	<div class="reply_count">
-		<span class="re_span">댓글</span> 
-		<span class="re_count">${count }</span> 
-		<span class="re_span2">개</span> 
-		<img class="reply_bar_img" src="<c:url value='/resources/images/reply_bar.png'/>">
-	</div>
-	   	<c:forEach var="item" items="${list }">
-			<div class="reply_menu">
-				<div class="photo">
-					<img class="photo_hole" src="<c:url value='/resources/images/photo_hole.png'/>">
-					<c:if test="${!empty item.PHOTO }">
-						<img class="photoname" src="<c:url value='/resources/upload_images/${item.PHOTO }'/>" alt="${item.PHOTO } 로고">
-					</c:if>
-					<c:if test="${empty item.PHOTO }">
-						<img class="base_photo" src="<c:url value='/resources/images/base.png'/>">
-					</c:if>
-				</div>
-				<div class="inner">
-					<c:if test="${sessionScope.loginMember.memberSeq!=item.MEMBERSEQ }">
-						<div class="empty_dbt"></div>
-					</c:if>
-					<c:if test="${sessionScope.loginMember.memberSeq==item.MEMBERSEQ }">
-						<div id="wrap">
-							<div class="select_box">
-								<select name="select_reply" class="select_action">
-									<option key="default-empty" hidden></option>
-									<option value="${item.COMMENTSEQ}">댓글수정</option>
-									<option value="${item.COMMENTSEQ}">댓글삭제</option>
-								</select>
-							</div>
-						</div>
-					</c:if>
-					<div class="re_writer">
-						<c:if test="${fn:length(item.MEMBERNAME)>0}">
-							${fn:substring(item.MEMBERNAME, 0, 1)}**
-	              		</c:if> 
-					</div>
-					<div class="re_cont">${item.COMMENTDESC}</div>
-					<div class="re_reg">
-						<fmt:formatDate value="${item.REGDATE}" pattern="yyyy.MM.dd hh:mm:ss" />&nbsp;작성
-					</div>
-				</div>
-			</div>
-	    </c:forEach>
-	</c:if>
+
 	<hr id="bottom_line">
 </div>
 

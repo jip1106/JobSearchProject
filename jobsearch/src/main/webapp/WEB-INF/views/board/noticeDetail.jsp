@@ -73,10 +73,10 @@ span.notice_title {
 .content {
     position: relative;
     top: -24px;
-    background-color: #ffffff;
     height: 300px;
     border-bottom: 2px solid #adadad;
     padding: 16px 24px;
+    background-color: aliceblue;
 }
 div.btn.btn-primary_list {
     height: 42px;
@@ -113,6 +113,11 @@ img.menu {
     top: -2px;
     width: 45px;
 }
+img.notice_img {
+    margin-right: 1px;
+    resize: both;
+    height: 24px;
+}
 </style>
 <body>
 
@@ -133,6 +138,7 @@ img.menu {
     <div class="detailLayout">
     <span class="n_title">제목 : </span>
     <span class="notice_title">
+    <img class="notice_img" src="<c:url value='/resources/images/notice2.gif'/>">
 		<c:if test="${fn:length(boardVo.boardTitle)>30}">
 			${fn:substring(boardVo.boardTitle, 0, 30)}...
 		</c:if>

@@ -389,7 +389,7 @@ img.menu {
 
 
 <c:import url="/WEB-INF/views/include/navi.jsp" />
-	<c:import url="/WEB-INF/views/include/footer.jsp" />
+<c:import url="/WEB-INF/views/include/footer.jsp" />
 	
 </body>
 
