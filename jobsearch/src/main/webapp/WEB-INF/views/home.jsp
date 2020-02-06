@@ -7,6 +7,8 @@
 <c:import url="./include/header.jsp" />
 <c:import url="./include/headend.jsp" />
 <script type="text/javascript" src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
+
+
 <script type="text/javascript">
 	function annView(annSeq){
 		window.open("<c:url value='/ann/detail.do?annSeq='/>"+annSeq, annSeq+"번 공고 상세보기", 
