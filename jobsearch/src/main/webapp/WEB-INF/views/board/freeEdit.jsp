@@ -823,6 +823,7 @@ span.re_span {
 		<input type="hidden" id="input_3" class="form-control" name="boardType" value="3"> 
 		<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="${boardVo.refMemberseq }">
 		<input type="hidden" id="input_6" class="form-control" name="boardSeq" value="${boardVo.boardSeq }">
+		<input type="hidden" id="input_7" class="form-control" name="boardTitle" value="${boardVo.boardTitle }">
 	</div>
 	<div id="floatMenu">
 		<div class=nav_div>
