@@ -386,7 +386,7 @@ public class CompanyController {//
   		MemberVO memberVo=mService.selectComMem(refMemberseq);
  		
   		model.addAttribute("memberVo",memberVo);
-  		model.addAttribute("companyVo",companyVo);  	
+  		model.addAttribute("vo",companyVo);  	
   		
   	}
   	@RequestMapping("/KakaoMap.do")
@@ -398,7 +398,7 @@ public class CompanyController {//
   		int refMemberseq=companyVo.getRefMemberseq();
   		
   		MemberVO memberVo=mService.selectComMem(refMemberseq);
-  		
+  		logger.info("지도 memberVo={}",memberVo);
   		model.addAttribute("memberVo",memberVo);
   		
   	}
