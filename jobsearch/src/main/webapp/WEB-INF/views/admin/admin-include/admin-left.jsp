@@ -12,6 +12,7 @@
                      -->
                     <li><a href="${pageContext.request.contextPath }/admin/board/list.do?boardType=1"><i class="glyphicon glyphicon-info-sign"></i>공지사항 관리</a></li>
                     <li><a href="${pageContext.request.contextPath }/admin/board/list.do?boardType=2"><i class="glyphicon glyphicon-question-sign"></i>FAQ 관리</a></li>
+                    <li><a href="${pageContext.request.contextPath }/admin/stats.do"><i class="glyphicon glyphicon-stats"></i>통계</a></li>
                 </ul>
              </div>
 		  </div>

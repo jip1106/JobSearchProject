@@ -9,4 +9,5 @@ public interface ApplyService {
 	int selectApplyYN(ApplyVO applyVo);
 	int deleteApply(int applySeq);
 	int updateFlag(ApplyVO applyVo);
+	List<Map<String, Object>> selectCountByDate(int month);
 }

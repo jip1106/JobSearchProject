@@ -1,5 +1,9 @@
 package com.ezen.jobsearch.apply.controller;
 
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,4 +67,18 @@ public class ApplyController {
 		return "common/message";
 	}
 	
+	@RequestMapping(value = "/admin/stats.do")
+	public String selectStats(Model model) {
+		logger.info("차트");
+		
+		Calendar cal=Calendar.getInstance();
+		
+		List<Map<String, Object>> list=applyService.selectCountByDate(cal.get(Calendar.MONTH)+1);
+		logger.info("조회 결과list.size={}", list.size());
+		
+		
+		model.addAttribute("list", list);
+		
+		return "admin/admin-statistics/statistics";
+	}
 }
