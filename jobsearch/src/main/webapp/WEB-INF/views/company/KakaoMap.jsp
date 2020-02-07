@@ -13,7 +13,7 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cc9c164d9bab8c9c90f2eaf99b91d36f&libraries=services"></script>
 <script>
 var loc="${memberVo.address}";
-var comname="${companyVo.comName}"
+var comname="${vo.comName}"
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
