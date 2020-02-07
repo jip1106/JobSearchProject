@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -243,15 +242,6 @@ span.annDday {
 div#row_premium {
     max-width: 900px;
 }
-/* .box_outer {
-    width: 279px;
-    height: 418px;
-    position: relative;
-    left: 891px;
-    top: -427px;
-    display: flex;
-    flex-wrap: wrap;
-} */
 .box_outer {
     width: 279px;
     height: 418px;

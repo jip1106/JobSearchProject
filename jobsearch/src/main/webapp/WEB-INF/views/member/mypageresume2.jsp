@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:import url="/WEB-INF/views/include/header.jsp" />
 <!-- head start -->
 
@@ -89,12 +89,6 @@ span.career_small2 {
 span.point_color_date {
     margin-right: 9px;
 }
-/* button.btn_edit_complete{
-    border-color: #4876ef;
-    color: #fff;
-    background: #4876ef;
-    border: none;
-} */
 button.btn_edit_complete {
     color: #ffffff;
     background-color: #5e87f1;
@@ -141,6 +135,9 @@ span.X {
 .info_resume {
     height: 121px;
 }
+strong.attach_count {
+    font-size: 21px;
+}
 </style>
 
 
@@ -176,7 +173,7 @@ span.X {
 	<ul class="resume_notice">
 		<!-- <li>이력서는 최대 10개까지 작성하여 등록 가능합니다.</li> -->
 		<li>이력서 지원은 1개의 이력서만 가능합니다.</li>
-		<li>미완성 이력서는 이력서 등록이 완료되지 않은 상태에서 저장된 이력서입니다.</li>
+		<li>지원공고화면에서 즐겨찾기와 이력서 지원을 하시면 됩니다.</li>
 	</ul>
 	
 	<!-- 이력서 등록하기 -->
@@ -195,7 +192,7 @@ span.X {
 							[완성]
 	                	 </span>
 	                	 
-	                	 <span class="point_color_date">${mapData['REG_DATE']}</span><span class="point_color_date">날 저장된 이력서 입니다.</span>
+	                	 <span class="point_color_date">${mapData['RESUME_TITLE']}</span><!-- <span class="point_color_date">날 저장된 이력서 입니다.</span> -->
 	               	 </a>
 	               </strong>
 		            <div class="desc">
@@ -203,9 +200,11 @@ span.X {
 		               		<c:if test="${mapData['CAREER_TYPE']==1}">신입</c:if>
 		               		<c:if test="${mapData['CAREER_TYPE']==2}">경력</c:if>
 		               	</span>|
-		               	<span class="career_small2">${mapData['HOPE_SALARY'] }</span>                        
+		               	<span class="career_small2">${mapData['HOPE_SALARY'] }이상</span>                        
 		            </div>
-	           		<span class="txt_date">등록일 ${mapData['REG_DATE']}</span>
+	           		<span class="txt_date">등록일
+	           		 	<fmt:formatDate value="${mapData['REG_DATE']}" pattern="yyyy.MM.dd hh:mm:ss" />
+	           		</span>
 	         	    <button type="button" class="btn_edit_complete" onclick="insertResume('${mapData['RESUME_SEQ']}')">수정하기</button>
 		            <div class="wrap_manage_btn">
 		            	<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete">
@@ -228,14 +227,6 @@ span.X {
           	 </div>
 		</div>          	 
       </c:if>
-		
-	
-    
-    
-	
-	
-      
-  
   
 <!-- section end -->
 	<c:import url="/WEB-INF/views/include/mypagenavibottom.jsp" />
