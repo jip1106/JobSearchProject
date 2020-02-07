@@ -9,13 +9,17 @@
 
 <style type="text/css">
 input#Insert_text_title {
-    width: 96%;
+    width: 85%;
     height: calc(1.5em + .75rem + 15px);
 }
 select#Insert_text {
-    width: 68%;
+    width: 85%;
     height: calc(1.5em + .75rem + 15px);
     margin-left: 0px;
+}
+input#Insert_text {
+    width: 85%;
+    height: calc(1.5em + .75rem + 15px);
 }
 span.point-2t-6t {
     color: red;
@@ -33,7 +37,7 @@ textarea.form-control {
     color: #fff;
     background-color: #5e87f1;
     border:none;
-    height: 3em;
+    height: 54px;
     width: 8em;
     border-radius: .25em;
     margin-left: 305px;
@@ -51,17 +55,18 @@ textarea.form-control {
 .com-ann-period {
     margin-left: 165px;
 }
-select#lc_select {   
-    height: calc(1.5em + .75rem + 15px); 
-
+select#lc_select {
+    height: calc(1.5em + .75rem + 15px);
     font-weight: bold;
     color: #293440;
+    z-index: 10;
 }
 select#lc2_select{
 	height: calc(1.5em + .75rem + 15px);
 
     font-weight: bold;
     color: #293440;
+    z-index: 10;
 }
 select#cateList{
 	height: calc(1.5em + .75rem + 15px); 
@@ -120,19 +125,87 @@ span#sectionTitle {
     align-self: center;
     font-size: 28px;
     font-weight: bold;
+    margin-top: 39px;
+}
+div#sectionTitle_add {
+    align-self: center;
+    font-size: 28px;
+    font-weight: bold;
     margin-bottom: 31px;
     margin-top: 39px;
+    text-align: center;
 }
 hr.middle_line {
     margin: 10px 0;
     border: white;
 }
 div#caution {
-    font-size: 11px;
-    margin-top: 31px;
-    color: #da4d4d;
-    font-weight: bold;
+    font-size: 12px;
+    margin-top: 11px;
+    color: #ff0000;
     text-align: right;
+}
+div#layout_add {
+    border: none;
+}
+span.absolute_tx {
+    color: red;
+    font-size: 13px;
+    position: relative;
+    top: 17px;
+    left: 39px;
+    margin-right: -6px;
+}
+span.absolute_tx_term {
+    color: red;
+    font-size: 13px;
+    position: relative;
+    top: -24px;
+    left: -4px;
+    margin-right: -6px;
+}
+span.absolute_tx_write {
+    color: red;
+    font-size: 13px;
+    position: relative;
+    top: 39px;
+    left: 73px;
+    margin-right: -6px;
+    width: 28px;
+}
+.ann_term {
+    font-size: 18px;
+    position: relative;
+    left: -117px;
+    top: -1px;
+}
+input#annStdt {
+    /* height: 15px; */
+    height: calc(1.5em + .75rem + 15px);
+}
+input#annEndt {
+    /* height: 15px; */
+    height: calc(1.5em + .75rem + 15px);
+}
+.term_div {
+    position: relative;
+    top: -61px;
+    left: 63px;
+}
+span.hyphen {
+    float: left;
+    margin: 0 42px;
+    font-size: 28px;
+}
+div#textarea_editAPI {
+    border: none;
+    margin-top: -48px;
+}
+.EditAPI_title {
+    text-align: right;
+    font-size: 14px;
+    color: red;
+    margin-bottom: 7px;
 }
 
 </style>
@@ -321,7 +394,7 @@ div#caution {
   <div class="card_select">
   	 <table>
   	 	<tr>
-  	 		<td width="145px" id="select_subject">지역</td>
+  	 		<td width="145px" id="select_subject">지역선택</td><span class="absolute_tx_write">필수</span>
   	 		<td>
 	  	 		<select id="lc_select" class="form-control" onchange="selectSecondLocation(this)">
 	    			<option value="">선택</option>
@@ -341,7 +414,7 @@ div#caution {
 <!-- 카테고리선택 -->		
 	<table>
 		<tr>
-			<td width="145px" id="select_subject">카테고리</td>
+			<td width="145px" id="select_subject">직업선택</td><span class="absolute_tx_write">필수</span>
 			<td>
 				<select class="form-control" id="cateList" onchange="sCateList2(this)">
 					<option value="">선택</option>
@@ -373,11 +446,11 @@ div#caution {
 <hr>
 <!-- form 시작 -->
 <form action="<c:url value='/company/companymypageannouncement.do'/>" method="post" id="annForm" name="annForm" >
-	<span id="sectionTitle">필수 입력</span>	
+	<div id="sectionTitle_add">추가사항</div>	
 	<!-- 제목시작 -->
- 		<div class="card mb-4-bt-edit">
+ 		<div class="card mb-4-bt-edit" id="layout_add">
  			<div class="row mb-4 mt-4_text"> 				
-				<div class="col-lg-4-4t">공고제목  </div>
+				<div class="col-lg-4-4t">공고제목</div><span class="absolute_tx">필수</span>
 				<span class="point-2t"></span>				
 				<div class="col-lg-8 form-label-group mb-2">
 					<input type="text" id="Insert_text_title" name="annTitle" class="form-control" placeholder="제목" required autofocus>
@@ -394,7 +467,7 @@ div#caution {
 			</div>
 			
 			<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">경력구분  </div>
+				<div class="col-lg-4-4t">경력구분  </div><span class="absolute_tx">필수</span>
 				<span class="point-2t"></span>				
 				<div class="col-lg-8 form-label-group mb-2">
 					<select id="Insert_text" name="careerType" class="form-control">
@@ -407,7 +480,7 @@ div#caution {
 			</div>
 							
 			<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">경력추가기입  </div>
+				<div class="col-lg-4-4t">경력추가기입  </div><span class="absolute_tx">필수</span>
 				<span class="point-2t-6t"></span>				
 				<div class="col-lg-8 form-label-group mb-2">
 					<input type="text" id="Insert_text" name="careerDesc" class="form-control" placeholder="경력사항 추가기입">
@@ -416,7 +489,7 @@ div#caution {
 			</div>
 		
  			<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">급여사항  </div>
+				<div class="col-lg-4-4t">급여사항  </div><span class="absolute_tx">필수</span>
 				<span class="point-2t"></span>				
 				<div class="col-lg-8 form-label-group mb-2">
 					<input type="text" id="Insert_text" name="salary" class="form-control" placeholder="예)회사 내규에 따름">
@@ -425,7 +498,7 @@ div#caution {
 			</div>
 			
 			<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">나이 사항  </div>
+				<div class="col-lg-4-4t">나이 사항  </div><span class="absolute_tx">필수</span>
 				<span class="point-2t_age"></span>				
 				<div class="col-lg-8 form-label-group mb-2">
 					<input type="text" id="Insert_text" name="ageLimit" class="form-control" placeholder="예)만 25세 이상">
@@ -433,7 +506,7 @@ div#caution {
 				</div>
 			</div>
 				<div class="row mb-4 mt-4_text">
-				<div class="col-lg-4-4t">고용형태  </div>
+				<div class="col-lg-4-4t">고용형태  </div><span class="absolute_tx">필수</span>
 				<span class="point-2t"></span>				
 				<div class="col-lg-8 form-label-group mb-2">
 					<select id="Insert_text" name="employeeType" class="form-control">
@@ -448,20 +521,9 @@ div#caution {
 			
 		</div>			
 		
-	
-	<span id="sectionTitle">추가사항</span>	
-		<div class="card mb-4-bt-edit">	
-				<div class="row mb-4 mt-4_text">			
-				<div class="col-lg-8 form-label-group mb-2">
-					<textarea id="Insert_text" name="annDesc" class="form-control" ></textarea>
-				</div>
-			</div>
-			
- 		</div>
- 		
- 	<span id="sectionTitle">공고 게시기간</span>
- 		<div class="card mb-4-bt-edit">
  			<div class="com-ann-period">
+ 			<div class="ann_term">공고게시기간  </div><span class="absolute_tx_term">필수</span>
+ 			<div class="term_div">
  			<table>
  				<tr>
  					<td>
@@ -472,10 +534,19 @@ div#caution {
  						<input type="text"  id="annEndt" name="annEndt" class="form-control" placeholder="마감일" required readonly>
  					</td>
  				</tr>
- 			</table> 						
+ 			</table> 		
+ 			</div>				
 			</div>			
-		</div>	
-		<hr>			
+		<div class="card mb-4-bt-edit" id="textarea_editAPI">	
+		<div class="EditAPI_title">*공고상세내용을 입력해주세요</div>
+				<div class="row mb-4 mt-4_text">			
+				<div class="col-lg-8 form-label-group mb-2">
+					<textarea id="Insert_text" name="annDesc" class="form-control"></textarea>
+				</div>
+			</div>
+			
+ 		</div>
+ 		
  		<div id="company-ann">
   				<button class="btn-company-ann" type="submit">작성하기</button>
  		</div>
