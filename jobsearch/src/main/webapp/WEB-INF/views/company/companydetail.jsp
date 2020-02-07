@@ -94,16 +94,6 @@ span.phone {
     font-size: 17px;
     margin-left: 30px;
 }
-.comName_div {
-    background-color: #4876ef;
-    height: 120px;
-    padding: 23px 0;
-    font-size: 45px;
-    text-align: center;
-    font-weight: bold;
-    color: white;
-    text-shadow: 4px 4px 2px black;
-}
 img.com-img1 {
     resize: both;
     height: 104px;
@@ -118,6 +108,16 @@ span.location {
 div#comdeHeadDetail {
     display: flex;
     margin: 50px 300px 50px 300px;
+}
+.comName_div {
+    background-color: #4876ef;
+    height: 145px;
+    padding: 37px 0;
+    font-size: 45px;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    text-shadow: 4px 4px 2px black;
 }
 </style>
 

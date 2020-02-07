@@ -55,17 +55,18 @@ textarea.form-control {
 .com-ann-period {
     margin-left: 165px;
 }
-select#lc_select {   
-    height: calc(1.5em + .75rem + 15px); 
-
+select#lc_select {
+    height: calc(1.5em + .75rem + 15px);
     font-weight: bold;
     color: #293440;
+    z-index: 10;
 }
 select#lc2_select{
 	height: calc(1.5em + .75rem + 15px);
 
     font-weight: bold;
     color: #293440;
+    z-index: 10;
 }
 select#cateList{
 	height: calc(1.5em + .75rem + 15px); 
@@ -170,6 +171,7 @@ span.absolute_tx_write {
     top: 39px;
     left: 73px;
     margin-right: -6px;
+    width: 28px;
 }
 .ann_term {
     font-size: 18px;
