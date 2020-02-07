@@ -36,4 +36,9 @@ public class ApplyServiceImpl implements ApplyService {
 	public int updateFlag(ApplyVO applyVo) {
 		return applyDao.updateFlag(applyVo);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectCountByDate(int month) {
+		return applyDao.selectCountByDate(month);
+	}
 }

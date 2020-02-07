@@ -117,7 +117,8 @@
 	</select>
 	
 	<select id="companyPayList" parameterType="int" resultType="paymentVo">
-		select payment_seq,payment_code,product_name,to_char(price_date,'yyyy-MM-dd')as price_date,pay_type,card_authnum,ref_announcement from tbl_payment
+		select A.payment_seq, A.payment_code, A.product_name, to_char(A.price_date,'yyyy-MM-dd')as price_date,A.pay_type,A.card_authnum,A.ref_announcement,B.Ann_Title from (tbl_payment)A left join (tbl_announcement)B
+		on A.REF_ANNOUNCEMENT=B.ANN_SEQ
 		where ref_announcement in (select ann_seq from tbl_announcement
 		where ref_companyseq=(select com_seq from tbl_company
 		where ref_memberseq=#{memberSeq}))

@@ -39,6 +39,11 @@ public class ApplyDAOImpl implements ApplyDAO {
 	public int updateFlag(ApplyVO applyVo) {
 		return sqlSession.update(namespace+"updateFlag", applyVo);
 	}
+
+	@Override
+	public List<Map<String, Object>> selectCountByDate(int month) {
+		return sqlSession.selectList(namespace+"selectCountByDate", month);
+	}
 	
 
 }

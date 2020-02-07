@@ -10,6 +10,8 @@ public class PaymentVO {
 	 private int refAnnouncement;
 	 private String payCom;
 	 
+	 private String annTitle;
+	 
 	public int getPaymentSeq() {
 		return paymentSeq;
 	}
@@ -59,13 +61,18 @@ public class PaymentVO {
 	public void setPayCom(String payCom) {
 		this.payCom = payCom;
 	}
+	public String getAnnTitle() {
+		return annTitle;
+	}
+	public void setAnnTitle(String annTitle) {
+		this.annTitle = annTitle;
+	}
+	
 	@Override
 	public String toString() {
 		return "PaymentVO [paymentSeq=" + paymentSeq + ", paymentCode=" + paymentCode + ", productName=" + productName
 				+ ", priceDate=" + priceDate + ", payType=" + payType + ", cardAuthNum=" + cardAuthNum
-				+ ", refAnnouncement=" + refAnnouncement + ", payCom=" + payCom + "]";
+				+ ", refAnnouncement=" + refAnnouncement + ", payCom=" + payCom + ", annTitle=" + annTitle + "]";
 	}
-
-
 	 
 }

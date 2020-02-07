@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <!-- 외부css -->
@@ -173,7 +174,15 @@ dd {
 			<div class="accordian_title">
 				<div class="firt">
 					<img class="open_down" src="<c:url value='/resources/images/open_down.png'/>">
-					<span class="pdName">${vo.productName} 결제</span>
+					
+					<span class="pdName">공고명 :
+					 	<c:if test="${fn:length(vo.annTitle)>8}">
+							${fn:substring(vo.annTitle, 0, 8)}...
+				     	</c:if>
+				     	<c:if test="${fn:length(vo.annTitle)<8}">
+				     		${vo.annTitle}
+				     	</c:if>				     	
+				     	</span>
 				</div>
 				<div class="second">
 	    			<div class="t_money">10,000원</div>

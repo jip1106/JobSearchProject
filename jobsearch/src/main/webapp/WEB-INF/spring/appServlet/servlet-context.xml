@@ -59,6 +59,7 @@
 			<mapping path="/board/delete.do"></mapping>			
 			
 			<exclude-mapping path="/admin/login.do"/>
+			<exclude-mapping path="/admin/memberListExcel.do"/>
 			<exclude-mapping path="/company/companydetail.do"/>
 			<exclude-mapping path="/company/KakaoMap.do"/>
 			<exclude-mapping path="/resume/searchResume.do"/>
