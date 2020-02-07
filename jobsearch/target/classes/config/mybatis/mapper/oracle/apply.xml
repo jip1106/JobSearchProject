@@ -14,7 +14,7 @@
 	
 	<select id="selectmypageapplyList" parameterType="int" resultType="map">
 		select  
-		    tc.com_name as COMNAME, tc.com_type as COMTYPE, 
+		    tc.com_name as COMNAME, tc.com_type as COMTYPE, tr.RESUME_SEQ as RESUME_SEQ,
 		    tap.apply_seq as APPLYSEQ, tap.open_flag as OPENFLAG, tap.reg_date as REGDATE, ta.ann_title as TITLE,
 		    trunc(to_char(ta.ANN_ENDT-sysdate),0) as TIME,
 		    ta.salary as SALARY, ta.career_type as CAREER, 
@@ -47,4 +47,10 @@
 		set open_flag='Y'
 		where ref_annSeq=#{refAnnseq} and ref_resumeseq=#{refResumeseq}
 	</update>
+	
+	<select id="selectCountByDate" parameterType="int" resultType="map">
+		select count(*) as count, to_char(reg_date, 'YYYY-MM-DD') as reg_date from tbl_board
+		where extract(month from reg_date)=#{month}
+		group by to_char(reg_date, 'YYYY-MM-DD')
+	</select>
 </mapper>

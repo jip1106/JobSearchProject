@@ -12,6 +12,7 @@
     <link href="${pageContext.request.contextPath }/resources/admin/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- styles -->
     <link href="${pageContext.request.contextPath }/resources/admin/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/admin/vendors/morris/morris.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

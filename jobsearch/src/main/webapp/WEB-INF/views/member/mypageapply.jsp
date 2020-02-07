@@ -112,28 +112,17 @@ button.btn_edit_complete {
     font-size: 17px;
     border: none;
     border-radius: 5px;
+    z-index:100;
 }
-/* button.btn_delete {
-    display: inline-block;
-    margin-left: 4px;
-    width: 21px;
-    height: 21px;
-    border: 1px solid #e8e8e8;
-    border-radius: 50%;
-    vertical-align: top;
-    background: #f9f9f9;
-    position: relative;
-    top: -21px;
-    left: 39.2em;
-} */
+
 button.btn_delete {
-    width: 101px;
+    width: 114px;
     height: 27px;
     border: 1px solid #ffffff;
     background: #e8e8e8;
     position: relative;
     top: -17px;
-    left: 494px;
+    left: 487px;
     padding: 4px 0;
     border-radius: 5px;
     z-index: 10;
@@ -143,7 +132,7 @@ span.X {
     position: relative;
     top: -4px;
     left: -1px;
-    color: #ccc3c3;
+    color: #9c9c9c;
 }
 
 .card.mb-4-bt {
@@ -204,7 +193,19 @@ span.day_span {
 				"width=1200, height=950, toolbar=no, menubar=no, scrollbars=no, resizable=yes");
 	}
 </script>
-
+<script>
+	function resumeDetail(resumeSeq){
+		if(${sessionScope.loginMember.regType == '1' || sessionScope.loginMember.regType == '0'}){
+			window.open("<c:url value='/resume/detailResume.do?resumeSeq='/>"+resumeSeq, resumeSeq+"번 공고 상세보기", 
+			"width=1050, height=1000, toolbar=no, menubar=no, scrollbars=no, resizable=no");
+		}else{
+			alert('기업회원 사용자만 볼 수 있습니다.');
+		}
+		event.stopPropagation();
+		event.preventDefault();
+		
+	}
+</script>
 <!-- head end -->
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 <body>
@@ -247,7 +248,7 @@ span.day_span {
             <c:if test="${item.OPENFLAG eq 'Y'}">
             	<span class="openFlag">열람</span>
             </c:if>
-            <button type="button" class="btn_edit_complete" onclick="#">나의 이력서</button>
+            <button type="button" class="btn_edit_complete" onclick="resumeDetail('${item['RESUME_SEQ']}')">나의 이력서</button>
 			<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
             	onclick="button_event(${item.APPLYSEQ})">
             		<span class="X">지원 취소</span>
@@ -274,9 +275,6 @@ span.day_span {
            </div>
 		</div>
 	</c:if>
-	
-      
-  
   
 <!-- section end -->
 <c:import url="/WEB-INF/views/include/mypagenavibottom.jsp" />
