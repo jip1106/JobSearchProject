@@ -69,7 +69,7 @@ a.btn.btn-primary {
     vertical-align: top;
     letter-spacing: -2px;
     box-sizing: border-box;
-    margin: 30px 0 0 8px;
+    margin: 30px 0 0 18px;
 }
 .point_color{
 	color: #4876ef;
@@ -239,11 +239,12 @@ span.day_span {
                	 </a>
                </strong>
             <div class="desc">
-               <span class="career_small">${item['CAREER']}</span>|<span class="career_small2">${item['EMPLOYEE']}</span>|<span class="career_small2">${item['SALARY']}이상</span>                        
+               <span class="career_small">${item['CAREER']}</span>|<span class="career_small2">${item['AGE']}세</span>|<span class="career_small2">${item['SALARY']}이상</span>                        
             </div>
 
-            <span class="txt_date">지원한 날짜: 
-            <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd" />
+            <span class="txt_date">  
+            	지원날짜 
+            <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd hh:mm:ss" />
             </span>
             <c:if test="${item.OPENFLAG eq 'Y'}">
             	<span class="openFlag">열람</span>

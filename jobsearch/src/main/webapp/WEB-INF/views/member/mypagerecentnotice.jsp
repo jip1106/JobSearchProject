@@ -160,7 +160,6 @@ strong.attach_count {
     color: #ff521b;
     font-size: 17px;
     margin-top: -2px;
-    letter-spacing: 0px;
 }
 .info_recentnotice .tit {
 display: inline-block;
@@ -232,11 +231,11 @@ span.day_span {
                	 </a>
                </strong>
             <div class="desc">
-               <span class="career_small">${item['CAREER']}</span>|<span class="career_small2">${item['AGE']}세 이상</span>|<span class="career_small2">${item['SALARY']}이상</span>                        
+               <span class="career_small">${item['CAREER']}</span>|<span class="career_small2">${item['AGE']}세</span>|<span class="career_small2">${item['SALARY']}이상</span>                        
             </div>
 
             <span class="txt_date">
-            <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd" />
+            <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd hh:mm:ss" />
             </span>
             <button type="button" class="btn_edit_complete" onclick="annView(${item['ANNSEQ']})">지원하기</button>
             <div class="wrap_manage_btn">

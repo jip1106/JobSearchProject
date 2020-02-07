@@ -19,7 +19,7 @@
 		    trunc(to_char(ta.ANN_ENDT-sysdate),0) as TIME,
 		    ta.salary as SALARY, ta.career_type as CAREER, 
 		    ta.employee_type as EMPLOYEE, tr.resume_title as RESUME,
-		    ta.ann_seq as ANNSEQ 
+		    ta.ann_seq as ANNSEQ , ta.AGE_LIMIT as AGE
 		from
 		    TBL_RESUME tr join TBL_APPLY tap 
 		    on tr.resume_seq=tap.ref_resumeseq

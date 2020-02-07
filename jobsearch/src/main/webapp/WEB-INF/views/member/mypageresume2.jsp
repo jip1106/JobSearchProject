@@ -60,7 +60,7 @@ a.btn.btn-primary {
     vertical-align: top;
     letter-spacing: -2px;
     box-sizing: border-box;
-    margin: 30px 0 0 8px;
+    margin: 30px 0 0 18px;
 }
 .point_color{
 	color: #4876ef;
@@ -81,10 +81,11 @@ a.btn.btn-primary {
     margin: 9px 0 0 20px;
 }
 span.career_small {
-    margin-right: 7px;
+    margin-right: 4px;
 }
 span.career_small2 {
-    margin-left: 7px;
+    margin-left: 4px;
+    margin-right:4px;
 }
 span.point_color_date {
     margin-right: 9px;
@@ -102,6 +103,7 @@ button.btn_edit_complete {
     font-size: 17px;
     border: none;
     border-radius: 5px;
+    z-index:10;
 }
 button.btn_delete {
     display: inline-block;
@@ -115,6 +117,7 @@ button.btn_delete {
     position: relative;
     top: -13px;
     left: 43.5em;
+    z-index:10;
 }
 
 span.X {
@@ -137,6 +140,11 @@ span.X {
 }
 strong.attach_count {
     font-size: 21px;
+}
+small.hopepay {
+    color: red;
+    font-size: 2px;
+    margin-left: 4px;
 }
 </style>
 
@@ -173,7 +181,7 @@ strong.attach_count {
 	<ul class="resume_notice">
 		<!-- <li>이력서는 최대 10개까지 작성하여 등록 가능합니다.</li> -->
 		<li>이력서 지원은 1개의 이력서만 가능합니다.</li>
-		<li>지원공고화면에서 즐겨찾기와 이력서 지원을 하시면 됩니다.</li>
+		<li>이력서 수정 버튼을 누르시면 해당 이력서를 수정하실수 있습니다.</li>
 	</ul>
 	
 	<!-- 이력서 등록하기 -->
@@ -191,7 +199,7 @@ strong.attach_count {
 	                	 <span class="point_color">
 							[완성]
 	                	 </span>
-	                	 
+	                	
 	                	 <span class="point_color_date">${mapData['RESUME_TITLE']}</span><!-- <span class="point_color_date">날 저장된 이력서 입니다.</span> -->
 	               	 </a>
 	               </strong>
@@ -200,7 +208,7 @@ strong.attach_count {
 		               		<c:if test="${mapData['CAREER_TYPE']==1}">신입</c:if>
 		               		<c:if test="${mapData['CAREER_TYPE']==2}">경력</c:if>
 		               	</span>|
-		               	<span class="career_small2">${mapData['HOPE_SALARY'] }이상</span>                        
+		               	<span class="career_small2">${mapData['AGE']}세 </span> | ${mapData['HOPE_SALARY'] }이상<small class="hopepay">(희망연봉)</small>                        
 		            </div>
 	           		<span class="txt_date">등록일
 	           		 	<fmt:formatDate value="${mapData['REG_DATE']}" pattern="yyyy.MM.dd hh:mm:ss" />

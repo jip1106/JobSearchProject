@@ -17,10 +17,12 @@
             TR.resume_title,
             TR.reg_date,
             TH.hope_salary,
-            TC.career_type
+            TC.career_type,
+            TRUNC((SYSDATE-TM.BIRTHDAY)/365) as AGE
         From TBL_RESUME TR
         JOIN TBL_HOPEWORK TH on TR.resume_seq = TH.ref_resumeseq
         JOIN TBL_MYCAREER TC on TR.resume_seq = TC.ref_resumeseq
+        JOIN TBL_MEMBER TM on TR.REF_MEMBERSEQ =TM.MEMBER_SEQ
 		Where ref_memberseq = #{memberSeq}
 	</select>
 	
