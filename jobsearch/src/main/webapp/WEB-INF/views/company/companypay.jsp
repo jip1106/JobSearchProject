@@ -24,44 +24,109 @@
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
 <style type="text/css">
-body{
-	margin-left:234px;
-	width: 400px;
+td.td1 {
+    width: 71px;
+    font-weight: 600;
+    color: #1b2f9c;
 }
-
-table#payname{
-    width: 100%;
-    border: 1px solid #444444;
-    border-collapse: collapse;
+td.td2 {
+    width: 292px;
+    height: 40px;
 }
-tr{
+td.td3 {
+    width: 292px;
+    height: 40px;
+}
+td.td4 {
+    width: 292px;
+    height: 40px;
+}
+td.td5 {
+    width: 292px;
+    height: 40px;
+}
+tr.tr{
 	border: 1px solid #444444;
 }
-td{
-	width:200px;
-	border: 1px solid #444444;
+td.td {
+    width: 100px;
+    border: 2px solid #5e87f1;
+}
+td.tdc {
+    width: 100px;
+    border: 2px solid #5e87f1;
+    background-color: #e1f1ff;
+}
+table.pay_type {
+    margin-left: 65px;
+    margin-top: 25px;
+    text-align: center;
 }
 #TitleB{
 	background: #5e87f1
 }
-h1{
-	color:white;
-	font-size: 29px;
-}
-#bt-submit{
-	width: 110px;
-    height: 41px;
-    border-radius: .25em;
-    background: #5e87f1;
-    color: white;
-    font-size: 20px;
-    border: none;
-
-}
 #bt-submit:hover{
 	 background: #3454a5;
 }
-
+.button {
+    margin-bottom: 24px;
+}
+.pay_title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 700;
+    background-color: #5e87f1;
+    color: white;
+    height: 53px;
+    padding: 6px 0px;
+}
+div#payDiv {
+    border: 1px solid darkgrey;
+    width: 437px;
+    margin-left: 25%;
+    margin-right: 0;
+}
+tr.line_tr {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+table.pay_table {
+    margin-left: 35px;
+    margin-top: 13px;
+}
+tr.line_tr {
+    border-top: 1px solid #c3c3c3;
+    border-bottom: 1px solid #c3c3c3;
+}
+input.pdName_input {
+    border: none;
+}
+input#currentDate {
+    border: none;
+}
+select#purchase {
+    border: none;
+}
+.caution {
+    text-align: center;
+    font-size: 14px;
+    color: #E91E63;
+    border: 20px 0;
+    margin-top: 29px;
+    margin-bottom: 29px;
+}
+#bt-submit {
+    width: 100px;
+    height: 50px;
+    border-radius: .25em;
+    background: #5e87f1;
+    color: white;
+    font-size: 17px;
+    border: none;
+}
+body {
+    padding-top: 83px;
+}
 </style>
 
 </head>
@@ -69,51 +134,63 @@ h1{
 	<div id="payDiv">
 	<form action="<c:url value='/company/companyprepay.do'/>" method="post">
 	<input type="hidden" name="refAnnouncement" value="${param.annSeq}">
-	<div id="TitleB">
-		<h1>프리미엄 결제</h1>
-	</div>
-	<table>
-		<tr>
-			<td>주문자</td>
-			<td>${Name}</td>
+		<div class="pay_title">결제서비스</div>
+	<table class="pay_table">
+		<tr class="line_tr">
+			<td class="td1">&nbsp;상품명:</td>
+			<td class="td2"><input class="pdName_input" type="text" value="프리미엄 공고글 등록" name="productName" readonly="readonly"></td>
 		</tr>
-		<tr>
-			<td>상품명</td>
-			<td><input type="text" value="프리미엄 공고글 등록" name="productName" readonly="readonly"></td>
+		<tr class="line_tr">
+			<td class="td1">&nbsp;금 &nbsp;  액:</td>
+			<td class="td2">10,000원 </td>
 		</tr>
-		<tr>
-			<td>상품가격</td>
-			<td>10000원 </td>
+		<tr class="line_tr">
+			<td class="td1">&nbsp;주문자:</td>
+			<td class="td2">${Name}</td>
 		</tr>
-		<tr>
-		
-			<td>구매일</td>
-			<td><input type='date' id='currentDate' name="priceDate" readonly="readonly"/></td>
+		<tr class="line_tr">
+			<td class="td1">&nbsp;구매일:</td>
+			<td class="td2"><input type='date' class="Date_input" id='currentDate' name="priceDate" readonly="readonly"/></td>
 		</tr>		
 	</table>	  
-  <hr>  
+		
+  <!-- <hr>  
   <div id="total">
   	<br>
   		<p align="right">결제하실 금액 : 10,000원 </p>
   	<br>
   </div>
-  <hr>
-  <table>
-  	<tr>
-  		<td>구매방식</td>
-  		<td>
-	  		<select id="purchase" name="payType" style="width: 197px">
-	  			<option value="">선택하세요</option>
-	  			<option value="inicis">이니시스</option>
-	  			<option value="danal">다날</option>
-	  			<option value="LG">LG U+</option>
-	  		</select>
-  		</td>
-  	</tr>
+  <hr> -->
+  <table class="pay_type">
+  		<tr class="tr">
+	  		<td class="tdc">결제방식</td>
+	  		<td class="td">
+		  		<select id="purchase" name="payType" style="width: 197px">
+		  			<option value="">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;선택하세요</option>
+		  			<option value="inicis">
+		  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  			이니시스</option>
+		  			<option value="danal">
+		  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  			다날</option>
+		  			<option value="LG">
+		  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		  			LG U+</option>
+		  		</select>
+	  		</td>
+  		</tr>
+  		<tr>
+			<td class="tdc">할부개월</td>
+			<td class="td">일시불</td>
+		</tr>
   </table>
-  <br>
-  <div align="center">
-  <input id="bt-submit" type="submit" value="결제하기" >
+  <div class="caution">*결제하실 방식을 반드시 선택 후 결제를 진행해 주세요.</div>
+  <div class="button" align="center">
+  	<input id="bt-submit" type="submit" value="결제하기" >
   </div>
   </form>
 <script>
