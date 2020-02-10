@@ -100,6 +100,10 @@ a.JT {
     color: #4876ef;
     text-decoration: none;
 }
+img.bannerpicture {
+    position: relative;
+    left: 83px;
+}
 	
 </style>
 
@@ -278,6 +282,10 @@ a.JT {
 		        </a>
 		      </li>
 	    </ul-->		
+	    
+	    <div class="bottom_banner">
+ 		<img class="bannerpicture" src="<c:url value='/resources/images/picture3.jpg'/>">
+ 	</div>
 	</div>  
 
 <c:import url="/WEB-INF/views/include/sidenavi.jsp" />  

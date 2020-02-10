@@ -293,7 +293,7 @@ a.JT {
     </div>
     
  	<div class="bottom_banner">
- 		<img src="<c:url value='/resources/images/bottom_sample1.jpg'/>">
+ 		<img src="<c:url value='/resources/images/picture4.jpg'/>">
  	</div>
  	<hr class="margin_hr">
 

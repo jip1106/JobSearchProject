@@ -183,6 +183,10 @@ hr.hr_bottom {
 		      </div> 
 	      </c:forEach>  
 	    </c:if>   
+	    
+	    <div class="bottom_banner">
+ 		<img src="<c:url value='/resources/images/picture5.jpg'/>">
+ 	</div>
     </div>
    
     <hr class="hr_bottom">
@@ -214,7 +218,7 @@ hr.hr_bottom {
       <!-- Pagination -->
   </div>
   <!-- /.container -->
-	
+	<c:import url="/WEB-INF/views/include/sidenavi.jsp" />  
 	<c:import url="/WEB-INF/views/include/navi.jsp" />
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	

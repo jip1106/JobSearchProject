@@ -253,6 +253,10 @@ a.JT {
     color: #4876ef;
     text-decoration: none;
 }
+img.bannerpicture {
+    position: relative;
+    left: 85px;
+}
 /* 잡서치디자인추가 */
 </style>
 <body>
@@ -423,6 +427,10 @@ a.JT {
    			
    		</div>
 	</c:if> 	
+	
+	<div class="bottom_banner">
+ 		<img class="bannerpicture" src="<c:url value='/resources/images/picture1.jpg'/>">
+ 	</div>
   </div>
   <!-- /.container -->
 
