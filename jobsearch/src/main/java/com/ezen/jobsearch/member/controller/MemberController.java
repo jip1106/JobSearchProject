@@ -67,8 +67,11 @@ public class MemberController {
 	
 	//로그인
 	@RequestMapping("/member/login.do")
-	public String loginPage() {
-		return "member/login";
+	public String loginPage(HttpSession session) {
+		if(session.getAttribute("loginMember")!=null) {
+			return "redirect:/home.do";
+		}
+		return "member/login";							
 	}
 	
 	//회원가입
