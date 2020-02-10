@@ -782,7 +782,7 @@ a.JT {
         }
         
         function resumeWrite(){
-        	window.open("<c:url value='/resume/resumeTest.do'/>")
+        	window.open("<c:url value='/resume/resumeView.do'/>")
         }
        	
         function comView(comSeq){

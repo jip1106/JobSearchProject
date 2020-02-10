@@ -2,6 +2,8 @@ package com.ezen.jobsearch;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,7 +62,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/admin/login.do")
-	public String adminLoginPage() {
+	public String adminLoginPage(HttpSession session) {
+		if(session.getAttribute("loginMember")!=null) {
+			return "redirect:/admin/home.do";
+		}
 		return "/admin/login/login";
 	}
 	
