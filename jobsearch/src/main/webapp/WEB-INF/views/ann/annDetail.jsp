@@ -518,7 +518,7 @@ a.JT {
 				<input type="hidden" id=annSeq value="${vo.annSeq}">			
 			<div class="top_title">
 				 <div class="c_title">
-			    	<a href="#" class="company_title" onclick="comView(${vo.comSeq})" target="_blank">${vo.comName }</a>
+			    	<a class="company_title" onclick="comView(${vo.comSeq})" target="_blank" style="cursor: pointer;">${vo.comName }</a>
 			     </div>			  	  	   	
 			        <span class="company_title2">${vo.annTitle }</span>
 			         <c:if test="${loginMember.regType != 1}">
@@ -650,7 +650,7 @@ a.JT {
 						<div class="info_company_left">
 							<div class="info_company" data-remain-time="2442726">
 								<span class="txt_comName">
-									<a href="#" class="txt_comName" onclick="comView(${vo.comSeq})" target="_blank">${vo.comName }</a>
+									<a class="txt_comName" onclick="comView(${vo.comSeq})" target="_blank" style="cursor: pointer;">${vo.comName }</a>
 								</span> 
 							</div>
 							<div class="comn"><span class="cn">기업형태</span><span class="cna">${vo.comType }</span></div>							
