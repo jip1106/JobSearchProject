@@ -48,8 +48,8 @@
 		where ref_annSeq=#{refAnnseq} and ref_resumeseq=#{refResumeseq}
 	</update>
 	
-	<select id="selectCountByDate" parameterType="int" resultType="map">
-		select count(*) as count, to_char(reg_date, 'YYYY-MM-DD') as reg_date from tbl_board
+	<select id="selectCountByDate" parameterType="int" resultType="applyVo">
+		select count(*) as apply_seq, to_char(reg_date, 'YYYY-MM-DD') as reg_date from tbl_board
 		where extract(month from reg_date)=#{month}
 		group by to_char(reg_date, 'YYYY-MM-DD')
 	</select>

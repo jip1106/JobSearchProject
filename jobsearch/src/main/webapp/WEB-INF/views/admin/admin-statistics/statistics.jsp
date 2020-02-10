@@ -68,19 +68,24 @@
 	<script>
 		google.charts.setOnLoadCallback(drawChart);
 	
-		function drawChart() {
-	
-			 var jsonData = $.ajax({ //비동기적 방식으로 호출한다는 의미이다.
-		            url : "${path}/json/sampleData.json",		         
-		            dataType : "json",
-		            async : false
-		        }).responseText; 
-		        
-	        console.log(jsonData);
-		        
+		function drawChart() {				
+		    
 	        //데이터테이블 생성
-	        var data = new google.visualization.DataTable(jsonData);		       
-	
+	        var data = new google.visualization.DataTable();
+	        data.addColumn('date', 'REG_DATE');
+	        data.addColumn('number', 'COUNT');
+	        var jsonData = $.ajax({ 
+	            url : "<c:url value='/stats.do'/>",
+	            dataType : "json",
+	            success:function(res){
+	            	console.log(res);
+	            }
+	        });   
+	        for(var i in jsonData){
+	        	console.log("2");
+	        }
+	        
+	        
 			// 그래프 옵션
 			var options = {
 				bar : {
