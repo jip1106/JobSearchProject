@@ -79,13 +79,12 @@
 	            dataType : "json",
 	            success:function(res){
 	            	console.log(res);
-		            var con=[];
-					var val=[];
-					$.each(res,function(idx,value){
-						
-					})
 	            }
 	        });   
+	        for(var i in jsonData){
+	        	console.log("2");
+	        }
+	        
 	        
 			// 그래프 옵션
 			var options = {
