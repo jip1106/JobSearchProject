@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.jobsearch.apply.model.ApplyService;
 import com.ezen.jobsearch.apply.model.ApplyVO;
@@ -68,17 +71,58 @@ public class ApplyController {
 	}
 	
 	@RequestMapping(value = "/admin/stats.do")
-	public String selectStats(Model model) {
+	public String statistics() {
 		logger.info("차트");
+				
+		return "admin/admin-statistics/statistics";
+	}
+	
+	@RequestMapping(value = "/applyStats.do")
+	@ResponseBody
+	public Object selectStats() {
 		
 		Calendar cal=Calendar.getInstance();
 		
 		List<Map<String, Object>> list=applyService.selectCountByDate(cal.get(Calendar.MONTH)+1);
 		logger.info("조회 결과list.size={}", list.size());
 		
+		JSONObject data=new JSONObject();
 		
-		model.addAttribute("list", list);
+		JSONObject col1=new JSONObject();
+		JSONObject col2=new JSONObject();
 		
-		return "admin/admin-statistics/statistics";
+		JSONArray title=new JSONArray();
+		col1.put("label", "날짜");
+		col1.put("type", "string");
+		col2.put("label", "지원자 수");
+		col2.put("type", "number");
+		
+		title.add(col1);
+        title.add(col2);
+        
+        data.put("cols", title);
+        
+        JSONArray body = new JSONArray(); 
+        for (Map<String, Object> map : list) { 
+            
+            JSONObject regDate = new JSONObject(); 
+            regDate.put("v", map.get("REG_DATE")); 
+            
+            JSONObject count = new JSONObject(); 
+            count.put("v", map.get("COUNT")); 
+            
+            JSONArray row = new JSONArray(); 
+            row.add(regDate);
+            row.add(count); 
+            
+            JSONObject cell = new JSONObject(); 
+            cell.put("c", row); 
+            body.add(cell); 
+                
+        }
+        
+        data.put("rows", body); 
+        
+        return data; 
 	}
 }

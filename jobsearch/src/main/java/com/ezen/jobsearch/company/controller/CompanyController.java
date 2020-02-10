@@ -1,13 +1,10 @@
 package com.ezen.jobsearch.company.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.xml.ws.RequestWrapper;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ezen.jobsearch.ann.model.AnnounceMentVO;
-import com.ezen.jobsearch.apply.model.ApplyVO;
 import com.ezen.jobsearch.category.model.CategoryService;
 import com.ezen.jobsearch.category.model.CategoryVO1;
 import com.ezen.jobsearch.common.FileUploadUtil;

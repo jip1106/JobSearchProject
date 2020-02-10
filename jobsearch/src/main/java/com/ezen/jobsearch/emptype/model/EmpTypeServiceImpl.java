@@ -10,6 +10,7 @@ public class EmpTypeServiceImpl implements EmpTypeService{
 	@Autowired
 	private EmpTypeDAO empTypeDao;
 		
+	@Override
 	public List<EmpTypeVO> selectEmpType(){
 		return empTypeDao.selectEmpType();
 		

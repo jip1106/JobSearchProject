@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.ezen.jobsearch.ann.model.AnnounceMentVO;
-import com.ezen.jobsearch.apply.model.ApplyVO;
 import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.payment.model.PaymentVO;
 import com.ezen.jobsearch.resume.model.ResumeVO;

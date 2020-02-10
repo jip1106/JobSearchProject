@@ -3,6 +3,7 @@ package com.ezen.jobsearch.ann.model;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -139,6 +140,12 @@ public class AnnouncementDAOImpl implements AnnouncementDAO{
 	@Override
 	public List<AnnounceMentVO> selectPremiumAnn() {
 		return sqlSession.selectList(nameSpace+"selectPremiumAnn");
+	}
+
+
+	@Override
+	public List<Map<String, Object>> selectCountByCategory() {
+		return sqlSession.selectList(nameSpace+"selectCountByCategory");
 	}
 
 }

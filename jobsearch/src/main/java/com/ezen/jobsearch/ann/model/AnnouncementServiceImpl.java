@@ -2,6 +2,7 @@ package com.ezen.jobsearch.ann.model;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,7 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 		return annDao.selectAnnListCountBycate(cateSeq1, cateSeq2, cateSeq3);
 	}
 
+	@Override
 	public AnnounceMentVO selectBySeq(int annSeq) {
 		return annDao.selectBySeq(annSeq);
 	}
@@ -55,6 +57,11 @@ public class AnnouncementServiceImpl implements AnnouncementService{
 	@Override
 	public List<AnnounceMentVO> selectPremiumAnn() {
 		return annDao.selectPremiumAnn();
+	}
+
+	@Override
+	public List<Map<String, Object>> selectCountByCategory() {
+		return annDao.selectCountByCategory();
 	}
 
 
