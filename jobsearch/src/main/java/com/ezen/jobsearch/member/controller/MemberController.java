@@ -243,7 +243,7 @@ public class MemberController {
 		
 		return "/member/findIdPwd";
 	}
-	
+	//
 	//id 찾기
 	@RequestMapping("/member/findId.do")
 	public @ResponseBody List<HashMap<String,String>> findId(@RequestParam String memberName , @RequestParam String phone) {
