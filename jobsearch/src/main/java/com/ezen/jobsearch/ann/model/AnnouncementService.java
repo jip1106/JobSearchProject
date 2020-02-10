@@ -2,6 +2,7 @@ package com.ezen.jobsearch.ann.model;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface AnnouncementService {
 	List<HashMap<String,Object>> getAnnListByLoc(String locationSeq1, String locationSeq2,int startRow, int endRow);
@@ -21,4 +22,6 @@ public interface AnnouncementService {
 	List<AnnounceMentVO> selectNewAnn();
 	
 	List<AnnounceMentVO> selectPremiumAnn();
+	
+	List<Map<String, Object>> selectCountByCategory();
 }

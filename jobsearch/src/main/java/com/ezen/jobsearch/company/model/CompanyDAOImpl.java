@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ezen.jobsearch.ann.model.AnnounceMentVO;
-import com.ezen.jobsearch.apply.model.ApplyVO;
 import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.payment.model.PaymentVO;
 import com.ezen.jobsearch.resume.model.ResumeVO;
@@ -28,6 +27,7 @@ public class CompanyDAOImpl implements CompanyDAO{
 		return sqlSession.insert(namespace + "insertCompany", companyVo);
 	}
 	
+	@Override
 	public int insertAnn(AnnounceMentVO annVo) {
 		return sqlSession.insert(namespace+"insertAnn",annVo);
 	}

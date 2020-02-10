@@ -127,7 +127,7 @@ public class ResumeController {
 		
 		//logger.info("resuem 화면보여주기");
 		
-		int memberSeq = (int)((MemberVO)session.getAttribute("loginMember")).getMemberSeq();
+		int memberSeq = ((MemberVO)session.getAttribute("loginMember")).getMemberSeq();
 		
 		logger.info(resumeSeq);
 		int count = resumeService.selectMyResumeCount(memberSeq);

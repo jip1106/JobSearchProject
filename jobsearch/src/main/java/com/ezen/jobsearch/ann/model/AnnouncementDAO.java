@@ -2,6 +2,7 @@ package com.ezen.jobsearch.ann.model;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public interface AnnouncementDAO {
 	//지역별 공고 리스트
@@ -23,6 +24,8 @@ public interface AnnouncementDAO {
 	List<AnnounceMentVO> selectNewAnn();
 	
 	List<AnnounceMentVO> selectPremiumAnn();
+	
+	List<Map<String, Object>> selectCountByCategory();
 }
 
 

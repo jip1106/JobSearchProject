@@ -13,35 +13,35 @@
 		  <c:import url="../admin-include/admin-left.jsp"/>
 		  
 		  <div class="col-md-10">
-  		 	
-  			<div class="content-box-large">
-  				<div class="panel-heading">
-					<div class="panel-title">날짜별 지원자 통계</div>
-					
-					<div class="panel-options">
-						<a href="#" data-rel="collapse"><i class="glyphicon glyphicon-refresh"></i></a>
-						<a href="#" data-rel="reload"><i class="glyphicon glyphicon-cog"></i></a>
-					</div>
-				</div>
-  				<div class="panel-body">
-  					<div class="row">
-  						<div class="col-md-6">
-  							<div id="chart_div" style="height: 230px;"></div>
-  						</div>
-  						
-  					</div>
-  				</div>
-  				
-  				<div><c:forEach var="map" items="${list }">
-						<input type="text" value="${map['COUNT'] } ">
-						<input type="text" value="${map['REG_DATE'] } ">
-						
-					</c:forEach></div>
-  				
+  		 			  				
+  				<div class="row">
+	  				<div class="col-md-6">
+	  					<div class="content-box-large">
+			  				<div class="panel-heading">
+								<div class="panel-title">날짜별 지원자 통계</div>
+							
+							</div>
+			  				<div class="panel-body">
+			  					<div id="chart_div" style="height: 230px;"></div>
+			  				</div>
+			  			</div>
+	  				</div>
+  				</div> 
+  				<div class="row">
+	  				<div class="col-md-6">
+	  					<div class="content-box-large">
+			  				<div class="panel-heading">
+								<div class="panel-title">분야별 등록된 공고</div>								
+							</div>
+			  				<div class="panel-body">
+			  					<div id="chart_div2" style="width:100%;height:200px"></div>
+			  				</div>
+			  			</div>
+	  				</div>
+	  			</div>
   			</div>		  			
 		  </div>
 		</div>
-    </div> 
 		
 	<c:import url="../admin-include/admin-footer.jsp"/>
 	
@@ -70,34 +70,46 @@
 	
 		function drawChart() {				
 		    
-	        //데이터테이블 생성
-	        var data = new google.visualization.DataTable();
-	        data.addColumn('date', 'REG_DATE');
-	        data.addColumn('number', 'COUNT');
 	        var jsonData = $.ajax({ 
-	            url : "<c:url value='/stats.do'/>",
+	            url : "<c:url value='/applyStats.do'/>",
 	            dataType : "json",
-	            success:function(res){
-	            	console.log(res);
-	            }
-	        });   
-	        for(var i in jsonData){
-	        	console.log("2");
-	        }
+	            async : false
+	        }).responseText;
 	        
+	        var jsonData2 = $.ajax({ 
+	            url : "<c:url value='/announcementStats.do'/>",
+	            dataType : "json",
+	            async : false
+	        }).responseText;
+	        
+	        
+	        
+	        //데이터테이블 생성
+	        var data = new google.visualization.DataTable(jsonData);
+	        var data2 = new google.visualization.DataTable(jsonData2);
+	       
+	        
+	        
+	          	        	        
 	        
 			// 그래프 옵션
 			var options = {
 				bar : {
-					groupWidth : '80%' // 그래프 너비 설정 %
+					groupWidth : '5%' // 그래프 너비 설정 %
 				},
 				legend : {
 					position : 'none' // 항목 표시 여부 (현재 설정은 안함)
 				}
 			};
-	
+			var options2 = {
+				    curveType: 'function'
+			};
+
+
 			var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+			var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
 			chart.draw(data, options);
+			chart2.draw(data2, options2);
 		}
 	</script>	
 

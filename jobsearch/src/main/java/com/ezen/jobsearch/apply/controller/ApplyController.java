@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +77,7 @@ public class ApplyController {
 		return "admin/admin-statistics/statistics";
 	}
 	
-	@RequestMapping(value = "/stats.do")
+	@RequestMapping(value = "/applyStats.do")
 	@ResponseBody
 	public Object selectStats() {
 		
@@ -83,7 +85,44 @@ public class ApplyController {
 		
 		List<Map<String, Object>> list=applyService.selectCountByDate(cal.get(Calendar.MONTH)+1);
 		logger.info("조회 결과list.size={}", list.size());
-							
-		return list;
+		
+		JSONObject data=new JSONObject();
+		
+		JSONObject col1=new JSONObject();
+		JSONObject col2=new JSONObject();
+		
+		JSONArray title=new JSONArray();
+		col1.put("label", "날짜");
+		col1.put("type", "string");
+		col2.put("label", "지원자 수");
+		col2.put("type", "number");
+		
+		title.add(col1);
+        title.add(col2);
+        
+        data.put("cols", title);
+        
+        JSONArray body = new JSONArray(); 
+        for (Map<String, Object> map : list) { 
+            
+            JSONObject regDate = new JSONObject(); 
+            regDate.put("v", map.get("REG_DATE")); 
+            
+            JSONObject count = new JSONObject(); 
+            count.put("v", map.get("COUNT")); 
+            
+            JSONArray row = new JSONArray(); 
+            row.add(regDate);
+            row.add(count); 
+            
+            JSONObject cell = new JSONObject(); 
+            cell.put("c", row); 
+            body.add(cell); 
+                
+        }
+        
+        data.put("rows", body); 
+        
+        return data; 
 	}
 }

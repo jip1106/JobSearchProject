@@ -1,13 +1,10 @@
 package com.ezen.jobsearch.board.model;
 
 import java.util.List;
-import java.util.Map;
-
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ezen.jobsearch.comment.model.CommentVO;
 import com.ezen.jobsearch.common.SearchVO;
 
 @Repository
