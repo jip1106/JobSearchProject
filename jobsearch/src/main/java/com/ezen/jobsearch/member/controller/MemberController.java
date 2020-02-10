@@ -648,10 +648,10 @@ public class MemberController {
 			 
 			
 					
-			int resumeCount = resumeService.selectMyResumeCount(memberSeq);
+			//int resumeCount = resumeService.selectMyResumeCount(memberSeq);
 			
 			model.addAttribute("resumeList",resumeList);
-			model.addAttribute("resumeCount",resumeCount);
+			model.addAttribute("resumeCount",resumeList.size());
 			
 			return "member/mypageresume2";
 		}		

@@ -31,10 +31,11 @@
 	<select id="selectmypagerecentnoticeList" parameterType="int" resultType="map">
 		select 
 			tc.com_name as COMNAME, ta.ANN_TITLE AS TITLE,
+			ta.AGE_LIMIT as AGE,
 			trunc(to_char(ta.ANN_ENDT-sysdate),0) as TIME,
 			ta.SALARY as SALARY, ta.REG_DATE as REGDATE,
 			ta.CAREER_TYPE as CAREER, ta.EMPLOYEE_TYPE as EMPLOYEE,tc.com_type as COMTYPE,view_seq,
-			ta.ann_seq as ANNSEQ  
+			ta.ann_seq as ANNSEQ , ta.AGE_LIMIT as AGE
 		from 
 			tbl_company tc join tbl_announcement ta
 			on tc.com_seq=ta.REF_COMPANYSEQ

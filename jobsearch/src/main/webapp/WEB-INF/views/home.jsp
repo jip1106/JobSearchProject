@@ -1,5 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -7,7 +6,10 @@
 <c:import url="./include/header.jsp" />
 <c:import url="./include/headend.jsp" />
 <script type="text/javascript" src="<c:url value='/resources/js/jquery-3.4.1.min.js'/>"></script>
-
+<!-- 스위퍼 -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
+<!-- 스위퍼 -->
 
 <script type="text/javascript">
 	function annView(annSeq){
@@ -243,21 +245,12 @@ span.annDday {
 div#row_premium {
     max-width: 900px;
 }
-/* .box_outer {
-    width: 279px;
-    height: 418px;
-    position: relative;
-    left: 891px;
-    top: -427px;
-    display: flex;
-    flex-wrap: wrap;
-} */
 .box_outer {
     width: 279px;
     height: 418px;
     position: absolute;
     left: 1262px;
-    top: 122px;
+    top: 540px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -412,16 +405,113 @@ div#clock {
     visibility: hidden;
 }
 
+/* 스위퍼 */
+.swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+}
+.btns {
+    text-align: center;
+    position: relative;
+    margin: -3.8em 0 0 -47em;
+    z-index: 10;
+}
+/* 스위퍼 */
+
 /* 190X95 */
 </style>
 
 <body onload="printClock()">
-<c:import url="./include/navi.jsp"/>
+<%-- <c:import url="./include/Mainpagenavi2.jsp"/> --%>
+<c:import url="./include/Mainpagenavi.jsp"/>
   
 
-  <!-- Page Content -->
-  <div class="container" id="main_home">
+  <img src="<c:url value='/resources/images/main1.jpg'/>">
+	
+ 	<%-- <div class="swiper-container">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide"><img src="<c:url value='/resources/images/main1.jpg'/>"></div>
+		<div class="swiper-slide"><img src="img/frozen.jpg"></div>
+		<div class="swiper-slide"><img src="img/frozen.jpg"></div>
+		<div class="swiper-slide"><img src="img/frozen.jpg"></div>
+	</div>
+	
+	<!-- 네비게이션 버튼 -->
+	    <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->
+	    <div class="swiper-button-prev"></div><!-- 이전 버튼 -->
+	
+	<!-- 페이징 -->
+	    <div class="swiper-pagination"></div>
+	</div>
 
+    <br>
+	<!-- 시작, 멈춤버튼 -->
+  	<div class="btns">
+		<!-- <button class="start"><img src="img/play.png"></button>&nbsp;&nbsp;
+		<button class="stop"><img src="img/stop.png"></button> -->
+		<!-- 시작버튼 -->
+		<a href="javascript:startAutoplay();"
+			style="margin: 0 4px; width: 8px; height: 8px; background: transparent; display: inline-block;">
+			<span style="border-color: transparent transparent transparent #fff; border-style: solid; border-width: 6px 0 6px 10px; float: left; height: 0; width: 0;"></span>
+		</a> &nbsp;
+		<!-- 정지버튼 -->
+		<a href="javascript:stopAutoplay();"
+			style="margin: -3px 2px; width: 10px; height: 10px; background: #fff; display: inline-block;">
+		</a>
+	</div>
+	
+  <script type="text/javascript">
+  var swiperbtn=new Swiper('.swiper-container', {
+		pagination : { // 페이징 설정
+			el : '.swiper-pagination',
+			clickable : true, // 페이징을 클릭하면 해당 영역으로 이동, 필요시 지정해 줘야 기능 작동
+		},
+		navigation : { // 네비게이션 설정
+			nextEl : '.swiper-button-next', // 다음 버튼 클래스명
+			prevEl : '.swiper-button-prev', // 이번 버튼 클래스명
+		},
+		autoplay: {
+	        delay: 2500,
+	        disableOnInteraction: false,
+	        /* 사용자가 슬라이드를 수동적으로 움직일때  aoutoplay가 준비 되지 않는 다는 것이다.(false)
+	        (true)로 두게 되면 사용자가 움직이는 행위를 했을 때 aoutoplay가 멈추게 된다. */
+        }
+	});
+  	/* 시작,정지기능 */
+  	function startAutoplay(){
+  		swiperbtn.autoplay.start();
+  		return false;
+  	} 
+  
+  	function stopAutoplay(){
+  		swiperbtn.autoplay.stop();
+  		return false;
+  	}
+  
+	/* 시작 정지 기능  */  	
+  	/* $('.start').on('click', function(){
+  		swiperbtn.autoplay.start();
+  		return false;
+  	});
+  	
+  	$(".stop").on("click", function(){
+  		swiperbtn.autoplay.stop();
+  		return false;
+  	}); */
+  </script>
+ --%>
+
+
+
+
+
+<!-- Page Content -->
+  <div class="container" id="main_home">
 	<!-- 프리미엄 -->
     <div class="left_premium">
      <div class="text_div_p">

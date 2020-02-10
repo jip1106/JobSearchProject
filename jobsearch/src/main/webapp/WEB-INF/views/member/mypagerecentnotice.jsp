@@ -69,7 +69,7 @@ a.btn.btn-primary {
     vertical-align: top;
     letter-spacing: -2px;
     box-sizing: border-box;
-    margin: 30px 0 0 8px;
+    margin: 30px 0 0 19px;
 }
 .point_color{
 	color: #4876ef;
@@ -112,6 +112,7 @@ button.btn_edit_complete {
     font-size: 17px;
     border: none;
     border-radius: 5px;
+    z-index:10;
 }
 button.btn_delete {
     display: inline-block;
@@ -125,6 +126,7 @@ button.btn_delete {
     position: relative;
     top: -7px;
     left: 39.5em;
+    z-index: 10;
 }
 
 span.X {
@@ -229,11 +231,11 @@ span.day_span {
                	 </a>
                </strong>
             <div class="desc">
-               <span class="career_small">${item['CAREER']}</span>|<span class="career_small2">${item['EMPLOYEE']}</span>|<span class="career_small2">${item['SALARY']}이상</span>                        
+               <span class="career_small">${item['CAREER']}</span>|<span class="career_small2">${item['AGE']}세</span>|<span class="career_small2">${item['SALARY']}이상</span>                        
             </div>
 
             <span class="txt_date">
-            <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd" />
+            <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd hh:mm:ss" />
             </span>
             <button type="button" class="btn_edit_complete" onclick="annView(${item['ANNSEQ']})">지원하기</button>
             <div class="wrap_manage_btn">

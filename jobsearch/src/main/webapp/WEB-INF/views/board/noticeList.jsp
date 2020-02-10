@@ -47,15 +47,20 @@ button.btn.btn-primary {
     margin-bottom: -69px;
 }
 .NoticeTitle {
-    margin-bottom: 8px;
+    margin-bottom: 3px;
     margin-top: 120px;
 }
 span.Jobsearch {
-    font-size: 38px;
+    font-family: 'Recipekorea';
+    font-size: 32px;
     letter-spacing: -1px;
-    font-weight: 500;
+    /* font-weight: 500; */
     color: #4876ef;
+    position: relative;
+    top: -4px;
+    margin-right: -7px;
 }
+@font-face { font-family: 'Recipekorea'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Recipekorea.woff') format('woff'); font-weight: normal; font-style: normal; }
 span.text_span1 {
     font-size: 26px;
     margin-left: 8px;
@@ -171,7 +176,10 @@ img.notice_img {
     resize: both;
     height: 24px;
 }
-
+a.JT {
+    color: #4876ef;
+    text-decoration: none;
+}
 </style>
 	
 	<c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -180,7 +188,9 @@ img.notice_img {
   	<div class="container" id="noticeList_container">
 
 	 <div class="NoticeTitle">
-	    <span class="Jobsearch">Jobsearch</span>
+	    <span class="Jobsearch">
+    		<a class="JT" href="${pageContext.request.contextPath }/home.do">JobSearch</a>
+	    </span>
 	    <span class="text_span1">에서</span>
 	    <span class="text_span2">알려드립니다!</span>
     </div>
@@ -288,10 +298,10 @@ img.notice_img {
  	<hr class="margin_hr">
 
   </div>
-	<%-- <c:import url="/WEB-INF/views/include/sidenavi.jsp" />  --%>
+	<c:import url="/WEB-INF/views/include/sidenavi.jsp" />  
 	<c:import url="/WEB-INF/views/include/navi.jsp" />
 	
-	<%-- <c:import url="/WEB-INF/views/include/banner.jsp" /> --%>
+	<%-- <c:import url="/WEB-INF/views/include/banner.jsp" />  --%>
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	

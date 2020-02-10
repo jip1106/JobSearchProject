@@ -665,6 +665,9 @@ span.resume_name {
 					
 					
 						<p class="noti">*마감일은 기업의 사정, 조기마감 등으로 변경될 수 있습니다.</p>
+						<div id="kakaoMap" align="center">
+						<c:import url="/company/KakaoMap.do?comSeq=${vo.comSeq}"/>
+						</div>
 					</div>
 				</div>
 			</div>

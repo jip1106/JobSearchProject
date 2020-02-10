@@ -133,14 +133,20 @@ div#Location_container {
 	margin-bottom: 51px;
 }
 .CateTitle {
-    margin-bottom: 8px;
+    margin-bottom: 3px;
+    margin-top: 118px;
 }
 span.Jobsearch {
-    font-size: 38px;
+    font-family: 'Recipekorea';
+    font-size: 32px;
     letter-spacing: -1px;
-    font-weight: 500;
+    /* font-weight: 500; */
     color: #4876ef;
+    position: relative;
+    top: -4px;
+    margin-right:-6px;
 }
+@font-face { font-family: 'Recipekorea'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Recipekorea.woff') format('woff'); font-weight: normal; font-style: normal; }
 span.text_span1 {
     font-size: 26px;
     margin-left: 8px;
@@ -211,6 +217,10 @@ div#row_result {
     color: #fb4c4c;
     margin: auto;
 }
+a.JT {
+    color: #4876ef;
+    text-decoration: none;
+}
 
 </style>
 <body>
@@ -221,7 +231,9 @@ div#row_result {
   <!-- Page Content -->
   <div class="container" id="Location_container">
     <div class="CateTitle">
-	    <span class="Jobsearch">Jobsearch</span>
+	    <span class="Jobsearch">
+    		<a class="JT" href="${pageContext.request.contextPath }/home.do">JobSearch</a>
+	    </span>
 	    <span class="text_span1">지역별</span>
 	    <span class="text_span2">검색창</span>
 	    <span class="text_span3">입니다!</span>
@@ -352,7 +364,7 @@ div#row_result {
 
   </div>
   <!-- /.container -->
-
+	<c:import url="/WEB-INF/views/include/sidenavi.jsp" />  
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 
 </body>

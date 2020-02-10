@@ -321,43 +321,212 @@ function inputChk(){
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 
 <style>
-	.mgt-10{
-		margin-top:10%;
-	}
+.mgt-10{
+	margin-top:10%;
+}
+
+.mgb-10{
+	margin-bottom:10%;
+}
+
+.mytab-ul{
+	padding:0 0 0 0;
+	list-style:none;
+	float:left;
+	width:100%;
+	height:50px;
+}
+
+.activeTab{
+	background-color:gray;
+}
+
+.mytab-li a{
+	text-decoration:none !important;
+	color:black !important;
+}	
+
+.chkmessage{
+	font-size:0.8em;
 	
-	.mgb-10{
-		margin-bottom:10%;
-	}
-	
-	.mytab-ul{
-		padding:0 0 0 0;
-		list-style:none;
-		float:left;
-		width:100%;
-		height:50px;
-	}
-	.mytab-li{
-		float:left;
-		border:1px solid #6c757d;
-		width:50%;
-		height:50px;
-		text-align:center;
-		line-height:45px;
-	}
-	
-	.activeTab{
-		background-color:gray;
-	}
-	
-	.mytab-li a{
-		text-decoration:none !important;
-		color:black !important;
-	}	
-	
-	.chkmessage{
-		font-size:0.8em;
-		
-	}
+}
+body{
+background: url("${pageContext.request.contextPath}/resources/images/applyback.jpg") center no-repeat;
+}
+.col-sm-9.col-md-7.col-lg-8.mx-auto {
+    max-width: 51%;
+}
+input#memberId {
+    border-radius: 0;
+    width: 100%;
+    height: calc(1.5em + .75rem + 15px);
+}
+
+input#memberPwd {
+    border-radius: 0;
+    width: 100%;
+    height: calc(1.5em + .75rem + 15px);
+}
+input#memberPwd2 {
+    border-radius: 0;
+    width: 100%;
+    height: calc(1.5em + .75rem + 15px);
+}
+input#memberName {
+    border-radius: 0;
+    width: 100%;
+    height: calc(1.5em + .75rem + 15px);
+}
+input#phone {
+    border-radius: 0;
+    width: 100%;
+    height: calc(1.5em + .75rem + 15px);
+}
+input#birthday{
+    border-radius: 0;
+    width: 100%;
+    height: calc(1.5em + .75rem + 15px);
+}
+input#zipCode {
+    border-radius: 0;
+    width: 149%;
+    height: calc(1.5em + .75rem + 15px);
+}
+input#address {
+    border-radius: 0;
+    width: 100%;
+    height: calc(1.5em + .75rem + 15px);
+}
+input#detailAddress {
+    border-radius: 0;
+    width: 100%;
+    height: calc(1.5em + .75rem + 15px);
+}
+input#extraAddress {
+    border-radius: 0;
+    width: 100%;
+    height: calc(1.5em + .75rem + 15px);
+}
+input#comRegnumber {
+    border-radius: 0;
+    width: 100%;
+    height: calc(1.5em + .75rem + 15px);
+}
+input#comName {
+    border-radius: 0;
+    width: 100%;
+    height: calc(1.5em + .75rem + 15px);
+}
+input#ceoName {
+    border-radius: 0;
+    width: 100%;
+    height: calc(1.5em + .75rem + 15px);
+}
+input#certiNum {
+    border-radius: 0;
+    width: 220%;
+    height: calc(1.5em + .75rem + 15px);
+    z-index:100;
+}
+div#idchkdiv {
+    margin-bottom: -16px;
+}
+.mytab-li {
+    float: left;
+    border-bottom: 2px solid #4876ef;
+    width: 50%;
+    height: 50px;
+    text-align: center;
+    line-height: 45px;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    font-size: 17px;
+}
+.mytab-ul {
+    padding: 0 0 0 0;
+    list-style: none;
+    float: left;
+    width: 100%;
+    height: 50px;
+}
+div#title {
+    font-size: 17px;
+    font-weight: 700;
+    padding: 13px 30px;
+    width: -46px;
+}
+.applyTitle {
+    text-align: center;
+    font-size: 29px;
+    font-weight: 600;
+}
+.card.card-signin.mgt-10.mgb-10 {
+    border: 0;
+    border-radius: 0;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #989898;
+    border-color: #989898;
+    width: 161px;
+    border-radius: 0;
+    padding: 12px 0;
+}
+.btn_search {
+    color: #fff;
+    background-color: #4876ef;
+    border-color: #4876ef;
+    width: 163px;
+    border-radius: 0;
+    padding: 15px 34px;
+    position: relative;
+    top: 14px;
+    left: 49px;
+}
+a.btn_search {
+    text-decoration: none;
+}
+a.btn_search:hover {
+    color:white;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+button#apply_bt {
+    width: 100%;
+    font-size: 17px;
+    background-color: #4876ef;
+    border-color: #4876ef;
+}
+a.btn.btn-success {
+    border-radius: 0;
+    width: 163px;
+    padding: 12px 0;
+}
+.certi {
+    position: relative;
+    left: 196px;
+}
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #4876ef;
+    border-color:#4876ef;
+}
+a#successNum {
+    color: #fff;
+    background-color: #4876ef;
+    border-color: #4876ef;
+    width: 163px;
+    border-radius: 0;
+    padding: 12px 0;
+}
+#row{
+	height:1900px;
+}
+.card-body {
+    border: 2px solid #0046ff;
+}
+
 </style>
 
 <body>
@@ -369,19 +538,19 @@ function inputChk(){
   <!-- Page Content -->
   <div class="container">
     <!-- Page Heading/Breadcrumbs -->
-    <div class="row">
+    <div class="row" id="row">
       <div class="col-sm-9 col-md-7 col-lg-8 mx-auto">
         <div class="card card-signin mgt-10 mgb-10">
           <div class="card-body">
-            <h3 class="card-title text-center">회원가입</h3>
+            <div class="applyTitle">회원가입</div>
            
               <div class="row mb-4 mt-4 text-center">
 				<ul class="mytab-ul">
 
-					<li class="mytab-li" <c:if test="${regType==1}"> style="background-color:gray;" </c:if>>
+					<li class="mytab-li" <c:if test="${regType==1}"> style="background-color:#4876ef;" </c:if>>
 						<a href="${pageContext.request.contextPath }/member/register.do">일반회원</a>
 					</li>
-					<li class="mytab-li" <c:if test="${regType==2}"> style="background-color:gray;" </c:if>>
+					<li class="mytab-li" <c:if test="${regType==2}"> style="background-color:#4876ef;" </c:if>>
 						<a href="${pageContext.request.contextPath }/member/register.do?regType=2">기업회원</a>
 					</li>
 				</ul>
@@ -398,7 +567,7 @@ function inputChk(){
              	  
              	  
 	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">아이디  </div>
+	              	<div class="col-lg-4" id="title">아이디  </div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="email" id="memberId" name="memberId" class="form-control" placeholder="test@abc.com" required autofocus>
 		              <div id="idchkdiv" class="chkmessage"> </div>
@@ -406,72 +575,92 @@ function inputChk(){
 	              </div>
 	            
 	              <div class="row mb-4 mt-4" id="certiDiv" style="display:none;">
-	              	<div class="col-lg-4">인증번호  </div>
+	              	<div class="col-lg-4" id="title">인증번호  </div>
 		            <div class="col-lg-4 form-label-group mb-2">
 		              <input type="hidden" id="certiNumChk" name="certiNumChk">
 		              <input type="text" id="certiNum" name="certiNum" class="form-control" placeholder="" required autofocus>
 		            </div>
-		            <div class="col-lg-4 certi-btn">
-		            	<a href="#" class="btn btn-primary" onclick="certificationEmail()">인증번호받기</a>
+		           <!--  <div class="col-lg-4 certi-btn"> -->
+		           <div class="certi">
+		            	<a href="#" class="btn btn-primary" id="successNum" onclick="certificationEmail()">인증번호받기</a>
 		            	<a href="#" class="btn btn-success" onclick="chkCertiNum()">인증</a>
-		            </div>
+		            <!-- </div> -->
+		           </div>
 	              </div>	              
 	              
 	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">비밀번호 </div>
+	              	<div class="col-lg-4" id="title">비밀번호 </div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="password" id="memberPwd" name="memberPwd" class="form-control" placeholder="6자 이상 15자 미만" required>
 		            </div>
 	              </div>     
 	              
 				  <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">비밀번호 확인</div>
+	              	<div class="col-lg-4" id="title">비밀번호 확인</div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="password" id="memberPwd2" name="memberPwd2" class="form-control" placeholder="6자 이상 15자 미만" required>
 		            </div>
 	              </div>     	              
 	
 	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">이름 </div>
+	              	<div class="col-lg-4" id="title">이름 </div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="text" id="memberName" name="memberName" class="form-control" placeholder="" required>
 		            </div>
 	              </div>
 	              
 	               <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">휴대폰번호</div>
+	              	<div class="col-lg-4" id="title">휴대폰번호</div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="text" id="phone" name="phone" class="form-control" placeholder="010-1234-5678" maxlength="13">
 		            </div>
 	              </div>    
 	              
-	              <div class="row mb-4 mt-4">
+	            <!--   <div class="row mb-4 mt-4">
 	              	<div class="col-lg-4">성별</div>
 	              	<div class="col-lg-8">
 	              		<div class="row">
 		              		<div class="col-lg-4">
-		              			<label for="genderType1"><input type="radio" name="genderType" id="genderType1" value="M" checked>남자</label>
+		              			<label for="genderType1">
+		              			<input type="radio" name="genderType" id="genderType1" value="M" checked>남자</label>
 		              		</div>
 		              		<div class="col-lg-4">
 		              			<label for="genderType2"><input type="radio" name="genderType" id="genderType2" value="W">여자</label>
 		              		</div>	
 	              		</div>
 	              	</div>
-	              </div> 
+	              </div>  -->
+	               
+				 <div class="row mb-4 mt-4">
+	              	<div class="col-lg-4" id="title">성별</div>
+	              	<div class="col-lg-8">
+					<div class="btn-group btn-group-toggle" data-toggle="buttons">
+						<div class="btn-group-toggle" data-toggle="buttons">
+							<label class="btn btn-primary">
+								<input type="radio" name="genderType" id="genderType1" value="M" checked>남자
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="genderType" id="genderType2" value="W">여자
+							</label>
+						</div>
+					</div>
+					</div>
+				</div>
+				
 	              
 	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">생년월일</div>
+	              	<div class="col-lg-4" id="title">생년월일</div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="text" id="birthday" name="birthday" class="form-control" readonly>
 		            </div>
 	              </div>	              
 	              
 	              <div class="row mb-4 mt-4">
-		              	<div class="col-lg-4">주소 </div>
+		              	<div class="col-lg-4" id="title">주소 </div>
 			            <div class="col-lg-4 form-label-group mb-2">
 			              <input type="text" id="zipCode" name="zipCode" class="form-control" placeholder="우편번호" required readonly>
 			            </div>
-			            <div class="col-lg-4"><a href="#" class="btn btn-primary" onclick="sample3_execDaumPostcode()">검색</a></div>
+			            <div class="col-lg-4"><a href="#" class="btn_search" onclick="sample3_execDaumPostcode()">검색</a></div>
 			        
 		              	<div class="col-lg-4"> </div>
 			            <div class="col-lg-8 form-label-group mb-2">
@@ -491,9 +680,9 @@ function inputChk(){
 						<img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnFoldWrap" 
 						style="cursor:pointer;position:absolute;right:0px;top:-1px;z-index:1" onclick="foldDaumPostcode()" alt="접기 버튼">
 					</div>
+	              <button class="btn btn-lg btn-primary btn-block text-uppercase" id="apply_bt" type="submit">회원가입</button>
 	            </div>
 	              
-	              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">회원가입</button>
            	 	</form>   
           	 
           	 </c:if>
@@ -512,7 +701,7 @@ function inputChk(){
 	     	 		<!-- 회사정보 -->
 	              <div class="row mb-4 mt-4">
 	              	<!-- 회원 가입시 tbl_company insert -->
-	              	<div class="col-lg-4">사업자등록번호  </div>
+	              	<div class="col-lg-4" id="title">사업자등록번호  </div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="text" id="comRegnumber" name="comRegnumber" class="form-control" maxlength="12" placeholder="000-00-00000" required autofocus>
 		              <div id="regNumberDiv"></div>
@@ -521,14 +710,14 @@ function inputChk(){
 	              </div>
 	              
 	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">기업명</div>
+	              	<div class="col-lg-4" id="title">기업명</div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="text" id="comName" name="comName" class="form-control" placeholder="" required autofocus>
 		            </div>
 	              </div>
 	              
 	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">대표자명</div>
+	              	<div class="col-lg-4" id="title">대표자명</div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="text" id="ceoName" name="ceoName" class="form-control" placeholder="" required autofocus>
 		            </div>
@@ -537,11 +726,11 @@ function inputChk(){
 	              
 	              <!-- 회원 가입시 tbl_member insert -->
 	              <div class="row mb-4 mt-4">
-		              	<div class="col-lg-4">기업주소지 </div>
+		              	<div class="col-lg-4" id="title">기업주소지 </div>
 			            <div class="col-lg-4 form-label-group mb-2">
 			              <input type="text" id="zipCode" name="zipCode" class="form-control" placeholder="우편번호" required readonly>
 			            </div>
-			            <div class="col-lg-4"><a href="#" class="btn btn-primary" onclick="sample3_execDaumPostcode()">검색</a></div>
+			            <div class="col-lg-4"><a href="#" class="btn_search" onclick="sample3_execDaumPostcode()">검색</a></div>
 			        
 		              	<div class="col-lg-4"> </div>
 			            <div class="col-lg-8 form-label-group mb-2">
@@ -564,56 +753,58 @@ function inputChk(){
 
 	            		  
 				  <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">담당자명</div>
+	              	<div class="col-lg-4" id="title">담당자명</div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="text" id="memberName" name="memberName" class="form-control" placeholder="" required autofocus>
 		            </div>
 	              </div>	              
 	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">담당자 전화번호</div>
+	              	<div class="col-lg-4" id="title">담당자전화번호</div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="text" id="phone" name="phone" class="form-control" placeholder="010-1234-5678" maxlength="13">
 		            </div>
 	              </div>
 				  
 	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">아이디  </div>
+	              	<div class="col-lg-4" id="title">아이디  </div>
 		            <div class="col-lg-8 form-label-group mb-2">
-		              <input type="email" id="memberId" name="memberId" class="form-control" placeholder="test@abc.com" style="width:200px;" required autofocus>
+		              <input type="email" id="memberId" name="memberId" class="form-control" placeholder="test@abc.com" required autofocus>
 		              <span id="idchkdiv" class="chkmessage"></span>
 		            </div>
 	              </div>
 	              
 	              <div class="row mb-4 mt-4" id="certiDiv" style="display:none;">
-	              	<div class="col-lg-4">인증번호  </div>
+	              	<div class="col-lg-4" id="title">인증번호  </div>
 		            <div class="col-lg-4 form-label-group mb-2">
 		              <input type="hidden" id="certiNumChk" name="certiNumChk">
 		              <input type="text" id="certiNum" name="certiNum" class="form-control" placeholder="" required autofocus>
 		            </div>
-		            <div class="col-lg-4 certi-btn">
-		            	<a href="#" class="btn btn-primary" onclick="certificationEmail()">인증번호받기</a>
+		            <!-- <div class="col-lg-4 certi-btn"> -->
+		            <div class="certi">
+		            	<a href="#" class="btn btn-primary" id="successNum" onclick="certificationEmail()">인증번호받기</a>
 		            	<a href="#" class="btn btn-success" onclick="chkCertiNum()">인증</a>
-		            </div>
+            		</div>	
+		            <!-- </div> -->
 	              </div>	              
 	              
 	              <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">비밀번호 </div>
+	              	<div class="col-lg-4" id="title">비밀번호 </div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="password" id="memberPwd" name="memberPwd" class="form-control" placeholder="6자 이상 15자 미만" required>
 		            </div>
 	              </div>     
 	              
 				  <div class="row mb-4 mt-4">
-	              	<div class="col-lg-4">비밀번호 확인</div>
+	              	<div class="col-lg-4" id="title">비밀번호 확인</div>
 		            <div class="col-lg-8 form-label-group mb-2">
 		              <input type="password" id="memberPwd2" name="memberPwd2" class="form-control" placeholder="6자 이상 15자 미만" required>
 		            </div>
-	              </div>   
 	              
 	              <!-- 회원 가입시 tbl_member insert -->  	              
 	
 	              
-	              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">회원가입</button>
+	              </div>   
+	              <button class="btn btn-lg btn-primary btn-block text-uppercase" id="apply_bt" type="submit">회원가입</button>
 	              
            	 	</form>   
 	     	 

@@ -15,6 +15,20 @@ nav.navbar.fixed-top.navbar-expand-lg.navbar-dark.bg-dark.fixed-top {
 li.nav-item {
     font-size: 17px;
 }
+@font-face { font-family: 'Recipekorea'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Recipekorea.woff') format('woff'); font-weight: normal; font-style: normal; }
+a.navbar-brand {
+font-family: 'Recipekorea';
+/* font-family: 'S-CoreDream-8Heavy'; */
+color:white;
+font-size:20px;
+}
+li.nav-item {
+    font-size: 18px;
+    color: white;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255,255,255,1);
+}
 /* 잡서치디자인추가 */
 
 </style>

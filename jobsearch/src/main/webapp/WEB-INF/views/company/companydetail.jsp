@@ -124,19 +124,19 @@ div#comdeHeadDetail {
 
 <body>
 <!-- section start -->
-<div class="comName_div">${companyVo.comName} 기업상세</div>
+<div class="comName_div">${vo.comName} 기업상세</div>
 <div id="comdeHead">
 	<div id="comdeHeadDetail">
 		<div id="logos">
-			<img id="img-logos" alt="로고이미지" src="<c:url value='/resources/upload_images/${companyVo.comRenameimage}'/>" style="max-width: 300px;max-height: 150px;">
+			<img id="img-logos" alt="로고이미지" src="<c:url value='/resources/upload_images/${vo.comRenameimage}'/>" style="max-width: 300px;max-height: 150px;">
 		</div>
 		<div class="comdetailCont">
 			<div class="cont1">
-				<span class="cont1_span">${companyVo.comName}</span>
+				<span class="cont1_span">${vo.comName}</span>
 			</div>
 			<div class="cont2">
 				<span class="cont2_span">업종:</span>
-				<span class="cont2_span2">${companyVo.comField}</span>
+				<span class="cont2_span2">${vo.comField}</span>
 			</div>
 			<div class="cont3">
 				<span class="cont3_span">위치:</span>
@@ -149,28 +149,28 @@ div#comdeHeadDetail {
 	<div id="detailst">
 		<div id="detail1" class="comde">
 			<img class="com-img1" src="<c:url value='/resources/images/comestablish.png'/>">
-			<fmt:parseDate value='${companyVo.setupDate}' var='setupDate' pattern="yyyy-MM-dd"/>
+			<fmt:parseDate value='${vo.setupDate}' var='setupDate' pattern="yyyy-MM-dd"/>
 			<div class="in_detail"><fmt:formatDate value='${setupDate}' pattern="yyyy-MM-dd"/></div>
 			<p>설립일</p>
 		</div>
 		<div id="detail2" class="comde">
 			<img class="com-img1" src="<c:url value='/resources/images/comtype.png'/>">
-			<div class="in_detail">${companyVo.comType} </div>
+			<div class="in_detail">${vo.comType} </div>
 			<p>기업형태</p>
 		</div>
 		<div id="detail3" class="comde">
 			<img class="com-img1" src="<c:url value='/resources/images/comCEO.png'/>">
-			<div class="in_detail">${companyVo.ceoName}</div>
+			<div class="in_detail">${vo.ceoName}</div>
 			<p>CEO이름</p>
 		</div>
 		<div id="detail4" class="comde">
 			<img class="com-img1" src="<c:url value='/resources/images/commoney.png'/>">
-			<div class="in_detail">${companyVo.comSales}</div>
+			<div class="in_detail">${vo.comSales}</div>
 			<p>매출액</p>
 		</div>
 		<div id="detail5" class="comde">
 			<img class="com-img1" src="<c:url value='/resources/images/comemployee.png'/>">
-			<div class="in_detail">${companyVo.employeeNum}</div>
+			<div class="in_detail">${vo.employeeNum}</div>
 			<p>사원수</p>
 		</div>
 	</div>
@@ -179,7 +179,7 @@ div#comdeHeadDetail {
 <div id="comdeMain">
 <div id="comdeMainIndex">
 	<img id="images" alt="회사 이미지" src="<c:url value='/resources/images/company.jpg'/>" align="absmiddle">
-	<span class="phone">전화번호: ${companyVo.comTel}</span>
+	<span class="phone">전화번호: ${vo.comTel}</span>
 </div>
 <c:if test="${!empty memberVo.address}">
 <div id="comdeMainCont" align="center">	
