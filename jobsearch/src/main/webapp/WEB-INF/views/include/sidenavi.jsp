@@ -30,7 +30,7 @@ ul#menu_ul {
     border-right: 1px solid #dedede;
     height: 50px;
     padding: 11px 19px;
-    background-color: #3635aa;
+    background-color: #ffffff;
 }
 .menubox2 {
     border-bottom: 1px solid #dedede;
@@ -54,24 +54,32 @@ ul#menu_ul {
     border-bottom: 1px solid #dedede;
     border-right: 1px solid #dedede;
     height: 150px;
-    padding: 57px 19px;
+    padding: 58px 19px;
     text-align: center;
+     background: url("${pageContext.request.contextPath}/resources/images/pattern.png") center no-repeat; 
 }
 .menubox4_admin {
     border-bottom: 1px solid #dedede;
     border-right: 1px solid #dedede;
     height: 150px;
-    padding: 21px 19px;
+    padding: 58px 19px;
+    text-align: center;
+    background: url("${pageContext.request.contextPath}/resources/images/pattern.png") center no-repeat; 
 }
 span.menu_title_B {
     font-size: 21px;
-    color: #f62ff9;
+    color: #55d4b7;
+    font-weight: 600;
+}
+span.menu_title_admin {
+    font-size: 21px;
+    color: #ff9800;
     font-weight: 600;
 }
 span.menu_title {
     font-size: 17px;
     font-weight: 600;
-    color: #929292;
+    color: #333333;
 }
 span.menu_logo {
 	font-family: 'Recipekorea';
@@ -85,14 +93,16 @@ a.JT {
     text-decoration: none;
 }
 a.JTL {
-    color: white;
+    color: #4876ef;
     text-decoration: none;
 }
 .menu_banner {
     background-color: black;
     height: 520px;
 }
-
+a.link {
+    color: #737373;
+}
 
 <style>
 
@@ -177,27 +187,27 @@ $(document).ready(function() {
         <div class="menubox2"><span class=menu_title>공고 검색</span>
         	<ul class="list-unstyled mb-0" id="menu_ul">
                   <li class="side_li">
-                    <a href="<c:url value='/loc/locationList.do'/>">지역별검색</a>
+                    <a class="link" href="<c:url value='/loc/locationList.do'/>">지역별검색</a>
                   </li>
                   <li class="side_li">
-                    <a href="<c:url value='/cate/categoryList.do'/>">직업별검색</a>
+                    <a class="link" href="<c:url value='/cate/categoryList.do'/>">직업별검색</a>
                   </li>
     <!-- 기업만 보이게 수정  -->
                   <li class="side_li">
-                    <a href="${pageContext.request.contextPath}/resume/searchResume.do">인재검색</a>
+                    <a class="link" href="${pageContext.request.contextPath}/resume/searchResume.do">인재검색</a>
                   </li>
             </ul>
         </div>
         <div class="menubox3"><span class=menu_title>게시판</span>
         	<ul class="list-unstyled mb-0" id="menu_ul">
                   <li class="side_li">
-                    <a href="${pageContext.request.contextPath }/board/list.do?boardType=1">공지사항</a>
+                    <a class="link" href="${pageContext.request.contextPath }/board/list.do?boardType=1">공지사항</a>
                   </li>
                   <li class="side_li">
-                    <a href="${pageContext.request.contextPath }/board/list.do?boardType=2">FAQ</a>
+                    <a class="link" href="${pageContext.request.contextPath }/board/list.do?boardType=2">FAQ</a>
                   </li>
                   <li class="side_li">
-                    <a href="${pageContext.request.contextPath }/board/list.do?boardType=3">자유게시판</a>
+                    <a class="link" href="${pageContext.request.contextPath }/board/list.do?boardType=3">자유게시판</a>
                   </li>
             </ul>
         </div>
@@ -212,13 +222,13 @@ $(document).ready(function() {
 	        <div class="menubox4"><span class=menu_title>마이페이지</span>
 	        		<ul class="list-unstyled mb-0" id="menu_ul">
 	                  <li class="side_li">
-	                    <a href="${pageContext.request.contextPath }/member/mypagerecentnotice.do">마이페이지</a>
+	                    <a class="link" href="${pageContext.request.contextPath }/member/mypagerecentnotice.do">마이페이지</a>
 	                  </li>
 	                  <li class="side_li">
-	                    <a href="${pageContext.request.contextPath }/member/mypageeditcheck.do">회원수정</a>
+	                    <a class="link" href="${pageContext.request.contextPath }/member/mypageeditcheck.do">회원수정</a>
 	                  </li>
 	                  <li class="side_li">
-	                    <a href="${pageContext.request.contextPath }/member/mypageresumeTest.do">이력서등록</a>
+	                    <a class="link" href="${pageContext.request.contextPath }/member/mypageresumeTest.do">이력서등록</a>
 	                  </li>
 	            </ul>
 	        
@@ -229,13 +239,13 @@ $(document).ready(function() {
 	        <div class="menubox4"><span class=menu_title>마이페이지</span>
 	        		<ul class="list-unstyled mb-0" id="menu_ul">
 	                  <li class="side_li">
-	                    <a href="<c:url value='/company/companyMyAnnList.do'/>">마이페이지</a>
+	                    <a class="link" href="<c:url value='/company/companyMyAnnList.do'/>">마이페이지</a>
 	                  </li>
 	                  <li class="side_li">
-	                    <a href="<c:url value='/company/companyPwdChk.do'/>">기업수정</a>
+	                    <a class="link" href="<c:url value='/company/companyPwdChk.do'/>">기업수정</a>
 	                  </li>
 	                  <li class="side_li">
-	                    <a href="<c:url value='/company/companymypageannouncement.do'/>">공고등록</a>
+	                    <a class="link" href="<c:url value='/company/companymypageannouncement.do'/>">공고등록</a>
 	                  </li>
 	            </ul>
 	        

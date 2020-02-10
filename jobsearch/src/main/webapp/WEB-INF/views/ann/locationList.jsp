@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:import url="/WEB-INF/views/include/header.jsp" />
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 
@@ -225,7 +225,65 @@ img.bannerpicture {
     position: relative;
     left: 83px;
 }
-
+img.card-img-top {
+    resize: both;
+    max-height: 116px;
+    max-width: 220px;
+    margin-left: 35px;
+}
+.comtitle {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-top: -30px;
+    /* margin-bottom: 5px; */
+}
+.comtitle2 {
+    font-size: 19px;
+    font-weight: 600;
+    color: #a0a0a0;
+}
+.comtitle3 {
+    font-weight: 600;
+    color: #ff9200;
+    font-size: 17px;
+}
+.card.h-100.text-center {
+    border-radius: 0;
+}
+.card.h-100.text-center {
+    border-radius: 0;
+    border-bottom: 1px solid #4876ef;
+    border-right: 1px solid #4876ef;
+    border-left: 1px solid #4876ef;
+    border-top: 4px solid #4876ef;
+}
+.countNum {
+    color: red;
+}
+.card.h-100.text-center {
+	-webkit-transform:scale(1);
+	-moz-transform:scale(1);
+	-ms-transform:scale(1);	
+	-o-transform:scale(1);	
+	transform:scale(1);
+	-webkit-transition:.3s;
+	-moz-transition:.3s;
+	-ms-transition:.3s;
+	-o-transition:.3s;
+	transition:.3s;
+}
+.card.h-100.text-center:hover  {
+	-webkit-transform:scale(1.1);
+	-moz-transform:scale(1.1);
+	-ms-transform:scale(1.1);	
+	-o-transform:scale(1.1);
+	transform:scale(1.1);
+}
+hr.hr_bottom {
+    border: 1px solid white;
+    margin-bottom: 106px;
+}
 </style>
 <body>
 
@@ -287,7 +345,7 @@ img.bannerpicture {
 
     <%//공고영역 %>
     <c:if test="${!empty annList }">
-   		<div>검색 결과(갯수 - ${searchCount }): ${searchLocName }
+   		<div class="countNum">검색 결과(갯수 - ${searchCount }): ${searchLocName }
    			
    			<c:if test="${!empty searchLocNameList }">
    				<c:forEach var="searchList" items="${searchLocNameList}">
@@ -308,20 +366,21 @@ img.bannerpicture {
 			        	</c:if>
 			          
 			          <div class="card-body">
-			            <h4 class="card-title">${mapData['ANN_TITLE'] }</h4>
-			            <h6 class="card-subtitle mb-2 text-muted">${mapData['COM_NAME'] }</h6>
-			            <p class="card-text">${mapData['ANN_DESC'] }</p>
-			          </div>
-			          <div class="card-footer">
-			          	<p>지원기간 : <fmt:formatDate value ="${mapData['ANN_STDT']}" pattern="yyyy-MM-dd"/>~<fmt:formatDate value ="${mapData['ANN_ENDT']}" pattern="yyyy-MM-dd"/></p>
+			            <div class="comtitle">
+			            	<c:if test="${fn:length(mapData['ANN_TITLE'])>14}">
+									${fn:substring(mapData['ANN_TITLE'], 0, 14)}..
+				     			</c:if>
+								<c:if test="${fn:length(mapData['ANN_TITLE'])<=14}">
+				          			 ${mapData['ANN_TITLE'] }
+								</c:if>	
+			           </div>
+			            <div class="comtitle2">${mapData['COM_NAME'] }</div>
+			          	<div class="comtitle3"><fmt:formatDate value ="${mapData['ANN_STDT']}" pattern="yyyy-MM-dd"/>~<fmt:formatDate value ="${mapData['ANN_ENDT']}" pattern="yyyy-MM-dd"/></div>
 			          </div>
 			        </div>
 			      </div>			      
 			   </c:forEach>
 	     </div>
-	     
-
-	     
 		    		 
 		<ul class="pagination justify-content-center">
 			<c:if test="${pagingInfo.firstPage>1 }">
@@ -365,7 +424,8 @@ img.bannerpicture {
    			조건으로 등록된 공고가 존재하지 않습니다.
 		</div>
 	</c:if>  
-<div class="bottom_banner">
+	<hr class="hr_bottom">
+	<div class="bottom_banner">
  		<img class="bannerpicture" src="<c:url value='/resources/images/picture2.jpg'/>">
  	</div>
   </div>

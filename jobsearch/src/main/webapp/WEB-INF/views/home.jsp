@@ -421,6 +421,10 @@ div#clock {
     margin: -3.8em 0 0 -47em;
     z-index: 10;
 }
+.comName:hover {
+    color: #3F51B5;
+    font-size: 18px;
+}
 /* 스위퍼 */
 
 /* 190X95 */
@@ -534,7 +538,7 @@ div#clock {
 			          <div class="img_test"> 
 			         	 	<img class="card-img-top" src="<c:url value='/resources/upload_images/${announceMentVo.comRenameimage }'/>" alt="${announceMentVo.comName } 로고">
 			          </div>	
-			            <div class="comName"><a onclick="comView(${announceMentVo.comSeq })">${announceMentVo.comName }</a></div>
+			            <div class="comName"><a class="comNameann" onclick="comView(${announceMentVo.comSeq })">${announceMentVo.comName }</a></div>
 		            	<div class="annTitle">
 			          		<c:if test="${fn:length(announceMentVo.annTitle)>14}">
 								${fn:substring(announceMentVo.annTitle, 0, 14)}...
