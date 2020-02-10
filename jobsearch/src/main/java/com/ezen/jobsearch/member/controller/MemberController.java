@@ -67,8 +67,11 @@ public class MemberController {
 	
 	//로그인
 	@RequestMapping("/member/login.do")
-	public String loginPage() {
-		return "member/login";
+	public String loginPage(HttpSession session) {
+		if(session.getAttribute("loginMember")!=null) {
+			return "redirect:/home.do";
+		}
+		return "member/login";							
 	}
 	
 	//회원가입
@@ -218,19 +221,20 @@ public class MemberController {
 	//로그아웃
 	@RequestMapping("/member/logout.do")
 	public String logout(HttpServletRequest request) {
-		
+				
 		HttpSession session = request.getSession();
+		String returnPage = "redirect:/home.do";
+		if(session.getAttribute("loginMember")==null){
+			return returnPage;
+		}
 		MemberVO memberVo = (MemberVO)session.getAttribute("loginMember");
 		String regType = memberVo.getRegType();
-		
-		String returnPage = "redirect:/home.do";
-		
+					
 		if(regType.equals("0")) {
 			returnPage = "redirect:/admin/login.do";
 		}
 		
-		session.invalidate();
-		
+		session.invalidate();				
 		
 		return returnPage;
 	}
@@ -241,7 +245,7 @@ public class MemberController {
 		
 		return "/member/findIdPwd";
 	}
-	
+	//
 	//id 찾기
 	@RequestMapping("/member/findId.do")
 	public @ResponseBody List<HashMap<String,String>> findId(@RequestParam String memberName , @RequestParam String phone) {
