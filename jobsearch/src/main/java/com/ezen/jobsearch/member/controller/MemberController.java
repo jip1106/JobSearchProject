@@ -221,19 +221,20 @@ public class MemberController {
 	//로그아웃
 	@RequestMapping("/member/logout.do")
 	public String logout(HttpServletRequest request) {
-		
+				
 		HttpSession session = request.getSession();
+		String returnPage = "redirect:/home.do";
+		if(session.getAttribute("loginMember")==null){
+			return returnPage;
+		}
 		MemberVO memberVo = (MemberVO)session.getAttribute("loginMember");
 		String regType = memberVo.getRegType();
-		
-		String returnPage = "redirect:/home.do";
-		
+					
 		if(regType.equals("0")) {
 			returnPage = "redirect:/admin/login.do";
 		}
 		
-		session.invalidate();
-		
+		session.invalidate();				
 		
 		return returnPage;
 	}
