@@ -231,7 +231,7 @@ span.day_span {
                	 </a>
                </strong>
             <div class="desc">
-               <span class="career_small">${item['CAREER']}</span>|<span class="career_small2">${item['AGE']}세</span>|<span class="career_small2">${item['SALARY']}이상</span>                        
+               <span class="career_small">${item['CAREER']}</span>|<span class="career_small2">${item['AGE']}</span>|<span class="career_small2">${item['SALARY']}</span>                        
             </div>
 
             <span class="txt_date">

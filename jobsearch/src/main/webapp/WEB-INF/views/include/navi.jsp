@@ -29,6 +29,9 @@ li.nav-item {
 .navbar-dark .navbar-nav .nav-link {
     color: rgba(255,255,255,1);
 }
+a.navbar-brand {
+    margin-top: 3px;
+}
 /* 잡서치디자인추가 */
 
 </style>

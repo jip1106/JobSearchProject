@@ -30,6 +30,7 @@ ul#menu_ul {
     border-right: 1px solid #dedede;
     height: 50px;
     padding: 11px 19px;
+    background-color: #3635aa;
 }
 .menubox2 {
     border-bottom: 1px solid #dedede;
@@ -49,6 +50,24 @@ ul#menu_ul {
     height: 150px;
     padding: 21px 19px;
 }
+.menubox4_B {
+    border-bottom: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    height: 150px;
+    padding: 57px 19px;
+    text-align: center;
+}
+.menubox4_admin {
+    border-bottom: 1px solid #dedede;
+    border-right: 1px solid #dedede;
+    height: 150px;
+    padding: 21px 19px;
+}
+span.menu_title_B {
+    font-size: 21px;
+    color: #f62ff9;
+    font-weight: 600;
+}
 span.menu_title {
     font-size: 17px;
     font-weight: 600;
@@ -65,6 +84,16 @@ a.JT {
     color: #4876ef;
     text-decoration: none;
 }
+a.JTL {
+    color: white;
+    text-decoration: none;
+}
+.menu_banner {
+    background-color: black;
+    height: 520px;
+}
+
+
 <style>
 
 .topFixBanner {
@@ -142,53 +171,84 @@ $(document).ready(function() {
         <div class="card my-4" id="floatMenu">
         <div class="menubox1">
         	<span class="menu_logo">
-       			<a class="JT" href="${pageContext.request.contextPath }/home.do">JobSearch</a>
+       			<a class="JTL" href="${pageContext.request.contextPath }/home.do">JobSearch</a>
         	</span>
        	</div>
         <div class="menubox2"><span class=menu_title>공고 검색</span>
         	<ul class="list-unstyled mb-0" id="menu_ul">
                   <li class="side_li">
-                    <a href="#span_notice_title">지역별검색</a>
+                    <a href="<c:url value='/loc/locationList.do'/>">지역별검색</a>
                   </li>
                   <li class="side_li">
-                    <a href="#">직업별검색</a>
+                    <a href="<c:url value='/cate/categoryList.do'/>">직업별검색</a>
                   </li>
     <!-- 기업만 보이게 수정  -->
                   <li class="side_li">
-                    <a href="#">인재검색</a>
+                    <a href="${pageContext.request.contextPath}/resume/searchResume.do">인재검색</a>
                   </li>
             </ul>
         </div>
         <div class="menubox3"><span class=menu_title>게시판</span>
         	<ul class="list-unstyled mb-0" id="menu_ul">
                   <li class="side_li">
-                    <a href="#span_notice_title">공지사항</a>
+                    <a href="${pageContext.request.contextPath }/board/list.do?boardType=1">공지사항</a>
                   </li>
                   <li class="side_li">
-                    <a href="#">FAQ</a>
+                    <a href="${pageContext.request.contextPath }/board/list.do?boardType=2">FAQ</a>
                   </li>
                   <li class="side_li">
-                    <a href="#">자유게시판</a>
+                    <a href="${pageContext.request.contextPath }/board/list.do?boardType=3">자유게시판</a>
                   </li>
             </ul>
         </div>
-        <div class="menubox4"><span class=menu_title>마이페이지</span>
-        <!-- 기업일때 회원일때로 수정  -->
-        		<ul class="list-unstyled mb-0" id="menu_ul">
-                  <li class="side_li">
-                    <a href="#span_notice_title">마이페이지메인</a>
-                  </li>
-                  <li class="side_li">
-                    <a href="#">회원수정</a>
-                  </li>
-                  <li class="side_li">
-                    <a href="#">이력서등록</a>
-                  </li>
-            </ul>
-        
-        </div>
+        <!-- 관리자 -->
+        <c:if test="${!empty sessionScope.loginMember && sessionScope.loginMember.regType == 0}">
+	        <div class="menubox4_admin">
+	        	<span class=menu_title_admin>관리자입니다.</span>
+	        </div>
+        </c:if>
+        <!-- 일반회원 -->
+        <c:if test="${!empty sessionScope.loginMember && sessionScope.loginMember.regType == 1}">
+	        <div class="menubox4"><span class=menu_title>마이페이지</span>
+	        		<ul class="list-unstyled mb-0" id="menu_ul">
+	                  <li class="side_li">
+	                    <a href="${pageContext.request.contextPath }/member/mypagerecentnotice.do">마이페이지</a>
+	                  </li>
+	                  <li class="side_li">
+	                    <a href="${pageContext.request.contextPath }/member/mypageeditcheck.do">회원수정</a>
+	                  </li>
+	                  <li class="side_li">
+	                    <a href="${pageContext.request.contextPath }/member/mypageresumeTest.do">이력서등록</a>
+	                  </li>
+	            </ul>
+	        
+	        </div>
+        </c:if>
+        <!-- 기업회원 -->
+        <c:if test="${!empty sessionScope.loginMember && sessionScope.loginMember.regType == 2}">
+	        <div class="menubox4"><span class=menu_title>마이페이지</span>
+	        		<ul class="list-unstyled mb-0" id="menu_ul">
+	                  <li class="side_li">
+	                    <a href="<c:url value='/company/companyMyAnnList.do'/>">마이페이지</a>
+	                  </li>
+	                  <li class="side_li">
+	                    <a href="<c:url value='/company/companyPwdChk.do'/>">기업수정</a>
+	                  </li>
+	                  <li class="side_li">
+	                    <a href="<c:url value='/company/companymypageannouncement.do'/>">공고등록</a>
+	                  </li>
+	            </ul>
+	        
+	        </div>
+        </c:if>
+        <!-- 비회원 -->
+        <c:if test="${empty sessionScope.loginMember}">
+	        <div class="menubox4_B">
+		        <span class=menu_title_B>비회원입니다.</span>
+	        </div>
+        </c:if>
        <div class="menu_banner">
-        	<img src="<c:url value='/resources/images/left_sample3.jpg'/>"> 
+        	<img src="<c:url value='/resources/images/picture7.jpg'/>"> 
         </div>    
         
        </div>
