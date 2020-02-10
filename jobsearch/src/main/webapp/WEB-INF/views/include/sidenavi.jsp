@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> 
 
+
+
+<!-- 출처: https://titis.tistory.com/111 [프로그래밍으로 안되는건 없다. ] -->
 <style>
 /* 잡서치디자인추가 */
 nav.nav_side {
-    position: absolute;
+    position: fixed;
     top: 36px;
-    height: 1194px;
+    height: 100%;
 }
 div#menu {
     margin: auto;
@@ -30,20 +34,20 @@ ul#menu_ul {
 .menubox2 {
     border-bottom: 1px solid #dedede;
     border-right: 1px solid #dedede;
-    height: 135px;
-    padding: 11px 19px;
+    height: 150px;
+    padding: 21px 19px;
 }
 .menubox3 {
     border-bottom: 1px solid #dedede;
     border-right: 1px solid #dedede;
-    height: 135px;
-    padding: 11px 19px;
+    height: 150px;
+    padding: 21px 19px;
 }
 .menubox4 {
     border-bottom: 1px solid #dedede;
     border-right: 1px solid #dedede;
-    height: 135px;
-    padding: 11px 19px;
+    height: 150px;
+    padding: 21px 19px;
 }
 span.menu_title {
     font-size: 17px;
@@ -51,14 +55,62 @@ span.menu_title {
     color: #929292;
 }
 span.menu_logo {
+	font-family: 'Recipekorea';
     font-size: 18px;
     font-weight: 600;
     color: #4876ef;
 }
-    
-/* 잡서치디자인추가 */
+@font-face { font-family: 'Recipekorea'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Recipekorea.woff') format('woff'); font-weight: normal; font-style: normal; }
+a.JT {
+    color: #4876ef;
+    text-decoration: none;
+}
+<style>
 
-</style>
+.topFixBanner {
+    text-align: left;
+    background-color: #ffffff;
+    padding: 20px 0px 20px 20px;
+    width: 100%;
+	border-bottom:#666666 solid 2px;
+}
+.topFixBannerFixed {
+
+       position: fixed;
+
+       top: 0px;
+
+	text-align:left;
+
+	padding-left:20px;
+
+     }
+
+</style> 
+
+<script type="text/javascript">
+var bannerOffset = $( '.topFixBanner' ).offset();
+
+    $( window ).scroll( function() {  //window에 스크롤링이 발생하면
+
+          if ( $( document ).scrollTop() > bannerOffset.top ) {   // 위치 및 사이즈를 파악하여 미리 정한 css class를 add 또는 remove 합니다.
+
+            $( '.topFixBanner' ).addClass( 'topFixBannerFixed' );
+
+          }
+
+          else {
+
+            $( '.topFixBanner' ).removeClass( 'topFixBannerFixed' );
+
+          }
+
+     });
+
+
+
+
+</script>
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -84,12 +136,15 @@ $(document).ready(function() {
 });
 </script>
 
-
     <!-- Navigation -->
   <nav class="nav_side">
 	      <!--  왼쪽네비게이션 -->
         <div class="card my-4" id="floatMenu">
-        <div class="menubox1"><span class=menu_logo>Jopsearch</span></div>
+        <div class="menubox1">
+        	<span class="menu_logo">
+       			<a class="JT" href="${pageContext.request.contextPath }/home.do">JobSearch</a>
+        	</span>
+       	</div>
         <div class="menubox2"><span class=menu_title>공고 검색</span>
         	<ul class="list-unstyled mb-0" id="menu_ul">
                   <li class="side_li">

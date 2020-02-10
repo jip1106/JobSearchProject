@@ -5,33 +5,142 @@
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 
 <style>
-	.mgt-30{
-		margin-top:30%;
-	}
-	
-	.mgb-30{
-		margin-bottom:30%;
-	}
-	
-	.mgt-20{
-		margin-top:20%;
-	}
-	
-	.mgb-20{
-		margin-bottom:20%;
-	}
-	
-	.mgt-10{
-		margin-top:10%;
-	}
-	
-	.mgb-10{
-		margin-bottom:10%;
-	}
-	
-	.findspan a{
-		text-decoration:none;
-	}
+.mgt-30{
+	margin-top:30%;
+}
+
+.mgb-30{
+	margin-bottom:30%;
+}
+
+.mgt-20{
+	margin-top:20%;
+}
+
+.mgb-20{
+	margin-bottom:20%;
+}
+
+.mgt-10{
+	margin-top:10%;
+}
+
+.mgb-10{
+	margin-bottom:10%;
+}
+
+.findspan a{
+	text-decoration:none;
+}
+body{
+	background: url("${pageContext.request.contextPath}/resources/images/login.jpg") center no-repeat;
+}
+#row{
+	height:903px;
+}
+.layout {
+    position: relative;
+    left: 205px;
+    top: 212px;
+    display: flex;
+    height: 23em;
+}
+.findPwd {
+    width: 368px;
+    margin-top: 25px;
+}
+.findId {
+    width: 368px;
+    border-right: 2px solid #4876ef;
+    margin-top: 26px;
+}
+.Id {
+    width: 18em;
+    margin-left: 41px;
+}
+.pwd {
+    width: 18em;
+    margin-left: 41px;
+}
+input#memberName {
+    z-index: 100;
+    width: 100%;
+    height: calc(1.5em + .75rem + 13px);
+    margin-bottom: -8px;
+}
+input#phone {
+    z-index: 100;
+    width: 100%;
+    height: calc(1.5em + .75rem + 13px);
+    margin-bottom: -19px;
+}
+input#memberId {
+    z-index: 100;
+    width: 100%;
+    height: calc(1.5em + .75rem + 13px);
+    margin-bottom:77px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #4876ef;
+    border-color: #4876ef;
+}
+.caution {
+    text-align: center;
+    font-size: 12px;
+}
+span#findUserId {
+    margin-left: 43px;
+}
+span#findUserPwd {
+    margin-left: 36px;
+}
+.IMG_id {
+    margin-bottom: 17px;
+}
+.IMG_pwd {
+    margin-bottom: 52px;
+}
+span.title_id {
+    font-size: 26px;
+    font-weight: 600;
+    position: relative;
+    top: 7px;
+}
+span.title_pwd {
+    font-size: 26px;
+    font-weight: 600;
+    position: relative;
+    top: 7px;
+}
+img.id_img {
+    margin-left: 36px;
+}
+img.pwd_img {
+    margin-left: 18px;
+}
+button.btn.btn-lg.btn-primary.btn-block.text-uppercase {
+    margin-bottom: 10px;
+}
+
+
+/*  */
+
+.col-sm-9.col-md-7.col-lg-5.mx-auto {
+    width: 33%;
+}
+div#box1 {
+    position: relative;
+    left: -11em;
+    top: 63em;
+}
+div#box2 {
+    position: relative;
+    top: 18em;
+    left: 12em;
+}
+
+
 </style>
 
 <script>
@@ -102,7 +211,7 @@
 					var sRegType = regType==1?"일반회원":"기업회원";
 					
 					$("#findUserId").css("color","green");
-					$("#findUserId").html("회원님의 id는 : " + memberId + "<br>회원유형은 " + sRegType +" 입니다.");
+					$("#findUserId").html(memberId + "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원유형은 " + sRegType +" 입니다.");
 				}
 			},
 			error: function(xhr, status, e){
@@ -148,7 +257,7 @@
 				
 				if(resData > 0){
 					$("#findUserPwd").css("color","green");
-					$("#findUserPwd").html("등록하신 메일으로 임시 비밀번호가 발송 되었습니다.<br> 확인 후 로그인 해 주세요.");
+					$("#findUserPwd").html("등록하신 메일로 임시 비밀번호가 <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;발송 되었습니다.");
 				}
 
 			},
@@ -169,9 +278,70 @@
   <div class="container">
     <!-- Page Heading/Breadcrumbs -->
     
-    <div class="row">
+    <div class="row" id="row">
+    	<div class="layout">
+    		<div class="findId">
+    			<div class="Id">
+    			<div class="IMG_id">
+			    	<img class="id_img" src="<c:url value='/resources/images/id.png'/>">			
+    				<span class="title_id">아이디찾기</span>
+    			</div>
+    			 <form name="findId" class="form-signin" method="post" action="">
+	              
+	              <div class="form-label-group mb-4">
+	                <input type="text" id="memberName" name="memberName" class="form-control" placeholder="이름" required autofocus>
+	              </div>
+	
+	              <div class="form-label-group mb-4">
+	                <input type="text" id="phone" name="phone" class="form-control" placeholder="010-000-0000" required autofocus>
+	              </div>
+	              	<div class="row mt-4 mb-4">
+	              	<div class="col">
+	              		<div class="caution">*회원가입시 입력했던 이름, 번호를 입력 해 주세요.</div>
+	              	</div>
+					</div>
+	              
+	              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" onclick="findIdFnc();">찾기</button>
+	              	<div class="col">
+	              		<span style="color:red; font-size:0.8em;" id="findUserId">
+	              		
+	              		</span>
+	              	</div>
+	            </form>
+	              </div>
+    		</div>
+    		
+    		
+    		<div class="findPwd">
+    		<div class="pwd">
+    			<div class="IMG_pwd">
+			    	<img class="pwd_img" src="<c:url value='/resources/images/pwd.png'/>">			
+	    			<span class="title_pwd">비밀번호찾기</span>
+    			</div>
+    			
+	            <form class="form-signin" method="post" action="">
+	              
+	              <div class="form-label-group mb-4">
+	                <input type="email" id="memberId" name="memberId" class="form-control" placeholder="id를 입력 해 주세요." required autofocus>
+	              </div>
+	              
+	              <button class="btn btn-lg btn-primary btn-block text-uppercase" type="button" onclick="findPwdFnc()">찾기</button>
+	              	<div class="col">
+	              		<span style="color:red; font-size:0.8em;" id="findUserPwd">
+	              		
+	              		</span>
+	              	</div>
+	              
+	              
+	            </form>
+    		</div>
+    		</div>
+    	</div>
     
-	    <div class="col-lg-12 col-md-12 col-sm-6">
+    
+    
+    
+	<!--     <div class="col-lg-12 col-md-12 col-sm-6" id="box1">
 	      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
 	        <div class="card card-signin mgt-10 mgb-10">
 	          <div class="card-body">
@@ -208,9 +378,9 @@
 	          </div>
 	        </div>
 	      </div>
-	    </div>
+	    </div> -->
 	    
-	    <div class="col-lg-12 col-md-12 col-sm-6">
+	 <!--    <div class="col-lg-12 col-md-12 col-sm-6" id="box2">
 	      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
 	        <div class="card card-signin mgt-10 mgb-10">
 	          <div class="card-body">
@@ -236,7 +406,7 @@
 	          </div>
 	        </div>
 	      </div>
-	    </div>	    
+	    </div>	   -->  
 
 
 
