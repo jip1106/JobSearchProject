@@ -13,6 +13,7 @@ public class EmpTypeDAOMybatis implements EmpTypeDAO {
 	
 	private String namespace="config.mybatis.mapper.oracle.emptype.";
 	
+	@Override
 	public List<EmpTypeVO> selectEmpType(){
 		return sqlSession.selectList(namespace+"selectEmpType");
 	}

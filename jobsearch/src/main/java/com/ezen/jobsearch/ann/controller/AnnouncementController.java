@@ -2,9 +2,12 @@ package com.ezen.jobsearch.ann.controller;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ezen.jobsearch.ann.model.AnnounceMentVO;
 import com.ezen.jobsearch.ann.model.AnnouncementService;
@@ -202,7 +206,52 @@ public class AnnouncementController {
 
 	}
 	
+	@RequestMapping(value = "/announcementStats.do")
+	@ResponseBody
+	public Object selectStats() {
 	
+		List<Map<String, Object>> list=annService.selectCountByCategory();
+		logger.info("조회 결과list.size={}", list.size());
+		
+		JSONObject data=new JSONObject();
+		
+		JSONObject col1=new JSONObject();
+		JSONObject col2=new JSONObject();
+		
+		JSONArray title=new JSONArray();
+		col1.put("label", "분야");
+		col1.put("type", "string");
+		col2.put("label", "공고 수");
+		col2.put("type", "number");
+		
+		title.add(col1);
+        title.add(col2);
+        
+        data.put("cols", title);
+        
+        JSONArray body = new JSONArray(); 
+        for (Map<String, Object> map : list) { 
+            
+            JSONObject cateName = new JSONObject(); 
+            cateName.put("v", map.get("CATE_NAME1")); 
+            
+            JSONObject count = new JSONObject(); 
+            count.put("v", map.get("COUNT")); 
+            
+            JSONArray row = new JSONArray(); 
+            row.add(cateName);
+            row.add(count); 
+            
+            JSONObject cell = new JSONObject(); 
+            cell.put("c", row); 
+            body.add(cell); 
+                
+        }
+        
+        data.put("rows", body); 
+        
+        return data; 
+	}
 	
 	
 	

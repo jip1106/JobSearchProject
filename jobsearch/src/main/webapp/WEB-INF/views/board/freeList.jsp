@@ -217,6 +217,10 @@ img#searchimg {
     top: -3px;
     left: -7px;
 }
+img.bannerpicture {
+    position: relative;
+    left: -17px;
+}
 
 </style>
 	
@@ -332,9 +336,13 @@ img#searchimg {
      <button class="btn btn-primary_write" 
      onclick="location.href = '<c:url value="/board/write.do?boardType=3"/>'">글쓰기</button>
      </div>
+     
+     <div class="bottom_banner">
+ 		<img  class="bannerpicture"src="<c:url value='/resources/images/picture6.jpg'/>">
+ 	</div>
    </div>
     
-	
+	<c:import url="/WEB-INF/views/include/sidenavi.jsp" />  
 	<c:import url="/WEB-INF/views/include/navi.jsp" />
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	<script type="text/javascript">

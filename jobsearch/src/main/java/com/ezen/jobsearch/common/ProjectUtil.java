@@ -18,11 +18,11 @@ public class ProjectUtil {
 		    switch (rIndex) {
 		    case 0:
 		        // a-z
-		    	sb.append((char) ((int) (rnd.nextInt(26)) + 97));
+		    	sb.append((char) ((rnd.nextInt(26)) + 97));
 		        break;
 		    case 1:
 		        // A-Z
-		    	sb.append((char) ((int) (rnd.nextInt(26)) + 65));
+		    	sb.append((char) ((rnd.nextInt(26)) + 65));
 		        break;
 		    case 2:
 		        // 0-9

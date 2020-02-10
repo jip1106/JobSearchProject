@@ -27,7 +27,7 @@
 
 <style type="text/css">
 div#breadcrumb_id {
-    padding: 11px 32px;
+    padding: 8px 32px;
     background-color: #4876ef;
     height: 57px;
     margin-bottom: 0px;
@@ -136,7 +136,7 @@ ol.breadcrumb {
 }
 .card-footer.text-muted_photo {
     width: 100%;
-    height: 19em;
+    height: 35em;
     overflow-y: scroll;
     min-height: 19em;
     background-color: white;
@@ -489,6 +489,12 @@ span.resume_name {
 .repeat_resume {
     margin-bottom: 4px;
 }
+@font-face { font-family: 'Recipekorea'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Recipekorea.woff') format('woff'); font-weight: normal; font-style: normal; }
+a.JT {
+	font-family: 'Recipekorea';
+    color: white;
+    text-decoration: none;
+}
 </style>
 
 </head>
@@ -500,7 +506,9 @@ span.resume_name {
     <!-- Page Heading/Breadcrumbs -->
 
     <div class="breadcrumb" id="breadcrumb_id">
-   		<span class="Jobsearch">Jobsearch</span>
+   		<span class="Jobsearch">
+   			<a class="JT" href="${pageContext.request.contextPath }/home.do">JobSearch</a>
+   		</span>
     </div>
 
     <!-- Blog Post -->
@@ -579,7 +587,7 @@ span.resume_name {
 						<dl>
 							<dt>연령제한</dt>
 							<dd>
-								<strong>${vo.ageLimit }세 이상</strong>
+								<strong>${vo.ageLimit }</strong>
 							</dd>
 						</dl>
 					</div>

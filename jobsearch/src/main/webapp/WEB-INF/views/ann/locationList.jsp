@@ -221,6 +221,10 @@ a.JT {
     color: #4876ef;
     text-decoration: none;
 }
+img.bannerpicture {
+    position: relative;
+    left: 83px;
+}
 
 </style>
 <body>
@@ -361,7 +365,9 @@ a.JT {
    			조건으로 등록된 공고가 존재하지 않습니다.
 		</div>
 	</c:if>  
-
+<div class="bottom_banner">
+ 		<img class="bannerpicture" src="<c:url value='/resources/images/picture2.jpg'/>">
+ 	</div>
   </div>
   <!-- /.container -->
 	<c:import url="/WEB-INF/views/include/sidenavi.jsp" />  

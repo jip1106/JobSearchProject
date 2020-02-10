@@ -26,8 +26,6 @@ import com.ezen.jobsearch.apply.model.ApplyService;
 import com.ezen.jobsearch.common.FileUploadUtil;
 import com.ezen.jobsearch.company.model.CompanyService;
 import com.ezen.jobsearch.company.model.CompanyVO;
-import com.ezen.jobsearch.hopework.model.HopeworkService;
-import com.ezen.jobsearch.hopework.model.HopeworkVO;
 import com.ezen.jobsearch.member.model.MemberService;
 import com.ezen.jobsearch.member.model.MemberVO;
 import com.ezen.jobsearch.resume.model.ResumeService;

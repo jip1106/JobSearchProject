@@ -133,5 +133,11 @@
 		where <![CDATA[rownum<=6]]>
 	</select>
 	
+	<select id="selectCountByCategory" resultType="map">
+		select count(*) as count, tc.cate_name1 as cate_name1
+		from tbl_announcement ta join tbl_category1 tc
+		on ta.ref_cateseq1=tc.cate_seq1
+		group by cate_name1
+	</select>
 	
 </mapper>

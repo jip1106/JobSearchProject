@@ -168,6 +168,7 @@ public class MemberServiceImpl implements MemberService{
 	}
 	
 	
+	@Override
 	public MemberVO selectComMem(int memberSeq) {
 		return memberDao.selectComMem(memberSeq);
 	}
