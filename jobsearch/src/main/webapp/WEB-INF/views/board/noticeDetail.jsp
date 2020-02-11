@@ -22,8 +22,9 @@
 div#noticeList_container {
     max-width: 800px;
 }
+
 .NoticeTitle {
-    margin-bottom: 8px;
+    margin-bottom: 0px;
     margin-top: 120px;
 }
 span.Jobsearch {
@@ -121,6 +122,21 @@ hr.margin_hr {
     margin-bottom: -3px;
     border-color: white;
 }
+a.JT {
+    color: #4876ef;
+    text-decoration: none;
+}
+span.Jobsearch {
+    font-family: 'Recipekorea';
+    font-size: 32px;
+    letter-spacing: -1px;
+    /* font-weight: 500; */
+    color: #4876ef;
+    position: relative;
+    top: -4px;
+    margin-right: -7px;
+}
+@font-face { font-family: 'Recipekorea'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Recipekorea.woff') format('woff'); font-weight: normal; font-style: normal; }
 </style>
 <body>
 
@@ -128,7 +144,9 @@ hr.margin_hr {
   <div class="container" id="noticeList_container">
   
    <div class="NoticeTitle">
-	    <span class="Jobsearch">Jobsearch</span>
+	    <span class="Jobsearch">
+    		<a class="JT" href="${pageContext.request.contextPath }/home.do">JobSearch</a>
+	    </span>
 	    <span class="text_span1">에서</span>
 	    <span class="text_span2">알려드립니다!</span>
     </div>

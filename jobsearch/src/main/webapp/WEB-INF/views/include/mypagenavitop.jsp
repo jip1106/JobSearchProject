@@ -89,6 +89,21 @@ span.text_span3 {
 a#list_final {
     border-radius: 0 0 4px 4px;
 }
+a.JT {
+    color: #4876ef;
+    text-decoration: none;
+}
+span.Jobsearch {
+    font-family: 'Recipekorea';
+    font-size: 32px;
+    letter-spacing: -1px;
+    /* font-weight: 500; */
+    color: #4876ef;
+    position: relative;
+    top: -4px;
+    margin-right: -7px;
+}
+@font-face { font-family: 'Recipekorea'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Recipekorea.woff') format('woff'); font-weight: normal; font-style: normal; }
 </style>
     
    <!-- Page Content -->
@@ -97,7 +112,9 @@ a#list_final {
     <!-- Page Heading/Breadcrumbs -->
    <!--  <h2 class="mt-4 mb-3">Mypage</h2> -->
     <div class="CateTitle">
-	    <span class="Jobsearch">Jobsearch</span>
+	     <span class="Jobsearch">
+    		<a class="JT" href="${pageContext.request.contextPath }/home.do">JobSearch</a>
+	    </span>
 	    <span class="text_span1">Mypage</span>
 	   <!--  <span class="text_span2">검색창</span> -->
 	    <span class="text_span3">입니다!</span>
