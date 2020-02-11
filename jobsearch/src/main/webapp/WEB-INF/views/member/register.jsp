@@ -351,7 +351,7 @@ function inputChk(){
 	
 }
 body{
-background: url("${pageContext.request.contextPath}/resources/images/applyback.jpg") center no-repeat;
+background: url("${pageContext.request.contextPath}/resources/images/applyback3.jpg") center no-repeat;
 }
 .col-sm-9.col-md-7.col-lg-8.mx-auto {
     max-width: 51%;

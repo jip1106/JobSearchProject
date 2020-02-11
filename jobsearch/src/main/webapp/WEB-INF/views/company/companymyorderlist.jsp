@@ -106,7 +106,7 @@ img.barcord {
 .accordian_title {
     display: flex;
 }
-.layout {
+.layout2 {
     padding: 0 124px;
 }
 img.open_down {
@@ -167,7 +167,7 @@ dd {
 <div align="center">
 <div class="pay_title">결제내역</div>
 </div>	
-<div class="layout">
+<div class="layout2">
 <dl>
    	<c:forEach var="vo" items="${list}">
 	    <dt class="receipt_dt">
@@ -250,6 +250,6 @@ dd {
 <!-- collapsible function   -->
 <!-- section end -->
 <c:import url="/WEB-INF/views/include/companymypagenavibottom.jsp" />
-<c:import url="/WEB-INF/views/include/footer.jsp" />	
+<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
 </html>
