@@ -162,22 +162,21 @@ td.member2 {
     font-weight: 600;
     color: #7b7a91;
     position: relative;
-    left: 134px;
+    left: 154px;
     text-align: center;
 }
 td.regdate2 {
     font-weight: 600;
     color: #7b7a91;
     position: relative;
-    left: 192px;
+    left: 221px;
     text-align: center;
-     
 }
 td.hits2 {
-	font-weight: 600;
+    font-weight: 600;
     color: #7b7a91;
     position: relative;
-    left: 257px;
+    left: 286px;
     text-align: center;
 }
 div#card-header {

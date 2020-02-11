@@ -658,11 +658,12 @@ img.photo_hole {
 }
 
 img.photoname {
-	resize: both;
-	height: 70px;
-	position: relative;
-	top: -70px;
-	z-index: -1;
+    resize: both;
+    height: 59px;
+    position: relative;
+    top: -64px;
+    left: -1px;
+    z-index: -1;
 }
 
 img.base_photo {

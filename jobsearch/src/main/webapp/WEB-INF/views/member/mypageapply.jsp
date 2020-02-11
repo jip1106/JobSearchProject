@@ -185,6 +185,15 @@ span.day_span {
     top: -39px;
     color: #afafaf;
 }
+span.openFlag {
+    position: relative;
+    top: -12px;
+    left: -213px;
+    font-size: 12px;
+    color: blue;
+    font-weight: bold;
+    background-color: #eaeaea;
+}
 </style>
 
 <script type="text/javascript">
@@ -242,18 +251,19 @@ span.day_span {
                <span class="career_small">${item['CAREER']}</span>|<span class="career_small2">${item['AGE']}</span>|<span class="career_small2">${item['SALARY']}</span>                        
             </div>
 
+           
+            <button type="button" class="btn_edit_complete" onclick="resumeDetail('${item['RESUME_SEQ']}')">나의 이력서</button>
             <span class="txt_date">  
             	지원날짜 
             <fmt:formatDate value="${item['REGDATE']}" pattern="yyyy.MM.dd hh:mm:ss" />
             </span>
-            <c:if test="${item.OPENFLAG eq 'Y'}">
-            	<span class="openFlag">열람</span>
-            </c:if>
-            <button type="button" class="btn_edit_complete" onclick="resumeDetail('${item['RESUME_SEQ']}')">나의 이력서</button>
 			<button type="button" class="btn_delete" data-action="delete" data-track_event="resume_manage|button|delete"
             	onclick="button_event(${item.APPLYSEQ})">
             		<span class="X">지원 취소</span>
            		</button>
+             <c:if test="${item.OPENFLAG eq 'Y'}">
+            	<span class="openFlag">*기업 담당자가 이력서를 열람하였습니다.</span>
+            </c:if>
            <div class="wrap_manage_btn">
             <span id=remain_time>${item.TIME}</span> <span class=day_span>일</span>
             </div> 
