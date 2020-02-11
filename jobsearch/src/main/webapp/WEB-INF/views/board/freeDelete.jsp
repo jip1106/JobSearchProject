@@ -351,7 +351,10 @@ hr.title_hr {
 }
 hr.bottom_hr {
     border: 1px solid #4876ef;
-    margin: 0px 0 122px 0;
+    margin: 0px 0 60px 0;
+}
+.bottom_banner {
+    margin-bottom: 60px;
 }
 span.top_regt {
     position: relative;
@@ -368,6 +371,38 @@ span.top_reg {
     font-size: 18px;
     font-weight: bold;
     color: #b9b9b9;
+}
+nav.nav_side {
+    position: fixed;
+    top: 36px;
+    height: 100%;
+}
+a.cancle {
+    color: white;
+    text-decoration: none;
+}
+div.cancle {
+    height: 45px;
+    background-color: #5e87f1;
+    border-color: #5e87f1;
+    margin-top: 0px;
+    color: white;
+    width: 100px;
+    padding: 9px 0;
+    position: relative;
+    border-radius: 4px;
+    top: -45px;
+    left: 237px;
+}
+button.btn.btn-primary_delete {
+    height: 45px;
+    background-color: #5e87f1;
+    border-color: #5e87f1;
+    color: white;
+    width: 110px;
+    margin-right: 24px;
+    position: relative;
+    left: -51px;
 }
 </style>
 	
@@ -392,7 +427,12 @@ span.top_reg {
 					<input type="hidden" id="input_2" class="form-control" name="boardSeq" value="${boardVo.boardSeq }"> 
 		<div class="button_group">
 			<button type="submit" class="btn btn-primary_delete">삭제</button>
-			<button class="btn btn-primary_cancle">취소</button>
+			
+			<a class="cancle" href="<c:url value='detail.do?boardType=3&boardSeq=${boardVo.boardSeq }'/>"> 
+			<div class="cancle">
+			취소
+			</div>
+			</a>
 		</div>
 				</div>
 				
@@ -400,9 +440,12 @@ span.top_reg {
 	
 	</form>
 	 <hr class="bottom_hr">
+	  <div class="bottom_banner">
+ 		<img  class="bannerpicture"src="<c:url value='/resources/images/picture6ED.jpg'/>">
+ 	</div>
 </div>
 
-
+	<c:import url="/WEB-INF/views/include/sidenavi.jsp" />  
 	<c:import url="/WEB-INF/views/include/navi.jsp" />
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 	

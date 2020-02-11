@@ -253,13 +253,11 @@ dd.date {
     background: #f8f9fa;
 }
 .jv_howto .noti {
-    position: absolute;
-    bottom: -13px;
-    left: 0;
     padding-left: 5px;
     color: #888;
     font-size: 13px;
-    line-height: 28px;
+    margin-bottom:-6px;
+    text-align:right;
 }
 .jv_company .wrap_info .title {
     margin-bottom: 15px;
@@ -495,6 +493,12 @@ a.JT {
     color: white;
     text-decoration: none;
 }
+p.noti {
+    margin-bottom: -10px;
+}
+div#kakaoMap {
+    border: 1px solid #dadada;
+}
 </style>
 
 </head>
@@ -656,7 +660,7 @@ a.JT {
 							<div class="comn"><span class="cn">기업형태</span><span class="cna">${vo.comType }</span></div>							
 							<div class="comn"><span class="cn2">설립일</span><span class="cna"><fmt:formatDate value="${vo.setupDate }" pattern="yyyy-MM-dd"/></span></div>							
 							<div class="comn"><span class="cn3">업종</span><span class="cna">${vo.comField }</span></div>							
-							<div class="address_div"><span class="cn3">주소</span><span class="cna">${vo.address } ${vo.detailAddress } ${vo.extraAddress }</span></div>
+							<div class="address_div"><span class="cn3">주소</span><span class="cna">${vo.address } ${vo.detailAddress } </span></div>
 						</div>
 						
 						<div class="info_company_right">
@@ -665,18 +669,19 @@ a.JT {
 							</div> -->
 							<div class="ci-right">
 							<div class="comn"><span class="cn">대표자명</span><span class="cna">${vo.ceoName }</span></div>							
-							<div class="comn"><span class="cn2">사원수</span><span class="cna">${vo.employeeNum }명</span></div>							
+							<div class="comn"><span class="cn2">사원수</span><span class="cna">${vo.employeeNum }</span></div>							
 							<div class="comn"><span class="cn2">매출</span><span class="cna">${vo.comSales }</span></div>							
 							</div>							
 							
 						</div>
 					
 					
+					</div>
 						<p class="noti">*마감일은 기업의 사정, 조기마감 등으로 변경될 수 있습니다.</p>
+						<div class="jv_title">기업위치</div>
 						<div id="kakaoMap" align="center">
 						<c:import url="/company/KakaoMap.do?comSeq=${vo.comSeq}"/>
 						</div>
-					</div>
 				</div>
 			</div>
 			

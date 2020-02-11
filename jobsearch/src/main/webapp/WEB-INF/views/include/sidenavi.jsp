@@ -67,13 +67,15 @@ ul#menu_ul {
 }
 span.menu_title_B {
     font-size: 21px;
-    color: #55d4b7;
+    color: #3F51B5;
     font-weight: 600;
+    background-color: white;
 }
 span.menu_title_admin {
-    font-size: 21px;
-    color: #ff9800;
+     font-size: 21px;
+    color: #3F51B5;
     font-weight: 600;
+    background-color: white;
 }
 span.menu_title {
     font-size: 17px;
@@ -257,7 +259,7 @@ $(document).ready(function() {
 	        </div>
         </c:if>
        <div class="menu_banner">
-        	<img src="<c:url value='/resources/images/picture7.jpg'/>"> 
+        	<img src="<c:url value='/resources/images/picture8.jpg'/>"> 
         </div>    
         
        </div>

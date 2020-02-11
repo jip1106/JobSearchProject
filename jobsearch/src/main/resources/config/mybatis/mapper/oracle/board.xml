@@ -70,7 +70,7 @@
 	 </select>
 	 
 	 <select id="selectByrowNum" parameterType="int" resultType="boardVo">
-	 	select  B."ROWNUM" as RNUM, B.REG_DATE as regDate  
+	 	select  B."ROWNUM" as RNUM, B.REG_DATE as regDate,  B.BOARD_SEQ as boardSeq  
         from(
 			select A.BOARD_SEQ, rownum, A.REG_DATE 
 			from(

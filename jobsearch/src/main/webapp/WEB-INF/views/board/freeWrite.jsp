@@ -61,7 +61,6 @@ ol.breadcrumb {
 	margin-top: 17px;
 }
 div#container {
-	height: 44em;
 	max-width: 750px;
 }
 button.btn.btn-primary {
@@ -345,7 +344,14 @@ img.menu {
     top: -2px;
     width: 45px;
 }
-
+nav.nav_side {
+    position: fixed;
+    top: 36px;
+    height: 100%;
+}
+.bottom_banner {
+    margin-bottom: 19px;
+}
 </style>
 	
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -384,10 +390,12 @@ img.menu {
 		</a>
 	
 	</form>
-
+ <div class="bottom_banner">
+ 		<img  class="bannerpicture"src="<c:url value='/resources/images/picture6ED.jpg'/>">
+ 	</div>
 </div>
 
-
+<c:import url="/WEB-INF/views/include/sidenavi.jsp" />  
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 <c:import url="/WEB-INF/views/include/footer.jsp" />
 	

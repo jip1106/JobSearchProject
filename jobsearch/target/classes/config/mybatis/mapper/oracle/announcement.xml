@@ -117,7 +117,7 @@
 			on c.com_seq =a.ref_companyseq
 			where a.ann_endt>sysdate
 	        order by ann_seq desc)
-		where <![CDATA[rownum<=12]]>
+		where <![CDATA[rownum<=20]]>
 	</select>
 	
 	<!-- 프리미엄 공고 조회 -->

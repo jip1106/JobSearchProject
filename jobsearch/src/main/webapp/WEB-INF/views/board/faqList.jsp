@@ -119,6 +119,10 @@ hr.hr_bottom {
     border: 1px solid #5e87f1;
     z-index: 100;
 }
+.bottom_banner {
+    margin-bottom: 37px;
+    margin-top: -17px;
+}
 
 </style>
 	
@@ -164,10 +168,10 @@ hr.hr_bottom {
 		        <div id="card-header" role="tab" id="headingOne">
 		          <h5 class="mb-0">
 		          <span class="Q">Q.</span>
-		           <c:if test="${fn:length(boardVo.boardTitle)>30}">
-						${fn:substring(boardVo.boardTitle, 0, 30)}...
+		           <c:if test="${fn:length(boardVo.boardTitle)>40}">
+						${fn:substring(boardVo.boardTitle, 0, 40)}...
 					</c:if>
-					<c:if test="${fn:length(boardVo.boardTitle)<=30}">
+					<c:if test="${fn:length(boardVo.boardTitle)<=40}">
 						${boardVo.boardTitle}
 					</c:if>
 		           <span class="unfold"><img class="open_down" alt="펼치기" src="<c:url value='/resources/images/open_down.png'/>"></span>
@@ -184,9 +188,7 @@ hr.hr_bottom {
 	      </c:forEach>  
 	    </c:if>   
 	    
-	    <div class="bottom_banner">
- 		<img src="<c:url value='/resources/images/picture5.jpg'/>">
- 	</div>
+	
     </div>
    
     <hr class="hr_bottom">
@@ -216,6 +218,9 @@ hr.hr_bottom {
 			 </c:if>
 		    </ul>
       <!-- Pagination -->
+          <div class="bottom_banner">
+ 		<img src="<c:url value='/resources/images/picture5.jpg'/>">
+ 	</div>
   </div>
   <!-- /.container -->
 	<c:import url="/WEB-INF/views/include/sidenavi.jsp" />  

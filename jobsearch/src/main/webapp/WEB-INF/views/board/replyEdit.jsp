@@ -57,7 +57,7 @@ $(document).ready(function(){
 	display: none;
 }
 /*새로 추가   */
-div#floatMenu {
+div#floatMenu2 {
     position: absolute;
     top: 289px;
     left: 1335px;
@@ -385,7 +385,7 @@ span#txsub {/*  */
 }
 hr#bottom_line {
     margin-top: 0;
-    margin-bottom: 23px;
+    margin-bottom: 40px;
     border-color: white;
 }
 .delete {
@@ -489,6 +489,14 @@ span.writer {
     left: 548px;
     top: -13px;
 }
+nav.nav_side {
+    position: fixed;
+    top: 36px;
+    height: 100%;
+}
+.bottom_banner {
+    margin-bottom: 80px;
+}
 </style>
 	
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -548,8 +556,11 @@ span.writer {
 </form>
 
 	<hr id="bottom_line">
+	 <div class="bottom_banner">
+ 		<img  class="bannerpicture"src="<c:url value='/resources/images/picture6RE.jpg'/>">
+ 	</div>
 </div>
-
+<c:import url="/WEB-INF/views/include/sidenavi.jsp" />  
 <c:import url="/WEB-INF/views/include/navi.jsp" />
 <c:import url="/WEB-INF/views/include/footer.jsp" />
 	

@@ -119,6 +119,13 @@ div#comdeHeadDetail {
     color: white;
     text-shadow: 4px 4px 2px black;
 }
+div#map {
+    width: 80%;
+}
+.map_layout {
+    margin-top: 42px;
+    background-color: #fffccb;
+}
 </style>
 
 
@@ -183,8 +190,10 @@ div#comdeHeadDetail {
 </div>
 <c:if test="${!empty memberVo.address}">
 <div id="comdeMainCont" align="center">	
-	<span class="location" >위치</span>	
-	<c:import url="/company/KakaoMap.do"/>
+	<span class="location" >기업위치</span>	
+	<div class="map_layout">
+		<c:import url="/company/KakaoMap.do"/>
+	</div>
 </div>
 </c:if>
 </div>

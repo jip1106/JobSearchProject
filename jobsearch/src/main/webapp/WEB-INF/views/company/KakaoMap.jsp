@@ -8,8 +8,8 @@
 </head>
 <body>
 
-<div id="map" style="width:80%;height:400px; margin-top: 50px;"></div>
-<div id="blank" style="height: 50px;"></div>
+<div id="map" style="height:400px;"></div>
+<!-- <div id="blank" style="height: 50px;"></div> -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=cc9c164d9bab8c9c90f2eaf99b91d36f&libraries=services"></script>
 <script>
 var loc="${memberVo.address}";

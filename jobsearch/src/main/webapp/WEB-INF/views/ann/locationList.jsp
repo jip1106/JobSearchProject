@@ -132,6 +132,7 @@ div#Location_container {
  	margin-top: 86px;
 	margin-bottom: 51px;
 }
+
 .CateTitle {
     margin-bottom: 3px;
     margin-top: 118px;
@@ -221,10 +222,6 @@ a.JT {
     color: #4876ef;
     text-decoration: none;
 }
-img.bannerpicture {
-    position: relative;
-    left: 83px;
-}
 img.card-img-top {
     resize: both;
     max-height: 116px;
@@ -242,6 +239,11 @@ img.card-img-top {
     font-size: 19px;
     font-weight: 600;
     color: #a0a0a0;
+}
+.comtitle2:hover {
+    font-size: 20px;
+    font-weight: 600;
+    color: #4876ef;
 }
 .comtitle3 {
     font-weight: 600;
@@ -282,7 +284,11 @@ img.card-img-top {
 }
 hr.hr_bottom {
     border: 1px solid white;
-    margin-bottom: 106px;
+    margin: 3px 0;
+}
+hr.hr_bottom2 {
+    border: 1px solid white;
+    margin-bottom: 10px;
 }
 </style>
 <body>
@@ -395,7 +401,7 @@ hr.hr_bottom {
 				<c:forEach var="i" begin="${pagingInfo.firstPage}" end="${pagingInfo.lastPage }">			  			  	 
 				  <li class="page-item">
 			        <a class="page-link" href="#" onclick="searchAnn('${i}')" 
-			        	<c:if test="${i==pagingInfo.currentPage }">style="background-color:#dee2e6;"</c:if>>${i }</a>
+			        	<c:if test="${i==pagingInfo.currentPage }">style="background-color:white;"</c:if>>${i }</a>
 			      </li>
 			    </c:forEach>
       
@@ -426,8 +432,9 @@ hr.hr_bottom {
 	</c:if>  
 	<hr class="hr_bottom">
 	<div class="bottom_banner">
- 		<img class="bannerpicture" src="<c:url value='/resources/images/picture2.jpg'/>">
+ 		<img class="bannerpicture" src="<c:url value='/resources/images/picture22.jpg'/>">
  	</div>
+ 	<hr class="hr_bottom2">
   </div>
   <!-- /.container -->
 	<c:import url="/WEB-INF/views/include/sidenavi.jsp" />  

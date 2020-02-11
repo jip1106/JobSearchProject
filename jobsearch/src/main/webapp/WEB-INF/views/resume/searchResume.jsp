@@ -100,11 +100,12 @@ a.JT {
     color: #4876ef;
     text-decoration: none;
 }
-img.bannerpicture {
-    position: relative;
-    left: 83px;
+table.table.table-hover.text-center {
+    margin-bottom: 36px;
 }
-	
+img.bannerpicture {
+    margin-bottom: -13px;
+}	
 </style>
 
 <script>
@@ -284,7 +285,7 @@ img.bannerpicture {
 	    </ul-->		
 	    
 	    <div class="bottom_banner">
- 		<img class="bannerpicture" src="<c:url value='/resources/images/picture3.jpg'/>">
+ 		<img class="bannerpicture" src="<c:url value='/resources/images/picture33.jpg'/>">
  	</div>
 	</div>  
 

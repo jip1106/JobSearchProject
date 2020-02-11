@@ -221,7 +221,15 @@ img.bannerpicture {
     position: relative;
     left: -17px;
 }
-
+.bottom_banner {
+    margin-top: -68px;
+    margin-bottom: 17px;
+}
+nav.nav_side {
+    position: fixed;
+    top: 36px;
+    height: 100%;
+}
 </style>
 	
 <c:import url="/WEB-INF/views/include/headend.jsp" />

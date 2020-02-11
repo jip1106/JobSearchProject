@@ -95,8 +95,7 @@ button.btn.btn-primary {
     border-color: #4876ef;
 }
 hr.margin_hr {
-    margin-bottom: 59px;
-    border-color: whilte;
+    margin-bottom: -3px;
     border-color: white;
 }
 .noiceList_title {
@@ -293,7 +292,7 @@ a.JT {
     </div>
     
  	<div class="bottom_banner">
- 		<img src="<c:url value='/resources/images/picture4.jpg'/>">
+ 		<img src="<c:url value='/resources/images/picture44.jpg'/>">
  	</div>
  	<hr class="margin_hr">
 

@@ -73,7 +73,6 @@ span.notice_title {
 .content {
     position: relative;
     top: -24px;
-    height: 300px;
     border-bottom: 2px solid #adadad;
     padding: 16px 24px;
     background-color: aliceblue;
@@ -118,6 +117,10 @@ img.notice_img {
     resize: both;
     height: 24px;
 }
+hr.margin_hr {
+    margin-bottom: -3px;
+    border-color: white;
+}
 </style>
 <body>
 
@@ -156,8 +159,13 @@ img.notice_img {
 				</div>
 	</a>
     
+    <div class="bottom_banner">
+ 		<img src="<c:url value='/resources/images/picture44.jpg'/>">
+ 	</div>
+ 	<hr class="margin_hr">
+    
    </div>
-
+	<c:import url="/WEB-INF/views/include/sidenavi.jsp" />  
 	<c:import url="/WEB-INF/views/include/navi.jsp" />
 
 	<c:import url="/WEB-INF/views/include/footer.jsp" />

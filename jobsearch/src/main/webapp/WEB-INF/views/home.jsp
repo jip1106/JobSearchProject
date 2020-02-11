@@ -258,10 +258,10 @@ hr#line_hr {
     margin-top: 26px;
 }
 #welcome {
-    border: 2px solid #b7b7b7;
+    border: 2px solid #ececec;
     width: 279px;
     height: 90px;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
     padding: 13px 0;
 }
 #login {
@@ -425,6 +425,16 @@ div#clock {
     color: #3F51B5;
     font-size: 18px;
 }
+a.JT2 {
+	font-family: 'Recipekorea';
+    color: #4876ef;
+    text-decoration: none;
+    font-size: 20px;
+    position: relative;
+    top: -2px;
+    margin: 0px -2px 0 1px;
+}
+@font-face { font-family: 'Recipekorea'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Recipekorea.woff') format('woff'); font-weight: normal; font-style: normal; }
 /* 스위퍼 */
 
 /* 190X95 */
@@ -583,7 +593,9 @@ div#clock {
  	     	</div>
  	     	<div class="jobsearch_cont">
  	     		 <span class="jobsearch">구직활동은 </span>
- 	     		 <span class="jobsearch2">Jobsearch </span>
+ 	     		 <span class="jobsearch2">
+					 <a class="JT2" href="${pageContext.request.contextPath }/home.do">JobSearch</a>  
+ 	     		 </span>
  	     		 <span class="jobsearch">에서! </span>
      		</div>
 		 	</div>

@@ -8,7 +8,7 @@
 $(document).ready(function() {
 
 	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
-	var floatPosition = parseInt($("div#floatMenu").css('top'));
+	var floatPosition = parseInt($("div#floatMenu2").css('top'));
 	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
 
 	$(window).scroll(function() {
@@ -17,10 +17,10 @@ $(document).ready(function() {
 		var newPosition = scrollTop + floatPosition + "px";
 
 		// 애니메이션 없이 바로 따라감
-		 $("div#floatMenu").css('top', newPosition);
+		 $("div#floatMenu2").css('top', newPosition);
 		 
 
-		$("div#floatMenu").stop().animate({
+		$("div#floatMenu2").stop().animate({
 			"top" : newPosition
 		}, 500);
 
@@ -416,7 +416,7 @@ span.detail_writer_span {
     font-weight: bold;
     margin-right: 6px;
 }
-div#floatMenu {
+div#floatMenu2 {
     position: absolute;
     top: 289px;
     left: 1335px;
@@ -508,8 +508,10 @@ hr#bottom_line {
 }
 .reply_layout {
     border-bottom: 1px solid #dadada;
-    padding: 19px 10px;
+    padding: 50px 10px;
     text-align: center;
+    height: 8em;
+    margin-bottom: -24px;
 }
 .reply_menu {
     border-bottom: 1px solid #dadada;
@@ -638,6 +640,11 @@ img.reply_bar_img {
 span.re_span {
     margin-left: 7px;
 }
+nav.nav_side {
+    position: fixed;
+    top: 36px;
+    height: 100%;
+}
 </style>
 	
 <c:import url="/WEB-INF/views/include/headend.jsp" />
@@ -668,7 +675,7 @@ span.re_span {
 					<input type="hidden" id="input_3" class="form-control" name="boardType" value="3"> 
 					<input type="hidden" id="input_4" class="form-control" name="refMemberseq" value="">
 				</div>
-			<div id="floatMenu">
+			<div id="floatMenu2">
 		<div class=nav_div>
 			<a href="#" class="tag_a">	
 				<div class="btn_top">
@@ -751,7 +758,11 @@ span.re_span {
 	    </c:forEach>
 	</c:if>
 	<hr id="bottom_line">
+	 <div class="bottom_banner">
+ 		<img  class="bannerpicture"src="<c:url value='/resources/images/picture6ED.jpg'/>">
+ 	</div>
 </div>
+	<c:import url="/WEB-INF/views/include/sidenavi.jsp" />  
 	<c:import url="/WEB-INF/views/include/navi.jsp" />
 	<c:import url="/WEB-INF/views/include/footer.jsp" />
 </body>
