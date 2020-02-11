@@ -420,10 +420,10 @@ hr.hr_bottom {
 	   	 		<c:forEach var="mapData" items="${annList }">
 				  <div class="col-lg-4 mb-4" style="cursor: pointer;" onclick="annView('${mapData['ANN_SEQ']}')">
 			        <div class="card h-100 text-center">
-			        	<c:if test="${!empty mapData['COM_IMG']}">
+			        	<c:if test="${!empty mapData['COM_RENAMEIMAGE']}">
 			        		<img class="card-img-top" src="/jobsearch/resources/upload_images/${mapData['COM_RENAMEIMAGE'] }" alt="${mapData['COM_NAME'] } 로고" style="max-height:150px;">
 			        	</c:if>
-			        	<c:if test="${empty mapData['COM_IMG']}">
+			        	<c:if test="${empty mapData['COM_RENAMEIMAGE']}">
 			        		<img class="card-img-top" src="/jobsearch/resources/images/no_image.PNG" alt="회사이미지" style="max-height:150px;">
 			        	</c:if>
 			          
