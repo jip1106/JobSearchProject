@@ -364,10 +364,10 @@ hr.hr_bottom2 {
 
 				  <div class="col-lg-4 mb-4 cursor" onclick="annView('${mapData['ANN_SEQ']}')">
 			        <div class="card h-100 text-center">
-			        	<c:if test="${!empty mapData['COM_IMG']}">
+			        	<c:if test="${!empty mapData['COM_RENAMEIMAGE']}">
 			        		<img class="card-img-top" src="<c:url value="/resources/upload_images/${mapData['COM_RENAMEIMAGE'] }"/>" alt="${mapData['COM_NAME'] } 로고">
 			        	</c:if>
-			        	<c:if test="${empty mapData['COM_IMG']}">
+			        	<c:if test="${empty mapData['COM_RENAMEIMAGE']}">
 			        		<img class="card-img-top" src="/jobsearch/image/no_image.PNG" alt="회사이미지">
 			        	</c:if>
 			          
