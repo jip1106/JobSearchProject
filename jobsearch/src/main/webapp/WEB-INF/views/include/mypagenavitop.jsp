@@ -139,10 +139,10 @@ span.Jobsearch {
           <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypagebookmark.do">즐겨찾기</a> 
           <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypageapply.do" id="list_final">지원현황</a> 
       	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">
-      	 	<img src="<c:url value='/resources/images/mypage_banner.jpg'/>">
+      	 	<img src="<c:url value='/resources/images/mypageBanner1.jpg'/>">
       	 </a>
       	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">
-      	 	<img src="<c:url value='/resources/images/mypage_banner2.jpg'/>">
+      	 	<img src="<c:url value='/resources/images/mypageBanner4.jpg'/>">
       	 </a>
         </div>
       </div>  

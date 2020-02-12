@@ -532,12 +532,12 @@ div#kakaoMap {
 				        <div id="notEnd">
 					        <c:if test="${scrapYN > 0}">
 						        <span class="star-border">
-						        	<img id="scrap" class="scrapY" src="<c:url value='/resources/images/yellow_star.png'/>" style="cursor: pointer;">
+						        	<img id="scrap" class="scrapY" src="<c:url value='/resources/images/starY.png'/>" style="cursor: pointer;">
 						        </span>
 					        </c:if>
 					        <c:if test="${scrapYN == 0 || empty scrapYN}">
 						        <span class="star-border">
-						        	<img id="scrap" class="scrapN" src="<c:url value='/resources/images/gray_star.png'/>" style="cursor: pointer;">
+						        	<img id="scrap" class="scrapN" src="<c:url value='/resources/images/starG.png'/>" style="cursor: pointer;">
 						        </span>
 					        </c:if>
 					        <button class="sri_btn_lg for_btn_event" onclick="apply()">
@@ -753,11 +753,11 @@ div#kakaoMap {
 						alert(res);
 						
 						if(sClass == "scrapN"){
-							$("#scrap").attr("src", "<c:url value='/resources/images/yellow_star.png'/>");
+							$("#scrap").attr("src", "<c:url value='/resources/images/starY.png'/>");
 							$("#scrap").removeClass('scrapN');
 							$("#scrap").addClass('scrapY');
 						}else if(sClass == "scrapY"){
-							$("#scrap").attr("src", "<c:url value='/resources/images/gray_star.png'/>");
+							$("#scrap").attr("src", "<c:url value='/resources/images/starG.png'/>");
 							$("#scrap").removeClass('scrapY');
 							$("#scrap").addClass('scrapN');
 						}

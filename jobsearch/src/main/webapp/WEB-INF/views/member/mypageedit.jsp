@@ -270,13 +270,10 @@ input#upfile{
     background-color: #fff;
 }
 
-/* label.btn_Com_Info_sub {
-    position: relative;
-    top: -190px;
-} */
 label.btn_Com_Info_sub {
-    position: relative;
-    top: 1px;
+    position: absolute;
+    top: 161px;
+    left: 26px;
     z-index: 100;
     color: blue;
 }
@@ -304,7 +301,7 @@ label.btn_Com_Info_sub {
        <div class="comImgPre">
       	<c:choose>
       	<c:when test="${empty vo.profileRenameimg}" >
-	       	<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/images/logo_default.gif'/>" style="width:120px; height:160px">
+	       	<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/images/addPhoto2.png'/>" style="width:120px; height:160px">
 	       	<input type="file" name="upfile" id="upfile" accept="image/*" onchange="getThumbnailPrivew()"></c:when>
        	<c:when test="${!empty vo.profileRenameimg}">
        		<img class="comImgPre" id="comImgPre" src="<c:url value='/resources/upload_images/${vo.profileRenameimg}'/>" style="width:120px; height:160px"></c:when>       	
@@ -312,7 +309,6 @@ label.btn_Com_Info_sub {
        	
        	<input type="hidden" name="chkComImage" value="${vo.profileRenameimg}">
        	             
-	     <br> <!-- 로고이미지 -->	         
 	     <label for="upfile" class="btn_Com_Info_sub" >사진선택</label>
 	     <div id="divfile"></div>
 	   </div>	     

@@ -146,10 +146,10 @@ span.Jobsearch {
           <a href="<c:url value='/company/companyMyAnnList.do'/>" class="list-group-item">공고관리</a>
           <a id="last-list" href="<c:url value='/company/companymyorderlist.do'/>" class="list-group-item">결제내역</a> 
       	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">
-      	 	<img src="<c:url value='/resources/images/mypage_banner.jpg'/>">
+      	 	<img src="<c:url value='/resources/images/mypageBanner1.jpg'/>">
       	 </a>
       	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">
-      	 	<img src="<c:url value='/resources/images/mypage_banner2.jpg'/>">
+      	 	<img src="<c:url value='/resources/images/mypageBanner4.jpg'/>">
       	 </a>
         </div>
       </div>  

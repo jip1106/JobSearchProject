@@ -266,7 +266,6 @@ select#Insert_text_condition {
     left: 15.7em;
     top: -2em;
     margin-bottom: -29px;
-    z-index:100;
 }
 input#preComname {
     width: 85%;
@@ -356,6 +355,7 @@ span.ab_info_2t_hope {
     font-size: 12px;
     color: red;
     top: 5px;
+    max-width: 10%;
 }
 span.ab_info_3t {
     z-index: 10;
@@ -381,6 +381,7 @@ span.ab_info_4t_hope {
     font-size: 12px;
     color: red;
     top: 5px;
+    max-width: 10%;
 }
 span.ab_info_5t {
     z-index: 10;
@@ -570,12 +571,16 @@ span.text500 {
 }
 div#floatMenu {
     width: 13em;
-    top: -10px;
+    top: -129px;
 }
 h5#floatMenu_title {
     background-color: #4876ef;
     text-align: center;
     color: white;
+    border-radius: none;
+    width: 208px;
+    position: relative;
+    left: -1px;
 }
 div#floatMenu_box {
     height: 241px;
@@ -584,6 +589,21 @@ li.side_li {
     margin-bottom: 17px;
     font-size: 18px;
     font-weight: 550;
+}
+img.resumePicture1 {
+    margin-top: 13px;
+    position: relative;
+    left: -20px;
+}
+img.resumePicture2 {
+    margin-top: 13px;
+    position: relative;
+    left: -20px;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: #4876ef;
+    border-color: #dee2e6 #dee2e6 #fff;
 }
 </style>
 
@@ -705,6 +725,7 @@ li.side_li {
 				<div class="col-xs-4 md-4 lg-4 form-label-group mb-2">
 					<input type="text" id="extraAddress" name="extraAddress" class="form-control" value="${sessionScope.loginMember.extraAddress }" placeholder="주소"   readonly>
 				</div>
+				<span id="second_position"></span>
 			</div>
         </div>
 
@@ -712,7 +733,7 @@ li.side_li {
         <!-- 학력사항 -->
         <div class="row">
         	<div class="col-lg-8">
-		        <span class="span_notice_title" id="second_position">학력사항</span>
+		        <span class="span_notice_title" >학력사항</span>
 		        <span class="school_notice">최종학력 선택 후 학력사항을 입력하세요.</span>
 	        </div>
 				        
@@ -863,11 +884,12 @@ li.side_li {
 						</div>
 				</div>
 			</div>
+        <span id="third_position"></span>
 		</div>
         <!-- 희망근무조건 -->
-        <span class="span_notice_title_info" id="third_position">희망근무조건</span>
+        <span class="span_notice_title_info" >희망근무조건</span>
 	        <div class="card mb-4-bt">
-	        	<div class="col-lg-4" id="hope_cate">근무형태  </div><span class="ab_info_4t_hope">필수</span>
+	        	<div class="col-lg-4" id="hope_cate">근무형태</div><span class="ab_info_4t_hope">필수</span> 
 				
 					<div class="col-lg-8 form-label-group mb-2">
 						<select id="Insert_text_condition" class="form-control" name="hopeEmptype">
@@ -915,6 +937,7 @@ li.side_li {
 				    </div>
 				
 				<div class="col-lg-4" id="hope_cate">연봉  </div><span class="ab_info_2t_hope">필수</span>
+		<span id="fourth_position"></span>
 				
 				<div class="col-lg-8 form-label-group mb-2">
 					<input type="text" id="Insert_text_money" name="hopeSalary" class="form-control" value="${resumeInfo['HOPE_SALARY'] }" placeholder="예)2400"   >
@@ -929,8 +952,7 @@ li.side_li {
 		
 		}
 	</script>
-
-        <span class="span_notice_title_info" id="fourth_position">경력사항</span>
+        <span class="span_notice_title_info" >경력사항</span>
         <input type="hidden" name="careerType" value="1" id="careerType">
         
         <div class="card mb-4-bt-career" id="career_layout">
@@ -1032,6 +1054,7 @@ li.side_li {
           <div class="card-body" id="floatMenu_box">
             <div class="row">
               <div class="col-lg-6">
+              
                 <ul class="list-unstyled mb-0">
                   <li class="side_li">
                     <a href="#">기본정보</a>
@@ -1049,6 +1072,12 @@ li.side_li {
                     <a href="#fifth_position">자기소개서</a>
                   </li>
                 </ul>
+                <div class="resumebanner">
+                	<img class="resumePicture1" src="<c:url value='/resources/images/resumeBanner.jpg'/>">
+                </div>
+                <div class="resumebanner2">
+                	<img class="resumePicture2" src="<c:url value='/resources/images/resumeBanner2.jpg'/>">
+                </div>
               </div>
   				
             </div>
