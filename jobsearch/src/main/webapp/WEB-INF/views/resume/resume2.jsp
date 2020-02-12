@@ -656,7 +656,15 @@ img.resumePicture2 {
 	        <div class="card mb-4-bt">
 	        
 		        <div class="resume_photo2">
-		        	<img class="img-photo" src="<c:url value='/resources/upload_images/${sessionScope.loginMember.profileRenameimg }'/>" alt="${sessionScope.loginMember.memberName } 로고">
+		        	
+       	<c:choose>
+      	<c:when test="${empty sessionScope.loginMember.profileRenameimg}" >
+       		<img class="img-photo" src="<c:url value='/resources/images/addPhoto2.png'/>">
+  		</c:when>
+       	<c:when test="${!empty sessionScope.loginMember.profileRenameimg}">
+       		<img class="img-photo" src="<c:url value='/resources/upload_images/${sessionScope.loginMember.profileRenameimg }'/>" alt="${sessionScope.loginMember.memberName } 사진">
+  		</c:when>       	
+       	</c:choose>
 		    	</div>
 	        
 	        <div class="row mb-4 mt-4">
