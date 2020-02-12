@@ -71,9 +71,8 @@
 	</select>
 	
 	<select id="selectMyAnnApply" parameterType="int" resultType="resumeVo">
-		select A.resume_seq,A.resume_title,A.resume_status,A.recurit_status,A.introduce_title,A.introduce_desc,A.ref_memberseq,B.reg_date as apply_regdate from (tbl_resume)A join (tbl_apply)B
-		on A.RESUME_SEQ = B.REF_RESUMESEQ
-		where resume_seq =(select ref_resumeseq from tbl_apply
+		select * from tbl_resume 
+		where resume_seq in(select ref_resumeseq from tbl_apply
 		where ref_annseq=#{annSeq})
 		
 	</select>

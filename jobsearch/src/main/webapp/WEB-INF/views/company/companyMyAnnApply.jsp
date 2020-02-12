@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -52,7 +52,7 @@ td{
 	padding-left: 15px;
 }
 #td1{
-	width: 75%;
+	width: 23%;
 }
 #td2{
 	width: 24%;
@@ -74,7 +74,7 @@ td{
 	<table>
 		<tr id="tr1">
 			<td id="td1">이력서 제목</td>			
-			<td id="td2">지원 날짜</td>
+			<td id="td2">자기소개서 제목</td>
 		</tr>
 		<c:if test="${empty list}">
 		<tr>
@@ -87,8 +87,15 @@ td{
 			<tr>
 				<td id="td1">
 					<a href="#" onclick="resumeView(${vo.resumeSeq}, ${param.annSeq })">${vo.resumeTitle}</a>
-				</td id="td2">
-				<td><fmt:formatDate value="${vo.applyRegdate}" pattern="yyyy-MM-dd"/> </td>
+				</td>
+				<td>				
+				<c:if test="${fn:length(vo.introduceTitle)>15}">
+					${fn:substring(vo.introduceTitle,0, 15)}...
+			    </c:if>
+			    <c:if test="${fn:length(vo.introduceTitle)<=15}">
+					${vo.introduceTitle}
+			    </c:if>			     			
+			    </td>
 			</tr>
 		</c:forEach>
 	</table>
