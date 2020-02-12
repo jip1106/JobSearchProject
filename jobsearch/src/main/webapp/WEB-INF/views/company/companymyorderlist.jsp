@@ -155,6 +155,14 @@ dd {
     margin-right: 16%;
     text-align: center;
 }
+.empty {
+    font-size: 17px;
+    text-align: center;
+    margin-bottom: 36px;
+}
+hr.empty_hr {
+    margin-top: -20px;
+}
 </style>
 
 
@@ -168,7 +176,12 @@ dd {
 <div class="pay_title">결제내역</div>
 </div>	
 <div class="layout2">
+<c:if test="${empty list}">
+<hr class="empty_hr">
+<div class=empty>결제건이 없습니다.</div>
+</c:if>
 <dl>
+<c:if test="${!empty list}">
    	<c:forEach var="vo" items="${list}">
 	    <dt class="receipt_dt">
 			<div class="accordian_title">
@@ -215,6 +228,7 @@ dd {
 			</div>
 	    </dd>
 	</c:forEach>
+	</c:if>
 </dl>
 	<hr class="bottom_line">
 </div>

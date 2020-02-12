@@ -163,6 +163,12 @@ strong.attach_count {
     font-size: 17px;
     margin-top: -2px;
 }
+.empty_ann {
+    margin-top: 28px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #FF5722;
+}
 </style>
 <script type="text/javascript">
 	function deleteConfirm(annseq){
@@ -199,8 +205,8 @@ strong.attach_count {
 	<c:if test="${empty list}">
 		<div class="card mb-4-bt">
 	 		<div class="info_resume"> 
-	 			<h3>등록된 공고가 없습니다.</h3>
-	 			<a href="<c:url value='/company/companymypageannouncement.do'/>">지금 공고를 등록해보세요</a>   
+	 			<div class="empty_ann">등록된 공고가 없습니다.</div>
+	 			<a href="<c:url value='/company/companymypageannouncement.do'/>">지금 공고를 등록해보세요!</a>   
 	 		</div>
 	 	</div>
 	</c:if>
