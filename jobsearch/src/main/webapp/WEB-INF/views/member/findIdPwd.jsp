@@ -38,7 +38,7 @@ body{
 #row{
 	height:903px;
 }
-.layout {
+.layout_all {
     position: relative;
     left: 205px;
     top: 212px;
@@ -279,7 +279,7 @@ div#box2 {
     <!-- Page Heading/Breadcrumbs -->
     
     <div class="row" id="row">
-    	<div class="layout">
+    	<div class="layout_all">
     		<div class="findId">
     			<div class="Id">
     			<div class="IMG_id">
