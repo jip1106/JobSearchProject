@@ -103,6 +103,9 @@ span.Jobsearch {
     top: -4px;
     margin-right: -7px;
 }
+img.bannerImg {
+    margin-top: 17px;
+}
 @font-face { font-family: 'Recipekorea'; src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Recipekorea.woff') format('woff'); font-weight: normal; font-style: normal; }
 </style>
     
@@ -138,12 +141,8 @@ span.Jobsearch {
           <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypageresumeTest.do">이력서관리</a>
           <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypagebookmark.do">즐겨찾기</a> 
           <a class="list-group-item" href="${pageContext.request.contextPath }/member/mypageapply.do" id="list_final">지원현황</a> 
-      	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">
-      	 	<img src="<c:url value='/resources/images/mypageBanner1.jpg'/>">
-      	 </a>
-      	 <a href="https://www.saramin.co.kr/" target="_blank" class="list-group-item-ad">
-      	 	<img src="<c:url value='/resources/images/mypageBanner4.jpg'/>">
-      	 </a>
+      	 	<img class="bannerImg" src="<c:url value='/resources/images/mypageBanner1.jpg'/>">
+      	 	<img class="bannerImg" src="<c:url value='/resources/images/mypageBanner4.jpg'/>">
         </div>
       </div>  
          <!-- Content Column -->
