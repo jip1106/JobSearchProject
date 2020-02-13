@@ -5,7 +5,8 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
+
+ <head>
     <title>JobSearch_Admin</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
