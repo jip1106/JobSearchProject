@@ -51,7 +51,6 @@
 			<mapping path="/member/mypagebookmarkListDel.do"></mapping>			
 			<mapping path="/member/mypageresumeTest.do"></mapping>
 			<mapping path="/member/mypageapply.do"></mapping>
-			<mapping path="/member/mypagebookmark.do"></mapping>
 			<mapping path="/resume/**"></mapping>			
 			<mapping path="/apply/**"></mapping>							
 			<mapping path="/board/write.do"></mapping>			
