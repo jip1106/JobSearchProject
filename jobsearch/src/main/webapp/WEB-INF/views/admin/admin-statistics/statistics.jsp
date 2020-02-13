@@ -12,9 +12,9 @@
 		  
 		  <c:import url="../admin-include/admin-left.jsp"/>
 		  
-		  <div class="col-md-10">
+		  <div class="col-md-10" id="adminLayout">
   		 			  				
-  				<div class="row">
+  				<div class="row" id="statics1">
 	  				<div class="col-md-6">
 	  					<div class="content-box-large">
 			  				<div class="panel-heading">
@@ -27,7 +27,7 @@
 			  			</div>
 	  				</div>
   				</div> 
-  				<div class="row">
+  				<div class="row" id="statics2">
 	  				<div class="col-md-6">
 	  					<div class="content-box-large">
 			  				<div class="panel-heading">
