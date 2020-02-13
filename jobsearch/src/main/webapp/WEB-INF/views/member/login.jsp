@@ -48,8 +48,9 @@ body{
     text-align: center;
     font-size: 47px;
     color: #4876ef;
-    margin-bottom: 31px;
-    margin-top: 6px;
+    margin-bottom: 15px;
+    margin-top: 27px;
+    padding: 0px 0;
 }
 input#memberId {
     width: 100%;

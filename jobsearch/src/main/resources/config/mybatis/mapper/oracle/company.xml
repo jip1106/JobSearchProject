@@ -71,7 +71,19 @@
 	</select>
 	
 	<select id="selectMyAnnApply" parameterType="int" resultType="resumeVo">
-		select * from tbl_resume 
+		  select tm.MEMBER_NAME as memberName,
+       tr.RESUME_SEQ as resumeSeq,
+       tr.RESUME_TITLE as resumeTitle,
+       CASE WHEN TM.GENDER_TYPE = 'M' THEN '남자'
+			WHEN TM.GENDER_TYPE ='W' THEN '여자'
+			ELSE '잘못된 값'
+		END as genderType, 
+        TRUNC((SYSDATE-BIRTHDAY)/365) as memberAge,
+        tm.PROFILE_RENAMEIMG as profileRenameimg,
+        tr.INTRODUCE_TITLE as introduceTitle,
+        tm.MEMBER_ID as memberId
+		from tbl_resume tr join tbl_member tm
+    	on tr.REF_MEMBERSEQ=tm.MEMBER_SEQ
 		where resume_seq in(select ref_resumeseq from tbl_apply
 		where ref_annseq=#{annSeq})
 		

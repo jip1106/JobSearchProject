@@ -12,9 +12,45 @@ public class ResumeVO {
 	private String introduceDesc;          
 	private int refMemberseq;
 	private Timestamp applyRegdate;
+	private String profileRenameimg; 
+	private String memberName;
+	private String genderType;
+	private String memberAge;
+	private String memberId;
 	
+	
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+	public String getMemberAge() {
+		return memberAge;
+	}
+	public void setMemberAge(String memberAge) {
+		this.memberAge = memberAge;
+	}
+	public String getMemberName() {
+		return memberName;
+	}
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+	public String getGenderType() {
+		return genderType;
+	}
+	public void setGenderType(String genderType) {
+		this.genderType = genderType;
+	}
 	public int getResumeSeq() {
 		return resumeSeq;
+	}
+	public String getProfileRenameimg() {
+		return profileRenameimg;
+	}
+	public void setProfileRenameimg(String profileRenameimg) {
+		this.profileRenameimg = profileRenameimg;
 	}
 	public void setResumeSeq(int resumeSeq) {
 		this.resumeSeq = resumeSeq;
@@ -72,7 +108,9 @@ public class ResumeVO {
 		return "ResumeVO [resumeSeq=" + resumeSeq + ", resumeTitle=" + resumeTitle + ", regDate=" + regDate
 				+ ", resumeStatus=" + resumeStatus + ", recuritStatus=" + recuritStatus + ", introduceTitle="
 				+ introduceTitle + ", introduceDesc=" + introduceDesc + ", refMemberseq=" + refMemberseq
-				+ ", applyRegdate=" + applyRegdate + "]";
+				+ ", applyRegdate=" + applyRegdate + ", profileRenameimg=" + profileRenameimg + ", memberName="
+				+ memberName + ", genderType=" + genderType + ", memberAge=" + memberAge + ", memberId=" + memberId
+				+ "]";
 	}
 	    
 	
