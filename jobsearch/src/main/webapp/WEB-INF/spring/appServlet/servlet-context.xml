@@ -51,12 +51,14 @@
 			<mapping path="/member/mypagebookmarkListDel.do"></mapping>			
 			<mapping path="/member/mypageresumeTest.do"></mapping>
 			<mapping path="/member/mypageapply.do"></mapping>
+			<mapping path="/member/mypagebookmark.do"></mapping>
 			<mapping path="/resume/**"></mapping>			
 			<mapping path="/apply/**"></mapping>							
 			<mapping path="/board/write.do"></mapping>			
 			<mapping path="/board/replyWrite.do"></mapping>			
 			<mapping path="/board/edit.do"></mapping>			
-			<mapping path="/board/delete.do"></mapping>			
+			<mapping path="/board/delete.do"></mapping>
+						
 			
 			<exclude-mapping path="/admin/login.do"/>
 			<exclude-mapping path="/admin/memberListExcel.do"/>

@@ -130,11 +130,11 @@ a.JT {
    		<div class="swiper">
  				<div class="swiper-container_m">
 	<div class="swiper-wrapper">
-		<div class="swiper-slide"><img src="<c:url value='/resources/images/maintop1.png'/>"></div>
-		<div class="swiper-slide"><img src="<c:url value='/resources/images/maintop2.png'/>"></div>
-		<div class="swiper-slide"><img src="<c:url value='/resources/images/maintop3.png'/>"></div>
-		<div class="swiper-slide"><img src="<c:url value='/resources/images/maintop4.png'/>"></div>
-		<div class="swiper-slide"><img src="<c:url value='/resources/images/maintop5.png'/>"></div>
+		<div class="swiper-slide"><a href="<c:url value='/loc/locationList.do'/>"><img src="<c:url value='/resources/images/maintop1.png'/>"></a></div>
+		<div class="swiper-slide"><a href="<c:url value='/cate/categoryList.do'/>"><img src="<c:url value='/resources/images/maintop2.png'/>"></a></div>
+		<div class="swiper-slide"><a href="<c:url value='/member/mypagebookmark.do'/>"><img src="<c:url value='/resources/images/maintop3.png'/>"></a></div>
+		<div class="swiper-slide"><a href="<c:url value='/resume/searchResume.do'/>"><img src="<c:url value='/resources/images/maintop4.png'/>"></a></div>
+		<div class="swiper-slide"><a href="<c:url value='/company/companyMyAnnList.do'/>"><img src="<c:url value='/resources/images/maintop5.png'/>"></a></div>
 	</div>
 	
 	<!-- 네비게이션 버튼 -->

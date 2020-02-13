@@ -49,7 +49,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			
 		//로그인은 했지만 관리자가 아니면서 요청이 관리자일때
 		}else if(request.getRequestURI().indexOf("admin") > 0 && !memberVo.getRegType().equals("0")) {
-			loginPath = "/admin/login.do";
+			loginPath = "/home.do";
 		
 			response.setContentType("text/html;charset=utf-8");
 			
@@ -81,6 +81,19 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			
 			out.print("<script type='text/javascript'>");
 			out.print("alert('기업회원으로  로그인하세요.');");
+			out.print("location.href='" + request.getContextPath() + loginPath +"';");
+			out.print("</script>");
+		
+			return false;
+			
+		
+		//로그인은 했지만 일반회원이 아니면서 요청이 member일때
+		}else if(!memberVo.getRegType().equals("1") && request.getRequestURI().indexOf("mypage") > 0) {
+							
+			response.setContentType("text/html;charset=utf-8");
+			
+			out.print("<script type='text/javascript'>");
+			out.print("alert('일반회원으로  로그인하세요.');");
 			out.print("location.href='" + request.getContextPath() + loginPath +"';");
 			out.print("</script>");
 		
