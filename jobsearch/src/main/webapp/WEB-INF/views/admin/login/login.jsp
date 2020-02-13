@@ -2,7 +2,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:import url="../admin-include/admin-header.jsp"/>
-
+<style>
+span.jobsearch_title {
+    font-size: 23px;
+    font-family: 'Recipekorea';
+     color: white;
+     text-decoration: none;
+}
+span.jobsearch_title2 {
+    font-size: 22px;
+    color: white;
+    position: relative;
+    top: 2px;
+    text-decoration: none;
+}
+.header {
+    height: 59px;
+    background-color: #10207d;
+    padding: 9px 0;
+}
+</style>
   <body class="login-bg">
   	<div class="header">
 	     <div class="container">
@@ -10,7 +29,8 @@
 	           <div class="col-md-12">
 	              <!-- Logo -->
 	              <div class="logo">
-	                 <h1 style="color: white;">JobSearch Admin Login</h1>
+	                <span class="jobsearch_title">JobSearch</span>
+                	<span class="jobsearch_title2">_Admin(관리자)</span>
 	              </div>
 	           </div>
 	        </div>
