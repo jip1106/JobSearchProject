@@ -68,7 +68,7 @@
 		</if>
 		
 		<if test="delFlag!=null and delFlag!=''">
-			and DEL_FLAG = #{delFlag}
+			and DEL_FLAG = #{delFlag} or DEL_FLAG = null
 		</if>
 	</sql>
 	
@@ -84,7 +84,7 @@
 		 			REG_TYPE, PHONE, GENDER_TYPE, REG_DATE, DEL_FLAG,
 		 			DEL_DATE       	
 		        FROM TBL_MEMBER
-		        Where 1=1 
+		        Where 1=1
 		        <include refid="searchWhere"></include>
 				order by REG_DATE desc
 		    )A
