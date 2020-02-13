@@ -95,14 +95,18 @@
 			// 그래프 옵션
 			var options = {
 				bar : {
-					groupWidth : '5%' // 그래프 너비 설정 %
+					groupWidth : '15%' // 그래프 너비 설정 %
 				},
 				legend : {
 					position : 'none' // 항목 표시 여부 (현재 설정은 안함)
-				}
+				},
+				'width':900,
+                'height':400
 			};
 			var options2 = {
-				    curveType: 'function'
+				    curveType: 'function',
+				    'width':900,
+	                'height':400
 			};
 
 
