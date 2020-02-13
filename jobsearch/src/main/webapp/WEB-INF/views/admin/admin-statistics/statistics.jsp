@@ -3,48 +3,58 @@
 
 <c:import url="../admin-include/admin-header.jsp"/>
   
-  <body>  	
+<style>
+div#statics {
+    width: 65%;
+    margin-left: 14em;
+}
+div#height {
+    height: 40em;
+}  
+  
+</style>
+<body>  	
 
-	<c:import url="../admin-include/admin-navi.jsp"/>
+<c:import url="../admin-include/admin-navi.jsp"/>
 
-	<div class="page-content">
-    	<div class="row">
-		  
-		  <c:import url="../admin-include/admin-left.jsp"/>
-		  
-		  <div class="col-md-10" id="adminLayout">
-  		 			  				
-  				<div class="row" id="statics1">
-	  				<div class="col-md-6">
-	  					<div class="content-box-large">
-			  				<div class="panel-heading">
-								<div class="panel-title">날짜별 지원자 통계</div>
-							
-							</div>
-			  				<div class="panel-body">
-			  					<div id="chart_div" style="height: 230px;"></div>
-			  				</div>
-			  			</div>
-	  				</div>
-  				</div> 
-  				<div class="row" id="statics2">
-	  				<div class="col-md-6">
-	  					<div class="content-box-large">
-			  				<div class="panel-heading">
-								<div class="panel-title">분야별 등록된 공고</div>								
-							</div>
-			  				<div class="panel-body">
-			  					<div id="chart_div2" style="width:100%;height:200px"></div>
-			  				</div>
-			  			</div>
+<div class="page-content">
+   	<div class="row">
+	  
+<c:import url="../admin-include/admin-left.jsp"/>
+ 
+ <div class="col-md-10" id="adminLayout">
+	 			  				
+			<div class="row">
+				<div class="col-md-6" id="statics">
+					<div class="content-box-large" id="height">
+  				<div class="panel-heading">
+					<div class="panel-title">날짜별 지원자 통계</div>
+				
+				</div>
+  				<div class="panel-body">
+  					<div id="chart_div" style="height: 230px;"></div>
+  				</div>
+  			</div>
+				</div>
+			</div> 
+			<div class="row">
+				<div class="col-md-6" id="statics">
+					<div class="content-box-large" id="height">
+  				<div class="panel-heading">
+					<div class="panel-title">분야별 등록된 공고</div>								
+				</div>
+  				<div class="panel-body">
+  					<div id="chart_div2" style="width:100%;height:200px"></div>
 	  				</div>
 	  			</div>
-  			</div>		  			
-		  </div>
-		</div>
-		
-	<c:import url="../admin-include/admin-footer.jsp"/>
-	
+ 				</div>
+ 			</div>
+			</div>		  			
+  </div>
+</div>
+
+<c:import url="../admin-include/admin-footer.jsp"/>
+
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- jQuery UI -->
