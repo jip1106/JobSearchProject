@@ -24,38 +24,50 @@
 
 <link rel="stylesheet" type="text/css" href="<c:url value='/resources/css/resume.css'/>">
 <style type="text/css">
-#headB{
-	background: #5e87f1;
+div#ATitle {
+    background-color: white;
+    font-size: 29px;
+    font-weight: bold;
+    margin-bottom: 30px;
 }
-#Title{
-	font-weight:bold;
-	font-size : 40px;
-	color: white;
+.applyer_layout {
+    display: flex;
+    border: 1px solid #d6d6d6;
+    max-width: 60%;
+    border-radius: 1px;
+    margin-bottom: 7px;
+    padding: 10px 10px;
 }
-table{
-	width: 500px;
+img.picture {
+    resize: both;
+    height: 125px;
+    margin-right: 17px;
 }
-table tr td{
-	border: .25px solid grey;
-	width: 200px;
+span.Mname_sp {
+    font-size: 16px;
+    font-weight: bold;
 }
-tr{
-	height: 30px;
-
+.cont {
+    text-align: left;
 }
-#tr1{
-	background: #1b00ff1f;
-	font-weight: bold;
-	color: #000000a3;	
+span.Mgender_sp {
+    font-size: 15px;
+    color: #848484;
 }
-td{
-	padding-left: 15px;
+span.Mage_sp {
+    font-size: 15px;
+    color: #848484;
 }
-#td1{
-	width: 23%;
+.resumeTitle {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 5px 0;
 }
-#td2{
-	width: 24%;
+.emptyList {
+    padding: 45px 0;
+    border-top: 1px solid gainsboro;
+    border-bottom: 1px solid gainsboro;
+    max-width: 60%;
 }
 </style>
 <script type="text/javascript">
@@ -68,37 +80,60 @@ td{
 </head>
 <body>
 <div id="applyList" align="center">
-	<div id="headB">		
-		<h2 id="Title">지원자 리스트</h2>
-	</div>
-	<table>
-		<tr id="tr1">
-			<td id="td1">이력서 제목</td>			
-			<td id="td2">자기소개서 제목</td>
-		</tr>
+		<div id="ATitle">지원현황</div>
+		<!-- <hr class="hr_line"> -->
+		
 		<c:if test="${empty list}">
-		<tr>
-			<td colspan="2" align="center">
-			 	아직 아무도 지원하지않았어요..
-			</td>
-		</tr>		
+	 		<div class="emptyList">해당공고의 지원자가 없습니다.</div>
 		</c:if>
+		<c:if test="${!empty list}">
 		<c:forEach var="vo" items="${list}">
-			<tr>
-				<td id="td1">
-					<a href="#" onclick="resumeView(${vo.resumeSeq}, ${param.annSeq })">${vo.resumeTitle}</a>
-				</td>
-				<td>				
-				<c:if test="${fn:length(vo.introduceTitle)>15}">
-					${fn:substring(vo.introduceTitle,0, 15)}...
-			    </c:if>
-			    <c:if test="${fn:length(vo.introduceTitle)<=15}">
-					${vo.introduceTitle}
-			    </c:if>			     			
-			    </td>
-			</tr>
+			<div class="applyer_layout">
+				<div class="photoImg">
+					<c:if test="${empty vo.profileRenameimg}">
+						<img class="picture" src="<c:url value="/resources/images/emptyphoto.png"/>" alt="등록된 사진이 없습니다."> 
+					</c:if>
+					<c:if test="${!empty vo.profileRenameimg}">
+						<img class="picture" src="<c:url value='/resources/upload_images/${vo.profileRenameimg}'/>">
+					</c:if>
+				</div>
+				<div class="cont">
+					<div class="Mname">
+						<span class="Mname_sp">
+							${vo.memberName}
+						</span>
+						<span class="Mgender_sp">
+							(${vo.genderType},
+						</span>
+						<span class="Mage_sp">
+							${vo.memberAge}세)
+						</span>
+					</div>
+					<div class="Mmail">
+						${vo.memberId}
+					</div>
+					<div class="resumeTitle">
+						<a href="#" onclick="resumeView(${vo.resumeSeq}, ${param.annSeq })">
+						<c:if test="${fn:length(vo.resumeTitle)>10}">
+								${fn:substring(vo.resumeTitle, 0, 10)}...
+			     			</c:if>
+							<c:if test="${fn:length(vo.resumeTitle)<=10}">
+			          			${vo.resumeTitle}
+						</c:if>	
+						</a>
+					</div>
+					<div class="intTitle">
+						<c:if test="${fn:length(vo.introduceTitle)>14}">
+								${fn:substring(vo.introduceTitle, 0, 14)}...
+			     			</c:if>
+							<c:if test="${fn:length(vo.introduceTitle)<=14}">
+			          			${vo.introduceTitle}
+						</c:if>	
+					</div>
+				</div>
+			</div>
 		</c:forEach>
-	</table>
+		</c:if>
 </div>
 </body>
 
