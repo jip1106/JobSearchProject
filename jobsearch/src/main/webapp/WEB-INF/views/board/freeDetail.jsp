@@ -2,53 +2,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <c:import url="/WEB-INF/views/include/header.jsp" />
-<script type="text/javascript">
-$(document).ready(function() {
 
-	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
-	var floatPosition = parseInt($("div#floatMenu2").css('top'));
-	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
-
-	$(window).scroll(function() {
-		// 현재 스크롤 위치를 가져온다.
-		var scrollTop = $(window).scrollTop();
-		var newPosition = scrollTop + floatPosition + "px";
-
-		// 애니메이션 없이 바로 따라감
-		 $("div#floatMenu2").css('top', newPosition);
-		 
-
-		$("div#floatMenu2").stop().animate({
-			"top" : newPosition
-		}, 500);
-
-	}).scroll();
-
-});
-</script>	
-<script type="text/javascript">
-$(document).ready(function(){
-	$('.select_action').on('change',function(){
-			if($(".select_action option:eq(1)").prop("selected")==true){
-				if (confirm("댓글을 수정하시겠습니까?") == true){    
-					var commentSeqEdit=$(this).find("option").eq(1).val();
-					location.href= "<c:url value='/board/edit_reply.do?commentSeq="+commentSeqEdit+"'/>";
-				}else{
-					return;
-				}
-			}else if($(".select_action option:eq(2)").prop("selected")==true){ 
-			    if (confirm("정말 삭제하시겠습니까?") == true){    
-					var commentSeqDel=$(this).find("option").eq(2).val();
-					location.href= "<c:url value='/board/delete_reply.do?commentSeq="+commentSeqDel+"'/>";
-			    }else{   //취소
-			    	return;
-			    }
-			}
-	});
-});
-</script>
 <style type="text/css">
 .unfold{
 	float: right;
@@ -647,7 +602,50 @@ nav.nav_side {
     height: 100%;
 }
 </style>
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script> 
+<script type="text/javascript">
+$(document).ready(function() {
+
+	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
+	var floatPosition = parseInt($("div#floatMenu2").css('top'));
+	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
+
+	$(window).scroll(function() {
+		// 현재 스크롤 위치를 가져온다.
+		var scrollTop = $(window).scrollTop();
+		var newPosition = scrollTop + floatPosition + "px";
+
+		// 애니메이션 없이 바로 따라감
+		 $("div#floatMenu2").css('top', newPosition);
+		 
+
+		$("div#floatMenu2").stop().animate({
+			"top" : newPosition
+		}, 500);
+
+	}).scroll();
 	
+	$('.select_action').on('change',function(){
+			if($(".select_action option:eq(1)").prop("selected")==true){
+				if (confirm("댓글을 수정하시겠습니까?") == true){    
+					var commentSeqEdit=$(this).find("option").eq(1).val();
+					location.href= "<c:url value='/board/edit_reply.do?commentSeq="+commentSeqEdit+"'/>";
+				}else{
+					return;
+				}
+			}else if($(".select_action option:eq(2)").prop("selected")==true){ 
+			    if (confirm("정말 삭제하시겠습니까?") == true){    
+					var commentSeqDel=$(this).find("option").eq(2).val();
+					location.href= "<c:url value='/board/delete_reply.do?commentSeq="+commentSeqDel+"'/>";
+			    }else{   //취소
+			    	return;
+			    }
+			}
+	});
+});
+</script>
+	
+
 <c:import url="/WEB-INF/views/include/headend.jsp" />
 
 <div class="container" id="container">

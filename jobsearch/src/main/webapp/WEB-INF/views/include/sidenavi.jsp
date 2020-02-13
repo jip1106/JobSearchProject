@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
-
 <!-- 출처: https://titis.tistory.com/111 [프로그래밍으로 안되는건 없다. ] -->
 <style>
 /* 잡서치디자인추가 */
@@ -104,9 +101,6 @@ a.JTL {
 a.link {
     color: #737373;
 }
-
-<style>
-
 .topFixBanner {
     text-align: left;
     background-color: #ffffff;
@@ -126,55 +120,7 @@ a.link {
 
      }
 
-</style> 
-
-<script type="text/javascript">
-var bannerOffset = $( '.topFixBanner' ).offset();
-
-    $( window ).scroll( function() {  //window에 스크롤링이 발생하면
-
-          if ( $( document ).scrollTop() > bannerOffset.top ) {   // 위치 및 사이즈를 파악하여 미리 정한 css class를 add 또는 remove 합니다.
-
-            $( '.topFixBanner' ).addClass( 'topFixBannerFixed' );
-
-          }
-
-          else {
-
-            $( '.topFixBanner' ).removeClass( 'topFixBannerFixed' );
-
-          }
-
-     });
-
-
-
-
-</script>
-<script type="text/javascript">
-$(document).ready(function() {
-
-	// 기존 css에서 플로팅 배너 위치(top)값을 가져와 저장한다.
-	var floatPosition = parseInt($("#floatMenu").css('top'));
-	// 250px 이런식으로 가져오므로 여기서 숫자만 가져온다. parseInt( 값 );
-
-	$(window).scroll(function() {
-		// 현재 스크롤 위치를 가져온다.
-		var scrollTop = $(window).scrollTop();
-		var newPosition = scrollTop + floatPosition + "px";
-
-		// 애니메이션 없이 바로 따라감
-		 $("#floatMenu").css('top', newPosition);
-		 
-
-		$("#floatMenu").stop().animate({
-			"top" : newPosition
-		}, 500);
-
-	}).scroll();
-
-});
-</script>
+</style>
 
     <!-- Navigation -->
   <nav class="nav_side">
