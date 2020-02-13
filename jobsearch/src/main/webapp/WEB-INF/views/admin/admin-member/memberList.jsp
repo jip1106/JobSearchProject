@@ -66,9 +66,8 @@
 						</div>
 						
 						<div class="col-md-2">
-							<select class="form-control" name="delFlag" onchange="searchMember()">
-								<option value="">전체회원</option>
-								<option value="N" <c:if test="${param.delFlag=='N' }">selected="selected"</c:if>>이용회원</option>
+							<select class="form-control" name="delFlag" onchange="searchMember()">								
+								<option value="" <c:if test="${param.delFlag=='N'||param.delFlag==null}">selected="selected"</c:if>>이용회원</option>
 								<option value="Y" <c:if test="${param.delFlag=='Y' }">selected="selected"</c:if>>삭제회원</option>
 							</select>						
 						</div>						
